@@ -17,7 +17,7 @@ public class clsDAOLogin extends clsLogin {
     }
     
     public boolean validate(){
-    String SQL = "SELECT * FROM public.tbl_login WHERE USER='" + super.getUser() +"' AND PASSWORD='"+ super.getPassword() + "';";
+    String SQL = "SELECT * FROM public.tbl_login WHERE USERS='" + super.getUser() +"' AND PASSWORD='"+ super.getPassword() + "';";
     if(connexion.validateSQL(SQL) == false){
         return false;
     }else{

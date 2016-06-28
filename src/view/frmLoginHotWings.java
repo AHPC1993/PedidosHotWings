@@ -5,15 +5,19 @@
  */
 package view;
 
-import java.awt.*;
+import java.util.Iterator;
+import java.util.Map;
 import javax.swing.*;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
+import org.pushingpixels.substance.api.shaper.StandardButtonShaper;
+import org.pushingpixels.substance.api.skin.SkinInfo;
 
 /**
  *
  * @author allan
  */
 public class frmLoginHotWings extends javax.swing.JFrame {
+    int count = 5;
 
     /**
      * Creates new form frmLoginHotWings
@@ -21,29 +25,44 @@ public class frmLoginHotWings extends javax.swing.JFrame {
     public frmLoginHotWings() {
         JFrame.setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //this.setUndecorated(true);
-        SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.BusinessSkin");
-        initComponents();
-        //  this.setLayout(new BorderLayout());
-        //  add(pnlLogin, BorderLayout.CENTER);
-        // this.setLayout(new GridBagLayout());
-        // add(pnlLogin, new GridBagConstraints());
-        dlgLogin.setSize(470, 400);
-        dlgLogin.setLocationRelativeTo(this);
-        dlgLogin.setTitle("Inicio de Sesión");
+        //this.setUndecorated(true); pantalla completa
+        SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.ChallengerDeepSkin");
+        //   SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.MarinerSkin");
 
+        initComponents();
+        //Se crea el background contenido en un label y se le da tamaño y posición al jdialog
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/backgroundLogin.jpg"));
+        lblBackground.setIcon(icon);
+        dlgLogin.setSize(692, 345);
+        pnlLogin.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        dlgLogin.setLocationRelativeTo(this);
         dlgLogin.setVisible(true);
 
     }
 
+    /*Método que permite validar el usuario y la contraseña para poder ver el frame.*/
     public void validateLogin() {
+
         model.clsDAOLogin daoLogin = new model.clsDAOLogin();
         daoLogin.setUser(txtUser.getText());
         daoLogin.setPassword(txtPassword.getText());
-        if (daoLogin.validate() == false) {
-            JOptionPane.showMessageDialog(this, "Datos incorrectos.");
+        if ("".equals(daoLogin.getUser()) || "".equals(daoLogin.getPassword())) {
+            JOptionPane.showMessageDialog(this, "El usuario o la contraseña no pueden estar en blanco.");
+        } else if (daoLogin.validate() == false) {
+            if (count == 1) {
+                JOptionPane.showMessageDialog(this, "Usted ha ingresado la contraseña mal 5 veces, el programa se cerrará.");
+                System.exit(0);
+            } else {
+                count = count - 1;
+                JOptionPane.showMessageDialog(this, "Datos incorrectos. Inténtelo otra vez, le quedan " + count + " intentos");
+            }
+
         } else {
-            JOptionPane.showMessageDialog(this, "Bienvenido(a) "  + daoLogin.getUser());      
+            JOptionPane.showMessageDialog(this, "Bienvenido(a) " + daoLogin.getUser());
+            SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.MarinerSkin");
+           // this.btnOrderDelivery.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+      
+            
             this.setVisible(true);
             dlgLogin.setVisible(false);
         }
@@ -60,82 +79,83 @@ public class frmLoginHotWings extends javax.swing.JFrame {
     private void initComponents() {
 
         dlgLogin = new javax.swing.JDialog();
-        pnlLogin1 = new javax.swing.JPanel();
+        pnlLogin = new javax.swing.JPanel();
         btnAccept = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
-        jButton3 = new javax.swing.JButton();
+        lblIconHotWings = new javax.swing.JLabel();
+        lblBackground = new javax.swing.JLabel();
+        dlgAmount = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        btnAcceptAmount = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnCombo6 = new javax.swing.JButton();
+        btnLocalOrder = new javax.swing.JButton();
+        btnOrderDelivery = new javax.swing.JButton();
 
-        pnlLogin1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Iniciar Sesión", 2, 0, new java.awt.Font("Dialog", 1, 14), java.awt.Color.red)); // NOI18N
+        dlgLogin.setTitle("Inicio de Sesión");
+        dlgLogin.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                dlgLoginWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                dlgLoginWindowClosing(evt);
+            }
+        });
 
+        pnlLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Iniciar Sesión", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), java.awt.Color.red)); // NOI18N
+        pnlLogin.setLayout(null);
+
+        btnAccept.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnAccept.setText("Aceptar");
         btnAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAcceptActionPerformed(evt);
             }
         });
+        pnlLogin.add(btnAccept);
+        btnAccept.setBounds(429, 223, 89, 34);
 
-        jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
-        jLabel3.setText("Usuario");
+        lblUser.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        lblUser.setForeground(new java.awt.Color(240, 240, 240));
+        lblUser.setText("Usuario");
+        pnlLogin.add(lblUser);
+        lblUser.setBounds(290, 94, 67, 29);
 
-        jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
-        jLabel4.setText("Contraseña");
+        txtUser.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pnlLogin.add(txtUser);
+        txtUser.setBounds(429, 91, 200, 36);
 
+        lblPassword.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(240, 240, 240));
+        lblPassword.setText("Contraseña");
+        pnlLogin.add(lblPassword);
+        lblPassword.setBounds(290, 146, 100, 29);
+
+        btnExit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExit.setText("Salir");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
             }
         });
+        pnlLogin.add(btnExit);
+        btnExit.setBounds(540, 223, 89, 34);
 
-        javax.swing.GroupLayout pnlLogin1Layout = new javax.swing.GroupLayout(pnlLogin1);
-        pnlLogin1.setLayout(pnlLogin1Layout);
-        pnlLogin1Layout.setHorizontalGroup(
-            pnlLogin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLogin1Layout.createSequentialGroup()
-                .addGroup(pnlLogin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlLogin1Layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabel4))
-                    .addGroup(pnlLogin1Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(jLabel3))
-                    .addGroup(pnlLogin1Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addGroup(pnlLogin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlLogin1Layout.createSequentialGroup()
-                                .addComponent(btnAccept)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnExit))
-                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(txtPassword))))
-                .addContainerGap(135, Short.MAX_VALUE))
-        );
+        txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pnlLogin.add(txtPassword);
+        txtPassword.setBounds(429, 145, 200, 36);
 
-        pnlLogin1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtPassword, txtUser});
-
-        pnlLogin1Layout.setVerticalGroup(
-            pnlLogin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLogin1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(pnlLogin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnExit)
-                    .addComponent(btnAccept))
-                .addGap(23, 23, 23))
-        );
-
-        pnlLogin1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtPassword, txtUser});
+        lblIconHotWings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logoHotWings.jpeg"))); // NOI18N
+        pnlLogin.add(lblIconHotWings);
+        lblIconHotWings.setBounds(4, 7, 280, 280);
+        pnlLogin.add(lblBackground);
+        lblBackground.setBounds(0, 0, 670, 320);
 
         javax.swing.GroupLayout dlgLoginLayout = new javax.swing.GroupLayout(dlgLogin.getContentPane());
         dlgLogin.getContentPane().setLayout(dlgLoginLayout);
@@ -143,51 +163,220 @@ public class frmLoginHotWings extends javax.swing.JFrame {
             dlgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dlgLoginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
+                .addContainerGap())
         );
         dlgLoginLayout.setVerticalGroup(
             dlgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dlgLoginLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(pnlLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        dlgAmount.setTitle("Cantidad para el producto selecionado");
+
+        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jList1.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "1", "2", "3", "4", "5", "6", "7", "8", "9", ">10" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList1.setToolTipText("Cantidad para el producto seleccionado");
+        jScrollPane2.setViewportView(jList1);
+
+        btnAcceptAmount.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnAcceptAmount.setText("Aceptar");
+
+        javax.swing.GroupLayout dlgAmountLayout = new javax.swing.GroupLayout(dlgAmount.getContentPane());
+        dlgAmount.getContentPane().setLayout(dlgAmountLayout);
+        dlgAmountLayout.setHorizontalGroup(
+            dlgAmountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAmountLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnAcceptAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        dlgAmountLayout.setVerticalGroup(
+            dlgAmountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAmountLayout.createSequentialGroup()
+                .addGroup(dlgAmountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dlgAmountLayout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(btnAcceptAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dlgAmountLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar sesión");
-        setSize(new java.awt.Dimension(435, 357));
+        setMaximumSize(new java.awt.Dimension(1382, 744));
+        setMinimumSize(new java.awt.Dimension(1382, 744));
+        setPreferredSize(new java.awt.Dimension(1382, 744));
+        setSize(new java.awt.Dimension(1382, 744));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jButton3.setText("jButton3");
+        btnCombo6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        btnCombo6.setText("Consultar pedidos");
+        btnCombo6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnCombo6.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        btnCombo6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo6ActionPerformed(evt);
+            }
+        });
+
+        btnLocalOrder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnLocalOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnLocalOrder.png"))); // NOI18N
+        btnLocalOrder.setText("Nuevo pedido local");
+        btnLocalOrder.setToolTipText("Nuevo pedido local");
+        btnLocalOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLocalOrder.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLocalOrder.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLocalOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocalOrderActionPerformed(evt);
+            }
+        });
+
+        btnOrderDelivery.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnOrderDelivery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnOrder.png"))); // NOI18N
+        btnOrderDelivery.setText("Nuevo domicilio");
+        btnOrderDelivery.setToolTipText("Nuevo domicilio");
+        btnOrderDelivery.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnOrderDelivery.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnOrderDelivery.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnOrderDelivery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderDeliveryActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(428, Short.MAX_VALUE)
+                .addComponent(btnCombo6, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(267, 267, 267))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(btnLocalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(48, 48, 48)
+                    .addComponent(btnOrderDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(647, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addComponent(btnCombo6, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(btnLocalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(244, 244, 244))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(53, 53, 53)
+                    .addComponent(btnOrderDelivery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(523, 523, 523)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(365, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void dlgLoginWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgLoginWindowClosed
+
+
+    }//GEN-LAST:event_dlgLoginWindowClosed
+
+    private void dlgLoginWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgLoginWindowClosing
+
+        System.exit(0);
+    }//GEN-LAST:event_dlgLoginWindowClosing
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if (JOptionPane.showConfirmDialog(this,
+                "Está seguro de que quiere salir?", "Salir?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        } else {
+            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        }
+
+
+    }//GEN-LAST:event_formWindowClosing
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
 
         validateLogin();
     }//GEN-LAST:event_btnAcceptActionPerformed
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+    private void btnCombo6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo6ActionPerformed
+        Map<String, SkinInfo> allSkins = SubstanceLookAndFeel.getAllSkins();
+        Iterator it = allSkins.entrySet().iterator();
+
+          try{
+            Map.Entry e = (Map.Entry)it.next();
+            System.out.println(""+e.getKey());
+            it.next();
+                          
+    SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin."+e.getKey());
+              System.out.println(e.getKey());
+          }catch(Exception e){
+              System.out.println("error");
+          }
+           
+
+    }//GEN-LAST:event_btnCombo6ActionPerformed
+
+    private void btnLocalOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalOrderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnExitActionPerformed
+    }//GEN-LAST:event_btnLocalOrderActionPerformed
+
+    private void btnOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDeliveryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOrderDeliveryActionPerformed
+
+    public void showDialog(JDialog dialog) {
+        dialog.setSize(470, 400);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+    }
 
     /**
      * @param args the command line arguments
@@ -226,12 +415,21 @@ public class frmLoginHotWings extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnAcceptAmount;
+    private javax.swing.JButton btnCombo6;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnLocalOrder;
+    private javax.swing.JButton btnOrderDelivery;
+    private javax.swing.JDialog dlgAmount;
     private javax.swing.JDialog dlgLogin;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel pnlLogin1;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblIconHotWings;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblUser;
+    private javax.swing.JPanel pnlLogin;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables

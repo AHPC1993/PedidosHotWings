@@ -5,30 +5,39 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
 import java.util.Iterator;
 import java.util.Map;
 import javax.swing.*;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
-import org.pushingpixels.substance.api.shaper.StandardButtonShaper;
+import org.pushingpixels.substance.api.shaper.*;
 import org.pushingpixels.substance.api.skin.SkinInfo;
 
 /**
  *
  * @author allan
  */
-public class frmLoginHotWings extends javax.swing.JFrame {
+public class frmMainHotWings extends javax.swing.JFrame {
+
+    frmNewOrderDelivery frmOrderDelivery;
+    frmAdministration frmAdmin;
+    frmLocalOrder frmLocalO;
+    frmReports frmReport;
     int count = 5;
 
     /**
      * Creates new form frmLoginHotWings
      */
-    public frmLoginHotWings() {
+    public frmMainHotWings() {
+        frmReport = new frmReports();
+        frmOrderDelivery = new frmNewOrderDelivery();
+        frmAdmin = new frmAdministration();
+        frmLocalO = new frmLocalOrder();
         JFrame.setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //this.setUndecorated(true); pantalla completa
         SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.ChallengerDeepSkin");
         //   SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.MarinerSkin");
-
         initComponents();
         //Se crea el background contenido en un label y se le da tamaño y posición al jdialog
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/backgroundLogin.jpg"));
@@ -59,10 +68,9 @@ public class frmLoginHotWings extends javax.swing.JFrame {
 
         } else {
             JOptionPane.showMessageDialog(this, "Bienvenido(a) " + daoLogin.getUser());
-            SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.MarinerSkin");
-           // this.btnOrderDelivery.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-      
-            
+            SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.ModerateSkin");
+            // this.btnOrderDelivery.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+
             this.setVisible(true);
             dlgLogin.setVisible(false);
         }
@@ -92,10 +100,13 @@ public class frmLoginHotWings extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         btnAcceptAmount = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        btnCombo6 = new javax.swing.JButton();
-        btnLocalOrder = new javax.swing.JButton();
+        jMenu1 = new javax.swing.JMenu();
         btnOrderDelivery = new javax.swing.JButton();
+        btnLocalOrder = new javax.swing.JButton();
+        btnReports = new javax.swing.JButton();
+        btnAdmin = new javax.swing.JButton();
+        btnMenuDetails = new javax.swing.JButton();
+        lblBackgroundMainFrame = new javax.swing.JLabel();
 
         dlgLogin.setTitle("Inicio de Sesión");
         dlgLogin.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -104,6 +115,14 @@ public class frmLoginHotWings extends javax.swing.JFrame {
             }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 dlgLoginWindowClosing(evt);
+            }
+        });
+        dlgLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                dlgLoginKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                dlgLoginKeyReleased(evt);
             }
         });
 
@@ -213,6 +232,8 @@ public class frmLoginHotWings extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
+        jMenu1.setText("jMenu1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar sesión");
         setMaximumSize(new java.awt.Dimension(1382, 744));
@@ -224,22 +245,33 @@ public class frmLoginHotWings extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
+        getContentPane().setLayout(null);
 
-        btnCombo6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        btnCombo6.setText("Consultar pedidos");
-        btnCombo6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnCombo6.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        btnCombo6.addActionListener(new java.awt.event.ActionListener() {
+        btnOrderDelivery.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnOrderDelivery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnOrder.png"))); // NOI18N
+        btnOrderDelivery.setText("Nuevo domicilio");
+        btnOrderDelivery.setToolTipText("Nuevo domicilio");
+        btnOrderDelivery.setBorderPainted(false);
+        btnOrderDelivery.setContentAreaFilled(false);
+        btnOrderDelivery.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOrderDelivery.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnOrderDelivery.setOpaque(false);
+        btnOrderDelivery.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnOrderDelivery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo6ActionPerformed(evt);
+                btnOrderDeliveryActionPerformed(evt);
             }
         });
+        getContentPane().add(btnOrderDelivery);
+        btnOrderDelivery.setBounds(100, 50, 330, 255);
 
         btnLocalOrder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnLocalOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnLocalOrder.png"))); // NOI18N
         btnLocalOrder.setText("Nuevo pedido local");
         btnLocalOrder.setToolTipText("Nuevo pedido local");
-        btnLocalOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLocalOrder.setBorderPainted(false);
+        btnLocalOrder.setContentAreaFilled(false);
+        btnLocalOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLocalOrder.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLocalOrder.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnLocalOrder.addActionListener(new java.awt.event.ActionListener() {
@@ -247,69 +279,66 @@ public class frmLoginHotWings extends javax.swing.JFrame {
                 btnLocalOrderActionPerformed(evt);
             }
         });
+        getContentPane().add(btnLocalOrder);
+        btnLocalOrder.setBounds(550, 50, 330, 255);
 
-        btnOrderDelivery.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnOrderDelivery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnOrder.png"))); // NOI18N
-        btnOrderDelivery.setText("Nuevo domicilio");
-        btnOrderDelivery.setToolTipText("Nuevo domicilio");
-        btnOrderDelivery.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnOrderDelivery.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnOrderDelivery.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnOrderDelivery.addActionListener(new java.awt.event.ActionListener() {
+        btnReports.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnReports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnReports.png"))); // NOI18N
+        btnReports.setText("Generar informes");
+        btnReports.setToolTipText("Nuevo domicilio");
+        btnReports.setBorderPainted(false);
+        btnReports.setContentAreaFilled(false);
+        btnReports.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReports.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReports.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnReports.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOrderDeliveryActionPerformed(evt);
+                btnReportsActionPerformed(evt);
             }
         });
+        getContentPane().add(btnReports);
+        btnReports.setBounds(100, 380, 330, 255);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(428, Short.MAX_VALUE)
-                .addComponent(btnCombo6, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(267, 267, 267))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(btnLocalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(48, 48, 48)
-                    .addComponent(btnOrderDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(647, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(btnCombo6, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(btnLocalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(244, 244, 244))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(53, 53, 53)
-                    .addComponent(btnOrderDelivery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(523, 523, 523)))
-        );
+        btnAdmin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnAdmin.png"))); // NOI18N
+        btnAdmin.setText("Administrar");
+        btnAdmin.setToolTipText("Administrar todo en el software");
+        btnAdmin.setBorderPainted(false);
+        btnAdmin.setContentAreaFilled(false);
+        btnAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdmin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAdmin);
+        btnAdmin.setBounds(1010, 50, 330, 255);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(365, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
-        );
+        btnMenuDetails.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnMenuDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnMenuDetails.png"))); // NOI18N
+        btnMenuDetails.setText("Menú");
+        btnMenuDetails.setToolTipText("Nuevo domicilio");
+        btnMenuDetails.setBorderPainted(false);
+        btnMenuDetails.setContentAreaFilled(false);
+        btnMenuDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenuDetails.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnMenuDetails.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnMenuDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuDetailsActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMenuDetails);
+        btnMenuDetails.setBounds(550, 380, 330, 255);
+
+        lblBackgroundMainFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
+        lblBackgroundMainFrame.setMaximumSize(new java.awt.Dimension(1382, 744));
+        lblBackgroundMainFrame.setMinimumSize(new java.awt.Dimension(1382, 744));
+        lblBackgroundMainFrame.setPreferredSize(new java.awt.Dimension(1382, 744));
+        getContentPane().add(lblBackgroundMainFrame);
+        lblBackgroundMainFrame.setBounds(0, 0, 1380, 740);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -346,31 +375,34 @@ public class frmLoginHotWings extends javax.swing.JFrame {
         validateLogin();
     }//GEN-LAST:event_btnAcceptActionPerformed
 
-    private void btnCombo6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo6ActionPerformed
-        Map<String, SkinInfo> allSkins = SubstanceLookAndFeel.getAllSkins();
-        Iterator it = allSkins.entrySet().iterator();
-
-          try{
-            Map.Entry e = (Map.Entry)it.next();
-            System.out.println(""+e.getKey());
-            it.next();
-                          
-    SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin."+e.getKey());
-              System.out.println(e.getKey());
-          }catch(Exception e){
-              System.out.println("error");
-          }
-           
-
-    }//GEN-LAST:event_btnCombo6ActionPerformed
-
     private void btnLocalOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalOrderActionPerformed
-        // TODO add your handling code here:
+        frmLocalO.setVisible(true);
     }//GEN-LAST:event_btnLocalOrderActionPerformed
 
     private void btnOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDeliveryActionPerformed
-        // TODO add your handling code here:
+        frmOrderDelivery.setVisible(true);
     }//GEN-LAST:event_btnOrderDeliveryActionPerformed
+
+    private void dlgLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dlgLoginKeyPressed
+
+    }//GEN-LAST:event_dlgLoginKeyPressed
+
+    private void dlgLoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dlgLoginKeyReleased
+
+
+    }//GEN-LAST:event_dlgLoginKeyReleased
+
+    private void btnReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsActionPerformed
+       frmReport.setVisible(true);
+    }//GEN-LAST:event_btnReportsActionPerformed
+
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
+       frmAdmin.setVisible(true);
+    }//GEN-LAST:event_btnAdminActionPerformed
+
+    private void btnMenuDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuDetailsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMenuDetailsActionPerformed
 
     public void showDialog(JDialog dialog) {
         dialog.setSize(470, 400);
@@ -395,20 +427,21 @@ public class frmLoginHotWings extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmLoginHotWings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMainHotWings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmLoginHotWings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMainHotWings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmLoginHotWings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMainHotWings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmLoginHotWings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMainHotWings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmLoginHotWings().setVisible(false);
+                new frmMainHotWings().setVisible(false);
             }
         });
     }
@@ -416,16 +449,19 @@ public class frmLoginHotWings extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnAcceptAmount;
-    private javax.swing.JButton btnCombo6;
+    private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLocalOrder;
+    private javax.swing.JButton btnMenuDetails;
     private javax.swing.JButton btnOrderDelivery;
+    private javax.swing.JButton btnReports;
     private javax.swing.JDialog dlgAmount;
     private javax.swing.JDialog dlgLogin;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblBackgroundMainFrame;
     private javax.swing.JLabel lblIconHotWings;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUser;

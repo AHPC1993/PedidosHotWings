@@ -17,8 +17,9 @@ public class frmAdministration extends javax.swing.JFrame {
      * Creates new form frmAdministration
      */
     public frmAdministration() {
-         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**

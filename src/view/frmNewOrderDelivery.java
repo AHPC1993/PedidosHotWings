@@ -19,6 +19,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     public frmNewOrderDelivery() {
          this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**

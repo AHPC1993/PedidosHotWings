@@ -5,9 +5,7 @@
  */
 package view;
 
-import java.awt.event.ActionEvent;
-import java.util.Iterator;
-import java.util.Map;
+
 import javax.swing.*;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.shaper.*;
@@ -255,7 +253,6 @@ public class frmMainHotWings extends javax.swing.JFrame {
         btnOrderDelivery.setContentAreaFilled(false);
         btnOrderDelivery.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOrderDelivery.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnOrderDelivery.setOpaque(false);
         btnOrderDelivery.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnOrderDelivery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

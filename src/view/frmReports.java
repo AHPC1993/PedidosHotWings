@@ -19,6 +19,7 @@ public class frmReports extends javax.swing.JFrame {
     public frmReports() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**

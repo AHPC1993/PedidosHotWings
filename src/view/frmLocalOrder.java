@@ -63,18 +63,15 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnAdditions1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1382, 744));
         setMinimumSize(new java.awt.Dimension(1382, 744));
-        setPreferredSize(new java.awt.Dimension(1382, 744));
         setSize(new java.awt.Dimension(1382, 744));
         getContentPane().setLayout(null);
 
-        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlAmount.setLayout(null);
 
         numbersGroup.add(btnCombo1);
         btnCombo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber6.png"))); // NOI18N
-        btnCombo1.setText("Combo 1");
         btnCombo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCombo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +83,6 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         numbersGroup.add(btnCombo2);
         btnCombo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber2.png"))); // NOI18N
-        btnCombo2.setText("Combo 2");
         btnCombo2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCombo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +105,6 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         numbersGroup.add(btnCombo28);
         btnCombo28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber3.png"))); // NOI18N
-        btnCombo28.setText("Combo 1");
         btnCombo28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCombo28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +116,6 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         numbersGroup.add(btnCombo29);
         btnCombo29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber4.png"))); // NOI18N
-        btnCombo29.setText("Combo 1");
         btnCombo29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCombo29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +127,6 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         numbersGroup.add(btnCombo30);
         btnCombo30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber5.png"))); // NOI18N
-        btnCombo30.setText("Combo 1");
         btnCombo30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCombo30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,7 +138,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         numbersGroup.add(btnCombo31);
         btnCombo31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber7.png"))); // NOI18N
-        btnCombo31.setText("Combo 1");
+        btnCombo31.setToolTipText("");
         btnCombo31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCombo31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +150,6 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         numbersGroup.add(btnCombo32);
         btnCombo32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber8.png"))); // NOI18N
-        btnCombo32.setText("Combo 2");
         btnCombo32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCombo32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,7 +161,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         numbersGroup.add(btnCombo33);
         btnCombo33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber9.png"))); // NOI18N
-        btnCombo33.setText("Combo 1");
+        btnCombo33.setToolTipText("");
         btnCombo33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCombo33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +184,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         numbersGroup.add(btnCombo35);
         btnCombo35.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        btnCombo35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnAdd.png"))); // NOI18N
         btnCombo35.setText("Agregar");
+        btnCombo35.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCombo35.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnCombo35.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnCombo35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCombo35ActionPerformed(evt);
@@ -215,7 +211,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         getContentPane().add(pnlAmount);
         pnlAmount.setBounds(440, 40, 382, 519);
 
-        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
 
         productsGroup.add(btnCombo8);
         btnCombo8.setText("Combo 1");
@@ -303,7 +299,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         );
 
         getContentPane().add(pnlProducts);
-        pnlProducts.setBounds(26, 30, 380, 518);
+        pnlProducts.setBounds(26, 30, 382, 519);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /**
@@ -17,8 +19,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
      * Creates new form frmNewOrderDelivery
      */
     public frmNewOrderDelivery() {
-         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension dim = toolkit.getScreenSize();
+        this.setSize(dim.width, dim.height);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
@@ -31,25 +36,486 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dlgOrderDelivery = new javax.swing.JDialog();
+        pnlAmount = new javax.swing.JPanel();
+        btnCombo1 = new javax.swing.JToggleButton();
+        btnCombo2 = new javax.swing.JToggleButton();
+        btnCombo27 = new javax.swing.JToggleButton();
+        btnCombo28 = new javax.swing.JToggleButton();
+        btnCombo29 = new javax.swing.JToggleButton();
+        btnCombo30 = new javax.swing.JToggleButton();
+        btnCombo31 = new javax.swing.JToggleButton();
+        btnCombo32 = new javax.swing.JToggleButton();
+        btnCombo33 = new javax.swing.JToggleButton();
+        btnCombo34 = new javax.swing.JToggleButton();
+        btnCombo35 = new javax.swing.JToggleButton();
+        btnCombo36 = new javax.swing.JToggleButton();
+        pnlProducts = new javax.swing.JPanel();
+        btnCombo8 = new javax.swing.JToggleButton();
+        btnCombo9 = new javax.swing.JToggleButton();
+        btnCombo10 = new javax.swing.JToggleButton();
+        btnCombo25 = new javax.swing.JToggleButton();
+        btnCombo26 = new javax.swing.JToggleButton();
+        btnAdditions1 = new javax.swing.JToggleButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        btnNext = new javax.swing.JButton();
+
+        dlgOrderDelivery.setMinimumSize(new java.awt.Dimension(1382, 744));
+        dlgOrderDelivery.setPreferredSize(new java.awt.Dimension(1382, 744));
+        dlgOrderDelivery.setSize(new java.awt.Dimension(1382, 744));
+
+        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlAmount.setLayout(null);
+
+        btnCombo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber6.png"))); // NOI18N
+        btnCombo1.setText("Combo 1");
+        btnCombo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCombo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo1ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo1);
+        btnCombo1.setBounds(270, 120, 100, 80);
+
+        btnCombo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber2.png"))); // NOI18N
+        btnCombo2.setText("Combo 2");
+        btnCombo2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCombo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo2ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo2);
+        btnCombo2.setBounds(140, 30, 100, 80);
+
+        btnCombo27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber1.png"))); // NOI18N
+        btnCombo27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCombo27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo27ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo27);
+        btnCombo27.setBounds(20, 30, 100, 80);
+
+        btnCombo28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber3.png"))); // NOI18N
+        btnCombo28.setText("Combo 1");
+        btnCombo28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCombo28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo28ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo28);
+        btnCombo28.setBounds(270, 30, 100, 80);
+
+        btnCombo29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber4.png"))); // NOI18N
+        btnCombo29.setText("Combo 1");
+        btnCombo29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCombo29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo29ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo29);
+        btnCombo29.setBounds(20, 120, 100, 80);
+
+        btnCombo30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber5.png"))); // NOI18N
+        btnCombo30.setText("Combo 1");
+        btnCombo30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCombo30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo30ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo30);
+        btnCombo30.setBounds(140, 120, 100, 80);
+
+        btnCombo31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber7.png"))); // NOI18N
+        btnCombo31.setText("Combo 1");
+        btnCombo31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCombo31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo31ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo31);
+        btnCombo31.setBounds(20, 220, 100, 80);
+
+        btnCombo32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber8.png"))); // NOI18N
+        btnCombo32.setText("Combo 2");
+        btnCombo32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCombo32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo32ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo32);
+        btnCombo32.setBounds(140, 220, 100, 80);
+
+        btnCombo33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber9.png"))); // NOI18N
+        btnCombo33.setText("Combo 1");
+        btnCombo33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCombo33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo33ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo33);
+        btnCombo33.setBounds(270, 220, 100, 80);
+
+        btnCombo34.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        btnCombo34.setText("Finalizar pedido");
+        btnCombo34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo34ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo34);
+        btnCombo34.setBounds(270, 310, 100, 80);
+
+        btnCombo35.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        btnCombo35.setText("Agregar");
+        btnCombo35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo35ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo35);
+        btnCombo35.setBounds(140, 310, 100, 80);
+
+        btnCombo36.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        btnCombo36.setText("Otra cantidad");
+        btnCombo36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo36ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnCombo36);
+        btnCombo36.setBounds(20, 310, 100, 80);
+
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+
+        btnCombo8.setText("Combo 1");
+        btnCombo8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo8ActionPerformed(evt);
+            }
+        });
+
+        btnCombo9.setText("Combo 2");
+        btnCombo9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo9ActionPerformed(evt);
+            }
+        });
+
+        btnCombo10.setText("Combo 3");
+        btnCombo10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo10ActionPerformed(evt);
+            }
+        });
+
+        btnCombo25.setText("Combo 4");
+        btnCombo25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo25ActionPerformed(evt);
+            }
+        });
+
+        btnCombo26.setText("Combo 5");
+        btnCombo26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombo26ActionPerformed(evt);
+            }
+        });
+
+        btnAdditions1.setText("Adicionales");
+        btnAdditions1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditions1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlProductsLayout = new javax.swing.GroupLayout(pnlProducts);
+        pnlProducts.setLayout(pnlProductsLayout);
+        pnlProductsLayout.setHorizontalGroup(
+            pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProductsLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlProductsLayout.createSequentialGroup()
+                        .addComponent(btnCombo8, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnCombo9, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlProductsLayout.createSequentialGroup()
+                        .addComponent(btnCombo10, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnCombo25, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlProductsLayout.createSequentialGroup()
+                        .addComponent(btnCombo26, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnAdditions1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        pnlProductsLayout.setVerticalGroup(
+            pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProductsLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCombo8, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCombo9, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCombo10, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCombo25, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCombo26, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditions1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        javax.swing.GroupLayout dlgOrderDeliveryLayout = new javax.swing.GroupLayout(dlgOrderDelivery.getContentPane());
+        dlgOrderDelivery.getContentPane().setLayout(dlgOrderDeliveryLayout);
+        dlgOrderDeliveryLayout.setHorizontalGroup(
+            dlgOrderDeliveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgOrderDeliveryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(pnlAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(574, Short.MAX_VALUE))
+        );
+        dlgOrderDeliveryLayout.setVerticalGroup(
+            dlgOrderDeliveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgOrderDeliveryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dlgOrderDeliveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(dlgOrderDeliveryLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(pnlAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(203, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1382, 744));
         setMinimumSize(new java.awt.Dimension(1382, 744));
         setPreferredSize(new java.awt.Dimension(1382, 744));
         setSize(new java.awt.Dimension(1382, 744));
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        jLabel1.setText("Teléfono");
+
+        btnBuscar.setText("Buscar");
+
+        jLabel2.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        jLabel2.setText("Nombre");
+
+        jLabel3.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        jLabel3.setText("Apellidos");
+
+        jLabel4.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        jLabel4.setText("Dirección");
+
+        jLabel5.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        jLabel5.setText("Barrio");
+
+        jLabel6.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        jLabel6.setText("Notas");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        btnNext.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        btnNext.setForeground(java.awt.Color.black);
+        btnNext.setText("Siguiente");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 993, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(821, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 189, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+       dlgOrderDelivery.setVisible(true);
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnCombo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo1ActionPerformed
+
+    private void btnCombo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo2ActionPerformed
+
+    private void btnCombo27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo27ActionPerformed
+
+    private void btnCombo28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo28ActionPerformed
+
+    private void btnCombo29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo29ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo29ActionPerformed
+
+    private void btnCombo30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo30ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo30ActionPerformed
+
+    private void btnCombo31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo31ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo31ActionPerformed
+
+    private void btnCombo32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo32ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo32ActionPerformed
+
+    private void btnCombo33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo33ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo33ActionPerformed
+
+    private void btnCombo34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo34ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo34ActionPerformed
+
+    private void btnCombo35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo35ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo35ActionPerformed
+
+    private void btnCombo36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo36ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo36ActionPerformed
+
+    private void btnCombo8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo8ActionPerformed
+
+    private void btnCombo9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo9ActionPerformed
+
+    private void btnCombo10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo10ActionPerformed
+
+    private void btnCombo25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo25ActionPerformed
+
+    private void btnCombo26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo26ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombo26ActionPerformed
+
+    private void btnAdditions1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditions1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditions1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,5 +553,42 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnAdditions1;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JToggleButton btnCombo1;
+    private javax.swing.JToggleButton btnCombo10;
+    private javax.swing.JToggleButton btnCombo2;
+    private javax.swing.JToggleButton btnCombo25;
+    private javax.swing.JToggleButton btnCombo26;
+    private javax.swing.JToggleButton btnCombo27;
+    private javax.swing.JToggleButton btnCombo28;
+    private javax.swing.JToggleButton btnCombo29;
+    private javax.swing.JToggleButton btnCombo30;
+    private javax.swing.JToggleButton btnCombo31;
+    private javax.swing.JToggleButton btnCombo32;
+    private javax.swing.JToggleButton btnCombo33;
+    private javax.swing.JToggleButton btnCombo34;
+    private javax.swing.JToggleButton btnCombo35;
+    private javax.swing.JToggleButton btnCombo36;
+    private javax.swing.JToggleButton btnCombo8;
+    private javax.swing.JToggleButton btnCombo9;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JDialog dlgOrderDelivery;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JPanel pnlAmount;
+    private javax.swing.JPanel pnlProducts;
     // End of variables declaration//GEN-END:variables
 }

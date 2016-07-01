@@ -5,7 +5,8 @@
  */
 package view;
 
-
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.*;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.shaper.*;
@@ -32,11 +33,14 @@ public class frmMainHotWings extends javax.swing.JFrame {
         frmAdmin = new frmAdministration();
         frmLocalO = new frmLocalOrder();
         JFrame.setDefaultLookAndFeelDecorated(true);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //this.setUndecorated(true); pantalla completa
         SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.ChallengerDeepSkin");
-        //   SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.MarinerSkin");
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension dim = toolkit.getScreenSize();
+        this.setSize(dim.width, dim.height);
         initComponents();
+      //  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
         //Se crea el background contenido en un label y se le da tamaño y posición al jdialog
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/backgroundLogin.jpg"));
         lblBackground.setIcon(icon);
@@ -96,7 +100,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblBackground = new javax.swing.JLabel();
         dlgAmount = new javax.swing.JDialog();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<String>();
         btnAcceptAmount = new javax.swing.JButton();
         jMenu1 = new javax.swing.JMenu();
         btnOrderDelivery = new javax.swing.JButton();
@@ -141,7 +145,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblUser.setForeground(new java.awt.Color(240, 240, 240));
         lblUser.setText("Usuario");
         pnlLogin.add(lblUser);
-        lblUser.setBounds(290, 94, 67, 29);
+        lblUser.setBounds(290, 94, 71, 29);
 
         txtUser.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -152,7 +156,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblPassword.setForeground(new java.awt.Color(240, 240, 240));
         lblPassword.setText("Contraseña");
         pnlLogin.add(lblPassword);
-        lblPassword.setBounds(290, 146, 100, 29);
+        lblPassword.setBounds(290, 146, 104, 29);
 
         btnExit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExit.setText("Salir");
@@ -195,10 +199,10 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
         jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jList1.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "1", "2", "3", "4", "5", "6", "7", "8", "9", ">10" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jList1.setToolTipText("Cantidad para el producto seleccionado");
         jScrollPane2.setViewportView(jList1);
@@ -237,6 +241,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1382, 744));
         setMinimumSize(new java.awt.Dimension(1382, 744));
         setPreferredSize(new java.awt.Dimension(1382, 744));
+        setResizable(false);
         setSize(new java.awt.Dimension(1382, 744));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -390,11 +395,11 @@ public class frmMainHotWings extends javax.swing.JFrame {
     }//GEN-LAST:event_dlgLoginKeyReleased
 
     private void btnReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsActionPerformed
-       frmReport.setVisible(true);
+        frmReport.setVisible(true);
     }//GEN-LAST:event_btnReportsActionPerformed
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-       frmAdmin.setVisible(true);
+        frmAdmin.setVisible(true);
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnMenuDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuDetailsActionPerformed

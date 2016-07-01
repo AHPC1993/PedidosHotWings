@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /**
@@ -17,8 +19,11 @@ public class frmReports extends javax.swing.JFrame {
      * Creates new form frmReports
      */
     public frmReports() {
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension dim = toolkit.getScreenSize();
+        this.setSize(dim.width, dim.height);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 

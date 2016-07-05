@@ -37,19 +37,6 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private void initComponents() {
 
         dlgOrderDelivery = new javax.swing.JDialog();
-        pnlAmount = new javax.swing.JPanel();
-        btnCombo1 = new javax.swing.JToggleButton();
-        btnCombo2 = new javax.swing.JToggleButton();
-        btnCombo27 = new javax.swing.JToggleButton();
-        btnCombo28 = new javax.swing.JToggleButton();
-        btnCombo29 = new javax.swing.JToggleButton();
-        btnCombo30 = new javax.swing.JToggleButton();
-        btnCombo31 = new javax.swing.JToggleButton();
-        btnCombo32 = new javax.swing.JToggleButton();
-        btnCombo33 = new javax.swing.JToggleButton();
-        btnCombo34 = new javax.swing.JToggleButton();
-        btnCombo35 = new javax.swing.JToggleButton();
-        btnCombo36 = new javax.swing.JToggleButton();
         pnlProducts = new javax.swing.JPanel();
         btnCombo8 = new javax.swing.JToggleButton();
         btnCombo9 = new javax.swing.JToggleButton();
@@ -57,6 +44,25 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         btnCombo25 = new javax.swing.JToggleButton();
         btnCombo26 = new javax.swing.JToggleButton();
         btnAdditions1 = new javax.swing.JToggleButton();
+        btnProduct2 = new javax.swing.JToggleButton();
+        btnProduct3 = new javax.swing.JToggleButton();
+        btnProduct1 = new javax.swing.JToggleButton();
+        pnlAmount = new javax.swing.JPanel();
+        btnNumber6 = new javax.swing.JToggleButton();
+        btnNumber2 = new javax.swing.JToggleButton();
+        btnNumber1 = new javax.swing.JToggleButton();
+        btnNumber3 = new javax.swing.JToggleButton();
+        btnNumber4 = new javax.swing.JToggleButton();
+        btnNumber5 = new javax.swing.JToggleButton();
+        btnNumber7 = new javax.swing.JToggleButton();
+        btnNumber8 = new javax.swing.JToggleButton();
+        btnNumber9 = new javax.swing.JToggleButton();
+        btnDoneOrder = new javax.swing.JToggleButton();
+        btnAddProduct = new javax.swing.JToggleButton();
+        btnOtherAmount = new javax.swing.JToggleButton();
+        productsGroup = new javax.swing.ButtonGroup();
+        numbersGroup = new javax.swing.ButtonGroup();
+        actionsGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
@@ -73,144 +79,16 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         btnNext = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtCity = new javax.swing.JTextField();
 
         dlgOrderDelivery.setMinimumSize(new java.awt.Dimension(1382, 744));
         dlgOrderDelivery.setPreferredSize(new java.awt.Dimension(1382, 744));
         dlgOrderDelivery.setSize(new java.awt.Dimension(1382, 744));
 
-        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
-        pnlAmount.setLayout(null);
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
 
-        btnCombo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber6.png"))); // NOI18N
-        btnCombo1.setText("Combo 1");
-        btnCombo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCombo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo1ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo1);
-        btnCombo1.setBounds(270, 120, 100, 80);
-
-        btnCombo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber2.png"))); // NOI18N
-        btnCombo2.setText("Combo 2");
-        btnCombo2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCombo2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo2ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo2);
-        btnCombo2.setBounds(140, 30, 100, 80);
-
-        btnCombo27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber1.png"))); // NOI18N
-        btnCombo27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCombo27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo27ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo27);
-        btnCombo27.setBounds(20, 30, 100, 80);
-
-        btnCombo28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber3.png"))); // NOI18N
-        btnCombo28.setText("Combo 1");
-        btnCombo28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCombo28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo28ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo28);
-        btnCombo28.setBounds(270, 30, 100, 80);
-
-        btnCombo29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber4.png"))); // NOI18N
-        btnCombo29.setText("Combo 1");
-        btnCombo29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCombo29.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo29ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo29);
-        btnCombo29.setBounds(20, 120, 100, 80);
-
-        btnCombo30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber5.png"))); // NOI18N
-        btnCombo30.setText("Combo 1");
-        btnCombo30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCombo30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo30ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo30);
-        btnCombo30.setBounds(140, 120, 100, 80);
-
-        btnCombo31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber7.png"))); // NOI18N
-        btnCombo31.setText("Combo 1");
-        btnCombo31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCombo31.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo31ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo31);
-        btnCombo31.setBounds(20, 220, 100, 80);
-
-        btnCombo32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber8.png"))); // NOI18N
-        btnCombo32.setText("Combo 2");
-        btnCombo32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCombo32.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo32ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo32);
-        btnCombo32.setBounds(140, 220, 100, 80);
-
-        btnCombo33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber9.png"))); // NOI18N
-        btnCombo33.setText("Combo 1");
-        btnCombo33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCombo33.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo33ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo33);
-        btnCombo33.setBounds(270, 220, 100, 80);
-
-        btnCombo34.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
-        btnCombo34.setText("Finalizar pedido");
-        btnCombo34.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo34ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo34);
-        btnCombo34.setBounds(270, 310, 100, 80);
-
-        btnCombo35.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
-        btnCombo35.setText("Agregar");
-        btnCombo35.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo35ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo35);
-        btnCombo35.setBounds(140, 310, 100, 80);
-
-        btnCombo36.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
-        btnCombo36.setText("Otra cantidad");
-        btnCombo36.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCombo36ActionPerformed(evt);
-            }
-        });
-        pnlAmount.add(btnCombo36);
-        btnCombo36.setBounds(20, 310, 100, 80);
-
-        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
-
+        productsGroup.add(btnCombo8);
         btnCombo8.setText("Combo 1");
         btnCombo8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,6 +96,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
+        productsGroup.add(btnCombo9);
         btnCombo9.setText("Combo 2");
         btnCombo9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,6 +104,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
+        productsGroup.add(btnCombo10);
         btnCombo10.setText("Combo 3");
         btnCombo10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,6 +112,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
+        productsGroup.add(btnCombo25);
         btnCombo25.setText("Combo 4");
         btnCombo25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,6 +120,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
+        productsGroup.add(btnCombo26);
         btnCombo26.setText("Combo 5");
         btnCombo26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,10 +128,35 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
+        productsGroup.add(btnAdditions1);
         btnAdditions1.setText("Adicionales");
         btnAdditions1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdditions1ActionPerformed(evt);
+            }
+        });
+
+        productsGroup.add(btnProduct2);
+        btnProduct2.setText("Producto2");
+        btnProduct2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProduct2ActionPerformed(evt);
+            }
+        });
+
+        productsGroup.add(btnProduct3);
+        btnProduct3.setText("Producto3");
+        btnProduct3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProduct3ActionPerformed(evt);
+            }
+        });
+
+        productsGroup.add(btnProduct1);
+        btnProduct1.setText("Producto1");
+        btnProduct1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProduct1ActionPerformed(evt);
             }
         });
 
@@ -258,68 +165,219 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         pnlProductsLayout.setHorizontalGroup(
             pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlProductsLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlProductsLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(btnCombo8, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnCombo9, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCombo9, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(btnCombo10, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlProductsLayout.createSequentialGroup()
-                        .addComponent(btnCombo10, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnCombo25, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlProductsLayout.createSequentialGroup()
-                        .addComponent(btnCombo26, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnAdditions1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap()
+                        .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCombo25, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlProductsLayout.createSequentialGroup()
+                                .addComponent(btnProduct2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlProductsLayout.createSequentialGroup()
+                                .addComponent(btnCombo26, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAdditions1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         pnlProductsLayout.setVerticalGroup(
             pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlProductsLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCombo8, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCombo9, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCombo10, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCombo25, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCombo9, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCombo10, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCombo26, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdditions1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnAdditions1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCombo25, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProduct2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlAmount.setLayout(null);
+
+        numbersGroup.add(btnNumber6);
+        btnNumber6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber6.png"))); // NOI18N
+        btnNumber6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNumber6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNumber6ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnNumber6);
+        btnNumber6.setBounds(270, 120, 100, 80);
+
+        numbersGroup.add(btnNumber2);
+        btnNumber2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber2.png"))); // NOI18N
+        btnNumber2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNumber2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNumber2ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnNumber2);
+        btnNumber2.setBounds(140, 30, 100, 80);
+
+        numbersGroup.add(btnNumber1);
+        btnNumber1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber1.png"))); // NOI18N
+        btnNumber1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNumber1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNumber1ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnNumber1);
+        btnNumber1.setBounds(20, 30, 100, 80);
+
+        numbersGroup.add(btnNumber3);
+        btnNumber3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber3.png"))); // NOI18N
+        btnNumber3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNumber3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNumber3ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnNumber3);
+        btnNumber3.setBounds(270, 30, 100, 80);
+
+        numbersGroup.add(btnNumber4);
+        btnNumber4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber4.png"))); // NOI18N
+        btnNumber4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNumber4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNumber4ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnNumber4);
+        btnNumber4.setBounds(20, 120, 100, 80);
+
+        numbersGroup.add(btnNumber5);
+        btnNumber5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber5.png"))); // NOI18N
+        btnNumber5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNumber5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNumber5ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnNumber5);
+        btnNumber5.setBounds(140, 120, 100, 80);
+
+        numbersGroup.add(btnNumber7);
+        btnNumber7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber7.png"))); // NOI18N
+        btnNumber7.setToolTipText("");
+        btnNumber7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNumber7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNumber7ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnNumber7);
+        btnNumber7.setBounds(20, 220, 100, 80);
+
+        numbersGroup.add(btnNumber8);
+        btnNumber8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber8.png"))); // NOI18N
+        btnNumber8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNumber8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNumber8ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnNumber8);
+        btnNumber8.setBounds(140, 220, 100, 80);
+
+        numbersGroup.add(btnNumber9);
+        btnNumber9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/numbers/iconNumber9.png"))); // NOI18N
+        btnNumber9.setToolTipText("");
+        btnNumber9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNumber9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNumber9ActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnNumber9);
+        btnNumber9.setBounds(270, 220, 100, 80);
+
+        actionsGroup.add(btnDoneOrder);
+        btnDoneOrder.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        btnDoneOrder.setText("Finalizar pedido");
+        btnDoneOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoneOrderActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnDoneOrder);
+        btnDoneOrder.setBounds(270, 310, 100, 80);
+
+        actionsGroup.add(btnAddProduct);
+        btnAddProduct.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        btnAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnAdd.png"))); // NOI18N
+        btnAddProduct.setText("Agregar");
+        btnAddProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAddProduct.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAddProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAddProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddProductActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnAddProduct);
+        btnAddProduct.setBounds(140, 310, 100, 80);
+
+        actionsGroup.add(btnOtherAmount);
+        btnOtherAmount.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        btnOtherAmount.setText("Otra cantidad");
+        btnOtherAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOtherAmountActionPerformed(evt);
+            }
+        });
+        pnlAmount.add(btnOtherAmount);
+        btnOtherAmount.setBounds(20, 310, 100, 80);
 
         javax.swing.GroupLayout dlgOrderDeliveryLayout = new javax.swing.GroupLayout(dlgOrderDelivery.getContentPane());
         dlgOrderDelivery.getContentPane().setLayout(dlgOrderDeliveryLayout);
         dlgOrderDeliveryLayout.setHorizontalGroup(
             dlgOrderDeliveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dlgOrderDeliveryLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(24, 24, 24)
                 .addComponent(pnlProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(574, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         dlgOrderDeliveryLayout.setVerticalGroup(
             dlgOrderDeliveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dlgOrderDeliveryLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(51, 51, 51)
                 .addGroup(dlgOrderDeliveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(dlgOrderDeliveryLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(pnlAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                    .addComponent(pnlAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1382, 744));
         setMinimumSize(new java.awt.Dimension(1382, 744));
-        setPreferredSize(new java.awt.Dimension(1382, 744));
         setSize(new java.awt.Dimension(1382, 744));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         jLabel1.setText("Teléfono");
@@ -346,13 +404,15 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         btnNext.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
-        btnNext.setForeground(java.awt.Color.black);
         btnNext.setText("Siguiente");
         btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextActionPerformed(evt);
             }
         });
+
+        jLabel7.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        jLabel7.setText("Ciudad");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -365,7 +425,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel4)))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,15 +436,17 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38))
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtCity, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
+                .addGap(16, 16, 16))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -393,10 +456,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,11 +477,15 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -429,7 +497,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(821, Short.MAX_VALUE))
+                .addContainerGap(873, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,54 +512,6 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
        dlgOrderDelivery.setVisible(true);
     }//GEN-LAST:event_btnNextActionPerformed
-
-    private void btnCombo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo1ActionPerformed
-
-    private void btnCombo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo2ActionPerformed
-
-    private void btnCombo27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo27ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo27ActionPerformed
-
-    private void btnCombo28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo28ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo28ActionPerformed
-
-    private void btnCombo29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo29ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo29ActionPerformed
-
-    private void btnCombo30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo30ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo30ActionPerformed
-
-    private void btnCombo31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo31ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo31ActionPerformed
-
-    private void btnCombo32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo32ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo32ActionPerformed
-
-    private void btnCombo33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo33ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo33ActionPerformed
-
-    private void btnCombo34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo34ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo34ActionPerformed
-
-    private void btnCombo35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo35ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo35ActionPerformed
-
-    private void btnCombo36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo36ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCombo36ActionPerformed
 
     private void btnCombo8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo8ActionPerformed
         // TODO add your handling code here:
@@ -516,6 +536,66 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private void btnAdditions1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditions1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdditions1ActionPerformed
+
+    private void btnNumber6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNumber6ActionPerformed
+
+    private void btnNumber2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNumber2ActionPerformed
+
+    private void btnNumber1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNumber1ActionPerformed
+
+    private void btnNumber3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNumber3ActionPerformed
+
+    private void btnNumber4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNumber4ActionPerformed
+
+    private void btnNumber5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNumber5ActionPerformed
+
+    private void btnNumber7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNumber7ActionPerformed
+
+    private void btnNumber8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNumber8ActionPerformed
+
+    private void btnNumber9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNumber9ActionPerformed
+
+    private void btnDoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneOrderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDoneOrderActionPerformed
+
+    private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddProductActionPerformed
+
+    private void btnOtherAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherAmountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOtherAmountActionPerformed
+
+    private void btnProduct2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduct2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProduct2ActionPerformed
+
+    private void btnProduct3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduct3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProduct3ActionPerformed
+
+    private void btnProduct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduct1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProduct1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -553,26 +633,30 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup actionsGroup;
+    private javax.swing.JToggleButton btnAddProduct;
     private javax.swing.JToggleButton btnAdditions1;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JToggleButton btnCombo1;
     private javax.swing.JToggleButton btnCombo10;
-    private javax.swing.JToggleButton btnCombo2;
     private javax.swing.JToggleButton btnCombo25;
     private javax.swing.JToggleButton btnCombo26;
-    private javax.swing.JToggleButton btnCombo27;
-    private javax.swing.JToggleButton btnCombo28;
-    private javax.swing.JToggleButton btnCombo29;
-    private javax.swing.JToggleButton btnCombo30;
-    private javax.swing.JToggleButton btnCombo31;
-    private javax.swing.JToggleButton btnCombo32;
-    private javax.swing.JToggleButton btnCombo33;
-    private javax.swing.JToggleButton btnCombo34;
-    private javax.swing.JToggleButton btnCombo35;
-    private javax.swing.JToggleButton btnCombo36;
     private javax.swing.JToggleButton btnCombo8;
     private javax.swing.JToggleButton btnCombo9;
+    private javax.swing.JToggleButton btnDoneOrder;
     private javax.swing.JButton btnNext;
+    private javax.swing.JToggleButton btnNumber1;
+    private javax.swing.JToggleButton btnNumber2;
+    private javax.swing.JToggleButton btnNumber3;
+    private javax.swing.JToggleButton btnNumber4;
+    private javax.swing.JToggleButton btnNumber5;
+    private javax.swing.JToggleButton btnNumber6;
+    private javax.swing.JToggleButton btnNumber7;
+    private javax.swing.JToggleButton btnNumber8;
+    private javax.swing.JToggleButton btnNumber9;
+    private javax.swing.JToggleButton btnOtherAmount;
+    private javax.swing.JToggleButton btnProduct1;
+    private javax.swing.JToggleButton btnProduct2;
+    private javax.swing.JToggleButton btnProduct3;
     private javax.swing.JDialog dlgOrderDelivery;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -580,6 +664,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
@@ -588,7 +673,10 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.ButtonGroup numbersGroup;
     private javax.swing.JPanel pnlAmount;
     private javax.swing.JPanel pnlProducts;
+    private javax.swing.ButtonGroup productsGroup;
+    private javax.swing.JTextField txtCity;
     // End of variables declaration//GEN-END:variables
 }

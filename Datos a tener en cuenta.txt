@@ -1,0 +1,6 @@
+Secuencias.
+Locales: 100X
+Pedidos: 200X
+Productos: 300X
+Empleados: 400X
+Clientes: 500X

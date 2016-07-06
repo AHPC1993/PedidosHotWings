@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  * @author GSG
  */
 public class Connect {
+
     static String user = "hotwings";
     static String password = "hotwings";
     static String data_base = "dbHotWings";
@@ -40,16 +41,16 @@ public class Connect {
             System.out.println("Error cargando base de datos");
         }
     }
-    
-    public boolean validateSQL(String sql){
+
+    public boolean validateSQL(String sql) {
         ResultSet result = null;
-        try{
+        try {
             sentence = connection.createStatement();
             result = sentence.executeQuery(sql);
-            if(result.next()){
+            if (result.next()) {
                 System.out.println("Encontré algo");
                 return true;
-            }else{
+            } else {
                 System.out.println("No encontré nada");
                 return false;
             }
@@ -59,5 +60,42 @@ public class Connect {
         return false;
     }
 
- 
+    public boolean insert(String sql) {
+        try {
+            sentence = connection.createStatement();
+            ResultSet results = sentence.executeQuery(sql);
+            return results.next();
+        } catch (SQLException e) {
+            System.out.println("Error insertando" + e);     
+        }
+        return true;
+    }
+    
+    public ResultSet search(String sql){
+        try {
+            sentence = connection.createStatement();
+            return sentence.executeQuery(sql);
+        } catch (SQLException e) {
+            System.out.println("Error consultando" + e);
+            return null;
+        }
+    }
+    
+    public String delete(String sql){
+        try {
+            sentence = connection.createStatement();
+            int result = sentence.executeUpdate(sql);
+            if(result == 1){
+                return "correcto";
+                
+            }else{
+                return "error";
+            }
+        } catch (SQLException e) {
+            System.out.println("Error eliminando..." + e);
+            return "error";
+        }
+    }
+    
+
 }

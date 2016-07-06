@@ -3,22 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsDAOLogin.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmLocalOrder.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmReports.java</file>
+            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmAdministration.java</file>
+            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsDAOEmployees.java</file>
             <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsEmployees.java</file>
             <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmMainHotWings.java</file>
             <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsLogin.java</file>
             <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/controller/Connect.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsDAOCompany.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsCustomers.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/controller/clsDAOCustomers.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsProducts.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmAdministration.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsDAOEmployees.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmNewOrderDelivery.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsCompany.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsDAOProducts.java</file>
         </group>
     </open-files>
 </project-private>

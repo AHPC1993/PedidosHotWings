@@ -97,5 +97,20 @@ public class Connect {
         }
     }
     
+       public String edit(String sql){
+        try {
+            sentence = connection.createStatement();
+            int result = sentence.executeUpdate(sql);
+            if(result == 1){
+                return "correcto";
+                
+            }else{
+                return "error";
+            }
+        } catch (SQLException e) {
+            System.out.println("Error modificando..." + e);
+            return "error";
+        }
+    }
 
 }

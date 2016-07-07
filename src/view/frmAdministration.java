@@ -21,7 +21,7 @@ import model.clsDAOEmployees;
  * @author GSG
  */
 public class frmAdministration extends javax.swing.JFrame {
-
+    String employee_id;
     model.clsDAOEmployees employees;
 
     /**
@@ -35,8 +35,7 @@ public class frmAdministration extends javax.swing.JFrame {
         this.setSize(dim.width, dim.height);
         dlgAdminEmployees.setSize(dim.width, dim.height);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        dlgAdminEmployees.setSize(800, dim.height);
-        lblBackgroundAdmin.setSize(800, dim.height);
+        lblBackgroundAdmin.setSize(dim.width, dim.height);
         //   dlgAdminEmployees.setB(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         dlgAdminEmployees.setLocationRelativeTo(this);
 
@@ -78,6 +77,9 @@ public class frmAdministration extends javax.swing.JFrame {
         btnInsert = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnNew = new javax.swing.JButton();
+        btnListar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblEmployees = new javax.swing.JTable();
         lblBackgroundDialog = new javax.swing.JLabel();
         jDialog1 = new javax.swing.JDialog();
         btnAdminProducts = new javax.swing.JButton();
@@ -242,14 +244,19 @@ public class frmAdministration extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
 
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnEdit.png"))); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnEdit.png"))); // NOI18N
         btnEdit.setText("Modificar");
         btnEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEdit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnDelete.png"))); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnDelete.png"))); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -261,7 +268,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
 
         btnInsert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnSave.png"))); // NOI18N
+        btnInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSave.png"))); // NOI18N
         btnInsert.setText("Insertar");
         btnInsert.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnInsert.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -273,7 +280,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
 
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnSearch.png"))); // NOI18N
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSearch.png"))); // NOI18N
         btnSearch.setText("Consultar");
         btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -285,7 +292,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
 
         btnNew.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnNew.png"))); // NOI18N
+        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnNew.png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -321,11 +328,36 @@ public class frmAdministration extends javax.swing.JFrame {
         );
 
         dlgAdminEmployees.getContentPane().add(jPanel2);
-        jPanel2.setBounds(40, 40, 520, 90);
+        jPanel2.setBounds(180, 40, 520, 90);
+
+        btnListar.setText("Listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
+        dlgAdminEmployees.getContentPane().add(btnListar);
+        btnListar.setBounds(510, 140, 73, 23);
+
+        tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellidos", "Dirección", "Puesto", "Teléfono", "Id local", "Notas"
+            }
+        ));
+        jScrollPane3.setViewportView(tblEmployees);
+
+        dlgAdminEmployees.getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(740, 70, 452, 402);
 
         lblBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         dlgAdminEmployees.getContentPane().add(lblBackgroundDialog);
-        lblBackgroundDialog.setBounds(-6, -6, 600, 710);
+        lblBackgroundDialog.setBounds(-10, 0, 1330, 710);
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -343,16 +375,30 @@ public class frmAdministration extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1382, 744));
         getContentPane().setLayout(null);
 
+        btnAdminProducts.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAdminProducts.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/iconBtnAdminProducts.jpg"))); // NOI18N
         btnAdminProducts.setText("Administrar productos");
+        btnAdminProducts.setBorderPainted(false);
+        btnAdminProducts.setContentAreaFilled(false);
+        btnAdminProducts.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdminProducts.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdminProducts.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         getContentPane().add(btnAdminProducts);
-        btnAdminProducts.setBounds(450, 30, 204, 149);
+        btnAdminProducts.setBounds(630, 40, 290, 260);
 
+        btnCompanyDates.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCompanyDates.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/pp.jpg"))); // NOI18N
         btnCompanyDates.setText("Datos empresa");
+        btnCompanyDates.setBorderPainted(false);
+        btnCompanyDates.setContentAreaFilled(false);
+        btnCompanyDates.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCompanyDates.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnCompanyDates.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         getContentPane().add(btnCompanyDates);
-        btnCompanyDates.setBounds(780, 30, 204, 149);
+        btnCompanyDates.setBounds(1060, 50, 290, 260);
 
         btnAdminEmployees.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAdminEmployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnAdminEmployees.jpg"))); // NOI18N
+        btnAdminEmployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/iconBtnAdminEmployees.png"))); // NOI18N
         btnAdminEmployees.setText("Administrar empleados");
         btnAdminEmployees.setBorderPainted(false);
         btnAdminEmployees.setContentAreaFilled(false);
@@ -368,7 +414,7 @@ public class frmAdministration extends javax.swing.JFrame {
         btnAdminEmployees.setBounds(30, 27, 290, 260);
 
         btnAdminPasswords.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAdminPasswords.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnAdminPasswords.png"))); // NOI18N
+        btnAdminPasswords.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/iconBtnAdminPasswords.png"))); // NOI18N
         btnAdminPasswords.setText("Administrador de contraseñas");
         btnAdminPasswords.setBorderPainted(false);
         btnAdminPasswords.setContentAreaFilled(false);
@@ -376,9 +422,10 @@ public class frmAdministration extends javax.swing.JFrame {
         btnAdminPasswords.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnAdminPasswords.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         getContentPane().add(btnAdminPasswords);
-        btnAdminPasswords.setBounds(30, 370, 300, 290);
+        btnAdminPasswords.setBounds(70, 440, 290, 260);
 
-        btnAdminCustomers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/la-gente-che-mangia-e-che-parla-ristorante-o-caff-64556176.jpg"))); // NOI18N
+        btnAdminCustomers.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAdminCustomers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/iconBtnAdminCustomers1.png"))); // NOI18N
         btnAdminCustomers.setText("Administrar clientes");
         btnAdminCustomers.setBorderPainted(false);
         btnAdminCustomers.setContentAreaFilled(false);
@@ -386,7 +433,7 @@ public class frmAdministration extends javax.swing.JFrame {
         btnAdminCustomers.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnAdminCustomers.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         getContentPane().add(btnAdminCustomers);
-        btnAdminCustomers.setBounds(430, 380, 300, 260);
+        btnAdminCustomers.setBounds(630, 430, 290, 260);
 
         lblBackgroundAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         getContentPane().add(lblBackgroundAdmin);
@@ -405,7 +452,8 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         employees = new clsDAOEmployees();
-        employees.setDocument_id(txtDocument.getText());
+        String document = JOptionPane.showInputDialog("Por favor ingrese la cédula del empleado a eliminar");
+        employees.setDocument_id(document);
         String result = "";
         result = employees.delete();
         if (result.equals("correcto")) {
@@ -424,13 +472,18 @@ public class frmAdministration extends javax.swing.JFrame {
             String document = JOptionPane.showInputDialog("Por favor ingrese el número de cédula del empleado a buscar");
             employees.setDocument_id(document);
             result = employees.search();
-            txtDocument.setText(result.getString(2));
-            txtName.setText(result.getString(3));
-            txtLastName.setText(result.getString(4));
-            txtJob.setText(result.getString(5));
-            txtPhone1.setText(result.getString(6));
-            txtNotes.setText(result.getString(7));
-            txtAddress.setText(result.getString(9));
+            if (result != null) {
+                employee_id = result.getString(1);   
+                txtDocument.setText(result.getString(2));
+                txtName.setText(result.getString(3));
+                txtLastName.setText(result.getString(4));
+                txtJob.setText(result.getString(5));
+                txtPhone1.setText(result.getString(6));
+                txtNotes.setText(result.getString(7));
+                txtAddress.setText(result.getString(9));
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "El empleado no existe, por favor verifique que la cédula esté bien escrita.");
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(frmAdministration.class.getName()).log(Level.SEVERE, null, ex);
@@ -440,6 +493,20 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        loadSetValuesEmployees();
+        if (employees.insert()) {
+            JOptionPane.showMessageDialog(rootPane, "Se insertó el empleado correctamente");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No sé insertó el empleado");
+        }
+    }//GEN-LAST:event_btnInsertActionPerformed
+
+    private void btnAdminEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminEmployeesActionPerformed
+        this.dispose();
+        dlgAdminEmployees.setVisible(true);
+    }//GEN-LAST:event_btnAdminEmployeesActionPerformed
+
+    public void loadSetValuesEmployees() {
         employees = new clsDAOEmployees();
         employees.setDocument_id(txtDocument.getText());
         employees.setNamee(txtName.getText());
@@ -453,18 +520,30 @@ public class frmAdministration extends javax.swing.JFrame {
         } else if ("Hot Wings la estrella".equals(cbLocal.getSelectedItem().toString())) {
             employees.setLocal_id("1002");
         }
+        employees.setDoc_temp(employee_id);
+    }
 
-        if (employees.insert()) {
-            JOptionPane.showMessageDialog(rootPane, "Se insertó el empleado correctamente");
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        loadSetValuesEmployees();
+        String result = "";
+        result = employees.edit();
+        if (result.equals("correcto")) {
+            JOptionPane.showMessageDialog(rootPane, "El empleado ha sido modificado correctamente.");
+
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No sé insertó el empleado");
-        }
-    }//GEN-LAST:event_btnInsertActionPerformed
+            JOptionPane.showMessageDialog(rootPane, "No ha podido ser modificado el empleado, intente nuevamente y verifique que el empleado exista.");
 
-    private void btnAdminEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminEmployeesActionPerformed
-        this.dispose();
-        dlgAdminEmployees.setVisible(true);
-    }//GEN-LAST:event_btnAdminEmployeesActionPerformed
+        }
+        
+        
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+       employees = new clsDAOEmployees();
+       tblEmployees.setModel(employees.list());
+       
+    }//GEN-LAST:event_btnListarActionPerformed
 
     public void cleanTextbox() {
         txtDocument.setText("");
@@ -474,10 +553,6 @@ public class frmAdministration extends javax.swing.JFrame {
         txtPhone1.setText("");
         txtNotes.setText("");
         txtAddress.setText("");
-    }
-
-    public void loadDates() {
-
     }
 
     /**
@@ -524,6 +599,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnInsert;
+    private javax.swing.JButton btnListar;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cbLocal;
@@ -532,6 +608,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBackgroundAdmin;
@@ -544,6 +621,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JLabel lblNotes;
     private javax.swing.JLabel lblPhone1;
     private javax.swing.JPanel pnlEmployeesDates;
+    private javax.swing.JTable tblEmployees;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtDocument;
     private javax.swing.JTextField txtJob;

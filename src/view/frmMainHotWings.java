@@ -100,7 +100,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblBackground = new javax.swing.JLabel();
         dlgAmount = new javax.swing.JDialog();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<String>();
+        jList1 = new javax.swing.JList<>();
         btnAcceptAmount = new javax.swing.JButton();
         jMenu1 = new javax.swing.JMenu();
         btnOrderDelivery = new javax.swing.JButton();
@@ -145,7 +145,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblUser.setForeground(new java.awt.Color(240, 240, 240));
         lblUser.setText("Usuario");
         pnlLogin.add(lblUser);
-        lblUser.setBounds(290, 94, 71, 29);
+        lblUser.setBounds(290, 94, 67, 29);
 
         txtUser.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -156,7 +156,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblPassword.setForeground(new java.awt.Color(240, 240, 240));
         lblPassword.setText("Contraseña");
         pnlLogin.add(lblPassword);
-        lblPassword.setBounds(290, 146, 104, 29);
+        lblPassword.setBounds(290, 146, 100, 29);
 
         btnExit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExit.setText("Salir");
@@ -199,10 +199,10 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
         jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jList1.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "1", "2", "3", "4", "5", "6", "7", "8", "9", ">10" };
             public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         jList1.setToolTipText("Cantidad para el producto seleccionado");
         jScrollPane2.setViewportView(jList1);
@@ -238,9 +238,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar sesión");
-        setMaximumSize(new java.awt.Dimension(1382, 744));
         setMinimumSize(new java.awt.Dimension(1382, 744));
-        setPreferredSize(new java.awt.Dimension(1382, 744));
         setResizable(false);
         setSize(new java.awt.Dimension(1382, 744));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -251,7 +249,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         btnOrderDelivery.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnOrderDelivery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnOrder.png"))); // NOI18N
+        btnOrderDelivery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmMain/iconBtnOrder.png"))); // NOI18N
         btnOrderDelivery.setText("Nuevo domicilio");
         btnOrderDelivery.setToolTipText("Nuevo domicilio");
         btnOrderDelivery.setBorderPainted(false);
@@ -268,7 +266,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         btnOrderDelivery.setBounds(100, 50, 330, 255);
 
         btnLocalOrder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnLocalOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnLocalOrder.png"))); // NOI18N
+        btnLocalOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmMain/iconBtnLocalOrder.png"))); // NOI18N
         btnLocalOrder.setText("Nuevo pedido local");
         btnLocalOrder.setToolTipText("Nuevo pedido local");
         btnLocalOrder.setBorderPainted(false);
@@ -285,7 +283,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         btnLocalOrder.setBounds(550, 50, 330, 255);
 
         btnReports.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnReports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnReports.png"))); // NOI18N
+        btnReports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmMain/iconBtnReports.png"))); // NOI18N
         btnReports.setText("Generar informes");
         btnReports.setToolTipText("Nuevo domicilio");
         btnReports.setBorderPainted(false);
@@ -302,7 +300,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         btnReports.setBounds(100, 380, 330, 255);
 
         btnAdmin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnAdmin.png"))); // NOI18N
+        btnAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmMain/iconBtnAdmin.png"))); // NOI18N
         btnAdmin.setText("Administrar");
         btnAdmin.setToolTipText("Administrar todo en el software");
         btnAdmin.setBorderPainted(false);
@@ -319,7 +317,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         btnAdmin.setBounds(1010, 50, 330, 255);
 
         btnMenuDetails.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnMenuDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnMenuDetails.png"))); // NOI18N
+        btnMenuDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmMain/iconBtnMenuDetails.png"))); // NOI18N
         btnMenuDetails.setText("Menú");
         btnMenuDetails.setToolTipText("Nuevo domicilio");
         btnMenuDetails.setBorderPainted(false);

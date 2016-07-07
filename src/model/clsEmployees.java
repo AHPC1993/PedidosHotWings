@@ -18,11 +18,12 @@ public class clsEmployees {
     private String notes;
     private String local_id;
     private String address;
+    private String doc_temp;
 
     public clsEmployees() {
     }
 
-    public clsEmployees(String document_id, String namee, String lastname, String job, String phone, String notes, String local_id, String address) {
+    public clsEmployees(String document_id, String namee, String lastname, String job, String phone, String notes, String local_id, String address, String doc_temp) {
         this.document_id = document_id;
         this.namee = namee;
         this.lastname = lastname;
@@ -31,7 +32,10 @@ public class clsEmployees {
         this.notes = notes;
         this.local_id = local_id;
         this.address = address;
+        this.doc_temp = doc_temp;
     }
+
+
 
     public String getDocument_id() {
         return document_id;
@@ -95,6 +99,14 @@ public class clsEmployees {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getDoc_temp() {
+        return doc_temp;
+    }
+
+    public void setDoc_temp(String doc_temp) {
+        this.doc_temp = doc_temp;
     }
     
     

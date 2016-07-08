@@ -11,6 +11,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -60,8 +62,9 @@ public class clsDAOEmployees extends clsEmployees {
     }
 
     public DefaultTableModel list() {
-        String[] columnName = {
-            "Cédula", "Nombre", "Apellidos", "Dirección", "Puesto", "Teléfono", "Id local", "Notas"};
+        JComboBox combo = new JComboBox();
+        String[] columnName = {"Selección",
+            "Cédula", "Nombre", "Apellidos", "Puesto", "Teléfono", "Notas", "Local Id", "Dirección"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0);
         try {
             ResultSet result = null;
@@ -74,7 +77,7 @@ public class clsDAOEmployees extends clsEmployees {
 
             while (result.next()) {
                 Object[] row = new Object[columns];
-                for (int i = 0; i < columns; i++) {
+                for (int i = 1; i < columns; i++) {
                     row[i] = result.getObject(i + 1);
                 }
                 tblModel.addRow(row);

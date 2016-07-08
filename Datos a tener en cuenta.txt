@@ -1,8 +1,9 @@
 Secuencias.
 Locales: 100X
 Pedidos: 200X
-Productos: 300X
+Productos: 300X SEQ_PRODUCTS.
 Empleados: 400X SEQ_EMPLOYEES.
 Clientes: 500X
 
+CREATE SEQUENCE SEQ_XXXX START 301;
 Antes de entregar el proyecto, es necesario reiniciar las secuencias

@@ -5,24 +5,29 @@
  */
 package view;
 
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import model.clsDAOEmployees;
+import model.clsDAOProducts;
 
 /**
  *
  * @author GSG
  */
 public class frmAdministration extends javax.swing.JFrame {
+
     String employee_id;
+    String product_id;
     model.clsDAOEmployees employees;
+    model.clsDAOProducts products;
 
     /**
      * Creates new form frmAdministration
@@ -30,14 +35,21 @@ public class frmAdministration extends javax.swing.JFrame {
     public frmAdministration() {
         //  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
         this.setSize(dim.width, dim.height);
-        dlgAdminEmployees.setSize(dim.width, dim.height);
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         lblBackgroundAdmin.setSize(dim.width, dim.height);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         //   dlgAdminEmployees.setB(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        dlgAdminEmployees.setSize(dim.width, dim.height);
         dlgAdminEmployees.setLocationRelativeTo(this);
+        scrollPanelEmployeesTable.setVisible(false);
+        tblEmployees.setVisible(false);
+        dlgAdminProducts.setSize(dim.width, dim.height);
+        dlgAdminProducts.setLocationRelativeTo(this);
+        scrollPanelTblProducts.setVisible(false);
+        tblProducts.setVisible(false);
 
     }
 
@@ -52,36 +64,60 @@ public class frmAdministration extends javax.swing.JFrame {
 
         dlgAdminEmployees = new javax.swing.JDialog();
         pnlEmployeesDates = new javax.swing.JPanel();
-        lblDocument = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        lblName = new javax.swing.JLabel();
-        lblLastName = new javax.swing.JLabel();
-        txtLastName = new javax.swing.JTextField();
-        txtAddress = new javax.swing.JTextField();
-        txtDocument = new javax.swing.JTextField();
+        lblEmployeesDocument = new javax.swing.JLabel();
+        txtEmployeesName = new javax.swing.JTextField();
+        lblEmployeesName = new javax.swing.JLabel();
+        lblEmployeesLastName = new javax.swing.JLabel();
+        txtEmployeesLastName = new javax.swing.JTextField();
+        txtEmployeesAddress = new javax.swing.JTextField();
+        txtEmployeesDocument = new javax.swing.JTextField();
         lblAddress = new javax.swing.JLabel();
         lblJob = new javax.swing.JLabel();
-        txtJob = new javax.swing.JTextField();
+        txtEmployeesJob = new javax.swing.JTextField();
         lblNotes = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtNotes = new javax.swing.JTextArea();
+        scrollNotes = new javax.swing.JScrollPane();
+        txtEmployeesNotes = new javax.swing.JTextArea();
         lblLocal = new javax.swing.JLabel();
         lblPhone1 = new javax.swing.JLabel();
-        txtPhone1 = new javax.swing.JTextField();
+        txtEmployeesPhone = new javax.swing.JTextField();
         cbLocal = new javax.swing.JComboBox<>();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        btnEdit = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnInsert = new javax.swing.JButton();
-        btnSearch = new javax.swing.JButton();
-        btnNew = new javax.swing.JButton();
-        btnListar = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        pnlEmployeesButtons = new javax.swing.JPanel();
+        btnEmployeesEdit = new javax.swing.JButton();
+        btnEmployeesDelete = new javax.swing.JButton();
+        btnEmployeesInsert = new javax.swing.JButton();
+        btnEmployeesSearch = new javax.swing.JButton();
+        btnEmployeesNew = new javax.swing.JButton();
+        btnEmployeesList = new javax.swing.JButton();
+        scrollPanelEmployeesTable = new javax.swing.JScrollPane();
         tblEmployees = new javax.swing.JTable();
-        lblBackgroundDialog = new javax.swing.JLabel();
+        lblEmployeesBackgroundDialog = new javax.swing.JLabel();
         jDialog1 = new javax.swing.JDialog();
+        dlgAdminProducts = new javax.swing.JDialog();
+        pnlProducts = new javax.swing.JPanel();
+        txtProductsName = new javax.swing.JTextField();
+        lblProductsName = new javax.swing.JLabel();
+        lblProductsDescription = new javax.swing.JLabel();
+        txtProductsPrice = new javax.swing.JTextField();
+        lblPrice = new javax.swing.JLabel();
+        lblProductsNotes = new javax.swing.JLabel();
+        scrolProductslNotes = new javax.swing.JScrollPane();
+        txtProductsNotes = new javax.swing.JTextArea();
+        scrolProductDescription = new javax.swing.JScrollPane();
+        txtProductsDescription = new javax.swing.JTextArea();
+        jToolBar2 = new javax.swing.JToolBar();
+        jButton2 = new javax.swing.JButton();
+        pnlProductsButtons = new javax.swing.JPanel();
+        btnProductsEdit = new javax.swing.JButton();
+        btnProductsDelete = new javax.swing.JButton();
+        btnProductsInsert = new javax.swing.JButton();
+        btnProductsSearch = new javax.swing.JButton();
+        btnProductsNew = new javax.swing.JButton();
+        btnProductsList = new javax.swing.JButton();
+        scrollPanelTblProducts = new javax.swing.JScrollPane();
+        tblProducts = new javax.swing.JTable();
+        lblProductsBackgroundDialog = new javax.swing.JLabel();
         btnAdminProducts = new javax.swing.JButton();
         btnCompanyDates = new javax.swing.JButton();
         btnAdminEmployees = new javax.swing.JButton();
@@ -91,17 +127,34 @@ public class frmAdministration extends javax.swing.JFrame {
 
         dlgAdminEmployees.getContentPane().setLayout(null);
 
-        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos Empleados", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlEmployeesDates.setOpaque(false);
 
-        lblDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        lblDocument.setText("Cédula");
+        lblEmployeesDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblEmployeesDocument.setText("Cédula");
 
-        lblName.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        lblName.setText("Nombre");
+        txtEmployeesName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtEmployeesName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        lblLastName.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        lblLastName.setText("Apellidos");
+        lblEmployeesName.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblEmployeesName.setText("Nombre");
+
+        lblEmployeesLastName.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblEmployeesLastName.setText("Apellidos");
+
+        txtEmployeesLastName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtEmployeesLastName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtEmployeesAddress.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtEmployeesAddress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtEmployeesDocument.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtEmployeesDocument.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEmployeesDocument.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmployeesDocumentKeyTyped(evt);
+            }
+        });
 
         lblAddress.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblAddress.setText("Dirección");
@@ -109,18 +162,24 @@ public class frmAdministration extends javax.swing.JFrame {
         lblJob.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblJob.setText("Puesto");
 
+        txtEmployeesJob.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtEmployeesJob.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         lblNotes.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblNotes.setText("Notas");
 
-        txtNotes.setColumns(20);
-        txtNotes.setRows(5);
-        jScrollPane1.setViewportView(txtNotes);
+        txtEmployeesNotes.setColumns(20);
+        txtEmployeesNotes.setRows(5);
+        scrollNotes.setViewportView(txtEmployeesNotes);
 
         lblLocal.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblLocal.setText("Local");
 
         lblPhone1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblPhone1.setText("Teléfono");
+
+        txtEmployeesPhone.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtEmployeesPhone.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         cbLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
 
@@ -130,34 +189,34 @@ public class frmAdministration extends javax.swing.JFrame {
             pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(lblDocument)
+                .addComponent(lblEmployeesDocument)
                 .addGap(67, 67, 67)
-                .addComponent(txtDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtEmployeesDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(lblName)
+                .addComponent(lblEmployeesName)
                 .addGap(61, 61, 61)
-                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtEmployeesName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(lblLastName)
+                .addComponent(lblEmployeesLastName)
                 .addGap(52, 52, 52)
-                .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtEmployeesLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(lblAddress)
                 .addGap(50, 50, 50)
-                .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtEmployeesAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(lblJob)
                 .addGap(69, 69, 69)
-                .addComponent(txtJob, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtEmployeesJob, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(lblPhone1)
                 .addGap(54, 54, 54)
-                .addComponent(txtPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtEmployeesPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(lblLocal)
@@ -167,7 +226,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(lblNotes)
                 .addGap(83, 83, 83)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scrollNotes, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlEmployeesDatesLayout.setVerticalGroup(
             pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,38 +235,38 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(lblDocument))
-                    .addComponent(txtDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblEmployeesDocument))
+                    .addComponent(txtEmployeesDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(lblName))
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblEmployeesName))
+                    .addComponent(txtEmployeesName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(lblLastName))
-                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblEmployeesLastName))
+                    .addComponent(txtEmployeesLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(lblAddress))
-                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmployeesAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(lblJob))
-                    .addComponent(txtJob, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmployeesJob, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(lblPhone1))
-                    .addComponent(txtPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmployeesPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
@@ -219,11 +278,11 @@ public class frmAdministration extends javax.swing.JFrame {
                     .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(lblNotes))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(scrollNotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         dlgAdminEmployees.getContentPane().add(pnlEmployeesDates);
-        pnlEmployeesDates.setBounds(110, 130, 375, 521);
+        pnlEmployeesDates.setBounds(0, 120, 375, 521);
 
         jToolBar1.setRollover(true);
 
@@ -239,105 +298,121 @@ public class frmAdministration extends javax.swing.JFrame {
         jToolBar1.add(jButton1);
 
         dlgAdminEmployees.getContentPane().add(jToolBar1);
-        jToolBar1.setBounds(0, 0, 900, 25);
+        jToolBar1.setBounds(0, 0, 1290, 25);
 
-        jPanel2.setOpaque(false);
+        pnlEmployeesButtons.setOpaque(false);
 
-        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnEdit.png"))); // NOI18N
-        btnEdit.setText("Modificar");
-        btnEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEdit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+        btnEmployeesEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEmployeesEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnEdit.png"))); // NOI18N
+        btnEmployeesEdit.setText("Modificar");
+        btnEmployeesEdit.setToolTipText("Modificar el empleado con los datos que aparecen en las cajas de texto");
+        btnEmployeesEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEmployeesEdit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
+                btnEmployeesEditActionPerformed(evt);
             }
         });
 
-        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnDelete.png"))); // NOI18N
-        btnDelete.setText("Eliminar");
-        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnEmployeesDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEmployeesDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnDelete.png"))); // NOI18N
+        btnEmployeesDelete.setText("Eliminar");
+        btnEmployeesDelete.setToolTipText("Eliminar un empleado");
+        btnEmployeesDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEmployeesDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnEmployeesDeleteActionPerformed(evt);
             }
         });
 
-        btnInsert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSave.png"))); // NOI18N
-        btnInsert.setText("Insertar");
-        btnInsert.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInsert.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnInsert.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+        btnEmployeesInsert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEmployeesInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSave.png"))); // NOI18N
+        btnEmployeesInsert.setText("Insertar");
+        btnEmployeesInsert.setToolTipText("Ingresar un nuevo empleado");
+        btnEmployeesInsert.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEmployeesInsert.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesInsert.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertActionPerformed(evt);
+                btnEmployeesInsertActionPerformed(evt);
             }
         });
 
-        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSearch.png"))); // NOI18N
-        btnSearch.setText("Consultar");
-        btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+        btnEmployeesSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEmployeesSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSearch.png"))); // NOI18N
+        btnEmployeesSearch.setText("Consultar");
+        btnEmployeesSearch.setToolTipText("Buscar un empleado por número de cédula");
+        btnEmployeesSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEmployeesSearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
+                btnEmployeesSearchActionPerformed(evt);
             }
         });
 
-        btnNew.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnNew.png"))); // NOI18N
-        btnNew.setText("Nuevo");
-        btnNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnNew.addActionListener(new java.awt.event.ActionListener() {
+        btnEmployeesNew.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEmployeesNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnNew.png"))); // NOI18N
+        btnEmployeesNew.setText("Nuevo");
+        btnEmployeesNew.setToolTipText("Limpiar las cajas de texto para crear un nuevo empleado");
+        btnEmployeesNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEmployeesNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewActionPerformed(evt);
+                btnEmployeesNewActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(btnNew)
+        btnEmployeesList.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEmployeesList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnList.png"))); // NOI18N
+        btnEmployeesList.setText("Listar Emp");
+        btnEmployeesList.setToolTipText("Listar todos los empleados en la empresa");
+        btnEmployeesList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEmployeesList.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesList.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEmployeesList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmployeesListActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlEmployeesButtonsLayout = new javax.swing.GroupLayout(pnlEmployeesButtons);
+        pnlEmployeesButtons.setLayout(pnlEmployeesButtonsLayout);
+        pnlEmployeesButtonsLayout.setHorizontalGroup(
+            pnlEmployeesButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEmployeesButtonsLayout.createSequentialGroup()
+                .addComponent(btnEmployeesNew)
                 .addGap(3, 3, 3)
-                .addComponent(btnInsert)
+                .addComponent(btnEmployeesInsert)
                 .addGap(3, 3, 3)
-                .addComponent(btnSearch)
+                .addComponent(btnEmployeesSearch)
                 .addGap(3, 3, 3)
-                .addComponent(btnEdit)
+                .addComponent(btnEmployeesEdit)
                 .addGap(3, 3, 3)
-                .addComponent(btnDelete))
+                .addComponent(btnEmployeesDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEmployeesList)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+        pnlEmployeesButtonsLayout.setVerticalGroup(
+            pnlEmployeesButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEmployeesButtonsLayout.createSequentialGroup()
+                .addGroup(pnlEmployeesButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEmployeesNew, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEmployeesInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEmployeesSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEmployeesEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEmployeesDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEmployeesList, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        dlgAdminEmployees.getContentPane().add(jPanel2);
-        jPanel2.setBounds(180, 40, 520, 90);
-
-        btnListar.setText("Listar");
-        btnListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarActionPerformed(evt);
-            }
-        });
-        dlgAdminEmployees.getContentPane().add(btnListar);
-        btnListar.setBounds(510, 140, 73, 23);
+        dlgAdminEmployees.getContentPane().add(pnlEmployeesButtons);
+        pnlEmployeesButtons.setBounds(0, 30, 640, 90);
 
         tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -350,14 +425,15 @@ public class frmAdministration extends javax.swing.JFrame {
                 "Cédula", "Nombre", "Apellidos", "Dirección", "Puesto", "Teléfono", "Id local", "Notas"
             }
         ));
-        jScrollPane3.setViewportView(tblEmployees);
+        scrollPanelEmployeesTable.setViewportView(tblEmployees);
+        tblEmployees.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        dlgAdminEmployees.getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(740, 70, 452, 402);
+        dlgAdminEmployees.getContentPane().add(scrollPanelEmployeesTable);
+        scrollPanelEmployeesTable.setBounds(410, 122, 870, 410);
 
-        lblBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
-        dlgAdminEmployees.getContentPane().add(lblBackgroundDialog);
-        lblBackgroundDialog.setBounds(-10, 0, 1330, 710);
+        lblEmployeesBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
+        dlgAdminEmployees.getContentPane().add(lblEmployeesBackgroundDialog);
+        lblEmployeesBackgroundDialog.setBounds(-10, 0, 1330, 710);
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -369,6 +445,263 @@ public class frmAdministration extends javax.swing.JFrame {
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
+
+        dlgAdminProducts.getContentPane().setLayout(null);
+
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlProducts.setOpaque(false);
+
+        txtProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtProductsName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lblProductsName.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblProductsName.setText("Nombre");
+
+        lblProductsDescription.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblProductsDescription.setText("Descripción");
+
+        txtProductsPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtProductsPrice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtProductsPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtProductsPriceKeyTyped(evt);
+            }
+        });
+
+        lblPrice.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblPrice.setText("Precio");
+
+        lblProductsNotes.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblProductsNotes.setText("Notas");
+
+        txtProductsNotes.setColumns(20);
+        txtProductsNotes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtProductsNotes.setLineWrap(true);
+        txtProductsNotes.setRows(5);
+        scrolProductslNotes.setViewportView(txtProductsNotes);
+
+        txtProductsDescription.setColumns(20);
+        txtProductsDescription.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtProductsDescription.setLineWrap(true);
+        txtProductsDescription.setRows(5);
+        scrolProductDescription.setViewportView(txtProductsDescription);
+
+        javax.swing.GroupLayout pnlProductsLayout = new javax.swing.GroupLayout(pnlProducts);
+        pnlProducts.setLayout(pnlProductsLayout);
+        pnlProductsLayout.setHorizontalGroup(
+            pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProductsLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblProductsDescription)
+                .addGap(150, 150, 150))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProductsLayout.createSequentialGroup()
+                .addComponent(scrolProductslNotes)
+                .addContainerGap())
+            .addGroup(pnlProductsLayout.createSequentialGroup()
+                .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlProductsLayout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(lblProductsName))
+                    .addGroup(pnlProductsLayout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(lblPrice))
+                    .addGroup(pnlProductsLayout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(lblProductsNotes))
+                    .addGroup(pnlProductsLayout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtProductsName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtProductsPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnlProductsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrolProductDescription)
+                .addContainerGap())
+        );
+        pnlProductsLayout.setVerticalGroup(
+            pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProductsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblProductsName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtProductsName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblProductsDescription)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scrolProductDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblPrice)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtProductsPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblProductsNotes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrolProductslNotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
+        );
+
+        dlgAdminProducts.getContentPane().add(pnlProducts);
+        pnlProducts.setBounds(0, 120, 410, 470);
+
+        jToolBar2.setRollover(true);
+
+        jButton2.setText("Archivo");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButton2);
+
+        dlgAdminProducts.getContentPane().add(jToolBar2);
+        jToolBar2.setBounds(0, 0, 1290, 25);
+
+        pnlProductsButtons.setOpaque(false);
+
+        btnProductsEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProductsEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnEdit.png"))); // NOI18N
+        btnProductsEdit.setText("Modificar");
+        btnProductsEdit.setToolTipText("Modificar el empleado con los datos que aparecen en las cajas de texto");
+        btnProductsEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProductsEdit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnProductsEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProductsEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductsEditActionPerformed(evt);
+            }
+        });
+
+        btnProductsDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProductsDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnDelete.png"))); // NOI18N
+        btnProductsDelete.setText("Eliminar");
+        btnProductsDelete.setToolTipText("Eliminar un empleado");
+        btnProductsDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProductsDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnProductsDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProductsDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductsDeleteActionPerformed(evt);
+            }
+        });
+
+        btnProductsInsert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProductsInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSave.png"))); // NOI18N
+        btnProductsInsert.setText("Insertar");
+        btnProductsInsert.setToolTipText("Ingresar un nuevo empleado");
+        btnProductsInsert.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProductsInsert.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnProductsInsert.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProductsInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductsInsertActionPerformed(evt);
+            }
+        });
+
+        btnProductsSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProductsSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSearch.png"))); // NOI18N
+        btnProductsSearch.setText("Consultar");
+        btnProductsSearch.setToolTipText("Buscar un empleado por número de cédula");
+        btnProductsSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProductsSearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnProductsSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProductsSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductsSearchActionPerformed(evt);
+            }
+        });
+
+        btnProductsNew.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProductsNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnNew.png"))); // NOI18N
+        btnProductsNew.setText("Nuevo");
+        btnProductsNew.setToolTipText("Limpiar las cajas de texto para crear un nuevo empleado");
+        btnProductsNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProductsNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnProductsNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProductsNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductsNewActionPerformed(evt);
+            }
+        });
+
+        btnProductsList.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProductsList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnList.png"))); // NOI18N
+        btnProductsList.setText("Listar Productos");
+        btnProductsList.setToolTipText("Listar todos los empleados en la empresa");
+        btnProductsList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProductsList.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnProductsList.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProductsList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductsListActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlProductsButtonsLayout = new javax.swing.GroupLayout(pnlProductsButtons);
+        pnlProductsButtons.setLayout(pnlProductsButtonsLayout);
+        pnlProductsButtonsLayout.setHorizontalGroup(
+            pnlProductsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProductsButtonsLayout.createSequentialGroup()
+                .addComponent(btnProductsNew)
+                .addGap(3, 3, 3)
+                .addComponent(btnProductsInsert)
+                .addGap(3, 3, 3)
+                .addComponent(btnProductsSearch)
+                .addGap(3, 3, 3)
+                .addComponent(btnProductsEdit)
+                .addGap(3, 3, 3)
+                .addComponent(btnProductsDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnProductsList)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlProductsButtonsLayout.setVerticalGroup(
+            pnlProductsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProductsButtonsLayout.createSequentialGroup()
+                .addGroup(pnlProductsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnProductsNew, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProductsInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProductsSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProductsEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProductsDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProductsList, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        dlgAdminProducts.getContentPane().add(pnlProductsButtons);
+        pnlProductsButtons.setBounds(0, 30, 640, 90);
+
+        tblProducts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Descripción", "Precio", "Notas"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollPanelTblProducts.setViewportView(tblProducts);
+        tblProducts.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        dlgAdminProducts.getContentPane().add(scrollPanelTblProducts);
+        scrollPanelTblProducts.setBounds(640, 122, 640, 410);
+
+        lblProductsBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
+        dlgAdminProducts.getContentPane().add(lblProductsBackgroundDialog);
+        lblProductsBackgroundDialog.setBounds(-10, 0, 1330, 710);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1382, 744));
@@ -383,8 +716,13 @@ public class frmAdministration extends javax.swing.JFrame {
         btnAdminProducts.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAdminProducts.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnAdminProducts.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdminProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminProductsActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAdminProducts);
-        btnAdminProducts.setBounds(630, 40, 290, 260);
+        btnAdminProducts.setBounds(530, 40, 290, 260);
 
         btnCompanyDates.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCompanyDates.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/pp.jpg"))); // NOI18N
@@ -411,7 +749,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAdminEmployees);
-        btnAdminEmployees.setBounds(30, 27, 290, 260);
+        btnAdminEmployees.setBounds(70, 40, 290, 260);
 
         btnAdminPasswords.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdminPasswords.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/iconBtnAdminPasswords.png"))); // NOI18N
@@ -446,11 +784,11 @@ public class frmAdministration extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        cleanTextbox();
-    }//GEN-LAST:event_btnNewActionPerformed
+    private void btnEmployeesNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesNewActionPerformed
+        cleanTextboxEmployees();
+    }//GEN-LAST:event_btnEmployeesNewActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnEmployeesDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesDeleteActionPerformed
         employees = new clsDAOEmployees();
         String document = JOptionPane.showInputDialog("Por favor ingrese la cédula del empleado a eliminar");
         employees.setDocument_id(document);
@@ -458,14 +796,12 @@ public class frmAdministration extends javax.swing.JFrame {
         result = employees.delete();
         if (result.equals("correcto")) {
             JOptionPane.showMessageDialog(rootPane, "El empleado ha sido elminado correctamente.");
-
         } else {
             JOptionPane.showMessageDialog(rootPane, "No ha podido ser eliminado el empleado, intente nuevamente y verifique que el empleado exista.");
-
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btnEmployeesDeleteActionPerformed
 
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+    private void btnEmployeesSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesSearchActionPerformed
         try {
             employees = new clsDAOEmployees();
             ResultSet result;
@@ -473,14 +809,14 @@ public class frmAdministration extends javax.swing.JFrame {
             employees.setDocument_id(document);
             result = employees.search();
             if (result != null) {
-                employee_id = result.getString(1);   
-                txtDocument.setText(result.getString(2));
-                txtName.setText(result.getString(3));
-                txtLastName.setText(result.getString(4));
-                txtJob.setText(result.getString(5));
-                txtPhone1.setText(result.getString(6));
-                txtNotes.setText(result.getString(7));
-                txtAddress.setText(result.getString(9));
+                employee_id = result.getString(1);
+                txtEmployeesDocument.setText(result.getString(2));
+                txtEmployeesName.setText(result.getString(3));
+                txtEmployeesLastName.setText(result.getString(4));
+                txtEmployeesJob.setText(result.getString(5));
+                txtEmployeesPhone.setText(result.getString(6));
+                txtEmployeesNotes.setText(result.getString(7));
+                txtEmployeesAddress.setText(result.getString(9));
             } else {
                 JOptionPane.showMessageDialog(rootPane, "El empleado no existe, por favor verifique que la cédula esté bien escrita.");
             }
@@ -490,31 +826,187 @@ public class frmAdministration extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_btnSearchActionPerformed
+    }//GEN-LAST:event_btnEmployeesSearchActionPerformed
 
-    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+    private void btnEmployeesInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesInsertActionPerformed
         loadSetValuesEmployees();
         if (employees.insert()) {
             JOptionPane.showMessageDialog(rootPane, "Se insertó el empleado correctamente");
         } else {
             JOptionPane.showMessageDialog(rootPane, "No sé insertó el empleado");
         }
-    }//GEN-LAST:event_btnInsertActionPerformed
+    }//GEN-LAST:event_btnEmployeesInsertActionPerformed
 
     private void btnAdminEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminEmployeesActionPerformed
         this.dispose();
         dlgAdminEmployees.setVisible(true);
     }//GEN-LAST:event_btnAdminEmployeesActionPerformed
 
+
+    private void btnEmployeesEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesEditActionPerformed
+        loadSetValuesEmployees();
+        String result = "";
+        result = employees.edit();
+        if (result.equals("correcto")) {
+            JOptionPane.showMessageDialog(rootPane, "El empleado ha sido modificado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No ha podido ser modificado el empleado, intente nuevamente y verifique que el empleado exista.");
+        }
+
+
+    }//GEN-LAST:event_btnEmployeesEditActionPerformed
+
+    private void btnEmployeesListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesListActionPerformed
+        employees = new clsDAOEmployees();
+        tblEmployees.setModel(employees.list());
+        scrollPanelEmployeesTable.setVisible(true);
+
+        tblEmployees.setVisible(true);
+    }//GEN-LAST:event_btnEmployeesListActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnProductsEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsEditActionPerformed
+        loadSetValuesProducts();
+        String result = "";
+        result = products.edit();
+        if (result.equals("correcto")) {
+            JOptionPane.showMessageDialog(rootPane, "El producto ha sido modificado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+        }
+
+
+    }//GEN-LAST:event_btnProductsEditActionPerformed
+
+    private void btnProductsDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsDeleteActionPerformed
+        products = new clsDAOProducts();
+        String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto a eliminar");
+        products.setNamep(namep);
+        String result = "";
+        result = products.delete();
+        if (result.equals("correcto")) {
+            JOptionPane.showMessageDialog(rootPane, "El producto ha sido elminado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
+        }
+
+
+    }//GEN-LAST:event_btnProductsDeleteActionPerformed
+
+    private void btnProductsInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsInsertActionPerformed
+        loadSetValuesProducts();
+        if (products.insert()) {
+            JOptionPane.showMessageDialog(rootPane, "Se insertó el producto correctamente");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+        }
+    }//GEN-LAST:event_btnProductsInsertActionPerformed
+
+    private void btnProductsSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsSearchActionPerformed
+        try {
+            products = new clsDAOProducts();
+            ResultSet result;
+            String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto a buscar");
+            products.setNamep(namep);
+            result = products.search();
+            if (result != null) {
+
+                product_id = result.getString(1);
+                txtProductsName.setText(result.getString(2));
+                txtProductsDescription.setText(result.getString(3));
+                txtProductsPrice.setText(result.getString(4));
+                txtProductsNotes.setText(result.getString(5));
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "El producto no existe, por favor verifique que el nombre del producto esté bien escrito.");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(frmAdministration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnProductsSearchActionPerformed
+
+    private void btnProductsNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsNewActionPerformed
+        cleanTextboxProducts();
+    }//GEN-LAST:event_btnProductsNewActionPerformed
+
+    private void btnProductsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsListActionPerformed
+        products = new clsDAOProducts();
+        tblProducts.setModel(products.list());
+        scrollPanelTblProducts.setVisible(true);
+        tblProducts.setVisible(true);
+
+
+    }//GEN-LAST:event_btnProductsListActionPerformed
+
+    private void btnAdminProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminProductsActionPerformed
+        this.dispose();
+        dlgAdminProducts.setVisible(true);
+
+    }//GEN-LAST:event_btnAdminProductsActionPerformed
+
+    private void txtProductsPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductsPriceKeyTyped
+        onlyNumbersInTextField(evt, txtProductsPrice);
+
+    }//GEN-LAST:event_txtProductsPriceKeyTyped
+
+    private void txtEmployeesDocumentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmployeesDocumentKeyTyped
+        onlyNumbersInTextField(evt, txtEmployeesDocument);
+    }//GEN-LAST:event_txtEmployeesDocumentKeyTyped
+
+    /**
+     * Método que solo admite números y una longitud máxima de 8 caracteres.
+     * Entra como parámetro un evento, que es cuando se presiona una tecla y una
+     * caja de texto, la cual es la evaluada.
+     * @param evt
+     * @param txtNumber
+     */
+    public void onlyNumbersInTextField(java.awt.event.KeyEvent evt, JTextField txtNumber) {
+        if (!Character.isDigit(evt.getKeyChar()) && !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Por favor ingrese solamente números, sin puntuación o letras", "Validando datos", JOptionPane.ERROR_MESSAGE);
+        }
+        int k = (int) evt.getKeyChar();
+        if (txtNumber.getText().length() >= 9) {
+            evt.setKeyChar((char) KeyEvent.VK_CLEAR);//Limpiar el caracter ingresado
+            JOptionPane.showMessageDialog(null, "Ha excedido el número máximo de caracteres!!! (8)", "Validando Datos",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    /**
+     * Limpia todas las cajas de texto del JDialog de employees, cambia
+     * cualquier valor que tengan por vacío
+     */
+    public void cleanTextboxEmployees() {
+        txtEmployeesDocument.setText("");
+        txtEmployeesName.setText("");
+        txtEmployeesLastName.setText("");
+        txtEmployeesJob.setText("");
+        txtEmployeesPhone.setText("");
+        txtEmployeesNotes.setText("");
+        txtEmployeesAddress.setText("");
+    }
+
+    /**
+     * Carga los valores de la clase employees con los valores que tienen las
+     * cajas de texto del JDialog employees
+     */
     public void loadSetValuesEmployees() {
         employees = new clsDAOEmployees();
-        employees.setDocument_id(txtDocument.getText());
-        employees.setNamee(txtName.getText());
-        employees.setLastname(txtLastName.getText());
-        employees.setJob(txtJob.getText());
-        employees.setPhone(txtPhone1.getText());
-        employees.setNotes(txtNotes.getText());
-        employees.setAddress(txtAddress.getText());
+        employees.setDocument_id(txtEmployeesDocument.getText());
+        employees.setNamee(txtEmployeesName.getText());
+        employees.setLastname(txtEmployeesLastName.getText());
+        employees.setJob(txtEmployeesJob.getText());
+        employees.setPhone(txtEmployeesPhone.getText());
+        employees.setNotes(txtEmployeesNotes.getText());
+        employees.setAddress(txtEmployeesAddress.getText());
         if ("Hot Wings Linares".equals(cbLocal.getSelectedItem().toString())) {
             employees.setLocal_id("1001");
         } else if ("Hot Wings la estrella".equals(cbLocal.getSelectedItem().toString())) {
@@ -523,36 +1015,28 @@ public class frmAdministration extends javax.swing.JFrame {
         employees.setDoc_temp(employee_id);
     }
 
+    /**
+     * Limpia todas las cajas de texto del JDialog de productos, cambia
+     * cualquier valor que tengan por vacío
+     */
+    public void cleanTextboxProducts() {
+        txtProductsName.setText("");
+        txtProductsDescription.setText("");
+        txtProductsPrice.setText("");
+        txtProductsNotes.setText("");
+    }
 
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        loadSetValuesEmployees();
-        String result = "";
-        result = employees.edit();
-        if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(rootPane, "El empleado ha sido modificado correctamente.");
+    /**
+     * Carga los valores de la clase products con los valores que tienen las
+     * cajas de texto del JDialog products
+     */
+    public void loadSetValuesProducts() {
+        products = new clsDAOProducts();
+        products.setNamep(txtProductsName.getText());
+        products.setDescription(txtProductsDescription.getText());
+        products.setPrice(Integer.parseInt(txtProductsPrice.getText()));
+        products.setNotes(txtProductsNotes.getText());
 
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "No ha podido ser modificado el empleado, intente nuevamente y verifique que el empleado exista.");
-
-        }
-        
-        
-    }//GEN-LAST:event_btnEditActionPerformed
-
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-       employees = new clsDAOEmployees();
-       tblEmployees.setModel(employees.list());
-       
-    }//GEN-LAST:event_btnListarActionPerformed
-
-    public void cleanTextbox() {
-        txtDocument.setText("");
-        txtName.setText("");
-        txtLastName.setText("");
-        txtJob.setText("");
-        txtPhone1.setText("");
-        txtNotes.setText("");
-        txtAddress.setText("");
     }
 
     /**
@@ -596,38 +1080,62 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnAdminPasswords;
     private javax.swing.JButton btnAdminProducts;
     private javax.swing.JButton btnCompanyDates;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnInsert;
-    private javax.swing.JButton btnListar;
-    private javax.swing.JButton btnNew;
-    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnEmployeesDelete;
+    private javax.swing.JButton btnEmployeesEdit;
+    private javax.swing.JButton btnEmployeesInsert;
+    private javax.swing.JButton btnEmployeesList;
+    private javax.swing.JButton btnEmployeesNew;
+    private javax.swing.JButton btnEmployeesSearch;
+    private javax.swing.JButton btnProductsDelete;
+    private javax.swing.JButton btnProductsEdit;
+    private javax.swing.JButton btnProductsInsert;
+    private javax.swing.JButton btnProductsList;
+    private javax.swing.JButton btnProductsNew;
+    private javax.swing.JButton btnProductsSearch;
     private javax.swing.JComboBox<String> cbLocal;
     private javax.swing.JDialog dlgAdminEmployees;
+    private javax.swing.JDialog dlgAdminProducts;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JDialog jDialog1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar2;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBackgroundAdmin;
-    private javax.swing.JLabel lblBackgroundDialog;
-    private javax.swing.JLabel lblDocument;
+    private javax.swing.JLabel lblEmployeesBackgroundDialog;
+    private javax.swing.JLabel lblEmployeesDocument;
+    private javax.swing.JLabel lblEmployeesLastName;
+    private javax.swing.JLabel lblEmployeesName;
     private javax.swing.JLabel lblJob;
-    private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblLocal;
-    private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblNotes;
     private javax.swing.JLabel lblPhone1;
+    private javax.swing.JLabel lblPrice;
+    private javax.swing.JLabel lblProductsBackgroundDialog;
+    private javax.swing.JLabel lblProductsDescription;
+    private javax.swing.JLabel lblProductsName;
+    private javax.swing.JLabel lblProductsNotes;
+    private javax.swing.JPanel pnlEmployeesButtons;
     private javax.swing.JPanel pnlEmployeesDates;
+    private javax.swing.JPanel pnlProducts;
+    private javax.swing.JPanel pnlProductsButtons;
+    private javax.swing.JScrollPane scrolProductDescription;
+    private javax.swing.JScrollPane scrolProductslNotes;
+    private javax.swing.JScrollPane scrollNotes;
+    private javax.swing.JScrollPane scrollPanelEmployeesTable;
+    private javax.swing.JScrollPane scrollPanelTblProducts;
     private javax.swing.JTable tblEmployees;
-    private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtDocument;
-    private javax.swing.JTextField txtJob;
-    private javax.swing.JTextField txtLastName;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextArea txtNotes;
-    private javax.swing.JTextField txtPhone1;
+    private javax.swing.JTable tblProducts;
+    private javax.swing.JTextField txtEmployeesAddress;
+    private javax.swing.JTextField txtEmployeesDocument;
+    private javax.swing.JTextField txtEmployeesJob;
+    private javax.swing.JTextField txtEmployeesLastName;
+    private javax.swing.JTextField txtEmployeesName;
+    private javax.swing.JTextArea txtEmployeesNotes;
+    private javax.swing.JTextField txtEmployeesPhone;
+    private javax.swing.JTextArea txtProductsDescription;
+    private javax.swing.JTextField txtProductsName;
+    private javax.swing.JTextArea txtProductsNotes;
+    private javax.swing.JTextField txtProductsPrice;
     // End of variables declaration//GEN-END:variables
 }

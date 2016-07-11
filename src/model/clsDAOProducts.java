@@ -16,9 +16,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author GSG
  */
-public class clsDAOProducts extends clsProducts{
+public class clsDAOProducts extends clsProducts {
 
-    
     controller.Connect connexion;
 
     public clsDAOProducts() {
@@ -26,13 +25,13 @@ public class clsDAOProducts extends clsProducts{
     }
 
     public boolean insert() {
-    
-        String sql = "INSERT INTO public.tbl_products(id_products, namep, description, price, notes)VALUES (nextval('SEQ_PRODUCTS'),'" + super.getNamep()+ "','" + super.getDescription()+ "','" + super.getPrice()+ "','" + super.getNotes() + "');";
+
+        String sql = "INSERT INTO public.tbl_products(id_products, namep, description, price, notes)VALUES (nextval('SEQ_PRODUCTS'),'" + super.getNamep() + "','" + super.getDescription() + "','" + super.getPrice() + "','" + super.getNotes() + "');";
         return connexion.insert(sql);
     }
 
     public ResultSet search() {
-        String sql = "Select * FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getNamep()+ "');";
+        String sql = "Select * FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getNamep() + "');";
         ResultSet results = null;
         results = connexion.search(sql);
         try {
@@ -50,13 +49,13 @@ public class clsDAOProducts extends clsProducts{
     }
 
     public String delete() {
-        String sql = "DELETE FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getNamep()+ "');";
+        String sql = "DELETE FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getNamep() + "');";
         return connexion.delete(sql);
     }
 
     public String edit() {
 
-        String sql = "UPDATE public.tbl_products SET namep='" + super.getNamep()+ "',description='" + super.getDescription()+ "', price='" + super.getPrice()+ "', notes='" + super.getNotes()+ "' WHERE UPPER(id_products) = UPPER('" + super.getId_products()+ "');";
+        String sql = "UPDATE public.tbl_products SET namep='" + super.getNamep() + "',description='" + super.getDescription() + "', price='" + super.getPrice() + "', notes='" + super.getNotes() + "' WHERE UPPER(id_products) = UPPER('" + super.getId_products() + "');";
         return connexion.edit(sql);
     }
 
@@ -74,9 +73,9 @@ public class clsDAOProducts extends clsProducts{
             while (result.next()) {
                 Object[] row = new Object[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i-1] = result.getObject(i);
+                    row[i - 1] = result.getObject(i);
                 }
-                
+
                 System.out.println("");
                 tblModel.addRow(row);
             }
@@ -87,5 +86,4 @@ public class clsDAOProducts extends clsProducts{
         return null;
     }
 
-    
 }

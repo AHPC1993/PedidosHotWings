@@ -72,7 +72,6 @@ public class Connect {
     public ResultSet search(String sql) {
         try {
             sentence = connection.createStatement();
-            System.out.println(sql);
 
             return sentence.executeQuery(sql);
         } catch (SQLException e) {
@@ -85,7 +84,6 @@ public class Connect {
         try {
             sentence = connection.createStatement();
             int results = sentence.executeUpdate(sql);
-            System.out.println(results + "Esto está devolviendo");
             return "correcto";
         } catch (SQLException e) {
             System.out.println("Error eliminando..." + e);
@@ -96,12 +94,9 @@ public class Connect {
     public String edit(String sql) {
         try {
             sentence = connection.createStatement();
-            System.out.println("Modificando:" + sql);
             int results = sentence.executeUpdate(sql);
-            System.out.println("Modificando:" + results);
             if (results == 1) {
                 return "correcto";
-
             } else {
                 return "error";
             }

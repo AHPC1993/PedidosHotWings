@@ -31,12 +31,10 @@ public class Connect {
         try {
             try {
                 Class.forName("org.postgresql.Driver");
-                System.out.println("Se cargó correctamente el driver");
             } catch (ClassNotFoundException e) {
                 System.out.println("Error cargando driver");
             }
             connection = DriverManager.getConnection(stringConnection);
-            System.out.println("Se cargó correctamente la conexión");
         } catch (SQLException e) {
             System.out.println("Error cargando base de datos");
         }
@@ -66,45 +64,45 @@ public class Connect {
             ResultSet results = sentence.executeQuery(sql);
             return results.next();
         } catch (SQLException e) {
-            System.out.println("Error insertando" + e);     
+            System.out.println("Error insertando" + e);
         }
         return true;
     }
-    
-    public ResultSet search(String sql){
+
+    public ResultSet search(String sql) {
         try {
             sentence = connection.createStatement();
+            System.out.println(sql);
+
             return sentence.executeQuery(sql);
         } catch (SQLException e) {
             System.out.println("Error consultando" + e);
             return null;
         }
     }
-    
-    public String delete(String sql){
+
+    public String delete(String sql) {
         try {
             sentence = connection.createStatement();
-            int result = sentence.executeUpdate(sql);
-            if(result == 1){
-                return "correcto";
-                
-            }else{
-                return "error";
-            }
+            int results = sentence.executeUpdate(sql);
+            System.out.println(results + "Esto está devolviendo");
+            return "correcto";
         } catch (SQLException e) {
             System.out.println("Error eliminando..." + e);
             return "error";
         }
     }
-    
-       public String edit(String sql){
+
+    public String edit(String sql) {
         try {
             sentence = connection.createStatement();
-            int result = sentence.executeUpdate(sql);
-            if(result == 1){
+            System.out.println("Modificando:" + sql);
+            int results = sentence.executeUpdate(sql);
+            System.out.println("Modificando:" + results);
+            if (results == 1) {
                 return "correcto";
-                
-            }else{
+
+            } else {
                 return "error";
             }
         } catch (SQLException e) {

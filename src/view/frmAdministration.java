@@ -80,7 +80,7 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocal = new javax.swing.JLabel();
         lblPhone1 = new javax.swing.JLabel();
         txtEmployeesPhone = new javax.swing.JTextField();
-        cbLocal = new javax.swing.JComboBox<>();
+        cbLocal = new javax.swing.JComboBox<String>();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         pnlEmployeesButtons = new javax.swing.JPanel();
@@ -93,7 +93,6 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelEmployeesTable = new javax.swing.JScrollPane();
         tblEmployees = new javax.swing.JTable();
         lblEmployeesBackgroundDialog = new javax.swing.JLabel();
-        jDialog1 = new javax.swing.JDialog();
         dlgAdminProducts = new javax.swing.JDialog();
         pnlProducts = new javax.swing.JPanel();
         txtProductsName = new javax.swing.JTextField();
@@ -125,9 +124,12 @@ public class frmAdministration extends javax.swing.JFrame {
         btnAdminCustomers = new javax.swing.JButton();
         lblBackgroundAdmin = new javax.swing.JLabel();
 
+        dlgAdminEmployees.setMinimumSize(new java.awt.Dimension(1382, 744));
+        dlgAdminEmployees.setPreferredSize(new java.awt.Dimension(1382, 744));
+        dlgAdminEmployees.setSize(new java.awt.Dimension(1382, 744));
         dlgAdminEmployees.getContentPane().setLayout(null);
 
-        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlEmployeesDates.setOpaque(false);
 
         lblEmployeesDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -181,22 +183,12 @@ public class frmAdministration extends javax.swing.JFrame {
         txtEmployeesPhone.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtEmployeesPhone.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        cbLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
+        cbLocal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
 
         javax.swing.GroupLayout pnlEmployeesDatesLayout = new javax.swing.GroupLayout(pnlEmployeesDates);
         pnlEmployeesDates.setLayout(pnlEmployeesDatesLayout);
         pnlEmployeesDatesLayout.setHorizontalGroup(
             pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(lblEmployeesDocument)
-                .addGap(67, 67, 67)
-                .addComponent(txtEmployeesDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(lblEmployeesName)
-                .addGap(61, 61, 61)
-                .addComponent(txtEmployeesName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(lblEmployeesLastName)
@@ -227,17 +219,24 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(lblNotes)
                 .addGap(83, 83, 83)
                 .addComponent(scrollNotes, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEmployeesName)
+                    .addComponent(lblEmployeesDocument))
+                .addGap(61, 61, 61)
+                .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmployeesDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmployeesName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         pnlEmployeesDatesLayout.setVerticalGroup(
             pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(lblEmployeesDocument))
+                .addGap(23, 23, 23)
+                .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmployeesDocument)
                     .addComponent(txtEmployeesDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(12, 12, 12)
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
@@ -282,7 +281,7 @@ public class frmAdministration extends javax.swing.JFrame {
         );
 
         dlgAdminEmployees.getContentPane().add(pnlEmployeesDates);
-        pnlEmployeesDates.setBounds(0, 120, 375, 521);
+        pnlEmployeesDates.setBounds(0, 120, 382, 513);
 
         jToolBar1.setRollover(true);
 
@@ -396,7 +395,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(btnEmployeesDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEmployeesList)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         pnlEmployeesButtonsLayout.setVerticalGroup(
             pnlEmployeesButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,20 +434,12 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminEmployees.getContentPane().add(lblEmployeesBackgroundDialog);
         lblEmployeesBackgroundDialog.setBounds(-10, 0, 1330, 710);
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
+        dlgAdminProducts.setMinimumSize(new java.awt.Dimension(1382, 744));
+        dlgAdminProducts.setPreferredSize(new java.awt.Dimension(1382, 744));
+        dlgAdminProducts.setSize(new java.awt.Dimension(1382, 744));
         dlgAdminProducts.getContentPane().setLayout(null);
 
-        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlProducts.setOpaque(false);
 
         txtProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -656,7 +647,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(btnProductsDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnProductsList)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         pnlProductsButtonsLayout.setVerticalGroup(
             pnlProductsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -796,6 +787,9 @@ public class frmAdministration extends javax.swing.JFrame {
         result = employees.delete();
         if (result.equals("correcto")) {
             JOptionPane.showMessageDialog(rootPane, "El empleado ha sido elminado correctamente.");
+            if (tblEmployees.isVisible()) {
+                tblEmployees.setModel(employees.list());
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "No ha podido ser eliminado el empleado, intente nuevamente y verifique que el empleado exista.");
         }
@@ -832,6 +826,10 @@ public class frmAdministration extends javax.swing.JFrame {
         loadSetValuesEmployees();
         if (employees.insert()) {
             JOptionPane.showMessageDialog(rootPane, "Se insertó el empleado correctamente");
+            if (tblEmployees.isVisible()) {
+                tblEmployees.setModel(employees.list());
+            }
+
         } else {
             JOptionPane.showMessageDialog(rootPane, "No sé insertó el empleado");
         }
@@ -849,6 +847,9 @@ public class frmAdministration extends javax.swing.JFrame {
         result = employees.edit();
         if (result.equals("correcto")) {
             JOptionPane.showMessageDialog(rootPane, "El empleado ha sido modificado correctamente.");
+            if (tblEmployees.isVisible()) {
+                tblEmployees.setModel(employees.list());
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "No ha podido ser modificado el empleado, intente nuevamente y verifique que el empleado exista.");
         }
@@ -860,7 +861,6 @@ public class frmAdministration extends javax.swing.JFrame {
         employees = new clsDAOEmployees();
         tblEmployees.setModel(employees.list());
         scrollPanelEmployeesTable.setVisible(true);
-
         tblEmployees.setVisible(true);
     }//GEN-LAST:event_btnEmployeesListActionPerformed
 
@@ -874,6 +874,9 @@ public class frmAdministration extends javax.swing.JFrame {
         result = products.edit();
         if (result.equals("correcto")) {
             JOptionPane.showMessageDialog(rootPane, "El producto ha sido modificado correctamente.");
+            if (tblProducts.isVisible()) {
+                tblProducts.setModel(products.list());
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
         }
@@ -885,11 +888,13 @@ public class frmAdministration extends javax.swing.JFrame {
         products = new clsDAOProducts();
         String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto a eliminar");
         products.setNamep(namep);
-        String result = "";
-        result = products.delete();
+        String result = products.delete();
         if (result.equals("correcto")) {
             JOptionPane.showMessageDialog(rootPane, "El producto ha sido elminado correctamente.");
-        } else {
+            if (tblProducts.isVisible()) {
+                tblProducts.setModel(products.list());
+            }
+        } else if (result.equals("error")) {
             JOptionPane.showMessageDialog(rootPane, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
         }
 
@@ -900,12 +905,21 @@ public class frmAdministration extends javax.swing.JFrame {
         loadSetValuesProducts();
         if (products.insert()) {
             JOptionPane.showMessageDialog(rootPane, "Se insertó el producto correctamente");
+            if (tblProducts.isVisible()) {
+                tblProducts.setModel(products.list());
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
         }
+
     }//GEN-LAST:event_btnProductsInsertActionPerformed
 
     private void btnProductsSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsSearchActionPerformed
+        searchProductByName();
+
+    }//GEN-LAST:event_btnProductsSearchActionPerformed
+
+    public void searchProductByName() {
         try {
             products = new clsDAOProducts();
             ResultSet result;
@@ -913,7 +927,6 @@ public class frmAdministration extends javax.swing.JFrame {
             products.setNamep(namep);
             result = products.search();
             if (result != null) {
-
                 product_id = result.getString(1);
                 txtProductsName.setText(result.getString(2));
                 txtProductsDescription.setText(result.getString(3));
@@ -927,8 +940,8 @@ public class frmAdministration extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(frmAdministration.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
-    }//GEN-LAST:event_btnProductsSearchActionPerformed
 
     private void btnProductsNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsNewActionPerformed
         cleanTextboxProducts();
@@ -962,6 +975,7 @@ public class frmAdministration extends javax.swing.JFrame {
      * Método que solo admite números y una longitud máxima de 8 caracteres.
      * Entra como parámetro un evento, que es cuando se presiona una tecla y una
      * caja de texto, la cual es la evaluada.
+     *
      * @param evt
      * @param txtNumber
      */
@@ -1036,6 +1050,7 @@ public class frmAdministration extends javax.swing.JFrame {
         products.setDescription(txtProductsDescription.getText());
         products.setPrice(Integer.parseInt(txtProductsPrice.getText()));
         products.setNotes(txtProductsNotes.getText());
+        products.setId_products(product_id);
 
     }
 
@@ -1097,7 +1112,6 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JDialog dlgAdminProducts;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JLabel lblAddress;

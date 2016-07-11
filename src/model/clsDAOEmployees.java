@@ -33,7 +33,7 @@ public class clsDAOEmployees extends clsEmployees {
     }
 
     public ResultSet search() {
-        String sql = "Select * FROM public.tbl_employees WHERE document_id='" + super.getDocument_id() + "';";
+        String sql = "Select * FROM public.tbl_employees WHERE UPPER(document_id)=UPPER('" + super.getDocument_id() + "');";
         ResultSet results = null;
         results = connexion.search(sql);
         try {
@@ -63,22 +63,18 @@ public class clsDAOEmployees extends clsEmployees {
 
     public DefaultTableModel list() {
         JComboBox combo = new JComboBox();
-        String[] columnName = {"Selección",
-            "Cédula", "Nombre", "Apellidos", "Puesto", "Teléfono", "Notas", "Local Id", "Dirección"};
+        String[] columnName = {"Cédula", "Nombre", "Apellidos", "Puesto", "Teléfono", "Notas", "Local Id", "Dirección"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0);
         try {
             ResultSet result = null;
-            String sql = "Select * FROM public.tbl_employees;";
+            String sql = "Select document_id, namee, lastname, job, phone, notes, local_id, address FROM public.tbl_employees;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();
-
-            tblModel.addColumn(columnName);
-
             while (result.next()) {
                 Object[] row = new Object[columns];
-                for (int i = 1; i < columns; i++) {
-                    row[i] = result.getObject(i + 1);
+                for (int i = 1; i <= columns; i++) {
+                    row[i-1] = result.getObject(i);
                 }
                 tblModel.addRow(row);
             }

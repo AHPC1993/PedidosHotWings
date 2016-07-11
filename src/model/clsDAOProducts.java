@@ -56,7 +56,7 @@ public class clsDAOProducts extends clsProducts{
 
     public String edit() {
 
-        String sql = "UPDATE public.tbl_products SET namep='" + super.getNamep()+ "',description='" + super.getDescription()+ "', price='" + super.getPrice()+ "', notes='" + super.getNotes()+ "' WHERE UPPER(namep) = UPPER('" + super.getNamep()+ "');";
+        String sql = "UPDATE public.tbl_products SET namep='" + super.getNamep()+ "',description='" + super.getDescription()+ "', price='" + super.getPrice()+ "', notes='" + super.getNotes()+ "' WHERE UPPER(id_products) = UPPER('" + super.getId_products()+ "');";
         return connexion.edit(sql);
     }
 
@@ -66,18 +66,18 @@ public class clsDAOProducts extends clsProducts{
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0);
         try {
             ResultSet result = null;
-            String sql = "Select * FROM public.tbl_products;";
+            String sql = "Select namep,description, price, notes FROM public.tbl_products;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();
 
-            tblModel.addColumn(columnName);
-
             while (result.next()) {
                 Object[] row = new Object[columns];
-                for (int i = 1; i < columns; i++) {
-                    row[i] = result.getObject(i + 1);
+                for (int i = 1; i <= columns; i++) {
+                    row[i-1] = result.getObject(i);
                 }
+                
+                System.out.println("");
                 tblModel.addRow(row);
             }
             return tblModel;

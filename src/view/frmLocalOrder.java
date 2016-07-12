@@ -348,7 +348,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNumber2ActionPerformed
 
     private void btnNumber1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber1ActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_btnNumber1ActionPerformed
 
     private void btnNumber3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber3ActionPerformed

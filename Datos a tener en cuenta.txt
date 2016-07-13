@@ -1,5 +1,6 @@
 Secuencias.
-Locales: 100X
+Para ordenes locales_ SEQ_ORDER_NUMBER
+Locales: 100X    SEQ_LOCALS
 Pedidos: 200X
 Productos: 300X SEQ_PRODUCTS
 Empleados: 400X SEQ_EMPLOYEES
@@ -7,3 +8,15 @@ Clientes: 500X  SEQ_CUSTOMERS
 
 CREATE SEQUENCE SEQ_XXXX START 301;
 Antes de entregar el proyecto, es necesario reiniciar las secuencias
+
+1. En el insert se llama el último valor +1 de la secuencia.
+2. Se agregan al pedido todos los productos que se necesiten.
+3. Una vez se termine, se da clic en FINALIZAR PEDIDO, cuando esto ocurre, automáticamente se debe incrementar la secuencia pero antes se debe agregar a la tabla order_local el valor que tenía la secuencia anterior, así mismo se debe sumar el total del pedido, haciendo un sum al precio total por producto y debe estar en el WHERE que el order_number sea igual a el valor que tiene la secuencia.
+
+SELECT NEXTVAL('SEQ_ORDER_NUMBER') FROM SEQ_ORDER_NUMBER;
+
+
+INSERT INTO public.tbl_localorder_details(
+            order_number, product_id, product_name, product_description, 
+            product_price, product_amount)
+SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), id_products, namep, description, price , '1' from tbl_products WHERE namep ='Combo 1';

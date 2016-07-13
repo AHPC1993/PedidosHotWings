@@ -216,7 +216,6 @@ public class frmAdministration extends javax.swing.JFrame {
         lblBackgroundAdmin = new javax.swing.JLabel();
 
         dlgAdminEmployees.setMinimumSize(new java.awt.Dimension(1382, 744));
-        dlgAdminEmployees.setPreferredSize(new java.awt.Dimension(1382, 744));
         dlgAdminEmployees.setSize(new java.awt.Dimension(1382, 744));
         dlgAdminEmployees.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -382,7 +381,7 @@ public class frmAdministration extends javax.swing.JFrame {
         );
 
         dlgAdminEmployees.getContentPane().add(pnlEmployeesDates);
-        pnlEmployeesDates.setBounds(0, 120, 375, 521);
+        pnlEmployeesDates.setBounds(0, 120, 0, 0);
 
         barEmployeesMenu.setRollover(true);
 
@@ -553,7 +552,6 @@ public class frmAdministration extends javax.swing.JFrame {
         lblEmployeesBackgroundDialog.setBounds(0, 0, 1380, 740);
 
         dlgAdminProducts.setMinimumSize(new java.awt.Dimension(1382, 744));
-        dlgAdminProducts.setPreferredSize(new java.awt.Dimension(1382, 744));
         dlgAdminProducts.setSize(new java.awt.Dimension(1382, 744));
         dlgAdminProducts.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -835,7 +833,6 @@ public class frmAdministration extends javax.swing.JFrame {
         lblProductsBackgroundDialog.setBounds(-10, 0, 1390, 770);
 
         dlgAdminCustomers.setMinimumSize(new java.awt.Dimension(1382, 744));
-        dlgAdminCustomers.setPreferredSize(new java.awt.Dimension(1382, 744));
         dlgAdminCustomers.setSize(new java.awt.Dimension(1382, 744));
         dlgAdminCustomers.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -1017,7 +1014,7 @@ public class frmAdministration extends javax.swing.JFrame {
         );
 
         dlgAdminCustomers.getContentPane().add(pnlCustomersDates);
-        pnlCustomersDates.setBounds(0, 120, 380, 590);
+        pnlCustomersDates.setBounds(0, 120, 0, 590);
 
         barCustomersMenu.setRollover(true);
 
@@ -1188,7 +1185,6 @@ public class frmAdministration extends javax.swing.JFrame {
         lblCustomerssBackgroundDialog.setBounds(-10, 0, 1330, 710);
 
         dlgAdminLocal.setMinimumSize(new java.awt.Dimension(1382, 744));
-        dlgAdminLocal.setPreferredSize(new java.awt.Dimension(1382, 744));
         dlgAdminLocal.setSize(new java.awt.Dimension(1382, 744));
         dlgAdminLocal.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {

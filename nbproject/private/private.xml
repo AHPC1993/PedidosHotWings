@@ -5,11 +5,7 @@
         <group>
             <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmAdministration.java</file>
             <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmLocalOrder.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsDAOCustomers.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmMainHotWings.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsLogin.java</file>
             <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsDAOLocalOrderDetails.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsCustomers.java</file>
             <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsLocalOrderDetails.java</file>
             <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsDAOProducts.java</file>
         </group>

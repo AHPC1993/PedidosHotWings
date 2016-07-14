@@ -58,7 +58,12 @@ public class clsDAOCustomers extends clsCustomers {
 
     public DefaultTableModel list() {
         String[] columnName = {"Cédula", "Nombre", "Apellido", "Dirección", "Barrio", "Municipio", "Departamento", "Teléfono", "Notas"};
-        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0);
+        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         try {
             ResultSet result = null;
             String sql = "Select document_id, namec, lastname, address, neighborhood, town, city, phone, notes FROM public.tbl_customers;";

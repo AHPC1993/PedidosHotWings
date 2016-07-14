@@ -60,9 +60,13 @@ public class clsDAOProducts extends clsProducts {
     }
 
     public DefaultTableModel list() {
-        String[] columnName = {"Nombre",
-            "Descripción", "Precio", "Notas"};
-        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0);
+        String[] columnName = {"Nombre", "Descripción", "Precio", "Notas"};
+        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         try {
             ResultSet result = null;
             String sql = "Select namep,description, price, notes FROM public.tbl_products;";

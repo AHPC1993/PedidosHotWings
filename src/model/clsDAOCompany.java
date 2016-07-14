@@ -58,7 +58,12 @@ public class clsDAOCompany extends clsCompany {
 
     public DefaultTableModel list() {
         String[] columnName = {"Nit", "Nombre Local", "Dirección", "Barrio", "Municipio", "Departamento"};
-        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0);
+        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         try {
             ResultSet result = null;
             String sql = "Select  nit, namel, address, neighborhood, town, city FROM public.tbl_local;";

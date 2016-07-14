@@ -14,20 +14,27 @@ public class clsLocalOrderDetails {
     private String product_id;
     private String product_name;
     private String product_description;
-    private String product_price;
-    private String product_amount;
+    private double product_price;
+    private double product_amount;
+    private double product_price_total;
+    private String notes;
+    private String search;
 
     public clsLocalOrderDetails() {
     }
 
-    public clsLocalOrderDetails(String order_number, String product_id, String product_name, String product_description, String product_price, String product_amount) {
+    public clsLocalOrderDetails(String order_number, String product_id, String product_name, String product_description, double product_price, double product_amount, double product_price_total, String notes, String search) {
         this.order_number = order_number;
         this.product_id = product_id;
         this.product_name = product_name;
         this.product_description = product_description;
         this.product_price = product_price;
         this.product_amount = product_amount;
+        this.product_price_total = product_price_total;
+        this.notes = notes;
+        this.search = search;
     }
+
 
     public String getOrder_number() {
         return order_number;
@@ -54,21 +61,7 @@ public class clsLocalOrderDetails {
         this.product_description = product_description;
     }
 
-    public String getProduct_price() {
-        return product_price;
-    }
-
-    public void setProduct_price(String product_price) {
-        this.product_price = product_price;
-    }
-
-    public String getProduct_amount() {
-        return product_amount;
-    }
-
-    public void setProduct_amount(String product_amount) {
-        this.product_amount = product_amount;
-    }
+  
 
     public String getProduct_id() {
         return product_id;
@@ -76,6 +69,46 @@ public class clsLocalOrderDetails {
 
     public void setProduct_id(String product_id) {
         this.product_id = product_id;
+    }
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public double getProduct_price() {
+        return product_price;
+    }
+
+    public void setProduct_price(double product_price) {
+        this.product_price = product_price;
+    }
+
+    public double getProduct_amount() {
+        return product_amount;
+    }
+
+    public void setProduct_amount(double product_amount) {
+        this.product_amount = product_amount;
+    }
+
+    public double getProduct_price_total() {
+        return product_price_total;
+    }
+
+    public void setProduct_price_total(double product_price_total) {
+        this.product_price_total = product_price_total;
     }
     
     

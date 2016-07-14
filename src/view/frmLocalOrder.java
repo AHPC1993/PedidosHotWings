@@ -9,8 +9,17 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.io.Console;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import model.clsDAOLocalOrderDetails;
 import model.clsDAOProducts;
 
 /**
@@ -18,8 +27,9 @@ import model.clsDAOProducts;
  * @author GSG
  */
 public class frmLocalOrder extends javax.swing.JFrame {
-
+    int correctIndex=0;
     model.clsDAOLocalOrderDetails localOrder;
+    model.clsDAOProducts products;
 
     /**
      * Creates new form frmLocalOrder
@@ -30,8 +40,6 @@ public class frmLocalOrder extends javax.swing.JFrame {
         Dimension dim = toolkit.getScreenSize();
         this.setSize(dim.width, dim.height);
 //        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-      
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         //pnlAmount.setLayout(new GridLayout(5, 3, 10, 10));
     }
@@ -40,21 +48,39 @@ public class frmLocalOrder extends javax.swing.JFrame {
         localOrder = new model.clsDAOLocalOrderDetails();
         LinkedList<String[]> values = new LinkedList<String[]>();
         values = localOrder.listProducts();
-        btnProduct1.setText(values.get(0)[0]);
-        btnProduct2.setText(values.get(1)[0]);
-        btnProduct3.setText(values.get(2)[0]);
-        btnProduct4.setText(values.get(3)[0]);
-        btnProduct5.setText(values.get(4)[0]);
+        for (int i = 0; i < values.size(); i++) {
+            if (values.get(i)[0] != null) {
+                switch (values.get(i)[0]) {
+                    case "Combo 1":
+                        btnProduct1.setText(values.get(i)[0]);
+                        btnProduct1.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                        break;
+                    case "Combo 2":
+                        btnProduct2.setText(values.get(i)[0]);
+                        btnProduct2.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                        break;
+                    case "Combo 3":
+                        btnProduct3.setText(values.get(i)[0]);
+                        btnProduct3.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                        break;
+                    case "Combo 4":
+                        btnProduct4.setText(values.get(i)[0]);
+                        btnProduct4.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+
+                        break;
+                    case "Combo 5":
+                        btnProduct5.setText(values.get(i)[0]);
+                        btnProduct5.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
         btnProduct6.setText(values.get(5)[0]);
         btnProduct7.setText(values.get(6)[0]);
         btnProduct8.setText(values.get(7)[0]);
         btnProduct9.setText(values.get(8)[0]);
-        
-        btnProduct1.setToolTipText(values.get(0)[1] + " $ " + values.get(0)[2]);
-        btnProduct2.setToolTipText(values.get(1)[1] + " $ " + values.get(1)[2]);
-        btnProduct3.setToolTipText(values.get(2)[1] + " $ " + values.get(2)[2]);
-        btnProduct4.setToolTipText(values.get(3)[1] + " $ " + values.get(3)[2]);
-        btnProduct5.setToolTipText(values.get(4)[1] + " $ " + values.get(4)[2]);
         btnProduct6.setToolTipText(values.get(5)[1] + " $ " + values.get(5)[2]);
         btnProduct7.setToolTipText(values.get(6)[1] + " $ " + values.get(6)[2]);
         btnProduct8.setToolTipText(values.get(7)[1] + " $ " + values.get(7)[2]);
@@ -98,6 +124,10 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnProduct8 = new javax.swing.JToggleButton();
         btnProduct9 = new javax.swing.JToggleButton();
         btnProduct7 = new javax.swing.JToggleButton();
+        scrollPanelProductsTable = new javax.swing.JScrollPane();
+        tblLocalOrder = new javax.swing.JTable();
+        txtOrderNumber = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1382, 744));
@@ -224,8 +254,13 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnCorrection.setText("Corrección");
         btnCorrection.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCorrection.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCorrection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCorrectionActionPerformed(evt);
+            }
+        });
         pnlAmount.add(btnCorrection);
-        btnCorrection.setBounds(20, 410, 100, 80);
+        btnCorrection.setBounds(20, 400, 100, 80);
 
         btnOtherAmount.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnOtherAmount.setText("Otra cantidad");
@@ -248,7 +283,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnAddProduct.setBounds(140, 310, 100, 80);
 
         getContentPane().add(pnlAmount);
-        pnlAmount.setBounds(620, 30, 382, 510);
+        pnlAmount.setBounds(740, 30, 380, 490);
 
         pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
 
@@ -378,6 +413,24 @@ public class frmLocalOrder extends javax.swing.JFrame {
         getContentPane().add(pnlProducts);
         pnlProducts.setBounds(26, 30, 589, 520);
 
+        scrollPanelProductsTable.setViewportView(tblLocalOrder);
+
+        getContentPane().add(scrollPanelProductsTable);
+        scrollPanelProductsTable.setBounds(10, 550, 1300, 130);
+
+        txtOrderNumber.setEditable(false);
+        txtOrderNumber.setBackground(new java.awt.Color(255, 255, 255));
+        txtOrderNumber.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtOrderNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(txtOrderNumber);
+        txtOrderNumber.setBounds(1210, 30, 100, 30);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Número de orden");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(1180, 0, 160, 30);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -455,24 +508,226 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
     private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
         selectProductAndAmount();
-        nameButtonsProduct();
+        if (localOrder.insert()) {
+            tblLocalOrder.setModel(localOrder.list());
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+        }
+
+        PrintselectProductAndAmount();
     }//GEN-LAST:event_btnAddProductActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-      nameButtonsProduct();
+        nameButtonsProduct();
+        localOrder = new clsDAOLocalOrderDetails();
+        txtOrderNumber.setText(localOrder.selectOrderNumber());
+
+
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnCorrectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrectionActionPerformed
+        correctIndex=1;
+        JOptionPane.showMessageDialog(pnlAmount, "Por favor seleccione la fila del producto que desea eliminar.");
+    }//GEN-LAST:event_btnCorrectionActionPerformed
+
     public void selectProductAndAmount() {
         if (btnProduct1.isSelected() && btnNumber1.isSelected()) {
-
+            loadSetValuesOrderDetails(btnProduct1.getText(), 1);
+        } else if (btnProduct1.isSelected() && btnNumber2.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct1.getText(), 2);
+        } else if (btnProduct1.isSelected() && btnNumber3.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct1.getText(), 3);
+        } else if (btnProduct1.isSelected() && btnNumber4.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct1.getText(), 4);
+        } else if (btnProduct1.isSelected() && btnNumber5.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct1.getText(), 5);
+        } else if (btnProduct1.isSelected() && btnNumber6.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct1.getText(), 6);
+        } else if (btnProduct1.isSelected() && btnNumber7.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct1.getText(), 7);
+        } else if (btnProduct1.isSelected() && btnNumber8.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct1.getText(), 8);
+        } else if (btnProduct1.isSelected() && btnNumber9.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct1.getText(), 9);
+        } else if (btnProduct2.isSelected() && btnNumber1.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct2.getText(), 1);
+        } else if (btnProduct2.isSelected() && btnNumber2.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct2.getText(), 2);
+        } else if (btnProduct2.isSelected() && btnNumber3.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct2.getText(), 3);
+        } else if (btnProduct2.isSelected() && btnNumber4.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct2.getText(), 4);
+        } else if (btnProduct2.isSelected() && btnNumber5.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct2.getText(), 5);
+        } else if (btnProduct2.isSelected() && btnNumber6.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct2.getText(), 6);
+        } else if (btnProduct2.isSelected() && btnNumber7.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct2.getText(), 7);
+        } else if (btnProduct2.isSelected() && btnNumber8.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct2.getText(), 8);
+        } else if (btnProduct2.isSelected() && btnNumber9.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct2.getText(), 9);
+        } else if (btnProduct3.isSelected() && btnNumber1.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct3.getText(), 1);
+        } else if (btnProduct3.isSelected() && btnNumber2.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct3.getText(), 2);
+        } else if (btnProduct3.isSelected() && btnNumber3.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct3.getText(), 3);
+        } else if (btnProduct3.isSelected() && btnNumber4.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct3.getText(), 4);
+        } else if (btnProduct3.isSelected() && btnNumber5.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct3.getText(), 5);
+        } else if (btnProduct3.isSelected() && btnNumber6.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct3.getText(), 6);
+        } else if (btnProduct3.isSelected() && btnNumber7.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct3.getText(), 7);
+        } else if (btnProduct3.isSelected() && btnNumber8.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct3.getText(), 8);
+        } else if (btnProduct3.isSelected() && btnNumber9.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct3.getText(), 9);
+        } else if (btnProduct4.isSelected() && btnNumber1.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct4.getText(), 1);
+        } else if (btnProduct4.isSelected() && btnNumber2.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct4.getText(), 2);
+        } else if (btnProduct4.isSelected() && btnNumber3.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct4.getText(), 3);
+        } else if (btnProduct4.isSelected() && btnNumber4.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct4.getText(), 4);
+        } else if (btnProduct4.isSelected() && btnNumber5.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct4.getText(), 5);
+        } else if (btnProduct4.isSelected() && btnNumber6.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct4.getText(), 6);
+        } else if (btnProduct4.isSelected() && btnNumber7.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct4.getText(), 7);
+        } else if (btnProduct4.isSelected() && btnNumber8.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct4.getText(), 8);
+        } else if (btnProduct4.isSelected() && btnNumber9.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct4.getText(), 9);
+        } else if (btnProduct5.isSelected() && btnNumber1.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct5.getText(), 1);
+        } else if (btnProduct5.isSelected() && btnNumber2.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct5.getText(), 2);
+        } else if (btnProduct5.isSelected() && btnNumber3.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct5.getText(), 3);
+        } else if (btnProduct5.isSelected() && btnNumber4.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct5.getText(), 4);
+        } else if (btnProduct5.isSelected() && btnNumber5.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct5.getText(), 5);
+        } else if (btnProduct5.isSelected() && btnNumber6.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct5.getText(), 6);
+        } else if (btnProduct5.isSelected() && btnNumber7.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct5.getText(), 7);
+        } else if (btnProduct5.isSelected() && btnNumber8.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct5.getText(), 8);
+        } else if (btnProduct5.isSelected() && btnNumber9.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct5.getText(), 9);
+        } else if (btnProduct6.isSelected() && btnNumber1.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct6.getText(), 1);
+        } else if (btnProduct6.isSelected() && btnNumber2.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct6.getText(), 2);
+        } else if (btnProduct6.isSelected() && btnNumber3.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct6.getText(), 3);
+        } else if (btnProduct6.isSelected() && btnNumber4.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct6.getText(), 4);
+        } else if (btnProduct6.isSelected() && btnNumber5.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct6.getText(), 5);
+        } else if (btnProduct6.isSelected() && btnNumber6.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct6.getText(), 6);
+        } else if (btnProduct6.isSelected() && btnNumber7.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct6.getText(), 7);
+        } else if (btnProduct6.isSelected() && btnNumber8.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct6.getText(), 8);
+        } else if (btnProduct6.isSelected() && btnNumber9.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct6.getText(), 9);
+        } else if (btnProduct7.isSelected() && btnNumber1.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct7.getText(), 1);
+        } else if (btnProduct7.isSelected() && btnNumber2.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct7.getText(), 2);
+        } else if (btnProduct7.isSelected() && btnNumber3.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct7.getText(), 3);
+        } else if (btnProduct7.isSelected() && btnNumber4.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct7.getText(), 4);
+        } else if (btnProduct7.isSelected() && btnNumber5.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct7.getText(), 5);
+        } else if (btnProduct7.isSelected() && btnNumber6.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct7.getText(), 6);
+        } else if (btnProduct7.isSelected() && btnNumber7.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct7.getText(), 7);
+        } else if (btnProduct7.isSelected() && btnNumber8.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct7.getText(), 8);
+        } else if (btnProduct7.isSelected() && btnNumber9.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct7.getText(), 9);
+        } else if (btnProduct8.isSelected() && btnNumber1.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct8.getText(), 1);
+        } else if (btnProduct8.isSelected() && btnNumber2.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct8.getText(), 2);
+        } else if (btnProduct8.isSelected() && btnNumber3.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct8.getText(), 3);
+        } else if (btnProduct8.isSelected() && btnNumber4.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct8.getText(), 4);
+        } else if (btnProduct8.isSelected() && btnNumber5.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct8.getText(), 5);
+        } else if (btnProduct8.isSelected() && btnNumber6.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct8.getText(), 6);
+        } else if (btnProduct8.isSelected() && btnNumber7.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct8.getText(), 7);
+        } else if (btnProduct8.isSelected() && btnNumber8.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct8.getText(), 8);
+        } else if (btnProduct8.isSelected() && btnNumber9.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct8.getText(), 9);
+        } else if (btnProduct9.isSelected() && btnNumber1.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct9.getText(), 1);
+        } else if (btnProduct9.isSelected() && btnNumber2.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct9.getText(), 2);
+        } else if (btnProduct9.isSelected() && btnNumber3.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct9.getText(), 3);
+        } else if (btnProduct9.isSelected() && btnNumber4.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct9.getText(), 4);
+        } else if (btnProduct9.isSelected() && btnNumber5.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct9.getText(), 5);
+        } else if (btnProduct9.isSelected() && btnNumber6.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct9.getText(), 6);
+        } else if (btnProduct9.isSelected() && btnNumber7.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct9.getText(), 7);
+        } else if (btnProduct9.isSelected() && btnNumber8.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct9.getText(), 8);
+        } else if (btnProduct9.isSelected() && btnNumber9.isSelected()) {
+            loadSetValuesOrderDetails(btnProduct9.getText(), 9);
         }
+
     }
 
     public void PrintselectProductAndAmount() {
         for (int i = 1; i <= 9; i++) {
             for (int j = 1; j <= 9; j++) {
-                System.out.println("if(btnProduct" + i + ".isSelected() && btnNumber" + j + ".isSelected()){\n\n}");
+                System.out.println("else if(btnProduct" + i + ".isSelected() && btnNumber" + j + ".isSelected()){\n"
+                        + "loadSetValuesOrderDetails(btnProduct" + i + ".getText()," + j + ");\n}");
 
             }
+        }
+    }
+
+    /**
+     * Carga los valores de la clase products con los valores que tienen las
+     * cajas de texto del JDialog products
+     */
+    public void loadSetValuesOrderDetails(String nameP, double amount) {
+        try {
+            localOrder = new clsDAOLocalOrderDetails();
+            localOrder.setProduct_name(nameP);
+            localOrder.setProduct_amount(amount);
+            ResultSet result;
+            result = localOrder.searchProductByName();
+            if (result != null) {
+                localOrder.setProduct_id(result.getString(1));
+                localOrder.setProduct_description(result.getString(3));
+                localOrder.setProduct_price(Double.parseDouble(result.getString(4)));
+            }
+            localOrder.setProduct_price_total(localOrder.getProduct_amount() * localOrder.getProduct_price());
+        } catch (SQLException ex) {
+            System.out.println(ex);
+
         }
     }
 
@@ -543,9 +798,13 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnProduct7;
     private javax.swing.JToggleButton btnProduct8;
     private javax.swing.JToggleButton btnProduct9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.ButtonGroup numbersGroup;
     private javax.swing.JPanel pnlAmount;
     private javax.swing.JPanel pnlProducts;
     private javax.swing.ButtonGroup productsGroup;
+    private javax.swing.JScrollPane scrollPanelProductsTable;
+    private javax.swing.JTable tblLocalOrder;
+    private javax.swing.JTextField txtOrderNumber;
     // End of variables declaration//GEN-END:variables
 }

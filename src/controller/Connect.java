@@ -53,7 +53,7 @@ public class Connect {
                 return false;
             }
         } catch (SQLException ex) {
-            System.out.println("Error en la consulta " + sql);
+            System.out.println("Error en la consulta:  " + sql);
         }
         return false;
     }
@@ -64,7 +64,7 @@ public class Connect {
             ResultSet results = sentence.executeQuery(sql);
             return results.next();
         } catch (SQLException e) {
-            System.out.println("Error insertando" + e);
+            System.out.println("Error insertando: " + e);
         }
         return true;
     }

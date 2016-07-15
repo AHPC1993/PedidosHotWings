@@ -24,6 +24,10 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
         connexion = new Connect();
     }
 
+    /**
+     * Inserta en la tabla tbl_orderlocal_details, un producto con su cantidad,
+     * valor y valor total.
+     */
     public boolean insert() {
 
         String sql = "INSERT INTO public.tbl_localorder_details(order_number, product_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), id_products, namep, description, price ,'" + super.getProduct_amount() + "','" + super.getProduct_price_total() + "','" + super.getNotes() + "',NEXTVAL('SEQ_LOCALORDER_DETAILS') from tbl_products WHERE id_products ='" + super.getProduct_id() + "';";
@@ -31,15 +35,25 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
         return connexion.insert(sql);
     }
 
+    /**
+     * Inserta en la tabla orderlocal, con el total del pedido y el número de
+     * orden, con el fin de visualizar después todo lqo eu contiene el pedido.
+     */
+    public boolean insertOrderFull(String order_number, String total_price) {
+
+        String sql = "INSERT INTO public.tbl_localorder(order_number, total_price) VALUES('" + order_number + "','" + total_price + "');";
+        System.out.println(sql);
+        return connexion.insert(sql);
+    }
+
     public ResultSet search() {
-        String sql = "Select * FROM public.tbl_localorder_details WHERE UPPER(localorder_id) = UPPER('" + super.getLocalOrder_id()+ "');";
+        String sql = "Select * FROM public.tbl_localorder_details WHERE UPPER(localorder_id) = UPPER('" + super.getLocalOrder_id() + "');";
         ResultSet results = null;
         results = connexion.search(sql);
         try {
             if (results.next()) {
                 return results;
             } else {
-                //  return "El empleado que usted está buscando no existe, por favor verifique nuevamente.";
                 return null;
             }
         } catch (SQLException e) {
@@ -47,12 +61,6 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
         }
         return null;
     }
-    
-    
-
-    
-    
-    
 
     public ResultSet searchProductByName() {
         String sql = "Select * FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getProduct_name() + "');";
@@ -61,9 +69,7 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
         try {
             if (results.next()) {
                 return results;
-                //return results.getString(2);//Segundo valor.
             } else {
-                //  return "El empleado que usted está buscando no existe, por favor verifique nuevamente.";
                 return null;
             }
         } catch (SQLException e) {
@@ -74,6 +80,38 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
 
     public String selectOrderNumber() {
         String sql = "SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER;";
+        ResultSet results = null;
+        results = connexion.search(sql);
+        try {
+            if (results.next()) {
+                return results.getString(1);
+            } else {
+                return "0";
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public String selectTotalOrder(String orderNumber) {
+        String sql = "SELECT SUM(product_price_total) FROM tbl_localorder_details WHERE order_number='" + orderNumber + "';";
+        ResultSet results = null;
+        results = connexion.search(sql);
+        try {
+            if (results.next()) {
+                return results.getString(1);
+            } else {
+                return "0";
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+      public String incrementOrderNumber() {
+        String sql = "SELECT NEXTVAL('SEQ_ORDER_NUMBER') FROM SEQ_LOCALORDER_DETAILS;";
         ResultSet results = null;
         results = connexion.search(sql);
         try {
@@ -100,18 +138,18 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
         return connexion.edit(sql);
     }
 
-    public DefaultTableModel list() {
-        String[] columnName = {"Id Item, Producto", "Descripción", "Precio", "Cant", "Total", "Observaciones"};
+    public DefaultTableModel list(String order_number) {
+        String[] columnName = {"Id Item", "Producto", "Descripción", "Precio", "Cant", "Total", "Observaciones"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        
+
         try {
             ResultSet result = null;
-            String sql = "Select localOrder_id, product_name, product_description, product_price, product_amount, product_price_total, notes FROM public.tbl_localorder_details;";
+            String sql = "Select localOrder_id, product_name, product_description, product_price, product_amount, product_price_total, notes FROM public.tbl_localorder_details WHERE order_number='"+order_number+"';";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();
@@ -121,8 +159,6 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
                 for (int i = 1; i <= columns; i++) {
                     row[i - 1] = result.getObject(i);
                 }
-
-                System.out.println("");
                 tblModel.addRow(row);
             }
             return tblModel;
@@ -151,44 +187,8 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
             }
             numberButtons = numberButtons - dates.size();
             for (int i = 0; i < numberButtons; i++) {
-                String[] row = new String[numberButtons];
-                for (int j = 0; j < columns; j++) {
-                    row[i] = "Producto X";
-                }
-                dates.add(row);
-            }
-            return dates;
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return null;
-    }
-
-    public LinkedList listForOrderNumber() {
-        int numberButtons = 9;
-        LinkedList<String[]> dates = new LinkedList<>();
-        try {
-            ResultSet result = null;
-            String sql = "Select product_name, product_description, product_price, product_amount, product_price_total, notes FROM public.tbl_localorder_details;";
-
-            //String sql = "Select namep, description, price, notes FROM public.tbl_products;";
-            result = connexion.search(sql);
-            ResultSetMetaData resultMetaData = result.getMetaData();
-            int columns = resultMetaData.getColumnCount();
-
-            while (result.next()) {
                 String[] row = new String[columns];
-                for (int i = 1; i <= columns; i++) {
-                    row[i - 1] = result.getObject(i).toString();
-                }
-                dates.add(row);
-            }
-            numberButtons = numberButtons - dates.size();
-            for (int i = 0; i < numberButtons; i++) {
-                String[] row = new String[numberButtons];
-                for (int j = 0; j < columns; j++) {
-                    row[i] = "Producto X";
-                }
+                row[0] = "Producto X";
                 dates.add(row);
             }
             return dates;
@@ -197,5 +197,7 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
         }
         return null;
     }
+
+  
 
 }

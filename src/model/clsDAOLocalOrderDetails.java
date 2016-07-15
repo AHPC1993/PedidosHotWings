@@ -26,13 +26,13 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
 
     public boolean insert() {
 
-        String sql = "INSERT INTO public.tbl_localorder_details(order_number, product_id, product_name, product_description, product_price, product_amount, product_price_total, notes) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), id_products, namep, description, price ,'" + super.getProduct_amount() + "','" + super.getProduct_price_total() + "','" + super.getNotes() + "' from tbl_products WHERE id_products ='" + super.getProduct_id() + "';";
+        String sql = "INSERT INTO public.tbl_localorder_details(order_number, product_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), id_products, namep, description, price ,'" + super.getProduct_amount() + "','" + super.getProduct_price_total() + "','" + super.getNotes() + "',NEXTVAL('SEQ_LOCALORDER_DETAILS') from tbl_products WHERE id_products ='" + super.getProduct_id() + "';";
         System.out.println(sql);
         return connexion.insert(sql);
     }
 
     public ResultSet search() {
-        String sql = "Select * FROM public.tbl_localorder_details WHERE UPPER(order_number) = UPPER('" + super.getSearch() + "');";
+        String sql = "Select * FROM public.tbl_localorder_details WHERE UPPER(localorder_id) = UPPER('" + super.getLocalOrder_id()+ "');";
         ResultSet results = null;
         results = connexion.search(sql);
         try {
@@ -47,6 +47,12 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
         }
         return null;
     }
+    
+    
+
+    
+    
+    
 
     public ResultSet searchProductByName() {
         String sql = "Select * FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getProduct_name() + "');";
@@ -83,8 +89,8 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
         return null;
     }
 
-    public String delete() {
-        String sql = "DELETE FROM public.tbl_localorder_details WHERE WHERE UPPER(order_number) = UPPER('" + super.getSearch() + "');";
+    public String delete(String localOrder_id) {
+        String sql = "DELETE FROM public.tbl_localorder_details WHERE UPPER(localorder_id) = UPPER('" + localOrder_id + "');";
         return connexion.delete(sql);
     }
 
@@ -95,16 +101,17 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
     }
 
     public DefaultTableModel list() {
-        String[] columnName = {"Producto", "Descripción", "Precio", "Cant", "Total", "Observaciones"};
+        String[] columnName = {"Id Item, Producto", "Descripción", "Precio", "Cant", "Total", "Observaciones"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
+        
         try {
             ResultSet result = null;
-            String sql = "Select product_name, product_description, product_price, product_amount, product_price_total, notes FROM public.tbl_localorder_details;";
+            String sql = "Select localOrder_id, product_name, product_description, product_price, product_amount, product_price_total, notes FROM public.tbl_localorder_details;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();
@@ -123,10 +130,6 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
             System.out.println(e);
         }
         return null;
-    }
-
-    public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false;
     }
 
     public LinkedList listProducts() {

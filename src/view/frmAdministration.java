@@ -42,12 +42,12 @@ public class frmAdministration extends javax.swing.JFrame {
          Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
         //  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setSize(dim.width, dim.height);
+       
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
        
-        
+         this.setSize(dim.width, dim.height);
         lblBackgroundAdmin.setSize(dim.width, dim.height);
         lblCustomerssBackgroundDialog.setSize(dim.width, dim.height);
         lblProductsBackgroundDialog.setSize(dim.width, dim.height);
@@ -63,7 +63,7 @@ public class frmAdministration extends javax.swing.JFrame {
         barEmployeesMenu.setSize(dim.width, 25);
         barLocalMenu.setSize(dim.width, 25);
         barProductsMenu.setSize(dim.width, 25);
-
+        this.setLocationRelativeTo(this);
         dlgAdminEmployees.setLocationRelativeTo(this);
         dlgAdminProducts.setLocationRelativeTo(this);
         dlgAdminCustomers.setLocationRelativeTo(this);
@@ -107,7 +107,7 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocal = new javax.swing.JLabel();
         lblPhone1 = new javax.swing.JLabel();
         txtEmployeesPhone = new javax.swing.JTextField();
-        cbLocal = new javax.swing.JComboBox<>();
+        cbLocal = new javax.swing.JComboBox<String>();
         barEmployeesMenu = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         pnlEmployeesButtons = new javax.swing.JPanel();
@@ -163,8 +163,8 @@ public class frmAdministration extends javax.swing.JFrame {
         txtCustomersNotes = new javax.swing.JTextArea();
         lblCustomersCity = new javax.swing.JLabel();
         lblCustomersTown = new javax.swing.JLabel();
-        cbCustomersTown = new javax.swing.JComboBox<>();
-        cbCustomersCity = new javax.swing.JComboBox<>();
+        cbCustomersTown = new javax.swing.JComboBox<String>();
+        cbCustomersCity = new javax.swing.JComboBox<String>();
         lblPhone = new javax.swing.JLabel();
         txtCustomersPhone = new javax.swing.JTextField();
         barCustomersMenu = new javax.swing.JToolBar();
@@ -192,8 +192,8 @@ public class frmAdministration extends javax.swing.JFrame {
         txtLocalsNeighborhood = new javax.swing.JTextField();
         lblLocalsTown = new javax.swing.JLabel();
         lblLocalsCity = new javax.swing.JLabel();
-        cbLocalsTown = new javax.swing.JComboBox<>();
-        cbLocalsCity = new javax.swing.JComboBox<>();
+        cbLocalsTown = new javax.swing.JComboBox<String>();
+        cbLocalsCity = new javax.swing.JComboBox<String>();
         barLocalMenu = new javax.swing.JToolBar();
         jButton4 = new javax.swing.JButton();
         pnlLocalsButtons = new javax.swing.JPanel();
@@ -224,7 +224,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminEmployees.getContentPane().setLayout(null);
 
-        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlEmployeesDates.setOpaque(false);
 
         lblEmployeesDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -283,7 +283,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
 
-        cbLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
+        cbLocal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
 
         javax.swing.GroupLayout pnlEmployeesDatesLayout = new javax.swing.GroupLayout(pnlEmployeesDates);
         pnlEmployeesDates.setLayout(pnlEmployeesDatesLayout);
@@ -381,7 +381,7 @@ public class frmAdministration extends javax.swing.JFrame {
         );
 
         dlgAdminEmployees.getContentPane().add(pnlEmployeesDates);
-        pnlEmployeesDates.setBounds(0, 120, 0, 0);
+        pnlEmployeesDates.setBounds(0, 120, 382, 513);
 
         barEmployeesMenu.setRollover(true);
 
@@ -495,7 +495,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(btnEmployeesDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEmployeesList)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         pnlEmployeesButtonsLayout.setVerticalGroup(
             pnlEmployeesButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -715,7 +715,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminProducts.getContentPane().add(scrollPanelProductsTable);
         scrollPanelProductsTable.setBounds(640, 122, 640, 410);
 
-        pnlProducts2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlProducts2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlProducts2.setOpaque(false);
 
         txtProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -841,7 +841,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminCustomers.getContentPane().setLayout(null);
 
-        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlCustomersDates.setOpaque(false);
 
         lbCustomersDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -892,9 +892,9 @@ public class frmAdministration extends javax.swing.JFrame {
         lblCustomersTown.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersTown.setText("Municipio");
 
-        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
+        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
 
-        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
+        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
 
         lblPhone.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblPhone.setText("Teléfono");
@@ -1000,7 +1000,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomersCity)
                     .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPhone)
                     .addComponent(txtCustomersPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1014,7 +1014,7 @@ public class frmAdministration extends javax.swing.JFrame {
         );
 
         dlgAdminCustomers.getContentPane().add(pnlCustomersDates);
-        pnlCustomersDates.setBounds(0, 120, 0, 590);
+        pnlCustomersDates.setBounds(0, 120, 396, 590);
 
         barCustomersMenu.setRollover(true);
 
@@ -1128,7 +1128,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(btnCustomersDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCustomersList)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         pnlCustomersButtonsLayout.setVerticalGroup(
             pnlCustomersButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1193,7 +1193,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminLocal.getContentPane().setLayout(null);
 
-        pnlLocals.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlLocals.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlLocals.setOpaque(false);
 
         txtLocalsNameL.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -1241,9 +1241,9 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocalsCity.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblLocalsCity.setText("Departamento");
 
-        cbLocalsTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
+        cbLocalsTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
 
-        cbLocalsCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
+        cbLocalsCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
 
         javax.swing.GroupLayout pnlLocalsLayout = new javax.swing.GroupLayout(pnlLocals);
         pnlLocals.setLayout(pnlLocalsLayout);

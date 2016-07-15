@@ -19,11 +19,12 @@ public class clsLocalOrderDetails {
     private double product_price_total;
     private String notes;
     private String search;
+    private String localOrder_id;
 
     public clsLocalOrderDetails() {
     }
 
-    public clsLocalOrderDetails(String order_number, String product_id, String product_name, String product_description, double product_price, double product_amount, double product_price_total, String notes, String search) {
+    public clsLocalOrderDetails(String order_number, String product_id, String product_name, String product_description, double product_price, double product_amount, double product_price_total, String notes, String search, String localOrder_id) {
         this.order_number = order_number;
         this.product_id = product_id;
         this.product_name = product_name;
@@ -33,8 +34,10 @@ public class clsLocalOrderDetails {
         this.product_price_total = product_price_total;
         this.notes = notes;
         this.search = search;
+        this.localOrder_id = localOrder_id;
     }
 
+ 
 
     public String getOrder_number() {
         return order_number;
@@ -109,6 +112,14 @@ public class clsLocalOrderDetails {
 
     public void setProduct_price_total(double product_price_total) {
         this.product_price_total = product_price_total;
+    }
+
+    public String getLocalOrder_id() {
+        return localOrder_id;
+    }
+
+    public void setLocalOrder_id(String localOrder_id) {
+        this.localOrder_id = localOrder_id;
     }
     
     

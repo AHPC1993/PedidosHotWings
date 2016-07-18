@@ -20,6 +20,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
      */
     public frmNewOrderDelivery() {
         //  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setUndecorated(true); //pantalla completa
         initComponents();
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
@@ -510,7 +511,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-       dlgOrderDelivery.setVisible(true);
+        dlgOrderDelivery.setVisible(true);
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnCombo8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombo8ActionPerformed

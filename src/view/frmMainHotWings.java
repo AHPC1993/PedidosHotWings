@@ -33,7 +33,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         frmAdmin = new frmAdministration();
         frmLocalO = new frmLocalOrder();
         JFrame.setDefaultLookAndFeelDecorated(true);
-        //this.setUndecorated(true); pantalla completa
+        this.setUndecorated(true); //pantalla completa
         SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.ChallengerDeepSkin");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
@@ -44,6 +44,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         //Se crea el background contenido en un label y se le da tamaño y posición al jdialog
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/backgroundLogin.jpg"));
         lblBackground.setIcon(icon);
+        lblBackgroundMainFrame.setSize(dim.width, dim.height);
         dlgLogin.setSize(692, 345);
         pnlLogin.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         dlgLogin.setLocationRelativeTo(this);
@@ -98,16 +99,13 @@ public class frmMainHotWings extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         lblIconHotWings = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
-        dlgAmount = new javax.swing.JDialog();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        btnAcceptAmount = new javax.swing.JButton();
         jMenu1 = new javax.swing.JMenu();
         btnOrderDelivery = new javax.swing.JButton();
         btnLocalOrder = new javax.swing.JButton();
         btnReports = new javax.swing.JButton();
         btnAdmin = new javax.swing.JButton();
         btnMenuDetails = new javax.swing.JButton();
+        btnCloseProgram = new javax.swing.JButton();
         lblBackgroundMainFrame = new javax.swing.JLabel();
 
         dlgLogin.setTitle("Inicio de Sesión");
@@ -195,49 +193,10 @@ public class frmMainHotWings extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        dlgAmount.setTitle("Cantidad para el producto selecionado");
-
-        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        jList1.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3", "4", "5", "6", "7", "8", "9", ">10" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setToolTipText("Cantidad para el producto seleccionado");
-        jScrollPane2.setViewportView(jList1);
-
-        btnAcceptAmount.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnAcceptAmount.setText("Aceptar");
-
-        javax.swing.GroupLayout dlgAmountLayout = new javax.swing.GroupLayout(dlgAmount.getContentPane());
-        dlgAmount.getContentPane().setLayout(dlgAmountLayout);
-        dlgAmountLayout.setHorizontalGroup(
-            dlgAmountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dlgAmountLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btnAcceptAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-        dlgAmountLayout.setVerticalGroup(
-            dlgAmountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dlgAmountLayout.createSequentialGroup()
-                .addGroup(dlgAmountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dlgAmountLayout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(btnAcceptAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dlgAmountLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Iniciar sesión");
+        setTitle("Menú principal");
         setMinimumSize(new java.awt.Dimension(1382, 744));
         setResizable(false);
         setSize(new java.awt.Dimension(1382, 744));
@@ -333,6 +292,22 @@ public class frmMainHotWings extends javax.swing.JFrame {
         getContentPane().add(btnMenuDetails);
         btnMenuDetails.setBounds(550, 380, 330, 255);
 
+        btnCloseProgram.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCloseProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBtnExit.png"))); // NOI18N
+        btnCloseProgram.setText("Salir");
+        btnCloseProgram.setBorderPainted(false);
+        btnCloseProgram.setContentAreaFilled(false);
+        btnCloseProgram.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCloseProgram.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnCloseProgram.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCloseProgram.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseProgramActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCloseProgram);
+        btnCloseProgram.setBounds(1220, 605, 120, 115);
+
         lblBackgroundMainFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         lblBackgroundMainFrame.setMaximumSize(new java.awt.Dimension(1382, 744));
         lblBackgroundMainFrame.setMinimumSize(new java.awt.Dimension(1382, 744));
@@ -404,6 +379,17 @@ public class frmMainHotWings extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMenuDetailsActionPerformed
 
+    private void btnCloseProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseProgramActionPerformed
+       if (JOptionPane.showConfirmDialog(this,
+                "Está seguro de que quiere salir?", "Salir?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        } else {
+            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        }
+    }//GEN-LAST:event_btnCloseProgramActionPerformed
+
     public void showDialog(JDialog dialog) {
         dialog.setSize(470, 400);
         dialog.setLocationRelativeTo(this);
@@ -448,18 +434,15 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
-    private javax.swing.JButton btnAcceptAmount;
     private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnCloseProgram;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLocalOrder;
     private javax.swing.JButton btnMenuDetails;
     private javax.swing.JButton btnOrderDelivery;
     private javax.swing.JButton btnReports;
-    private javax.swing.JDialog dlgAmount;
     private javax.swing.JDialog dlgLogin;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblBackgroundMainFrame;
     private javax.swing.JLabel lblIconHotWings;

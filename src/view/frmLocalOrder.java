@@ -39,12 +39,14 @@ public class frmLocalOrder extends javax.swing.JFrame {
      * Creates new form frmLocalOrder
      */
     public frmLocalOrder() {
+        this.setUndecorated(true); //pantalla completa
         initComponents();
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
         this.setSize(dim.width, dim.height);
 //        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+         dlgAdditionsLocalOrder.setLocationRelativeTo(this);
         //pnlAmount.setLayout(new GridLayout(5, 3, 10, 10));
     }
 
@@ -105,6 +107,15 @@ public class frmLocalOrder extends javax.swing.JFrame {
         productsGroup = new javax.swing.ButtonGroup();
         numbersGroup = new javax.swing.ButtonGroup();
         actionsGroup = new javax.swing.ButtonGroup();
+        additionsGroup = new javax.swing.ButtonGroup();
+        dlgAdditionsLocalOrder = new javax.swing.JDialog();
+        pblAdditionsLocalOrder = new javax.swing.JPanel();
+        btnAdditionalProduct2 = new javax.swing.JButton();
+        btnAdditionalProduct3 = new javax.swing.JButton();
+        btnAdditionalProduct1 = new javax.swing.JButton();
+        btnAdditionalProduct5 = new javax.swing.JButton();
+        btnAdditionalProduct4 = new javax.swing.JButton();
+        btnAdditionalProduct6 = new javax.swing.JButton();
         pnlAmount = new javax.swing.JPanel();
         btnNumber6 = new javax.swing.JToggleButton();
         btnNumber2 = new javax.swing.JToggleButton();
@@ -140,8 +151,143 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnSelectedProducts = new javax.swing.JToggleButton();
         lblTotalOrder = new javax.swing.JLabel();
         txtTotalOrder = new javax.swing.JTextField();
+        btnAdminBack = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        txtChangeOrder = new javax.swing.JTextField();
+
+        dlgAdditionsLocalOrder.setMinimumSize(new java.awt.Dimension(711, 423));
+        dlgAdditionsLocalOrder.setPreferredSize(new java.awt.Dimension(711, 523));
+        dlgAdditionsLocalOrder.setSize(new java.awt.Dimension(711, 523));
+
+        pblAdditionsLocalOrder.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Adicionales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
+
+        btnAdditionalProduct2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAdditionalProduct2.setText("Papas");
+        productsGroup.add(btnAdditionalProduct2);
+        btnAdditionalProduct2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProduct2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProduct2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct2ActionPerformed(evt);
+            }
+        });
+
+        btnAdditionalProduct3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAdditionalProduct3.setText("Salsas");
+        productsGroup.add(btnAdditionalProduct3);
+        btnAdditionalProduct3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProduct3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProduct3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct3ActionPerformed(evt);
+            }
+        });
+
+        btnAdditionalProduct1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAdditionalProduct1.setText("Alitas");
+        productsGroup.add(btnAdditionalProduct1);
+        btnAdditionalProduct1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProduct1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProduct1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct1ActionPerformed(evt);
+            }
+        });
+
+        btnAdditionalProduct5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAdditionalProduct5.setText("Gaseosa grande");
+        productsGroup.add(btnAdditionalProduct5);
+        btnAdditionalProduct5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProduct5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProduct5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct5ActionPerformed(evt);
+            }
+        });
+
+        btnAdditionalProduct4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAdditionalProduct4.setText("Gaseosa pequeña");
+        productsGroup.add(btnAdditionalProduct4);
+        btnAdditionalProduct4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProduct4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProduct4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct4ActionPerformed(evt);
+            }
+        });
+
+        btnAdditionalProduct6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAdditionalProduct6.setText("Gaseosa grande");
+        productsGroup.add(btnAdditionalProduct6);
+        btnAdditionalProduct6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProduct6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProduct6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pblAdditionsLocalOrderLayout = new javax.swing.GroupLayout(pblAdditionsLocalOrder);
+        pblAdditionsLocalOrder.setLayout(pblAdditionsLocalOrderLayout);
+        pblAdditionsLocalOrderLayout.setHorizontalGroup(
+            pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pblAdditionsLocalOrderLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pblAdditionsLocalOrderLayout.createSequentialGroup()
+                        .addComponent(btnAdditionalProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdditionalProduct5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAdditionalProduct6, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(pblAdditionsLocalOrderLayout.createSequentialGroup()
+                        .addComponent(btnAdditionalProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(btnAdditionalProduct2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdditionalProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))))
+        );
+
+        pblAdditionsLocalOrderLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdditionalProduct1, btnAdditionalProduct2, btnAdditionalProduct3});
+
+        pblAdditionsLocalOrderLayout.setVerticalGroup(
+            pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pblAdditionsLocalOrderLayout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdditionalProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProduct2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdditionalProduct5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProduct6, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        pblAdditionsLocalOrderLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdditionalProduct1, btnAdditionalProduct2, btnAdditionalProduct3});
+
+        javax.swing.GroupLayout dlgAdditionsLocalOrderLayout = new javax.swing.GroupLayout(dlgAdditionsLocalOrder.getContentPane());
+        dlgAdditionsLocalOrder.getContentPane().setLayout(dlgAdditionsLocalOrderLayout);
+        dlgAdditionsLocalOrderLayout.setHorizontalGroup(
+            dlgAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAdditionsLocalOrderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pblAdditionsLocalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dlgAdditionsLocalOrderLayout.setVerticalGroup(
+            dlgAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAdditionsLocalOrderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pblAdditionsLocalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Nuevo pedido local");
         setMinimumSize(new java.awt.Dimension(1382, 744));
         setSize(new java.awt.Dimension(1382, 744));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -307,7 +453,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         pnlAmount.add(btnAddProduct);
         btnAddProduct.setBounds(140, 410, 100, 80);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Observaciones"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Observaciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         txtNotes.setColumns(20);
         txtNotes.setLineWrap(true);
@@ -326,7 +472,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         pnlAmount.add(jPanel1);
@@ -379,6 +525,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         productsGroup.add(btnProduct6);
         btnProduct6.setText("Adicionales");
+        btnProduct6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnProduct6MouseClicked(evt);
+            }
+        });
         btnProduct6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProduct6ActionPerformed(evt);
@@ -461,7 +612,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         );
 
         getContentPane().add(pnlProducts);
-        pnlProducts.setBounds(26, 30, 587, 520);
+        pnlProducts.setBounds(26, 30, 589, 520);
 
         tblLocalOrder.setShowVerticalLines(false);
         tblLocalOrder.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -472,7 +623,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         scrollPanelProductsTable.setViewportView(tblLocalOrder);
 
         getContentPane().add(scrollPanelProductsTable);
-        scrollPanelProductsTable.setBounds(10, 550, 1300, 130);
+        scrollPanelProductsTable.setBounds(10, 550, 1240, 210);
 
         txtOrderNumber.setEditable(false);
         txtOrderNumber.setBackground(new java.awt.Color(255, 255, 255));
@@ -497,18 +648,52 @@ public class frmLocalOrder extends javax.swing.JFrame {
         getContentPane().add(btnSelectedProducts);
         btnSelectedProducts.setBounds(630, 90, 20, 10);
 
-        lblTotalOrder.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblTotalOrder.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTotalOrder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTotalOrder.setText("Total Pedido");
         getContentPane().add(lblTotalOrder);
-        lblTotalOrder.setBounds(1180, 480, 160, 30);
+        lblTotalOrder.setBounds(1150, 400, 170, 50);
 
         txtTotalOrder.setEditable(false);
         txtTotalOrder.setBackground(new java.awt.Color(255, 255, 255));
-        txtTotalOrder.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtTotalOrder.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         txtTotalOrder.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(txtTotalOrder);
-        txtTotalOrder.setBounds(1200, 510, 130, 30);
+        txtTotalOrder.setBounds(1150, 450, 170, 50);
+
+        btnAdminBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdminBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        btnAdminBack.setText("Volver");
+        btnAdminBack.setBorderPainted(false);
+        btnAdminBack.setContentAreaFilled(false);
+        btnAdminBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdminBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdminBack.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdminBack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdminBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAdminBack);
+        btnAdminBack.setBounds(1240, 640, 120, 120);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Cuánto devolver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(1150, 260, 170, 40);
+
+        txtChangeOrder.setEditable(false);
+        txtChangeOrder.setBackground(new java.awt.Color(255, 255, 255));
+        txtChangeOrder.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txtChangeOrder.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(txtChangeOrder);
+        txtChangeOrder.setBounds(1150, 310, 170, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -624,8 +809,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCorrectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrectionActionPerformed
+       if(tblLocalOrder.getRowCount()>0){
         deleteSelectionState = 1;
         JOptionPane.showMessageDialog(this, "Por favor seleccione la fila del producto que desea eliminar.");
+       }
+
     }//GEN-LAST:event_btnCorrectionActionPerformed
 
     private void tblLocalOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLocalOrderMouseClicked
@@ -633,12 +821,19 @@ public class frmLocalOrder extends javax.swing.JFrame {
             if (deleteSelectionState == 1) {
                 localOrder = new clsDAOLocalOrderDetails();
                 String selection = String.valueOf(tblLocalOrder.getValueAt(tblLocalOrder.getSelectedRow(), 0));
-                System.out.println(selection);
-                localOrder.setLocalOrder_id(selection);
-                localOrder.delete(localOrder.getLocalOrder_id());
-                tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
-                txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
-                deleteSelectionState = 0;
+                if (JOptionPane.showConfirmDialog(this,
+                        "Está seguro que desea eliminar el producto:\n " + (tblLocalOrder.getValueAt(tblLocalOrder.getSelectedRow(), 1)) + "\nCon valor de: " + (tblLocalOrder.getValueAt(tblLocalOrder.getSelectedRow(), 5)), "Eliminar producto",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    localOrder.setLocalOrder_id(selection);
+                    localOrder.delete(localOrder.getLocalOrder_id());
+                    tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
+                    txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
+                    deleteSelectionState = 0;
+                } else {
+                    deleteSelectionState = 0;
+                }
+
             }
         } catch (Exception ex) {
             System.out.println(ex);
@@ -647,43 +842,49 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_tblLocalOrderMouseClicked
 
     private void btnOtherAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherAmountActionPerformed
-        btnSelectedAmount.setSelected(true);
-        String inputValue = JOptionPane.showInputDialog("Por favor ingrese la cantidad que necesita");
-        if (inputValue != null) {
-            double amount = Double.parseDouble(inputValue);
-            if (amount > 9) {
-                if (btnProduct1.isSelected()) {
-                    loadSetValuesOrderDetails(btnProduct1.getText(), amount);
-                } else if (btnProduct2.isSelected()) {
-                    loadSetValuesOrderDetails(btnProduct2.getText(), amount);
-                } else if (btnProduct3.isSelected()) {
-                    loadSetValuesOrderDetails(btnProduct3.getText(), amount);
-                } else if (btnProduct4.isSelected()) {
-                    loadSetValuesOrderDetails(btnProduct4.getText(), amount);
-                } else if (btnProduct5.isSelected()) {
-                    loadSetValuesOrderDetails(btnProduct5.getText(), amount);
-                } else if (btnProduct6.isSelected()) {
-                    loadSetValuesOrderDetails(btnProduct6.getText(), amount);
-                } else if (btnProduct7.isSelected()) {
-                    loadSetValuesOrderDetails(btnProduct7.getText(), amount);
-                } else if (btnProduct8.isSelected()) {
-                    loadSetValuesOrderDetails(btnProduct8.getText(), amount);
-                } else if (btnProduct9.isSelected()) {
-                    loadSetValuesOrderDetails(btnProduct9.getText(), amount);
-                }
-                if (localOrder.insert()) {
-                    txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
-                    tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
-                    txtNotes.setText("");
+
+        if (!btnSelectedProducts.isSelected()) {
+            btnSelectedAmount.setSelected(true);
+            String inputValue = JOptionPane.showInputDialog("Por favor ingrese la cantidad que necesita");
+            if (inputValue != null) {
+                double amount = Double.parseDouble(inputValue);
+                if (amount > 9) {
+                    if (btnProduct1.isSelected()) {
+                        loadSetValuesOrderDetails(btnProduct1.getText(), amount);
+                    } else if (btnProduct2.isSelected()) {
+                        loadSetValuesOrderDetails(btnProduct2.getText(), amount);
+                    } else if (btnProduct3.isSelected()) {
+                        loadSetValuesOrderDetails(btnProduct3.getText(), amount);
+                    } else if (btnProduct4.isSelected()) {
+                        loadSetValuesOrderDetails(btnProduct4.getText(), amount);
+                    } else if (btnProduct5.isSelected()) {
+                        loadSetValuesOrderDetails(btnProduct5.getText(), amount);
+                    } else if (btnProduct6.isSelected()) {
+                        loadSetValuesOrderDetails(btnProduct6.getText(), amount);
+                    } else if (btnProduct7.isSelected()) {
+                        loadSetValuesOrderDetails(btnProduct7.getText(), amount);
+                    } else if (btnProduct8.isSelected()) {
+                        loadSetValuesOrderDetails(btnProduct8.getText(), amount);
+                    } else if (btnProduct9.isSelected()) {
+                        loadSetValuesOrderDetails(btnProduct9.getText(), amount);
+                    }
+                    if (localOrder.insert()) {
+                        txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
+                        tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
+                        txtNotes.setText("");
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                    }
 
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                    JOptionPane.showMessageDialog(this, "La cantidad debe ser igual o mayor a 10");
                 }
-
-            } else {
-                JOptionPane.showMessageDialog(this, "La cantidad debe ser igual o mayor a 10");
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un producto");
         }
+
     }//GEN-LAST:event_btnOtherAmountActionPerformed
 
     private void btnDoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneOrderActionPerformed
@@ -700,6 +901,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
                 for (int i = rowCount - 1; i >= 0; i--) {
                     dm.removeRow(i);
                 }
+
                 tblLocalOrder.setModel(dm);
                 JOptionPane.showMessageDialog(this, "La orden ha sido procesada con éxito");
             }
@@ -707,6 +909,51 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnDoneOrderActionPerformed
+
+    private void btnAdminBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminBackActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAdminBackActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        double change = Double.parseDouble(JOptionPane.showInputDialog("Devuelta de cuánto?"));
+        double total = Double.parseDouble(txtTotalOrder.getText());
+        if (change < total) {
+            JOptionPane.showMessageDialog(this, "El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente");
+        } else {
+            txtChangeOrder.setText((change - total) + "");
+
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnProduct6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProduct6MouseClicked
+      dlgAdditionsLocalOrder.setVisible(true);
+      
+    }//GEN-LAST:event_btnProduct6MouseClicked
+
+    private void btnAdditionalProduct2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProduct2ActionPerformed
+
+    private void btnAdditionalProduct3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProduct3ActionPerformed
+
+    private void btnAdditionalProduct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct1ActionPerformed
+     
+    }//GEN-LAST:event_btnAdditionalProduct1ActionPerformed
+
+    private void btnAdditionalProduct5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProduct5ActionPerformed
+
+    private void btnAdditionalProduct4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProduct4ActionPerformed
+
+    private void btnAdditionalProduct6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProduct6ActionPerformed
 
     public void PrintselectProductAndAmount() {
         for (int i = 1; i <= 9; i++) {
@@ -956,7 +1203,15 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup actionsGroup;
+    private javax.swing.ButtonGroup additionsGroup;
     private javax.swing.JButton btnAddProduct;
+    private javax.swing.JButton btnAdditionalProduct1;
+    private javax.swing.JButton btnAdditionalProduct2;
+    private javax.swing.JButton btnAdditionalProduct3;
+    private javax.swing.JButton btnAdditionalProduct4;
+    private javax.swing.JButton btnAdditionalProduct5;
+    private javax.swing.JButton btnAdditionalProduct6;
+    private javax.swing.JButton btnAdminBack;
     private javax.swing.JButton btnCorrection;
     private javax.swing.JButton btnDoneOrder;
     private javax.swing.JToggleButton btnNumber1;
@@ -980,16 +1235,20 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnProduct9;
     private javax.swing.JToggleButton btnSelectedAmount;
     private javax.swing.JToggleButton btnSelectedProducts;
+    private javax.swing.JDialog dlgAdditionsLocalOrder;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTotalOrder;
     private javax.swing.ButtonGroup numbersGroup;
+    private javax.swing.JPanel pblAdditionsLocalOrder;
     private javax.swing.JPanel pnlAmount;
     private javax.swing.JPanel pnlProducts;
     private javax.swing.ButtonGroup productsGroup;
     private javax.swing.JScrollPane scrollPanelProductsTable;
     private javax.swing.JTable tblLocalOrder;
+    private javax.swing.JTextField txtChangeOrder;
     private javax.swing.JTextArea txtNotes;
     private javax.swing.JTextField txtOrderNumber;
     private javax.swing.JTextField txtTotalOrder;

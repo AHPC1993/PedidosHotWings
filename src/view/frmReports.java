@@ -19,6 +19,7 @@ public class frmReports extends javax.swing.JFrame {
      * Creates new form frmReports
      */
     public frmReports() {
+         this.setUndecorated(true); //pantalla completa
         //  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         Toolkit toolkit = Toolkit.getDefaultToolkit();

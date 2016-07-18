@@ -39,25 +39,31 @@ public class frmAdministration extends javax.swing.JFrame {
      * Creates new form frmAdministration
      */
     public frmAdministration() {
-         Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
+        this.setSize(dim.width, dim.height);
         //  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-       
+        this.setUndecorated(true); //pantalla completa
         initComponents();
-        setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        //setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-       
-         this.setSize(dim.width, dim.height);
+
+        
         lblBackgroundAdmin.setSize(dim.width, dim.height);
         lblCustomerssBackgroundDialog.setSize(dim.width, dim.height);
         lblProductsBackgroundDialog.setSize(dim.width, dim.height);
         lblEmployeesBackgroundDialog.setSize(dim.width, dim.height);
         lblLocalsBackgroundDialog.setSize(dim.width, dim.height);
-
+        
         dlgAdminEmployees.setSize(dim.width, dim.height);
         dlgAdminProducts.setSize(dim.width, dim.height);
         dlgAdminCustomers.setSize(dim.width, dim.height);
         dlgAdminLocal.setSize(dim.width, dim.height);
+        
+        dlgAdminEmployees.setUndecorated(true);
+        dlgAdminProducts.setUndecorated(true);
+        dlgAdminCustomers.setUndecorated(true);
+        dlgAdminLocal.setUndecorated(true);
 
         barCustomersMenu.setSize(dim.width, 25);
         barEmployeesMenu.setSize(dim.width, 25);
@@ -68,6 +74,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminProducts.setLocationRelativeTo(this);
         dlgAdminCustomers.setLocationRelativeTo(this);
         dlgAdminLocal.setLocationRelativeTo(this);
+        dlgSelectProducts.setLocationRelativeTo(this);
 
         scrollPanelEmployeesTable.setVisible(false);
         scrollPanelProductsTable.setVisible(false);
@@ -107,7 +114,7 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocal = new javax.swing.JLabel();
         lblPhone1 = new javax.swing.JLabel();
         txtEmployeesPhone = new javax.swing.JTextField();
-        cbLocal = new javax.swing.JComboBox<String>();
+        cbLocal = new javax.swing.JComboBox<>();
         barEmployeesMenu = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         pnlEmployeesButtons = new javax.swing.JPanel();
@@ -163,8 +170,8 @@ public class frmAdministration extends javax.swing.JFrame {
         txtCustomersNotes = new javax.swing.JTextArea();
         lblCustomersCity = new javax.swing.JLabel();
         lblCustomersTown = new javax.swing.JLabel();
-        cbCustomersTown = new javax.swing.JComboBox<String>();
-        cbCustomersCity = new javax.swing.JComboBox<String>();
+        cbCustomersTown = new javax.swing.JComboBox<>();
+        cbCustomersCity = new javax.swing.JComboBox<>();
         lblPhone = new javax.swing.JLabel();
         txtCustomersPhone = new javax.swing.JTextField();
         barCustomersMenu = new javax.swing.JToolBar();
@@ -192,8 +199,8 @@ public class frmAdministration extends javax.swing.JFrame {
         txtLocalsNeighborhood = new javax.swing.JTextField();
         lblLocalsTown = new javax.swing.JLabel();
         lblLocalsCity = new javax.swing.JLabel();
-        cbLocalsTown = new javax.swing.JComboBox<String>();
-        cbLocalsCity = new javax.swing.JComboBox<String>();
+        cbLocalsTown = new javax.swing.JComboBox<>();
+        cbLocalsCity = new javax.swing.JComboBox<>();
         barLocalMenu = new javax.swing.JToolBar();
         jButton4 = new javax.swing.JButton();
         pnlLocalsButtons = new javax.swing.JPanel();
@@ -207,6 +214,35 @@ public class frmAdministration extends javax.swing.JFrame {
         tblLocals = new javax.swing.JTable();
         btnLocalsBack = new javax.swing.JButton();
         lblLocalsBackgroundDialog = new javax.swing.JLabel();
+        dlgAdminAdditionalProducts = new javax.swing.JDialog();
+        barProductsMenu1 = new javax.swing.JToolBar();
+        jButton5 = new javax.swing.JButton();
+        pnlAdditionalProductsButtons = new javax.swing.JPanel();
+        btnAdditionalProductsEdit = new javax.swing.JButton();
+        btnAdditionalProductsDelete = new javax.swing.JButton();
+        btnAdditionalProductsInsert = new javax.swing.JButton();
+        btnAdditionalProductsSearch = new javax.swing.JButton();
+        btnAdditionalProductsNew = new javax.swing.JButton();
+        btnAdditionalProductsList = new javax.swing.JButton();
+        scrollPanelProductsTable1 = new javax.swing.JScrollPane();
+        tblAdditionalProducts = new javax.swing.JTable();
+        pnlAdditionalProducts = new javax.swing.JPanel();
+        txtAdditionalProductsName = new javax.swing.JTextField();
+        lblAdditionalProductsName = new javax.swing.JLabel();
+        lblAdditionalProductsDescription = new javax.swing.JLabel();
+        txtAdditionalProductsPrice = new javax.swing.JTextField();
+        lblAdditionalPrice = new javax.swing.JLabel();
+        lblAdditionalProductsNotes = new javax.swing.JLabel();
+        scrolAdditionalProductslNotes = new javax.swing.JScrollPane();
+        txtAdditionalProductsNotes = new javax.swing.JTextArea();
+        scrolAdditionalProductDescription = new javax.swing.JScrollPane();
+        txtAdditionalProductsDescription = new javax.swing.JTextArea();
+        btnAdditionalProductsBack = new javax.swing.JButton();
+        lblProductsBackgroundDialog1 = new javax.swing.JLabel();
+        dlgSelectProducts = new javax.swing.JDialog();
+        pnlSelectAdminProducts = new javax.swing.JPanel();
+        btnSelectAdminAdditions = new javax.swing.JButton();
+        btnSelectAdminProducts = new javax.swing.JButton();
         btnAdminProducts = new javax.swing.JButton();
         btnCompanyDates = new javax.swing.JButton();
         btnAdminEmployees = new javax.swing.JButton();
@@ -215,6 +251,7 @@ public class frmAdministration extends javax.swing.JFrame {
         btnAdminBack = new javax.swing.JButton();
         lblBackgroundAdmin = new javax.swing.JLabel();
 
+        dlgAdminEmployees.setTitle("Administrar Empleados");
         dlgAdminEmployees.setMinimumSize(new java.awt.Dimension(1382, 744));
         dlgAdminEmployees.setSize(new java.awt.Dimension(1382, 744));
         dlgAdminEmployees.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -224,7 +261,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminEmployees.getContentPane().setLayout(null);
 
-        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlEmployeesDates.setOpaque(false);
 
         lblEmployeesDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -283,7 +320,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
 
-        cbLocal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
+        cbLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
 
         javax.swing.GroupLayout pnlEmployeesDatesLayout = new javax.swing.GroupLayout(pnlEmployeesDates);
         pnlEmployeesDates.setLayout(pnlEmployeesDatesLayout);
@@ -381,7 +418,7 @@ public class frmAdministration extends javax.swing.JFrame {
         );
 
         dlgAdminEmployees.getContentPane().add(pnlEmployeesDates);
-        pnlEmployeesDates.setBounds(0, 120, 382, 513);
+        pnlEmployeesDates.setBounds(0, 120, 375, 521);
 
         barEmployeesMenu.setRollover(true);
 
@@ -495,7 +532,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(btnEmployeesDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEmployeesList)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         pnlEmployeesButtonsLayout.setVerticalGroup(
             pnlEmployeesButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -530,7 +567,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminEmployees.getContentPane().add(scrollPanelEmployeesTable);
         scrollPanelEmployeesTable.setBounds(460, 140, 870, 410);
 
-        btnEmployeesBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEmployeesBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEmployeesBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         btnEmployeesBack.setText("Volver");
         btnEmployeesBack.setBorderPainted(false);
@@ -545,12 +582,13 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         dlgAdminEmployees.getContentPane().add(btnEmployeesBack);
-        btnEmployeesBack.setBounds(1230, 560, 130, 120);
+        btnEmployeesBack.setBounds(1220, 605, 120, 120);
 
         lblEmployeesBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         dlgAdminEmployees.getContentPane().add(lblEmployeesBackgroundDialog);
         lblEmployeesBackgroundDialog.setBounds(0, 0, 1380, 740);
 
+        dlgAdminProducts.setTitle("Administrar Productos");
         dlgAdminProducts.setMinimumSize(new java.awt.Dimension(1382, 744));
         dlgAdminProducts.setSize(new java.awt.Dimension(1382, 744));
         dlgAdminProducts.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -715,7 +753,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminProducts.getContentPane().add(scrollPanelProductsTable);
         scrollPanelProductsTable.setBounds(640, 122, 640, 410);
 
-        pnlProducts2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlProducts2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlProducts2.setOpaque(false);
 
         txtProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -811,7 +849,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminProducts.getContentPane().add(pnlProducts2);
         pnlProducts2.setBounds(0, 120, 410, 470);
 
-        btnProductsBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProductsBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnProductsBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         btnProductsBack.setText("Volver");
         btnProductsBack.setBorderPainted(false);
@@ -826,12 +864,13 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         dlgAdminProducts.getContentPane().add(btnProductsBack);
-        btnProductsBack.setBounds(1230, 560, 130, 120);
+        btnProductsBack.setBounds(1220, 605, 120, 120);
 
         lblProductsBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         dlgAdminProducts.getContentPane().add(lblProductsBackgroundDialog);
         lblProductsBackgroundDialog.setBounds(-10, 0, 1390, 770);
 
+        dlgAdminCustomers.setTitle("Administrar Clientes");
         dlgAdminCustomers.setMinimumSize(new java.awt.Dimension(1382, 744));
         dlgAdminCustomers.setSize(new java.awt.Dimension(1382, 744));
         dlgAdminCustomers.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -841,7 +880,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminCustomers.getContentPane().setLayout(null);
 
-        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlCustomersDates.setOpaque(false);
 
         lbCustomersDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -892,9 +931,9 @@ public class frmAdministration extends javax.swing.JFrame {
         lblCustomersTown.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersTown.setText("Municipio");
 
-        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
+        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
 
-        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
+        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
 
         lblPhone.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblPhone.setText("Teléfono");
@@ -1014,7 +1053,7 @@ public class frmAdministration extends javax.swing.JFrame {
         );
 
         dlgAdminCustomers.getContentPane().add(pnlCustomersDates);
-        pnlCustomersDates.setBounds(0, 120, 396, 590);
+        pnlCustomersDates.setBounds(0, 120, 0, 590);
 
         barCustomersMenu.setRollover(true);
 
@@ -1163,7 +1202,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminCustomers.getContentPane().add(scrollPanelCustomersTable);
         scrollPanelCustomersTable.setBounds(410, 122, 870, 410);
 
-        btnCustomersBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCustomersBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCustomersBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         btnCustomersBack.setText("Volver");
         btnCustomersBack.setBorderPainted(false);
@@ -1178,12 +1217,13 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         dlgAdminCustomers.getContentPane().add(btnCustomersBack);
-        btnCustomersBack.setBounds(1230, 560, 130, 120);
+        btnCustomersBack.setBounds(1220, 605, 120, 123);
 
         lblCustomerssBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         dlgAdminCustomers.getContentPane().add(lblCustomerssBackgroundDialog);
         lblCustomerssBackgroundDialog.setBounds(-10, 0, 1330, 710);
 
+        dlgAdminLocal.setTitle("Administrar Locales");
         dlgAdminLocal.setMinimumSize(new java.awt.Dimension(1382, 744));
         dlgAdminLocal.setSize(new java.awt.Dimension(1382, 744));
         dlgAdminLocal.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -1193,7 +1233,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminLocal.getContentPane().setLayout(null);
 
-        pnlLocals.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlLocals.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlLocals.setOpaque(false);
 
         txtLocalsNameL.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -1241,9 +1281,9 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocalsCity.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblLocalsCity.setText("Departamento");
 
-        cbLocalsTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
+        cbLocalsTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
 
-        cbLocalsCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
+        cbLocalsCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
 
         javax.swing.GroupLayout pnlLocalsLayout = new javax.swing.GroupLayout(pnlLocals);
         pnlLocals.setLayout(pnlLocalsLayout);
@@ -1477,7 +1517,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminLocal.getContentPane().add(scrollPanelLocalsTable);
         scrollPanelLocalsTable.setBounds(640, 122, 640, 410);
 
-        btnLocalsBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLocalsBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLocalsBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         btnLocalsBack.setText("Volver");
         btnLocalsBack.setBorderPainted(false);
@@ -1492,13 +1532,355 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         dlgAdminLocal.getContentPane().add(btnLocalsBack);
-        btnLocalsBack.setBounds(1230, 560, 130, 120);
+        btnLocalsBack.setBounds(1220, 605, 120, 120);
 
         lblLocalsBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         dlgAdminLocal.getContentPane().add(lblLocalsBackgroundDialog);
         lblLocalsBackgroundDialog.setBounds(-10, 0, 1390, 740);
 
+        dlgAdminAdditionalProducts.setTitle("Administrar Productos adicionales");
+        dlgAdminAdditionalProducts.setMinimumSize(new java.awt.Dimension(1382, 744));
+        dlgAdminAdditionalProducts.setSize(new java.awt.Dimension(1382, 744));
+        dlgAdminAdditionalProducts.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                dlgAdminAdditionalProductsWindowClosing(evt);
+            }
+        });
+        dlgAdminAdditionalProducts.getContentPane().setLayout(null);
+
+        barProductsMenu1.setRollover(true);
+
+        jButton5.setText("Archivo");
+        jButton5.setFocusable(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        barProductsMenu1.add(jButton5);
+
+        dlgAdminAdditionalProducts.getContentPane().add(barProductsMenu1);
+        barProductsMenu1.setBounds(0, 0, 1290, 25);
+
+        pnlAdditionalProductsButtons.setOpaque(false);
+
+        btnAdditionalProductsEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdditionalProductsEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnEdit.png"))); // NOI18N
+        btnAdditionalProductsEdit.setText("Modificar");
+        btnAdditionalProductsEdit.setToolTipText("Modificar el empleado con los datos que aparecen en las cajas de texto");
+        btnAdditionalProductsEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProductsEdit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProductsEditActionPerformed(evt);
+            }
+        });
+
+        btnAdditionalProductsDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdditionalProductsDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnDelete.png"))); // NOI18N
+        btnAdditionalProductsDelete.setText("Eliminar");
+        btnAdditionalProductsDelete.setToolTipText("Eliminar un empleado");
+        btnAdditionalProductsDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProductsDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProductsDeleteActionPerformed(evt);
+            }
+        });
+
+        btnAdditionalProductsInsert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdditionalProductsInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSave.png"))); // NOI18N
+        btnAdditionalProductsInsert.setText("Insertar");
+        btnAdditionalProductsInsert.setToolTipText("Ingresar un nuevo empleado");
+        btnAdditionalProductsInsert.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProductsInsert.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsInsert.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProductsInsertActionPerformed(evt);
+            }
+        });
+
+        btnAdditionalProductsSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdditionalProductsSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSearch.png"))); // NOI18N
+        btnAdditionalProductsSearch.setText("Consultar");
+        btnAdditionalProductsSearch.setToolTipText("Buscar un empleado por número de cédula");
+        btnAdditionalProductsSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProductsSearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProductsSearchActionPerformed(evt);
+            }
+        });
+
+        btnAdditionalProductsNew.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdditionalProductsNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnNew.png"))); // NOI18N
+        btnAdditionalProductsNew.setText("Nuevo");
+        btnAdditionalProductsNew.setToolTipText("Limpiar las cajas de texto para crear un nuevo empleado");
+        btnAdditionalProductsNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProductsNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProductsNewActionPerformed(evt);
+            }
+        });
+
+        btnAdditionalProductsList.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdditionalProductsList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnList.png"))); // NOI18N
+        btnAdditionalProductsList.setText("Listar Productos");
+        btnAdditionalProductsList.setToolTipText("Listar todos los empleados en la empresa");
+        btnAdditionalProductsList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProductsList.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsList.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProductsListActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlAdditionalProductsButtonsLayout = new javax.swing.GroupLayout(pnlAdditionalProductsButtons);
+        pnlAdditionalProductsButtons.setLayout(pnlAdditionalProductsButtonsLayout);
+        pnlAdditionalProductsButtonsLayout.setHorizontalGroup(
+            pnlAdditionalProductsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdditionalProductsButtonsLayout.createSequentialGroup()
+                .addComponent(btnAdditionalProductsNew)
+                .addGap(3, 3, 3)
+                .addComponent(btnAdditionalProductsInsert)
+                .addGap(3, 3, 3)
+                .addComponent(btnAdditionalProductsSearch)
+                .addGap(3, 3, 3)
+                .addComponent(btnAdditionalProductsEdit)
+                .addGap(3, 3, 3)
+                .addComponent(btnAdditionalProductsDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAdditionalProductsList)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlAdditionalProductsButtonsLayout.setVerticalGroup(
+            pnlAdditionalProductsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdditionalProductsButtonsLayout.createSequentialGroup()
+                .addGroup(pnlAdditionalProductsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdditionalProductsNew, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProductsInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProductsSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProductsEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProductsDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProductsList, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        dlgAdminAdditionalProducts.getContentPane().add(pnlAdditionalProductsButtons);
+        pnlAdditionalProductsButtons.setBounds(0, 30, 640, 90);
+
+        tblAdditionalProducts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Descripción", "Precio", "Notas"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollPanelProductsTable1.setViewportView(tblAdditionalProducts);
+        tblAdditionalProducts.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        dlgAdminAdditionalProducts.getContentPane().add(scrollPanelProductsTable1);
+        scrollPanelProductsTable1.setBounds(640, 122, 640, 410);
+
+        pnlAdditionalProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlAdditionalProducts.setOpaque(false);
+
+        txtAdditionalProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtAdditionalProductsName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lblAdditionalProductsName.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblAdditionalProductsName.setText("Nombre");
+
+        lblAdditionalProductsDescription.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblAdditionalProductsDescription.setText("Descripción");
+
+        txtAdditionalProductsPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtAdditionalProductsPrice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtAdditionalProductsPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAdditionalProductsPriceKeyTyped(evt);
+            }
+        });
+
+        lblAdditionalPrice.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblAdditionalPrice.setText("Precio");
+
+        lblAdditionalProductsNotes.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblAdditionalProductsNotes.setText("Notas");
+
+        txtAdditionalProductsNotes.setColumns(20);
+        txtAdditionalProductsNotes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtAdditionalProductsNotes.setLineWrap(true);
+        txtAdditionalProductsNotes.setRows(5);
+        scrolAdditionalProductslNotes.setViewportView(txtAdditionalProductsNotes);
+
+        txtAdditionalProductsDescription.setColumns(20);
+        txtAdditionalProductsDescription.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtAdditionalProductsDescription.setLineWrap(true);
+        txtAdditionalProductsDescription.setRows(5);
+        scrolAdditionalProductDescription.setViewportView(txtAdditionalProductsDescription);
+
+        javax.swing.GroupLayout pnlAdditionalProductsLayout = new javax.swing.GroupLayout(pnlAdditionalProducts);
+        pnlAdditionalProducts.setLayout(pnlAdditionalProductsLayout);
+        pnlAdditionalProductsLayout.setHorizontalGroup(
+            pnlAdditionalProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdditionalProductsLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblAdditionalProductsDescription)
+                .addGap(150, 150, 150))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdditionalProductsLayout.createSequentialGroup()
+                .addComponent(scrolAdditionalProductslNotes)
+                .addContainerGap())
+            .addGroup(pnlAdditionalProductsLayout.createSequentialGroup()
+                .addGroup(pnlAdditionalProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdditionalProductsLayout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(lblAdditionalProductsName))
+                    .addGroup(pnlAdditionalProductsLayout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(lblAdditionalPrice))
+                    .addGroup(pnlAdditionalProductsLayout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(lblAdditionalProductsNotes))
+                    .addGroup(pnlAdditionalProductsLayout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addGroup(pnlAdditionalProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtAdditionalProductsName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAdditionalProductsPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnlAdditionalProductsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrolAdditionalProductDescription)
+                .addContainerGap())
+        );
+        pnlAdditionalProductsLayout.setVerticalGroup(
+            pnlAdditionalProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdditionalProductsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAdditionalProductsName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtAdditionalProductsName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAdditionalProductsDescription)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scrolAdditionalProductDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAdditionalPrice)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtAdditionalProductsPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblAdditionalProductsNotes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrolAdditionalProductslNotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
+        );
+
+        dlgAdminAdditionalProducts.getContentPane().add(pnlAdditionalProducts);
+        pnlAdditionalProducts.setBounds(0, 120, 410, 470);
+
+        btnAdditionalProductsBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAdditionalProductsBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        btnAdditionalProductsBack.setText("Volver");
+        btnAdditionalProductsBack.setBorderPainted(false);
+        btnAdditionalProductsBack.setContentAreaFilled(false);
+        btnAdditionalProductsBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdditionalProductsBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdditionalProductsBack.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsBack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdditionalProductsBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProductsBackActionPerformed(evt);
+            }
+        });
+        dlgAdminAdditionalProducts.getContentPane().add(btnAdditionalProductsBack);
+        btnAdditionalProductsBack.setBounds(1220, 605, 120, 120);
+
+        lblProductsBackgroundDialog1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
+        dlgAdminAdditionalProducts.getContentPane().add(lblProductsBackgroundDialog1);
+        lblProductsBackgroundDialog1.setBounds(-10, 0, 1390, 770);
+
+        dlgSelectProducts.setTitle("Seleccionar tipo de producto a administrar");
+        dlgSelectProducts.setMinimumSize(new java.awt.Dimension(702, 449));
+        dlgSelectProducts.setResizable(false);
+        dlgSelectProducts.setSize(new java.awt.Dimension(702, 449));
+
+        pnlSelectAdminProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Selección de tipo de productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
+
+        btnSelectAdminAdditions.setText("Administrar adicionales");
+        btnSelectAdminAdditions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectAdminAdditionsActionPerformed(evt);
+            }
+        });
+
+        btnSelectAdminProducts.setText("Administrar Productos");
+        btnSelectAdminProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectAdminProductsActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlSelectAdminProductsLayout = new javax.swing.GroupLayout(pnlSelectAdminProducts);
+        pnlSelectAdminProducts.setLayout(pnlSelectAdminProductsLayout);
+        pnlSelectAdminProductsLayout.setHorizontalGroup(
+            pnlSelectAdminProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectAdminProductsLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(btnSelectAdminProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(btnSelectAdminAdditions, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+        pnlSelectAdminProductsLayout.setVerticalGroup(
+            pnlSelectAdminProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSelectAdminProductsLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(pnlSelectAdminProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSelectAdminProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelectAdminAdditions, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout dlgSelectProductsLayout = new javax.swing.GroupLayout(dlgSelectProducts.getContentPane());
+        dlgSelectProducts.getContentPane().setLayout(dlgSelectProductsLayout);
+        dlgSelectProductsLayout.setHorizontalGroup(
+            dlgSelectProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgSelectProductsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlSelectAdminProducts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        dlgSelectProductsLayout.setVerticalGroup(
+            dlgSelectProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgSelectProductsLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(pnlSelectAdminProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Administrar");
         setMinimumSize(new java.awt.Dimension(1382, 744));
         setSize(new java.awt.Dimension(1382, 744));
         getContentPane().setLayout(null);
@@ -1563,6 +1945,11 @@ public class frmAdministration extends javax.swing.JFrame {
         btnAdminPasswords.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAdminPasswords.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnAdminPasswords.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdminPasswords.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminPasswordsActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAdminPasswords);
         btnAdminPasswords.setBounds(70, 440, 290, 260);
 
@@ -1583,7 +1970,7 @@ public class frmAdministration extends javax.swing.JFrame {
         getContentPane().add(btnAdminCustomers);
         btnAdminCustomers.setBounds(580, 440, 290, 260);
 
-        btnAdminBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdminBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdminBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         btnAdminBack.setText("Volver");
         btnAdminBack.setBorderPainted(false);
@@ -1598,7 +1985,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAdminBack);
-        btnAdminBack.setBounds(1230, 560, 130, 120);
+        btnAdminBack.setBounds(1220, 605, 120, 110);
 
         lblBackgroundAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         getContentPane().add(lblBackgroundAdmin);
@@ -1672,7 +2059,6 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEmployeesInsertActionPerformed
 
     private void btnAdminEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminEmployeesActionPerformed
-        this.dispose();
         dlgAdminEmployees.setVisible(true);
     }//GEN-LAST:event_btnAdminEmployeesActionPerformed
 
@@ -1793,17 +2179,16 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProductsListActionPerformed
 
     private void btnAdminProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminProductsActionPerformed
-        this.dispose();
-        dlgAdminProducts.setVisible(true);
+        dlgSelectProducts.setVisible(true);
 
     }//GEN-LAST:event_btnAdminProductsActionPerformed
 
     private void txtEmployeesDocumentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmployeesDocumentKeyTyped
-        onlyNumbersInTextField(evt, txtEmployeesDocument);
+        onlyNumbersInTextField(evt, txtEmployeesDocument, 12);
     }//GEN-LAST:event_txtEmployeesDocumentKeyTyped
 
     private void txtCustomersDocumentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomersDocumentKeyTyped
-        onlyNumbersInTextField(evt, txtCustomersDocument);
+        onlyNumbersInTextField(evt, txtCustomersDocument, 12);
     }//GEN-LAST:event_txtCustomersDocumentKeyTyped
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1898,7 +2283,6 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCustomersListActionPerformed
 
     private void btnAdminCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminCustomersActionPerformed
-        this.dispose();
         dlgAdminCustomers.setVisible(true);
     }//GEN-LAST:event_btnAdminCustomersActionPerformed
 
@@ -2011,7 +2395,7 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_dlgAdminLocalWindowClosing
 
     private void txtProductsPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductsPriceKeyTyped
-        onlyNumbersInTextField(evt, txtProductsPrice);
+        onlyNumbersInTextField(evt, txtProductsPrice, 7);
     }//GEN-LAST:event_txtProductsPriceKeyTyped
 
     private void txtLocalsNeighborhoodKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocalsNeighborhoodKeyTyped
@@ -2019,20 +2403,19 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLocalsNeighborhoodKeyTyped
 
     private void btnCompanyDatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompanyDatesActionPerformed
-        this.dispose();
         dlgAdminLocal.setVisible(true);
     }//GEN-LAST:event_btnCompanyDatesActionPerformed
 
     private void txtLocalsNitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocalsNitKeyTyped
-        onlyNumbersInTextField(evt, txtLocalsNit);
+        onlyNumbersInTextField(evt, txtLocalsNit, 12);
     }//GEN-LAST:event_txtLocalsNitKeyTyped
 
     private void txtEmployeesPhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmployeesPhoneKeyTyped
-        onlyNumbersInTextField(evt, txtEmployeesPhone);
+        onlyNumbersInTextField(evt, txtEmployeesPhone, 10);
     }//GEN-LAST:event_txtEmployeesPhoneKeyTyped
 
     private void txtCustomersPhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomersPhoneKeyTyped
-        onlyNumbersInTextField(evt, txtCustomersPhone);
+        onlyNumbersInTextField(evt, txtCustomersPhone, 10);
     }//GEN-LAST:event_txtCustomersPhoneKeyTyped
 
     private void btnCustomersBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersBackActionPerformed
@@ -2059,6 +2442,62 @@ public class frmAdministration extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnAdminBackActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnAdditionalProductsEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProductsEditActionPerformed
+
+    private void btnAdditionalProductsDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProductsDeleteActionPerformed
+
+    private void btnAdditionalProductsInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsInsertActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProductsInsertActionPerformed
+
+    private void btnAdditionalProductsSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProductsSearchActionPerformed
+
+    private void btnAdditionalProductsNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsNewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProductsNewActionPerformed
+
+    private void btnAdditionalProductsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProductsListActionPerformed
+
+    private void txtAdditionalProductsPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAdditionalProductsPriceKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAdditionalProductsPriceKeyTyped
+
+    private void btnAdditionalProductsBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProductsBackActionPerformed
+
+    private void dlgAdminAdditionalProductsWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminAdditionalProductsWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dlgAdminAdditionalProductsWindowClosing
+
+    private void btnSelectAdminProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectAdminProductsActionPerformed
+        dlgSelectProducts.setVisible(false);
+        dlgAdminProducts.setVisible(true);
+     
+       
+    }//GEN-LAST:event_btnSelectAdminProductsActionPerformed
+
+    private void btnSelectAdminAdditionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectAdminAdditionsActionPerformed
+       dlgSelectProducts.setVisible(false);
+       dlgAdminAdditionalProducts.setVisible(true);
+    }//GEN-LAST:event_btnSelectAdminAdditionsActionPerformed
+
+    private void btnAdminPasswordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPasswordsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdminPasswordsActionPerformed
+
     /**
      * Método que solo admite números y una longitud máxima de 8 caracteres.
      * Entra como parámetro un evento, que es cuando se presiona una tecla y una
@@ -2066,18 +2505,18 @@ public class frmAdministration extends javax.swing.JFrame {
      *
      * @param evt
      * @param txtNumber
+     * @param amountCharacters
      */
-    public void onlyNumbersInTextField(java.awt.event.KeyEvent evt, JTextField txtNumber) {
+    public void onlyNumbersInTextField(java.awt.event.KeyEvent evt, JTextField txtNumber, int amountCharacters) {
         if (!Character.isDigit(evt.getKeyChar()) && !Character.isISOControl(evt.getKeyChar())) {
             Toolkit.getDefaultToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null, "Por favor ingrese solamente números, sin puntuación o letras", "Validando datos", JOptionPane.ERROR_MESSAGE);
         }
         int k = (int) evt.getKeyChar();
-        if (txtNumber.getText().length() >= 9) {
+        if (txtNumber.getText().length() >= amountCharacters) {
             evt.setKeyChar((char) KeyEvent.VK_CLEAR);//Limpiar el caracter ingresado
-            JOptionPane.showMessageDialog(null, "Ha excedido el número máximo de caracteres!!! (8)", "Validando Datos",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ha excedido el número máximo de caracteres! (" + amountCharacters + ")", "Validando Datos", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -2240,6 +2679,14 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JToolBar barEmployeesMenu;
     private javax.swing.JToolBar barLocalMenu;
     private javax.swing.JToolBar barProductsMenu;
+    private javax.swing.JToolBar barProductsMenu1;
+    private javax.swing.JButton btnAdditionalProductsBack;
+    private javax.swing.JButton btnAdditionalProductsDelete;
+    private javax.swing.JButton btnAdditionalProductsEdit;
+    private javax.swing.JButton btnAdditionalProductsInsert;
+    private javax.swing.JButton btnAdditionalProductsList;
+    private javax.swing.JButton btnAdditionalProductsNew;
+    private javax.swing.JButton btnAdditionalProductsSearch;
     private javax.swing.JButton btnAdminBack;
     private javax.swing.JButton btnAdminCustomers;
     private javax.swing.JButton btnAdminEmployees;
@@ -2274,20 +2721,29 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnProductsList;
     private javax.swing.JButton btnProductsNew;
     private javax.swing.JButton btnProductsSearch;
+    private javax.swing.JButton btnSelectAdminAdditions;
+    private javax.swing.JButton btnSelectAdminProducts;
     private javax.swing.JComboBox<String> cbCustomersCity;
     private javax.swing.JComboBox<String> cbCustomersTown;
     private javax.swing.JComboBox<String> cbLocal;
     private javax.swing.JComboBox<String> cbLocalsCity;
     private javax.swing.JComboBox<String> cbLocalsTown;
+    private javax.swing.JDialog dlgAdminAdditionalProducts;
     private javax.swing.JDialog dlgAdminCustomers;
     private javax.swing.JDialog dlgAdminEmployees;
     private javax.swing.JDialog dlgAdminLocal;
     private javax.swing.JDialog dlgAdminProducts;
+    private javax.swing.JDialog dlgSelectProducts;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel lbCustomersDocument;
+    private javax.swing.JLabel lblAdditionalPrice;
+    private javax.swing.JLabel lblAdditionalProductsDescription;
+    private javax.swing.JLabel lblAdditionalProductsName;
+    private javax.swing.JLabel lblAdditionalProductsNotes;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBackgroundAdmin;
     private javax.swing.JLabel lblCustomersAddress;
@@ -2316,9 +2772,12 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JLabel lblPhone1;
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblProductsBackgroundDialog;
+    private javax.swing.JLabel lblProductsBackgroundDialog1;
     private javax.swing.JLabel lblProductsDescription;
     private javax.swing.JLabel lblProductsName;
     private javax.swing.JLabel lblProductsNotes;
+    private javax.swing.JPanel pnlAdditionalProducts;
+    private javax.swing.JPanel pnlAdditionalProductsButtons;
     private javax.swing.JPanel pnlCustomersButtons;
     private javax.swing.JPanel pnlCustomersDates;
     private javax.swing.JPanel pnlEmployeesButtons;
@@ -2327,6 +2786,9 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JPanel pnlLocalsButtons;
     private javax.swing.JPanel pnlProducts2;
     private javax.swing.JPanel pnlProductsButtons;
+    private javax.swing.JPanel pnlSelectAdminProducts;
+    private javax.swing.JScrollPane scrolAdditionalProductDescription;
+    private javax.swing.JScrollPane scrolAdditionalProductslNotes;
     private javax.swing.JScrollPane scrolProductDescription2;
     private javax.swing.JScrollPane scrolProductslNotes2;
     private javax.swing.JScrollPane scrollNotes;
@@ -2335,10 +2797,16 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollPanelEmployeesTable;
     private javax.swing.JScrollPane scrollPanelLocalsTable;
     private javax.swing.JScrollPane scrollPanelProductsTable;
+    private javax.swing.JScrollPane scrollPanelProductsTable1;
+    private javax.swing.JTable tblAdditionalProducts;
     private javax.swing.JTable tblCustomers;
     private javax.swing.JTable tblEmployees;
     private javax.swing.JTable tblLocals;
     private javax.swing.JTable tblProducts;
+    private javax.swing.JTextArea txtAdditionalProductsDescription;
+    private javax.swing.JTextField txtAdditionalProductsName;
+    private javax.swing.JTextArea txtAdditionalProductsNotes;
+    private javax.swing.JTextField txtAdditionalProductsPrice;
     private javax.swing.JTextField txtCustomersDocument;
     private javax.swing.JTextField txtCustomersLastName;
     private javax.swing.JTextField txtCustomersName;

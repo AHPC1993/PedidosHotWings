@@ -1,7 +1,8 @@
 Secuencias.
 Para ordenes locales_ SEQ_ORDER_NUMBER
 Locales: 100X    SEQ_LOCALS
-Pedidos locales: 200X
+Pedidos locales: 200X SEQ_LOCALORDER_DETAILS
+Pedidos domicilios: 800 SEQ_ORDERDELIVERY_DETAILS
 Productos: 300X SEQ_PRODUCTS
 Empleados: 400X SEQ_EMPLOYEES
 Clientes: 500X  SEQ_CUSTOMERS
@@ -16,8 +17,4 @@ Antes de entregar el proyecto, es necesario reiniciar las secuencias
 
 SELECT NEXTVAL('SEQ_ORDER_NUMBER') FROM SEQ_ORDER_NUMBER;
 
-
-INSERT INTO public.tbl_localorder_details(
-            order_number, product_id, product_name, product_description, 
-            product_price, product_amount)
-SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), id_products, namep, description, price , '1' from tbl_products WHERE namep ='Combo 1';
+Si se borra un cliente, en los informes va a desaparecer todo sobre el cliente

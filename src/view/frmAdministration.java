@@ -5,7 +5,6 @@
  */
 package view;
 
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -15,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import model.clsDAOAdditionalProducts;
 import model.clsDAOCompany;
 import model.clsDAOCustomers;
 import model.clsDAOEmployees;
@@ -26,6 +26,7 @@ import model.clsDAOProducts;
  */
 public class frmAdministration extends javax.swing.JFrame {
 
+    String additional_product_id;
     String employee_id;
     String product_id;
     String customers_id;
@@ -34,6 +35,7 @@ public class frmAdministration extends javax.swing.JFrame {
     model.clsDAOProducts products;
     model.clsDAOCustomers customers;
     model.clsDAOCompany local;
+    model.clsDAOAdditionalProducts additionalProducts;
 
     /**
      * Creates new form frmAdministration
@@ -48,43 +50,50 @@ public class frmAdministration extends javax.swing.JFrame {
         //setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        
         lblBackgroundAdmin.setSize(dim.width, dim.height);
         lblCustomerssBackgroundDialog.setSize(dim.width, dim.height);
         lblProductsBackgroundDialog.setSize(dim.width, dim.height);
         lblEmployeesBackgroundDialog.setSize(dim.width, dim.height);
         lblLocalsBackgroundDialog.setSize(dim.width, dim.height);
-        
+        lblAdditionalProductsBackgroundDialog.setSize(dim.width, dim.height);
+
         dlgAdminEmployees.setSize(dim.width, dim.height);
         dlgAdminProducts.setSize(dim.width, dim.height);
         dlgAdminCustomers.setSize(dim.width, dim.height);
         dlgAdminLocal.setSize(dim.width, dim.height);
-        
+        dlgAdminAdditionalProducts.setSize(dim.width, dim.height);
+
         dlgAdminEmployees.setUndecorated(true);
         dlgAdminProducts.setUndecorated(true);
         dlgAdminCustomers.setUndecorated(true);
         dlgAdminLocal.setUndecorated(true);
+        dlgAdminAdditionalProducts.setUndecorated(true);
 
         barCustomersMenu.setSize(dim.width, 25);
         barEmployeesMenu.setSize(dim.width, 25);
         barLocalMenu.setSize(dim.width, 25);
         barProductsMenu.setSize(dim.width, 25);
+        barAdditionalProductsMenu.setSize(dim.width, 25);
+
         this.setLocationRelativeTo(this);
         dlgAdminEmployees.setLocationRelativeTo(this);
         dlgAdminProducts.setLocationRelativeTo(this);
         dlgAdminCustomers.setLocationRelativeTo(this);
         dlgAdminLocal.setLocationRelativeTo(this);
         dlgSelectProducts.setLocationRelativeTo(this);
+        dlgAdminAdditionalProducts.setLocationRelativeTo(this);
 
         scrollPanelEmployeesTable.setVisible(false);
         scrollPanelProductsTable.setVisible(false);
         scrollPanelCustomersTable.setVisible(false);
         scrollPanelLocalsTable.setVisible(false);
+        scrollPanelAdditionalProductsTable.setVisible(false);
 
         tblEmployees.setVisible(false);
         tblProducts.setVisible(false);
         tblCustomers.setVisible(false);
         tblLocals.setVisible(false);
+        tblAdditionalProducts.setVisible(false);
     }
 
     /**
@@ -114,7 +123,7 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocal = new javax.swing.JLabel();
         lblPhone1 = new javax.swing.JLabel();
         txtEmployeesPhone = new javax.swing.JTextField();
-        cbLocal = new javax.swing.JComboBox<>();
+        cbLocal = new javax.swing.JComboBox<String>();
         barEmployeesMenu = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         pnlEmployeesButtons = new javax.swing.JPanel();
@@ -170,8 +179,8 @@ public class frmAdministration extends javax.swing.JFrame {
         txtCustomersNotes = new javax.swing.JTextArea();
         lblCustomersCity = new javax.swing.JLabel();
         lblCustomersTown = new javax.swing.JLabel();
-        cbCustomersTown = new javax.swing.JComboBox<>();
-        cbCustomersCity = new javax.swing.JComboBox<>();
+        cbCustomersTown = new javax.swing.JComboBox<String>();
+        cbCustomersCity = new javax.swing.JComboBox<String>();
         lblPhone = new javax.swing.JLabel();
         txtCustomersPhone = new javax.swing.JTextField();
         barCustomersMenu = new javax.swing.JToolBar();
@@ -199,8 +208,8 @@ public class frmAdministration extends javax.swing.JFrame {
         txtLocalsNeighborhood = new javax.swing.JTextField();
         lblLocalsTown = new javax.swing.JLabel();
         lblLocalsCity = new javax.swing.JLabel();
-        cbLocalsTown = new javax.swing.JComboBox<>();
-        cbLocalsCity = new javax.swing.JComboBox<>();
+        cbLocalsTown = new javax.swing.JComboBox<String>();
+        cbLocalsCity = new javax.swing.JComboBox<String>();
         barLocalMenu = new javax.swing.JToolBar();
         jButton4 = new javax.swing.JButton();
         pnlLocalsButtons = new javax.swing.JPanel();
@@ -215,7 +224,7 @@ public class frmAdministration extends javax.swing.JFrame {
         btnLocalsBack = new javax.swing.JButton();
         lblLocalsBackgroundDialog = new javax.swing.JLabel();
         dlgAdminAdditionalProducts = new javax.swing.JDialog();
-        barProductsMenu1 = new javax.swing.JToolBar();
+        barAdditionalProductsMenu = new javax.swing.JToolBar();
         jButton5 = new javax.swing.JButton();
         pnlAdditionalProductsButtons = new javax.swing.JPanel();
         btnAdditionalProductsEdit = new javax.swing.JButton();
@@ -224,7 +233,7 @@ public class frmAdministration extends javax.swing.JFrame {
         btnAdditionalProductsSearch = new javax.swing.JButton();
         btnAdditionalProductsNew = new javax.swing.JButton();
         btnAdditionalProductsList = new javax.swing.JButton();
-        scrollPanelProductsTable1 = new javax.swing.JScrollPane();
+        scrollPanelAdditionalProductsTable = new javax.swing.JScrollPane();
         tblAdditionalProducts = new javax.swing.JTable();
         pnlAdditionalProducts = new javax.swing.JPanel();
         txtAdditionalProductsName = new javax.swing.JTextField();
@@ -238,7 +247,7 @@ public class frmAdministration extends javax.swing.JFrame {
         scrolAdditionalProductDescription = new javax.swing.JScrollPane();
         txtAdditionalProductsDescription = new javax.swing.JTextArea();
         btnAdditionalProductsBack = new javax.swing.JButton();
-        lblProductsBackgroundDialog1 = new javax.swing.JLabel();
+        lblAdditionalProductsBackgroundDialog = new javax.swing.JLabel();
         dlgSelectProducts = new javax.swing.JDialog();
         pnlSelectAdminProducts = new javax.swing.JPanel();
         btnSelectAdminAdditions = new javax.swing.JButton();
@@ -261,7 +270,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminEmployees.getContentPane().setLayout(null);
 
-        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlEmployeesDates.setOpaque(false);
 
         lblEmployeesDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -320,7 +329,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
 
-        cbLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
+        cbLocal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
 
         javax.swing.GroupLayout pnlEmployeesDatesLayout = new javax.swing.GroupLayout(pnlEmployeesDates);
         pnlEmployeesDates.setLayout(pnlEmployeesDatesLayout);
@@ -418,7 +427,7 @@ public class frmAdministration extends javax.swing.JFrame {
         );
 
         dlgAdminEmployees.getContentPane().add(pnlEmployeesDates);
-        pnlEmployeesDates.setBounds(0, 120, 375, 521);
+        pnlEmployeesDates.setBounds(0, 120, 0, 0);
 
         barEmployeesMenu.setRollover(true);
 
@@ -710,7 +719,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(btnProductsDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnProductsList)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         pnlProductsButtonsLayout.setVerticalGroup(
             pnlProductsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -753,7 +762,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminProducts.getContentPane().add(scrollPanelProductsTable);
         scrollPanelProductsTable.setBounds(640, 122, 640, 410);
 
-        pnlProducts2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlProducts2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlProducts2.setOpaque(false);
 
         txtProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -880,7 +889,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminCustomers.getContentPane().setLayout(null);
 
-        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlCustomersDates.setOpaque(false);
 
         lbCustomersDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -931,9 +940,9 @@ public class frmAdministration extends javax.swing.JFrame {
         lblCustomersTown.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersTown.setText("Municipio");
 
-        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
+        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
 
-        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
+        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
 
         lblPhone.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblPhone.setText("Teléfono");
@@ -1217,7 +1226,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         dlgAdminCustomers.getContentPane().add(btnCustomersBack);
-        btnCustomersBack.setBounds(1220, 605, 120, 123);
+        btnCustomersBack.setBounds(1220, 605, 120, 120);
 
         lblCustomerssBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         dlgAdminCustomers.getContentPane().add(lblCustomerssBackgroundDialog);
@@ -1233,7 +1242,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminLocal.getContentPane().setLayout(null);
 
-        pnlLocals.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlLocals.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlLocals.setOpaque(false);
 
         txtLocalsNameL.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -1281,9 +1290,9 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocalsCity.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblLocalsCity.setText("Departamento");
 
-        cbLocalsTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
+        cbLocalsTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
 
-        cbLocalsCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
+        cbLocalsCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
 
         javax.swing.GroupLayout pnlLocalsLayout = new javax.swing.GroupLayout(pnlLocals);
         pnlLocals.setLayout(pnlLocalsLayout);
@@ -1548,7 +1557,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminAdditionalProducts.getContentPane().setLayout(null);
 
-        barProductsMenu1.setRollover(true);
+        barAdditionalProductsMenu.setRollover(true);
 
         jButton5.setText("Archivo");
         jButton5.setFocusable(false);
@@ -1559,10 +1568,10 @@ public class frmAdministration extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        barProductsMenu1.add(jButton5);
+        barAdditionalProductsMenu.add(jButton5);
 
-        dlgAdminAdditionalProducts.getContentPane().add(barProductsMenu1);
-        barProductsMenu1.setBounds(0, 0, 1290, 25);
+        dlgAdminAdditionalProducts.getContentPane().add(barAdditionalProductsMenu);
+        barAdditionalProductsMenu.setBounds(0, 0, 1290, 25);
 
         pnlAdditionalProductsButtons.setOpaque(false);
 
@@ -1660,7 +1669,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(btnAdditionalProductsDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdditionalProductsList)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         pnlAdditionalProductsButtonsLayout.setVerticalGroup(
             pnlAdditionalProductsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1697,13 +1706,13 @@ public class frmAdministration extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        scrollPanelProductsTable1.setViewportView(tblAdditionalProducts);
+        scrollPanelAdditionalProductsTable.setViewportView(tblAdditionalProducts);
         tblAdditionalProducts.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        dlgAdminAdditionalProducts.getContentPane().add(scrollPanelProductsTable1);
-        scrollPanelProductsTable1.setBounds(640, 122, 640, 410);
+        dlgAdminAdditionalProducts.getContentPane().add(scrollPanelAdditionalProductsTable);
+        scrollPanelAdditionalProductsTable.setBounds(640, 122, 640, 410);
 
-        pnlAdditionalProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlAdditionalProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlAdditionalProducts.setOpaque(false);
 
         txtAdditionalProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -1816,9 +1825,9 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminAdditionalProducts.getContentPane().add(btnAdditionalProductsBack);
         btnAdditionalProductsBack.setBounds(1220, 605, 120, 120);
 
-        lblProductsBackgroundDialog1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
-        dlgAdminAdditionalProducts.getContentPane().add(lblProductsBackgroundDialog1);
-        lblProductsBackgroundDialog1.setBounds(-10, 0, 1390, 770);
+        lblAdditionalProductsBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
+        dlgAdminAdditionalProducts.getContentPane().add(lblAdditionalProductsBackgroundDialog);
+        lblAdditionalProductsBackgroundDialog.setBounds(-10, 0, 1390, 770);
 
         dlgSelectProducts.setTitle("Seleccionar tipo de producto a administrar");
         dlgSelectProducts.setMinimumSize(new java.awt.Dimension(702, 449));
@@ -1834,7 +1843,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
 
-        btnSelectAdminProducts.setText("Administrar Productos");
+        btnSelectAdminProducts.setText("Administrar Productos Principales");
         btnSelectAdminProducts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSelectAdminProductsActionPerformed(evt);
@@ -2179,6 +2188,7 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProductsListActionPerformed
 
     private void btnAdminProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminProductsActionPerformed
+        
         dlgSelectProducts.setVisible(true);
 
     }//GEN-LAST:event_btnAdminProductsActionPerformed
@@ -2447,35 +2457,88 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btnAdditionalProductsEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsEditActionPerformed
-        // TODO add your handling code here:
+        loadSetValuesAdditionalProducts();
+        String result = "";
+        result = additionalProducts.edit();
+        if (result.equals("correcto")) {
+            JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "El producto ha sido modificado correctamente.");
+            if (tblAdditionalProducts.isVisible()) {
+                tblAdditionalProducts.setModel(additionalProducts.list());
+            }
+        } else {
+            JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+        }
     }//GEN-LAST:event_btnAdditionalProductsEditActionPerformed
 
     private void btnAdditionalProductsDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsDeleteActionPerformed
-        // TODO add your handling code here:
+        additionalProducts = new clsDAOAdditionalProducts();
+        String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto adicional a eliminar");
+        additionalProducts.setNamep(namep);
+        String result = additionalProducts.delete();
+        if (result.equals("correcto")) {
+            JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "El producto adicional ha sido elminado correctamente.");
+            if (tblAdditionalProducts.isVisible()) {
+                tblAdditionalProducts.setModel(additionalProducts.list());
+            }
+        } else if (result.equals("error")) {
+            JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
+        }
+
     }//GEN-LAST:event_btnAdditionalProductsDeleteActionPerformed
 
     private void btnAdditionalProductsInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsInsertActionPerformed
-        // TODO add your handling code here:
+        loadSetValuesAdditionalProducts();
+        if (additionalProducts.insert()) {
+            JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "Se insertó el producto adicional correctamente");
+            if (tblAdditionalProducts.isVisible()) {
+                tblAdditionalProducts.setModel(additionalProducts.list());
+            }
+        } else {
+            JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No sé insertó el producto adicional");
+        }
     }//GEN-LAST:event_btnAdditionalProductsInsertActionPerformed
 
     private void btnAdditionalProductsSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsSearchActionPerformed
-        // TODO add your handling code here:
+        try {
+            additionalProducts = new clsDAOAdditionalProducts();
+            ResultSet result;
+            String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto adicional a buscar");
+            additionalProducts.setNamep(namep);
+            result = additionalProducts.search();
+            if (result != null) {
+                additional_product_id = result.getString(1);
+                txtAdditionalProductsName.setText(result.getString(2));
+                txtAdditionalProductsDescription.setText(result.getString(3));
+                txtAdditionalProductsPrice.setText(result.getString(4));
+                txtAdditionalProductsNotes.setText(result.getString(5));
+
+            } else {
+                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "El producto no existe, por favor verifique que el nombre del producto esté bien escrito.");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(frmAdministration.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAdditionalProductsSearchActionPerformed
 
     private void btnAdditionalProductsNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsNewActionPerformed
-        // TODO add your handling code here:
+        cleanTextboxAdditionalProducts();
     }//GEN-LAST:event_btnAdditionalProductsNewActionPerformed
 
     private void btnAdditionalProductsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsListActionPerformed
-        // TODO add your handling code here:
+        additionalProducts = new clsDAOAdditionalProducts();
+        tblAdditionalProducts.setModel(additionalProducts.list());
+        scrollPanelAdditionalProductsTable.setVisible(true);
+        tblAdditionalProducts.setVisible(true);
     }//GEN-LAST:event_btnAdditionalProductsListActionPerformed
 
     private void txtAdditionalProductsPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAdditionalProductsPriceKeyTyped
-        // TODO add your handling code here:
+        onlyNumbersInTextField(evt, txtAdditionalProductsPrice, 7);
     }//GEN-LAST:event_txtAdditionalProductsPriceKeyTyped
 
     private void btnAdditionalProductsBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsBackActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(true);
+        dlgAdminAdditionalProducts.setVisible(false);
     }//GEN-LAST:event_btnAdditionalProductsBackActionPerformed
 
     private void dlgAdminAdditionalProductsWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminAdditionalProductsWindowClosing
@@ -2485,13 +2548,13 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnSelectAdminProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectAdminProductsActionPerformed
         dlgSelectProducts.setVisible(false);
         dlgAdminProducts.setVisible(true);
-     
-       
+
+
     }//GEN-LAST:event_btnSelectAdminProductsActionPerformed
 
     private void btnSelectAdminAdditionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectAdminAdditionsActionPerformed
-       dlgSelectProducts.setVisible(false);
-       dlgAdminAdditionalProducts.setVisible(true);
+        dlgSelectProducts.setVisible(false);
+        dlgAdminAdditionalProducts.setVisible(true);
     }//GEN-LAST:event_btnSelectAdminAdditionsActionPerformed
 
     private void btnAdminPasswordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPasswordsActionPerformed
@@ -2544,6 +2607,17 @@ public class frmAdministration extends javax.swing.JFrame {
         txtProductsDescription.setText("");
         txtProductsPrice.setText("");
         txtProductsNotes.setText("");
+    }
+
+    /**
+     * Limpia todas las cajas de texto del JDialog de productos, cambia
+     * cualquier valor que tengan por vacío
+     */
+    public void cleanTextboxAdditionalProducts() {
+        txtAdditionalProductsName.setText("");
+        txtAdditionalProductsDescription.setText("");
+        txtAdditionalProductsPrice.setText("");
+        txtAdditionalProductsNotes.setText("");
     }
 
     /**
@@ -2603,6 +2677,20 @@ public class frmAdministration extends javax.swing.JFrame {
         products.setPrice(Integer.parseInt(txtProductsPrice.getText()));
         products.setNotes(txtProductsNotes.getText());
         products.setId_products(product_id);
+
+    }
+
+    /**
+     * Carga los valores de la clase Additionalproducts con los valores que
+     * tienen las cajas de texto del JDialog Additionalproducts
+     */
+    public void loadSetValuesAdditionalProducts() {
+        additionalProducts = new clsDAOAdditionalProducts();
+        additionalProducts.setNamep(txtAdditionalProductsName.getText());
+        additionalProducts.setDescription(txtAdditionalProductsDescription.getText());
+        additionalProducts.setPrice(Integer.parseInt(txtAdditionalProductsPrice.getText()));
+        additionalProducts.setNotes(txtAdditionalProductsNotes.getText());
+        additionalProducts.setId_additional_products(additional_product_id);
 
     }
 
@@ -2675,11 +2763,11 @@ public class frmAdministration extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToolBar barAdditionalProductsMenu;
     private javax.swing.JToolBar barCustomersMenu;
     private javax.swing.JToolBar barEmployeesMenu;
     private javax.swing.JToolBar barLocalMenu;
     private javax.swing.JToolBar barProductsMenu;
-    private javax.swing.JToolBar barProductsMenu1;
     private javax.swing.JButton btnAdditionalProductsBack;
     private javax.swing.JButton btnAdditionalProductsDelete;
     private javax.swing.JButton btnAdditionalProductsEdit;
@@ -2741,6 +2829,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel lbCustomersDocument;
     private javax.swing.JLabel lblAdditionalPrice;
+    private javax.swing.JLabel lblAdditionalProductsBackgroundDialog;
     private javax.swing.JLabel lblAdditionalProductsDescription;
     private javax.swing.JLabel lblAdditionalProductsName;
     private javax.swing.JLabel lblAdditionalProductsNotes;
@@ -2772,7 +2861,6 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JLabel lblPhone1;
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblProductsBackgroundDialog;
-    private javax.swing.JLabel lblProductsBackgroundDialog1;
     private javax.swing.JLabel lblProductsDescription;
     private javax.swing.JLabel lblProductsName;
     private javax.swing.JLabel lblProductsNotes;
@@ -2793,11 +2881,11 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrolProductslNotes2;
     private javax.swing.JScrollPane scrollNotes;
     private javax.swing.JScrollPane scrollNotes1;
+    private javax.swing.JScrollPane scrollPanelAdditionalProductsTable;
     private javax.swing.JScrollPane scrollPanelCustomersTable;
     private javax.swing.JScrollPane scrollPanelEmployeesTable;
     private javax.swing.JScrollPane scrollPanelLocalsTable;
     private javax.swing.JScrollPane scrollPanelProductsTable;
-    private javax.swing.JScrollPane scrollPanelProductsTable1;
     private javax.swing.JTable tblAdditionalProducts;
     private javax.swing.JTable tblCustomers;
     private javax.swing.JTable tblEmployees;

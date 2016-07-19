@@ -22,6 +22,7 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import model.clsDAOAdditionalProducts;
 import model.clsDAOLocalOrderDetails;
 import model.clsDAOProducts;
 
@@ -34,6 +35,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     int deleteSelectionState = 0;
     model.clsDAOLocalOrderDetails localOrder;
     model.clsDAOProducts products;
+    model.clsDAOAdditionalProducts additionalProducts;
 
     /**
      * Creates new form frmLocalOrder
@@ -46,11 +48,47 @@ public class frmLocalOrder extends javax.swing.JFrame {
         this.setSize(dim.width, dim.height);
 //        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-         dlgAdditionsLocalOrder.setLocationRelativeTo(this);
+        dlgAdditionsLocalOrder.setLocationRelativeTo(this);
         //pnlAmount.setLayout(new GridLayout(5, 3, 10, 10));
     }
 
-    public void nameButtonsProduct() {
+    public void loadAdditionalProductsValues() {
+        additionalProducts = new clsDAOAdditionalProducts();
+        LinkedList<String[]> values = new LinkedList<String[]>();
+        values = localOrder.listAdditionalProducts();
+        for (int i = 0; i < values.size(); i++) {
+            if (values.get(i)[0] != null) {
+                switch (values.get(i)[0]) {
+                    case "Combo 1":
+                        btnProduct1.setText(values.get(i)[0]);
+                        btnProduct1.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                        break;
+                    case "Combo 2":
+                        btnProduct2.setText(values.get(i)[0]);
+                        btnProduct2.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                        break;
+                    case "Combo 3":
+                        btnProduct3.setText(values.get(i)[0]);
+                        btnProduct3.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                        break;
+                    case "Combo 4":
+                        btnProduct4.setText(values.get(i)[0]);
+                        btnProduct4.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+
+                        break;
+                    case "Combo 5":
+                        btnProduct5.setText(values.get(i)[0]);
+                        btnProduct5.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+    }
+
+    public void loadNameProductValues() {
         localOrder = new model.clsDAOLocalOrderDetails();
         LinkedList<String[]> values = new LinkedList<String[]>();
         values = localOrder.listProducts();
@@ -84,14 +122,19 @@ public class frmLocalOrder extends javax.swing.JFrame {
             }
         }
 
-        btnProduct6.setText(values.get(5)[0]);
-        btnProduct7.setText(values.get(6)[0]);
-        btnProduct8.setText(values.get(7)[0]);
-        btnProduct9.setText(values.get(8)[0]);
-        btnProduct6.setToolTipText(values.get(5)[1] + " $ " + values.get(5)[2]);
-        btnProduct7.setToolTipText(values.get(6)[1] + " $ " + values.get(6)[2]);
-        btnProduct8.setToolTipText(values.get(7)[1] + " $ " + values.get(7)[2]);
-        btnProduct9.setToolTipText(values.get(8)[1] + " $ " + values.get(8)[2]);
+        btnProduct6.setText("Adicionales");
+        btnProduct6.setToolTipText("Productos adicionales, como gaseosa, papas, etc.");
+        btnProduct7.setEnabled(false);
+        btnProduct8.setEnabled(false);
+        btnProduct9.setEnabled(false);
+//        btnProduct6.setText(values.get(5)[0]);
+//        btnProduct7.setText(values.get(6)[0]);
+//        btnProduct8.setText(values.get(7)[0]);
+//        btnProduct9.setText(values.get(8)[0]);
+//        btnProduct6.setToolTipText(values.get(5)[1] + " $ " + values.get(5)[2]);
+//        btnProduct7.setToolTipText(values.get(6)[1] + " $ " + values.get(6)[2]);
+//        btnProduct8.setToolTipText(values.get(7)[1] + " $ " + values.get(7)[2]);
+//        btnProduct9.setToolTipText(values.get(8)[1] + " $ " + values.get(8)[2]);
 
     }
 
@@ -158,6 +201,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
         dlgAdditionsLocalOrder.setMinimumSize(new java.awt.Dimension(711, 423));
         dlgAdditionsLocalOrder.setPreferredSize(new java.awt.Dimension(711, 523));
         dlgAdditionsLocalOrder.setSize(new java.awt.Dimension(711, 523));
+        dlgAdditionsLocalOrder.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                dlgAdditionsLocalOrderWindowOpened(evt);
+            }
+        });
 
         pblAdditionsLocalOrder.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Adicionales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
 
@@ -297,7 +345,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlAmount.setLayout(null);
 
         numbersGroup.add(btnNumber6);
@@ -481,7 +529,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         getContentPane().add(pnlAmount);
         pnlAmount.setBounds(740, 30, 380, 510);
 
-        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
 
         productsGroup.add(btnProduct1);
         btnProduct1.setText("Combo 1");
@@ -796,7 +844,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddProductActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        nameButtonsProduct();
+        loadNameProductValues();
         localOrder = new clsDAOLocalOrderDetails();
         txtOrderNumber.setText(localOrder.selectOrderNumber());
         txtTotalOrder.setText("0");
@@ -809,10 +857,10 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCorrectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrectionActionPerformed
-       if(tblLocalOrder.getRowCount()>0){
-        deleteSelectionState = 1;
-        JOptionPane.showMessageDialog(this, "Por favor seleccione la fila del producto que desea eliminar.");
-       }
+        if (tblLocalOrder.getRowCount() > 0) {
+            deleteSelectionState = 1;
+            JOptionPane.showMessageDialog(this, "Por favor seleccione la fila del producto que desea eliminar.");
+        }
 
     }//GEN-LAST:event_btnCorrectionActionPerformed
 
@@ -927,8 +975,8 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnProduct6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProduct6MouseClicked
-      dlgAdditionsLocalOrder.setVisible(true);
-      
+        dlgAdditionsLocalOrder.setVisible(true);
+
     }//GEN-LAST:event_btnProduct6MouseClicked
 
     private void btnAdditionalProduct2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct2ActionPerformed
@@ -940,7 +988,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdditionalProduct3ActionPerformed
 
     private void btnAdditionalProduct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct1ActionPerformed
-     
+
     }//GEN-LAST:event_btnAdditionalProduct1ActionPerformed
 
     private void btnAdditionalProduct5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct5ActionPerformed
@@ -954,6 +1002,10 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private void btnAdditionalProduct6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdditionalProduct6ActionPerformed
+
+    private void dlgAdditionsLocalOrderWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdditionsLocalOrderWindowOpened
+
+    }//GEN-LAST:event_dlgAdditionsLocalOrderWindowOpened
 
     public void PrintselectProductAndAmount() {
         for (int i = 1; i <= 9; i++) {

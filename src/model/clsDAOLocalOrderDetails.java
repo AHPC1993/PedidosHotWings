@@ -197,6 +197,36 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
         }
         return null;
     }
+    
+    public LinkedList listAdditionalProducts() {
+        int numberButtons = 9;
+        LinkedList<String[]> dates = new LinkedList<>();
+        try {
+            ResultSet result = null;
+            String sql = "Select namep, description, price, notes FROM public.tbl_additional_products;";
+            result = connexion.search(sql);
+            ResultSetMetaData resultMetaData = result.getMetaData();
+            int columns = resultMetaData.getColumnCount();
+
+            while (result.next()) {
+                String[] row = new String[columns];
+                for (int i = 1; i <= columns; i++) {
+                    row[i - 1] = result.getObject(i).toString();
+                }
+                dates.add(row);
+            }
+            numberButtons = numberButtons - dates.size();
+            for (int i = 0; i < numberButtons; i++) {
+                String[] row = new String[columns];
+                row[0] = "Producto X";
+                dates.add(row);
+            }
+            return dates;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 
   
 

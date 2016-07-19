@@ -677,7 +677,7 @@
                       <Component id="btnProductsDelete" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnProductsList" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="104" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2305,7 +2305,7 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JToolBar" name="barProductsMenu1">
+        <Container class="javax.swing.JToolBar" name="barAdditionalProductsMenu">
           <Properties>
             <Property name="rollover" type="boolean" value="true"/>
           </Properties>
@@ -2355,7 +2355,7 @@
                       <Component id="btnAdditionalProductsDelete" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnAdditionalProductsList" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="104" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2486,7 +2486,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JScrollPane" name="scrollPanelProductsTable1">
+        <Container class="javax.swing.JScrollPane" name="scrollPanelAdditionalProductsTable">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -2765,7 +2765,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblProductsBackgroundDialog1">
+        <Component class="javax.swing.JLabel" name="lblAdditionalProductsBackgroundDialog">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/resources/images/555.jpg"/>
@@ -2860,7 +2860,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnSelectAdminProducts">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Administrar Productos"/>
+                <Property name="text" type="java.lang.String" value="Administrar Productos Principales"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelectAdminProductsActionPerformed"/>

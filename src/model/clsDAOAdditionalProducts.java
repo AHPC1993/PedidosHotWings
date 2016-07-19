@@ -24,12 +24,12 @@ public class clsDAOAdditionalProducts extends clsAdditionalProducts{
 
     public boolean insert() {
 
-        String sql = "INSERT INTO public.tbl_products(id_products, namep, description, price, notes)VALUES (nextval('SEQ_PRODUCTS'),'" + super.getNamep() + "','" + super.getDescription() + "','" + super.getPrice() + "','" + super.getNotes() + "');";
+        String sql = "INSERT INTO public.tbl_additional_products(id_additional_products, namep, description, price, notes)VALUES (nextval('SEQ_ADDITIONAL_PRODUCTS'),'" + super.getNamep() + "','" + super.getDescription() + "','" + super.getPrice() + "','" + super.getNotes() + "');";
         return connexion.insert(sql);
     }
 
     public ResultSet search() {
-        String sql = "Select * FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getNamep() + "');";
+        String sql = "Select * FROM public.tbl_additional_products WHERE UPPER(namep) = UPPER('" + super.getNamep() + "');";
         ResultSet results = null;
         results = connexion.search(sql);
         try {
@@ -47,13 +47,13 @@ public class clsDAOAdditionalProducts extends clsAdditionalProducts{
     }
 
     public String delete() {
-        String sql = "DELETE FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getNamep() + "');";
+        String sql = "DELETE FROM public.tbl_additional_products WHERE UPPER(namep) = UPPER('" + super.getNamep() + "');";
         return connexion.delete(sql);
     }
 
     public String edit() {
 
-        String sql = "UPDATE public.tbl_products SET namep='" + super.getNamep() + "',description='" + super.getDescription() + "', price='" + super.getPrice() + "', notes='" + super.getNotes() + "' WHERE UPPER(id_products) = UPPER('" + super.getId_additional_products() + "');";
+        String sql = "UPDATE public.tbl_additional_products SET namep='" + super.getNamep() + "',description='" + super.getDescription() + "', price='" + super.getPrice() + "', notes='" + super.getNotes() + "' WHERE UPPER(id_additional_products) = UPPER('" + super.getId_additional_products() + "');";
         return connexion.edit(sql);
     }
 
@@ -67,7 +67,7 @@ public class clsDAOAdditionalProducts extends clsAdditionalProducts{
         };
         try {
             ResultSet result = null;
-            String sql = "Select namep,description, price, notes FROM public.tbl_products;";
+            String sql = "Select namep, description, price, notes FROM public.tbl_additional_products;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();

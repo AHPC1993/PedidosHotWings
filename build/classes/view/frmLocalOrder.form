@@ -22,6 +22,9 @@
           <Dimension value="[711, 523]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="dlgAdditionsLocalOrderWindowOpened"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">

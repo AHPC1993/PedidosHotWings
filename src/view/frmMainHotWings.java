@@ -355,7 +355,9 @@ public class frmMainHotWings extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLocalOrderActionPerformed
 
     private void btnOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDeliveryActionPerformed
-        frmOrderDelivery.setVisible(true);
+       // frmOrderDelivery.setVisible(true);
+        frmOrderDelivery.dlgOrderDelivery.setVisible(true);
+        
     }//GEN-LAST:event_btnOrderDeliveryActionPerformed
 
     private void dlgLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dlgLoginKeyPressed

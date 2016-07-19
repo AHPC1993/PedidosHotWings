@@ -53,7 +53,7 @@ public class clsDAOAdditionalProducts extends clsAdditionalProducts{
 
     public String edit() {
 
-        String sql = "UPDATE public.tbl_additional_products SET namep='" + super.getNamep() + "',description='" + super.getDescription() + "', price='" + super.getPrice() + "', notes='" + super.getNotes() + "' WHERE UPPER(id_additional_products) = UPPER('" + super.getId_additional_products() + "');";
+        String sql = "UPDATE public.tbl_additional_products SET namep='" + super.getNamep() + "',description='" + super.getDescription() + "', price='" + super.getPrice() + "', notes='" + super.getNotes() + "' WHERE UPPER(additional_products_id) = UPPER('" + super.getId_additional_products() + "');";
         return connexion.edit(sql);
     }
 

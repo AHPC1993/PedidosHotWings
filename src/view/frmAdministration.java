@@ -123,7 +123,7 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocal = new javax.swing.JLabel();
         lblPhone1 = new javax.swing.JLabel();
         txtEmployeesPhone = new javax.swing.JTextField();
-        cbLocal = new javax.swing.JComboBox<String>();
+        cbLocal = new javax.swing.JComboBox<>();
         barEmployeesMenu = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         pnlEmployeesButtons = new javax.swing.JPanel();
@@ -179,8 +179,8 @@ public class frmAdministration extends javax.swing.JFrame {
         txtCustomersNotes = new javax.swing.JTextArea();
         lblCustomersCity = new javax.swing.JLabel();
         lblCustomersTown = new javax.swing.JLabel();
-        cbCustomersTown = new javax.swing.JComboBox<String>();
-        cbCustomersCity = new javax.swing.JComboBox<String>();
+        cbCustomersTown = new javax.swing.JComboBox<>();
+        cbCustomersCity = new javax.swing.JComboBox<>();
         lblPhone = new javax.swing.JLabel();
         txtCustomersPhone = new javax.swing.JTextField();
         barCustomersMenu = new javax.swing.JToolBar();
@@ -208,8 +208,8 @@ public class frmAdministration extends javax.swing.JFrame {
         txtLocalsNeighborhood = new javax.swing.JTextField();
         lblLocalsTown = new javax.swing.JLabel();
         lblLocalsCity = new javax.swing.JLabel();
-        cbLocalsTown = new javax.swing.JComboBox<String>();
-        cbLocalsCity = new javax.swing.JComboBox<String>();
+        cbLocalsTown = new javax.swing.JComboBox<>();
+        cbLocalsCity = new javax.swing.JComboBox<>();
         barLocalMenu = new javax.swing.JToolBar();
         jButton4 = new javax.swing.JButton();
         pnlLocalsButtons = new javax.swing.JPanel();
@@ -270,7 +270,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminEmployees.getContentPane().setLayout(null);
 
-        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlEmployeesDates.setOpaque(false);
 
         lblEmployeesDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -329,7 +329,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
 
-        cbLocal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
+        cbLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
 
         javax.swing.GroupLayout pnlEmployeesDatesLayout = new javax.swing.GroupLayout(pnlEmployeesDates);
         pnlEmployeesDates.setLayout(pnlEmployeesDatesLayout);
@@ -762,7 +762,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminProducts.getContentPane().add(scrollPanelProductsTable);
         scrollPanelProductsTable.setBounds(640, 122, 640, 410);
 
-        pnlProducts2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlProducts2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlProducts2.setOpaque(false);
 
         txtProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -889,7 +889,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminCustomers.getContentPane().setLayout(null);
 
-        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlCustomersDates.setOpaque(false);
 
         lbCustomersDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -940,9 +940,9 @@ public class frmAdministration extends javax.swing.JFrame {
         lblCustomersTown.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersTown.setText("Municipio");
 
-        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
+        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
 
-        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
+        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
 
         lblPhone.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblPhone.setText("Teléfono");
@@ -1048,7 +1048,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomersCity)
                     .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPhone)
                     .addComponent(txtCustomersPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1062,7 +1062,7 @@ public class frmAdministration extends javax.swing.JFrame {
         );
 
         dlgAdminCustomers.getContentPane().add(pnlCustomersDates);
-        pnlCustomersDates.setBounds(0, 120, 0, 590);
+        pnlCustomersDates.setBounds(0, 120, 380, 590);
 
         barCustomersMenu.setRollover(true);
 
@@ -1176,7 +1176,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(btnCustomersDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCustomersList)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         pnlCustomersButtonsLayout.setVerticalGroup(
             pnlCustomersButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1226,7 +1226,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         dlgAdminCustomers.getContentPane().add(btnCustomersBack);
-        btnCustomersBack.setBounds(1220, 605, 120, 120);
+        btnCustomersBack.setBounds(1220, 605, 120, 115);
 
         lblCustomerssBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         dlgAdminCustomers.getContentPane().add(lblCustomerssBackgroundDialog);
@@ -1242,7 +1242,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         dlgAdminLocal.getContentPane().setLayout(null);
 
-        pnlLocals.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlLocals.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlLocals.setOpaque(false);
 
         txtLocalsNameL.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -1290,9 +1290,9 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocalsCity.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblLocalsCity.setText("Departamento");
 
-        cbLocalsTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
+        cbLocalsTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
 
-        cbLocalsCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
+        cbLocalsCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
 
         javax.swing.GroupLayout pnlLocalsLayout = new javax.swing.GroupLayout(pnlLocals);
         pnlLocals.setLayout(pnlLocalsLayout);
@@ -1712,7 +1712,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminAdditionalProducts.getContentPane().add(scrollPanelAdditionalProductsTable);
         scrollPanelAdditionalProductsTable.setBounds(640, 122, 640, 410);
 
-        pnlAdditionalProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlAdditionalProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlAdditionalProducts.setOpaque(false);
 
         txtAdditionalProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -2018,12 +2018,12 @@ public class frmAdministration extends javax.swing.JFrame {
         String result = "";
         result = employees.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(rootPane, "El empleado ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "El empleado ha sido elminado correctamente.");
             if (tblEmployees.isVisible()) {
                 tblEmployees.setModel(employees.list());
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No ha podido ser eliminado el empleado, intente nuevamente y verifique que el empleado exista.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "No ha podido ser eliminado el empleado, intente nuevamente y verifique que el empleado exista.");
         }
     }//GEN-LAST:event_btnEmployeesDeleteActionPerformed
 
@@ -2044,7 +2044,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtEmployeesNotes.setText(result.getString(7));
                 txtEmployeesAddress.setText(result.getString(9));
             } else {
-                JOptionPane.showMessageDialog(rootPane, "El empleado no existe, por favor verifique que la cédula esté bien escrita.");
+                JOptionPane.showMessageDialog(dlgAdminEmployees, "El empleado no existe, por favor verifique que la cédula esté bien escrita.");
             }
 
         } catch (SQLException ex) {
@@ -2057,13 +2057,13 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnEmployeesInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesInsertActionPerformed
         loadSetValuesEmployees();
         if (employees.insert()) {
-            JOptionPane.showMessageDialog(rootPane, "Se insertó el empleado correctamente");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "Se insertó el empleado correctamente");
             if (tblEmployees.isVisible()) {
                 tblEmployees.setModel(employees.list());
             }
 
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No sé insertó el empleado");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "No sé insertó el empleado");
         }
     }//GEN-LAST:event_btnEmployeesInsertActionPerformed
 
@@ -2077,12 +2077,12 @@ public class frmAdministration extends javax.swing.JFrame {
         String result = "";
         result = employees.edit();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(rootPane, "El empleado ha sido modificado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "El empleado ha sido modificado correctamente.");
             if (tblEmployees.isVisible()) {
                 tblEmployees.setModel(employees.list());
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No ha podido ser modificado el empleado, intente nuevamente y verifique que el empleado exista.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "No ha podido ser modificado el empleado, intente nuevamente y verifique que el empleado exista.");
         }
 
 
@@ -2104,12 +2104,12 @@ public class frmAdministration extends javax.swing.JFrame {
         String result = "";
         result = products.edit();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(rootPane, "El producto ha sido modificado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminProducts, "El producto ha sido modificado correctamente.");
             if (tblProducts.isVisible()) {
                 tblProducts.setModel(products.list());
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+            JOptionPane.showMessageDialog(dlgAdminProducts, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
         }
 
 
@@ -2121,12 +2121,12 @@ public class frmAdministration extends javax.swing.JFrame {
         products.setNamep(namep);
         String result = products.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(rootPane, "El producto ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminProducts, "El producto ha sido elminado correctamente.");
             if (tblProducts.isVisible()) {
                 tblProducts.setModel(products.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(rootPane, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
+            JOptionPane.showMessageDialog(dlgAdminProducts, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
         }
 
 
@@ -2135,12 +2135,12 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnProductsInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsInsertActionPerformed
         loadSetValuesProducts();
         if (products.insert()) {
-            JOptionPane.showMessageDialog(rootPane, "Se insertó el producto correctamente");
+            JOptionPane.showMessageDialog(dlgAdminProducts, "Se insertó el producto correctamente");
             if (tblProducts.isVisible()) {
                 tblProducts.setModel(products.list());
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+            JOptionPane.showMessageDialog(dlgAdminProducts, "No sé insertó el producto");
         }
 
     }//GEN-LAST:event_btnProductsInsertActionPerformed
@@ -2165,7 +2165,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtProductsNotes.setText(result.getString(5));
 
             } else {
-                JOptionPane.showMessageDialog(rootPane, "El producto no existe, por favor verifique que el nombre del producto esté bien escrito.");
+                JOptionPane.showMessageDialog(dlgAdminProducts, "El producto no existe, por favor verifique que el nombre del producto esté bien escrito.");
             }
 
         } catch (SQLException ex) {
@@ -2210,12 +2210,12 @@ public class frmAdministration extends javax.swing.JFrame {
         String result = "";
         result = customers.edit();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(rootPane, "El cliente ha sido modificado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminCustomers, "El cliente ha sido modificado correctamente.");
             if (tblCustomers.isVisible()) {
                 tblCustomers.setModel(customers.list());
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+            JOptionPane.showMessageDialog(dlgAdminCustomers, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
         }
     }//GEN-LAST:event_btnCustomersEditActionPerformed
 
@@ -2225,12 +2225,12 @@ public class frmAdministration extends javax.swing.JFrame {
         customers.setSearch(search);
         String result = customers.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(rootPane, "El cliente ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminCustomers, "El cliente ha sido elminado correctamente.");
             if (tblCustomers.isVisible()) {
                 tblCustomers.setModel(customers.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(rootPane, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
+            JOptionPane.showMessageDialog(dlgAdminCustomers, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
         }
 
     }//GEN-LAST:event_btnCustomersDeleteActionPerformed
@@ -2238,12 +2238,12 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnCustomersInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersInsertActionPerformed
         loadSetValuesCustomers();
         if (customers.insert()) {
-            JOptionPane.showMessageDialog(rootPane, "Se insertó el cliente correctamente");
+            JOptionPane.showMessageDialog(dlgAdminCustomers, "Se insertó el cliente correctamente");
             if (tblCustomers.isVisible()) {
                 tblCustomers.setModel(customers.list());
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No sé insertó el cliente");
+            JOptionPane.showMessageDialog(dlgAdminCustomers, "No sé insertó el cliente");
         }
 
 
@@ -2271,7 +2271,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtCustomersNotes.setText(result.getString(10));
 
             } else {
-                JOptionPane.showMessageDialog(rootPane, "El producto no existe, por favor verifique que el nombre del producto esté bien escrito.");
+                JOptionPane.showMessageDialog(dlgAdminCustomers, "El cliente no existe, por favor verifique que el nombre del cliente o el número esté bien escrito.");
             }
 
         } catch (SQLException ex) {
@@ -2322,12 +2322,12 @@ public class frmAdministration extends javax.swing.JFrame {
         String result = "";
         result = local.edit();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(rootPane, "El local ha sido modificado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminLocal, "El local ha sido modificado correctamente.");
             if (tblLocals.isVisible()) {
                 tblLocals.setModel(local.list());
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No ha podido ser modificado el local, intente nuevamente y verifique que el local exista.");
+            JOptionPane.showMessageDialog(dlgAdminLocal, "No ha podido ser modificado el local, intente nuevamente y verifique que el local exista.");
         }
 
 
@@ -2339,12 +2339,12 @@ public class frmAdministration extends javax.swing.JFrame {
         local.setSearch(search);
         String result = local.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(rootPane, "El local ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminLocal, "El local ha sido elminado correctamente.");
             if (tblLocals.isVisible()) {
                 tblLocals.setModel(local.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(rootPane, "No ha podido ser eliminado el local, intente nuevamente y verifique que el local exista.");
+            JOptionPane.showMessageDialog(dlgAdminLocal, "No ha podido ser eliminado el local, intente nuevamente y verifique que el local exista.");
         }
 
 
@@ -2353,12 +2353,12 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnLocalsInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalsInsertActionPerformed
         loadSetValuesLocals();
         if (local.insert()) {
-            JOptionPane.showMessageDialog(rootPane, "Se insertó el Local correctamente");
+            JOptionPane.showMessageDialog(dlgAdminLocal, "Se insertó el Local correctamente");
             if (tblLocals.isVisible()) {
                 tblLocals.setModel(local.list());
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No sé insertó el local");
+            JOptionPane.showMessageDialog(dlgAdminLocal, "No sé insertó el local");
         }
 
     }//GEN-LAST:event_btnLocalsInsertActionPerformed
@@ -2377,7 +2377,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtLocalsAddress.setText(result.getString(4));
                 txtLocalsNeighborhood.setText(result.getString(5));
             } else {
-                JOptionPane.showMessageDialog(rootPane, "El local no existe, por favor verifique que el nombre o barrio del local esté bien escrito.");
+                JOptionPane.showMessageDialog(dlgAdminLocal, "El local no existe, por favor verifique que el nombre o barrio del local esté bien escrito.");
             }
 
         } catch (SQLException ex) {

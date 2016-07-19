@@ -27,10 +27,23 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
     /**
      * Inserta en la tabla tbl_orderlocal_details, un producto con su cantidad,
      * valor y valor total.
+     * @return 
      */
-    public boolean insert() {
+    public boolean insertProduct() {
 
         String sql = "INSERT INTO public.tbl_localorder_details(order_number, product_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), id_products, namep, description, price ,'" + super.getProduct_amount() + "','" + super.getProduct_price_total() + "','" + super.getNotes() + "',NEXTVAL('SEQ_LOCALORDER_DETAILS') from tbl_products WHERE id_products ='" + super.getProduct_id() + "';";
+        System.out.println(sql);
+        return connexion.insert(sql);
+    }
+    
+        /**
+     * Inserta en la tabla tbl_orderlocal_details, un producto adicional con su cantidad,
+     * valor y valor total.
+     * @return 
+     */
+    public boolean insertAdditionalProduct() {
+
+        String sql = "INSERT INTO public.tbl_localorder_details(order_number, additional_products_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), additional_products_id, namep, description, price ,'" + super.getProduct_amount() + "','" + super.getProduct_price_total() + "','" + super.getNotes() + "',NEXTVAL('SEQ_LOCALORDER_DETAILS') from tbl_additional_products WHERE additional_products_id ='" + super.getAdditional_products_id()+ "';";
         System.out.println(sql);
         return connexion.insert(sql);
     }
@@ -38,6 +51,9 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
     /**
      * Inserta en la tabla orderlocal, con el total del pedido y el número de
      * orden, con el fin de visualizar después todo lqo eu contiene el pedido.
+     * @param order_number
+     * @param total_price
+     * @return 
      */
     public boolean insertOrderFull(String order_number, String total_price) {
 
@@ -77,6 +93,23 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
         }
         return null;
     }
+    
+       public ResultSet searchAdditionalProductByName() {
+        String sql = "Select * FROM public.tbl_additional_products WHERE UPPER(namep) = UPPER('" + super.getProduct_name() + "');";
+        ResultSet results = null;
+        results = connexion.search(sql);
+        try {
+            if (results.next()) {
+                return results;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
 
     public String selectOrderNumber() {
         String sql = "SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER;";
@@ -199,7 +232,7 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
     }
     
     public LinkedList listAdditionalProducts() {
-        int numberButtons = 9;
+        int numberButtons = 6;
         LinkedList<String[]> dates = new LinkedList<>();
         try {
             ResultSet result = null;

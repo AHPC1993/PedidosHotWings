@@ -29,9 +29,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pblAdditionsLocalOrder" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="pblAdditionsLocalOrder" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="btnDlgAdditionsCancel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -41,7 +49,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pblAdditionsLocalOrder" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnDlgAdditionsCancel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -63,146 +73,125 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="btnAdditionalProduct4" min="-2" pref="205" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnAdditionalProduct5" min="-2" pref="205" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnAdditionalProduct6" min="-2" pref="205" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnAdditionalProduct4" min="-2" pref="204" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnAdditionalProduct5" min="-2" pref="204" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="btnAdditionalProduct6" min="-2" pref="204" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="btnAdditionalProduct1" linkSize="1" min="-2" pref="205" max="-2" attributes="0"/>
-                              <EmptySpace pref="16" max="32767" attributes="0"/>
-                              <Component id="btnAdditionalProduct2" linkSize="1" min="-2" pref="141" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnAdditionalProduct3" linkSize="1" min="-2" pref="141" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Component id="btnAdditionalProduct1" min="-2" pref="204" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnAdditionalProduct2" min="-2" pref="204" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="btnAdditionalProduct3" min="-2" pref="204" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnAdditionalProduct1" linkSize="2" min="-2" pref="163" max="-2" attributes="0"/>
-                          <Component id="btnAdditionalProduct3" linkSize="2" min="-2" pref="117" max="-2" attributes="0"/>
-                          <Component id="btnAdditionalProduct2" linkSize="2" min="-2" pref="117" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnAdditionalProduct1" alignment="3" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="btnAdditionalProduct2" alignment="3" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="btnAdditionalProduct3" alignment="3" min="-2" pref="173" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnAdditionalProduct5" min="-2" pref="163" max="-2" attributes="0"/>
-                          <Component id="btnAdditionalProduct4" min="-2" pref="163" max="-2" attributes="0"/>
-                          <Component id="btnAdditionalProduct6" min="-2" pref="163" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnAdditionalProduct4" alignment="3" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="btnAdditionalProduct5" alignment="3" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="btnAdditionalProduct6" alignment="3" min="-2" pref="173" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="21" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnAdditionalProduct2">
+            <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct2">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Papas"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="productsGroup"/>
+                  <ComponentRef name="additionsGroup"/>
                 </Property>
-                <Property name="horizontalTextPosition" type="int" value="0"/>
-                <Property name="verticalTextPosition" type="int" value="3"/>
+                <Property name="text" type="java.lang.String" value="Producto adicional 2"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct2ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct2MouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnAdditionalProduct3">
+            <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct3">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Salsas"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="productsGroup"/>
+                  <ComponentRef name="additionsGroup"/>
                 </Property>
-                <Property name="horizontalTextPosition" type="int" value="0"/>
-                <Property name="verticalTextPosition" type="int" value="3"/>
+                <Property name="text" type="java.lang.String" value="Producto adicional 3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct3ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct3MouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnAdditionalProduct1">
+            <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct1">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Alitas"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="productsGroup"/>
+                  <ComponentRef name="additionsGroup"/>
                 </Property>
-                <Property name="horizontalTextPosition" type="int" value="0"/>
-                <Property name="verticalTextPosition" type="int" value="3"/>
+                <Property name="text" type="java.lang.String" value="Producto adicional 1"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct1MouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct1ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnAdditionalProduct5">
+            <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct6">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Gaseosa grande"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="productsGroup"/>
+                  <ComponentRef name="additionsGroup"/>
                 </Property>
-                <Property name="horizontalTextPosition" type="int" value="0"/>
-                <Property name="verticalTextPosition" type="int" value="3"/>
+                <Property name="text" type="java.lang.String" value="Producto adicional 6"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct5ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct6MouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnAdditionalProduct4">
+            <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct4">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Gaseosa peque&#xf1;a"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="productsGroup"/>
+                  <ComponentRef name="additionsGroup"/>
                 </Property>
-                <Property name="horizontalTextPosition" type="int" value="0"/>
-                <Property name="verticalTextPosition" type="int" value="3"/>
+                <Property name="text" type="java.lang.String" value="Producto adicional 4"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct4ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct4MouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnAdditionalProduct6">
+            <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct5">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Gaseosa grande"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="productsGroup"/>
+                  <ComponentRef name="additionsGroup"/>
                 </Property>
-                <Property name="horizontalTextPosition" type="int" value="0"/>
-                <Property name="verticalTextPosition" type="int" value="3"/>
+                <Property name="text" type="java.lang.String" value="Producto adicional 5"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct6ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct5MouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="btnDlgAdditionsCancel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDlgAdditionsCancelActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </NonVisualComponents>
@@ -838,7 +827,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="630" y="120" width="20" height="10"/>
+          <AbsoluteConstraints x="630" y="140" width="20" height="10"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -943,6 +932,19 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="1150" y="310" width="170" height="50"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="btnSelectedAdditionalProduct">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="numbersGroup"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cantidad"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="630" y="120" width="20" height="10"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -12,6 +12,7 @@ package model;
 public class clsLocalOrderDetails {
     private String order_number;
     private String product_id;
+    private String additional_products_id;
     private String product_name;
     private String product_description;
     private double product_price;
@@ -24,9 +25,10 @@ public class clsLocalOrderDetails {
     public clsLocalOrderDetails() {
     }
 
-    public clsLocalOrderDetails(String order_number, String product_id, String product_name, String product_description, double product_price, double product_amount, double product_price_total, String notes, String search, String localOrder_id) {
+    public clsLocalOrderDetails(String order_number, String product_id, String additional_products_id, String product_name, String product_description, double product_price, double product_amount, double product_price_total, String notes, String search, String localOrder_id) {
         this.order_number = order_number;
         this.product_id = product_id;
+        this.additional_products_id = additional_products_id;
         this.product_name = product_name;
         this.product_description = product_description;
         this.product_price = product_price;
@@ -36,6 +38,7 @@ public class clsLocalOrderDetails {
         this.search = search;
         this.localOrder_id = localOrder_id;
     }
+
 
  
 
@@ -120,6 +123,14 @@ public class clsLocalOrderDetails {
 
     public void setLocalOrder_id(String localOrder_id) {
         this.localOrder_id = localOrder_id;
+    }
+
+    public String getAdditional_products_id() {
+        return additional_products_id;
+    }
+
+    public void setAdditional_products_id(String additional_products_id) {
+        this.additional_products_id = additional_products_id;
     }
     
     

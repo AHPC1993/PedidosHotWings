@@ -32,6 +32,7 @@ import model.clsDAOProducts;
  */
 public class frmLocalOrder extends javax.swing.JFrame {
 
+    int stateTypeProduct = 0;
     int deleteSelectionState = 0;
     model.clsDAOLocalOrderDetails localOrder;
     model.clsDAOProducts products;
@@ -53,32 +54,32 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }
 
     public void loadAdditionalProductsValues() {
-        additionalProducts = new clsDAOAdditionalProducts();
+        localOrder = new model.clsDAOLocalOrderDetails();
         LinkedList<String[]> values = new LinkedList<String[]>();
         values = localOrder.listAdditionalProducts();
         for (int i = 0; i < values.size(); i++) {
             if (values.get(i)[0] != null) {
                 switch (values.get(i)[0]) {
-                    case "Combo 1":
-                        btnProduct1.setText(values.get(i)[0]);
-                        btnProduct1.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                    case "Alitas":
+                        btnAdditionalProduct1.setText(values.get(i)[0]);
+                        btnAdditionalProduct1.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
                         break;
-                    case "Combo 2":
-                        btnProduct2.setText(values.get(i)[0]);
-                        btnProduct2.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                    case "Papas":
+                        btnAdditionalProduct2.setText(values.get(i)[0]);
+                        btnAdditionalProduct2.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
                         break;
-                    case "Combo 3":
-                        btnProduct3.setText(values.get(i)[0]);
-                        btnProduct3.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                    case "Salsas":
+                        btnAdditionalProduct3.setText(values.get(i)[0]);
+                        btnAdditionalProduct3.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
                         break;
-                    case "Combo 4":
-                        btnProduct4.setText(values.get(i)[0]);
-                        btnProduct4.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                    case "Gaseosa Pequeña":
+                        btnAdditionalProduct4.setText(values.get(i)[0]);
+                        btnAdditionalProduct4.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
 
                         break;
-                    case "Combo 5":
-                        btnProduct5.setText(values.get(i)[0]);
-                        btnProduct5.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
+                    case "Gaseosa Grande":
+                        btnAdditionalProduct5.setText(values.get(i)[0]);
+                        btnAdditionalProduct5.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
                         break;
                     default:
                         break;
@@ -153,12 +154,13 @@ public class frmLocalOrder extends javax.swing.JFrame {
         additionsGroup = new javax.swing.ButtonGroup();
         dlgAdditionsLocalOrder = new javax.swing.JDialog();
         pblAdditionsLocalOrder = new javax.swing.JPanel();
-        btnAdditionalProduct2 = new javax.swing.JButton();
-        btnAdditionalProduct3 = new javax.swing.JButton();
-        btnAdditionalProduct1 = new javax.swing.JButton();
-        btnAdditionalProduct5 = new javax.swing.JButton();
-        btnAdditionalProduct4 = new javax.swing.JButton();
-        btnAdditionalProduct6 = new javax.swing.JButton();
+        btnAdditionalProduct2 = new javax.swing.JToggleButton();
+        btnAdditionalProduct3 = new javax.swing.JToggleButton();
+        btnAdditionalProduct1 = new javax.swing.JToggleButton();
+        btnAdditionalProduct6 = new javax.swing.JToggleButton();
+        btnAdditionalProduct4 = new javax.swing.JToggleButton();
+        btnAdditionalProduct5 = new javax.swing.JToggleButton();
+        btnDlgAdditionsCancel = new javax.swing.JButton();
         pnlAmount = new javax.swing.JPanel();
         btnNumber6 = new javax.swing.JToggleButton();
         btnNumber2 = new javax.swing.JToggleButton();
@@ -197,6 +199,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnAdminBack = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         txtChangeOrder = new javax.swing.JTextField();
+        btnSelectedAdditionalProduct = new javax.swing.JToggleButton();
 
         dlgAdditionsLocalOrder.setMinimumSize(new java.awt.Dimension(711, 423));
         dlgAdditionsLocalOrder.setPreferredSize(new java.awt.Dimension(711, 523));
@@ -209,69 +212,56 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         pblAdditionsLocalOrder.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Adicionales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
 
-        btnAdditionalProduct2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnAdditionalProduct2.setText("Papas");
-        productsGroup.add(btnAdditionalProduct2);
-        btnAdditionalProduct2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAdditionalProduct2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAdditionalProduct2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdditionalProduct2ActionPerformed(evt);
+        additionsGroup.add(btnAdditionalProduct2);
+        btnAdditionalProduct2.setText("Producto adicional 2");
+        btnAdditionalProduct2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdditionalProduct2MouseClicked(evt);
             }
         });
 
-        btnAdditionalProduct3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnAdditionalProduct3.setText("Salsas");
-        productsGroup.add(btnAdditionalProduct3);
-        btnAdditionalProduct3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAdditionalProduct3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAdditionalProduct3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdditionalProduct3ActionPerformed(evt);
+        additionsGroup.add(btnAdditionalProduct3);
+        btnAdditionalProduct3.setText("Producto adicional 3");
+        btnAdditionalProduct3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdditionalProduct3MouseClicked(evt);
             }
         });
 
-        btnAdditionalProduct1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnAdditionalProduct1.setText("Alitas");
-        productsGroup.add(btnAdditionalProduct1);
-        btnAdditionalProduct1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAdditionalProduct1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        additionsGroup.add(btnAdditionalProduct1);
+        btnAdditionalProduct1.setText("Producto adicional 1");
+        btnAdditionalProduct1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdditionalProduct1MouseClicked(evt);
+            }
+        });
         btnAdditionalProduct1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdditionalProduct1ActionPerformed(evt);
             }
         });
 
-        btnAdditionalProduct5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnAdditionalProduct5.setText("Gaseosa grande");
-        productsGroup.add(btnAdditionalProduct5);
-        btnAdditionalProduct5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAdditionalProduct5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAdditionalProduct5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdditionalProduct5ActionPerformed(evt);
+        additionsGroup.add(btnAdditionalProduct6);
+        btnAdditionalProduct6.setText("Producto adicional 6");
+        btnAdditionalProduct6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdditionalProduct6MouseClicked(evt);
             }
         });
 
-        btnAdditionalProduct4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnAdditionalProduct4.setText("Gaseosa pequeña");
-        productsGroup.add(btnAdditionalProduct4);
-        btnAdditionalProduct4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAdditionalProduct4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAdditionalProduct4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdditionalProduct4ActionPerformed(evt);
+        additionsGroup.add(btnAdditionalProduct4);
+        btnAdditionalProduct4.setText("Producto adicional 4");
+        btnAdditionalProduct4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdditionalProduct4MouseClicked(evt);
             }
         });
 
-        btnAdditionalProduct6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnAdditionalProduct6.setText("Gaseosa grande");
-        productsGroup.add(btnAdditionalProduct6);
-        btnAdditionalProduct6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAdditionalProduct6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAdditionalProduct6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdditionalProduct6ActionPerformed(evt);
+        additionsGroup.add(btnAdditionalProduct5);
+        btnAdditionalProduct5.setText("Producto adicional 5");
+        btnAdditionalProduct5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdditionalProduct5MouseClicked(evt);
             }
         });
 
@@ -280,50 +270,57 @@ public class frmLocalOrder extends javax.swing.JFrame {
         pblAdditionsLocalOrderLayout.setHorizontalGroup(
             pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pblAdditionsLocalOrderLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pblAdditionsLocalOrderLayout.createSequentialGroup()
-                        .addComponent(btnAdditionalProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAdditionalProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAdditionalProduct5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAdditionalProduct5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAdditionalProduct6, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(btnAdditionalProduct6, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pblAdditionsLocalOrderLayout.createSequentialGroup()
-                        .addComponent(btnAdditionalProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                        .addComponent(btnAdditionalProduct2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAdditionalProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAdditionalProduct2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAdditionalProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))))
+                        .addComponent(btnAdditionalProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
-
-        pblAdditionsLocalOrderLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdditionalProduct1, btnAdditionalProduct2, btnAdditionalProduct3});
-
         pblAdditionsLocalOrderLayout.setVerticalGroup(
             pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pblAdditionsLocalOrderLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAdditionalProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdditionalProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdditionalProduct2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAdditionalProduct5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdditionalProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdditionalProduct6, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addGroup(pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdditionalProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProduct2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdditionalProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProduct5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProduct6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        pblAdditionsLocalOrderLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdditionalProduct1, btnAdditionalProduct2, btnAdditionalProduct3});
+        btnDlgAdditionsCancel.setText("Cancelar");
+        btnDlgAdditionsCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDlgAdditionsCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout dlgAdditionsLocalOrderLayout = new javax.swing.GroupLayout(dlgAdditionsLocalOrder.getContentPane());
         dlgAdditionsLocalOrder.getContentPane().setLayout(dlgAdditionsLocalOrderLayout);
         dlgAdditionsLocalOrderLayout.setHorizontalGroup(
             dlgAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dlgAdditionsLocalOrderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pblAdditionsLocalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(dlgAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dlgAdditionsLocalOrderLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pblAdditionsLocalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dlgAdditionsLocalOrderLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(btnDlgAdditionsCancel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         dlgAdditionsLocalOrderLayout.setVerticalGroup(
@@ -331,7 +328,9 @@ public class frmLocalOrder extends javax.swing.JFrame {
             .addGroup(dlgAdditionsLocalOrderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pblAdditionsLocalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnDlgAdditionsCancel)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -345,7 +344,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlAmount.setLayout(null);
 
         numbersGroup.add(btnNumber6);
@@ -529,7 +528,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         getContentPane().add(pnlAmount);
         pnlAmount.setBounds(740, 30, 380, 510);
 
-        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
 
         productsGroup.add(btnProduct1);
         btnProduct1.setText("Combo 1");
@@ -689,7 +688,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         numbersGroup.add(btnSelectedAmount);
         btnSelectedAmount.setText("Cantidad");
         getContentPane().add(btnSelectedAmount);
-        btnSelectedAmount.setBounds(630, 120, 20, 10);
+        btnSelectedAmount.setBounds(630, 140, 20, 10);
 
         productsGroup.add(btnSelectedProducts);
         btnSelectedProducts.setText("Productos");
@@ -742,6 +741,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
         txtChangeOrder.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(txtChangeOrder);
         txtChangeOrder.setBounds(1150, 310, 170, 50);
+
+        numbersGroup.add(btnSelectedAdditionalProduct);
+        btnSelectedAdditionalProduct.setText("Cantidad");
+        getContentPane().add(btnSelectedAdditionalProduct);
+        btnSelectedAdditionalProduct.setBounds(630, 120, 20, 10);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -803,7 +807,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProduct5ActionPerformed
 
     private void btnProduct6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduct6ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnProduct6ActionPerformed
 
     private void btnProduct8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduct8ActionPerformed
@@ -820,38 +824,60 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
     private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
         selectProductAndAmount();
-        if (!btnSelectedProducts.isSelected()) {
-            if (!btnSelectedAmount.isSelected()) {
-                if (localOrder.insert()) {
-                    txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
-                    tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
-                    txtNotes.setText("");
+        if (!btnProduct6.isSelected()) {
+            if (!btnSelectedProducts.isSelected()) {
+                if (!btnSelectedAmount.isSelected()) {
 
+                    if (localOrder.insertProduct()) {
+                        txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
+                        tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
+                        txtNotes.setText("");
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                    JOptionPane.showMessageDialog(this, "Por favor seleccione una cantidad");
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Por favor seleccione una cantidad");
-            }
 
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione un producto");
+            } else {
+                JOptionPane.showMessageDialog(this, "Por favor seleccione un producto");
+
+            }
+        } else if (btnProduct6.isSelected()) {
+            if (!btnSelectedAdditionalProduct.isSelected()) {
+                if (!btnSelectedAmount.isSelected()) {
+                    if (localOrder.insertAdditionalProduct()) {
+                        txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
+                        tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
+                        txtNotes.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Por favor seleccione una cantidad");
+                }
+            }
 
         }
 
         btnSelectedAmount.setSelected(true);
         btnSelectedProducts.setSelected(true);
+        btnSelectedAdditionalProduct.setSelected(true);
     }//GEN-LAST:event_btnAddProductActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         loadNameProductValues();
+        loadAdditionalProductsValues();
         localOrder = new clsDAOLocalOrderDetails();
         txtOrderNumber.setText(localOrder.selectOrderNumber());
         txtTotalOrder.setText("0");
         btnSelectedAmount.setSelected(true);
         btnSelectedProducts.setSelected(true);
+        btnSelectedAdditionalProduct.setSelected(true);
         btnSelectedAmount.setVisible(false);
         btnSelectedProducts.setVisible(false);
+        btnSelectedAdditionalProduct.setVisible(false);
 
 
     }//GEN-LAST:event_formWindowOpened
@@ -888,9 +914,9 @@ public class frmLocalOrder extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_tblLocalOrderMouseClicked
-
+//ojoooooooooooooo aquí tengo que cambiar para que también adicione adicionales 
     private void btnOtherAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherAmountActionPerformed
-
+        PrintselectProductAndAmount();
         if (!btnSelectedProducts.isSelected()) {
             btnSelectedAmount.setSelected(true);
             String inputValue = JOptionPane.showInputDialog("Por favor ingrese la cantidad que necesita");
@@ -916,7 +942,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
                     } else if (btnProduct9.isSelected()) {
                         loadSetValuesOrderDetails(btnProduct9.getText(), amount);
                     }
-                    if (localOrder.insert()) {
+                    if (localOrder.insertProduct()) {
                         txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
                         tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
                         txtNotes.setText("");
@@ -979,40 +1005,66 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnProduct6MouseClicked
 
-    private void btnAdditionalProduct2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdditionalProduct2ActionPerformed
+    private void dlgAdditionsLocalOrderWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdditionsLocalOrderWindowOpened
 
-    private void btnAdditionalProduct3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdditionalProduct3ActionPerformed
+    }//GEN-LAST:event_dlgAdditionsLocalOrderWindowOpened
+
+    private void btnAdditionalProduct1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct1MouseClicked
+        dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+
+    }//GEN-LAST:event_btnAdditionalProduct1MouseClicked
 
     private void btnAdditionalProduct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct1ActionPerformed
 
     }//GEN-LAST:event_btnAdditionalProduct1ActionPerformed
 
-    private void btnAdditionalProduct5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdditionalProduct5ActionPerformed
+    private void btnAdditionalProduct2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct2MouseClicked
+        dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct2MouseClicked
 
-    private void btnAdditionalProduct4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdditionalProduct4ActionPerformed
+    private void btnAdditionalProduct3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct3MouseClicked
+        dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct3MouseClicked
 
-    private void btnAdditionalProduct6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdditionalProduct6ActionPerformed
+    private void btnAdditionalProduct4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct4MouseClicked
+        dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct4MouseClicked
 
-    private void dlgAdditionsLocalOrderWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdditionsLocalOrderWindowOpened
+    private void btnAdditionalProduct5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct5MouseClicked
+        dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct5MouseClicked
 
-    }//GEN-LAST:event_dlgAdditionsLocalOrderWindowOpened
+    private void btnAdditionalProduct6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct6MouseClicked
+        dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct6MouseClicked
+
+    private void btnDlgAdditionsCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgAdditionsCancelActionPerformed
+        btnSelectedAdditionalProduct.setSelected(true);
+        btnSelectedAmount.setSelected(true);
+        btnSelectedProducts.setSelected(true);
+        dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+
+    }//GEN-LAST:event_btnDlgAdditionsCancelActionPerformed
 
     public void PrintselectProductAndAmount() {
-        for (int i = 1; i <= 9; i++) {
+        for (int i = 1; i <= 6; i++) {
             for (int j = 1; j <= 9; j++) {
-                System.out.println("else if(btnProduct" + i + ".isSelected() && btnNumber" + j + ".isSelected()){\n"
-                        + "loadSetValuesOrderDetails(btnProduct" + i + ".getText()," + j + ");\n"
-                        + "return  }");
+                System.out.println("else if(btnProduct" + i + ".isSelected() && btnProduct6.isSelected() && btnNumber" + j + ".isSelected()){\n"
+                        + "loadSetValuesOrderDetails(btnAdditionalProduct" + i + ".getText()," + j + ",\"additional\");\n"
+                        + "}");
 
             }
         }
@@ -1029,18 +1081,49 @@ public class frmLocalOrder extends javax.swing.JFrame {
             localOrder.setProduct_amount(amount);
             localOrder.setNotes(txtNotes.getText());
             ResultSet result;
-            result = localOrder.searchProductByName();
-            if (result != null) {
-                localOrder.setProduct_id(result.getString(1));
-                localOrder.setProduct_description(result.getString(3));
-                localOrder.setProduct_price(Double.parseDouble(result.getString(4)));
+            if (stateTypeProduct == 0) {
+                result = localOrder.searchProductByName();
+                if (result != null) {
+                    localOrder.setProduct_id(result.getString(1));
+                    localOrder.setProduct_description(result.getString(3));
+                    localOrder.setProduct_price(Double.parseDouble(result.getString(4)));
+                    localOrder.setProduct_price_total(localOrder.getProduct_amount() * localOrder.getProduct_price());
+                }
 
+            } else if (stateTypeProduct == 1) {
+                result = localOrder.searchAdditionalProductByName();
+                if (result != null) {
+                    localOrder.setAdditional_products_id(result.getString(1));
+                    localOrder.setProduct_description(result.getString(3));
+                    localOrder.setProduct_price(Double.parseDouble(result.getString(4)));
+                    localOrder.setProduct_price_total(localOrder.getProduct_amount() * localOrder.getProduct_price());
+                }
+                stateTypeProduct = 0;
             }
-            localOrder.setProduct_price_total(localOrder.getProduct_amount() * localOrder.getProduct_price());
+
         } catch (SQLException ex) {
             System.out.println(ex);
         }
 
+    }
+
+    public String selectAdditionalProductAndAmount() {
+
+        if (btnAdditionalProduct1.isSelected()) {
+            return btnAdditionalProduct1.getText();
+        } else if (btnAdditionalProduct2.isSelected()) {
+            return btnAdditionalProduct2.getText();
+        } else if (btnAdditionalProduct3.isSelected()) {
+            return btnAdditionalProduct3.getText();
+        } else if (btnAdditionalProduct4.isSelected()) {
+            return btnAdditionalProduct4.getText();
+        } else if (btnAdditionalProduct5.isSelected()) {
+            return btnAdditionalProduct5.getText();
+        } else if (btnAdditionalProduct6.isSelected()) {
+            return btnAdditionalProduct6.getText();
+        } else {
+            return "";
+        }
     }
 
     public void selectProductAndAmount() {
@@ -1135,23 +1218,32 @@ public class frmLocalOrder extends javax.swing.JFrame {
         } else if (btnProduct5.isSelected() && btnNumber9.isSelected()) {
             loadSetValuesOrderDetails(btnProduct5.getText(), 9);
         } else if (btnProduct6.isSelected() && btnNumber1.isSelected()) {
-            loadSetValuesOrderDetails(btnProduct6.getText(), 1);
+            stateTypeProduct = 1;
+            loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), 1);
         } else if (btnProduct6.isSelected() && btnNumber2.isSelected()) {
-            loadSetValuesOrderDetails(btnProduct6.getText(), 2);
+            stateTypeProduct = 1;
+            loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), 2);
         } else if (btnProduct6.isSelected() && btnNumber3.isSelected()) {
-            loadSetValuesOrderDetails(btnProduct6.getText(), 3);
+            stateTypeProduct = 1;
+            loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), 3);
         } else if (btnProduct6.isSelected() && btnNumber4.isSelected()) {
-            loadSetValuesOrderDetails(btnProduct6.getText(), 4);
+            stateTypeProduct = 1;
+            loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), 4);
         } else if (btnProduct6.isSelected() && btnNumber5.isSelected()) {
-            loadSetValuesOrderDetails(btnProduct6.getText(), 5);
+            stateTypeProduct = 1;
+            loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), 5);
         } else if (btnProduct6.isSelected() && btnNumber6.isSelected()) {
-            loadSetValuesOrderDetails(btnProduct6.getText(), 6);
+            stateTypeProduct = 1;
+            loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), 6);
         } else if (btnProduct6.isSelected() && btnNumber7.isSelected()) {
-            loadSetValuesOrderDetails(btnProduct6.getText(), 7);
+            stateTypeProduct = 1;
+            loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), 7);
         } else if (btnProduct6.isSelected() && btnNumber8.isSelected()) {
-            loadSetValuesOrderDetails(btnProduct6.getText(), 8);
+            stateTypeProduct = 1;
+            loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), 8);
         } else if (btnProduct6.isSelected() && btnNumber9.isSelected()) {
-            loadSetValuesOrderDetails(btnProduct6.getText(), 9);
+            stateTypeProduct = 1;
+            loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), 9);
         } else if (btnProduct7.isSelected() && btnNumber1.isSelected()) {
             loadSetValuesOrderDetails(btnProduct7.getText(), 1);
         } else if (btnProduct7.isSelected() && btnNumber2.isSelected()) {
@@ -1257,14 +1349,15 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private javax.swing.ButtonGroup actionsGroup;
     private javax.swing.ButtonGroup additionsGroup;
     private javax.swing.JButton btnAddProduct;
-    private javax.swing.JButton btnAdditionalProduct1;
-    private javax.swing.JButton btnAdditionalProduct2;
-    private javax.swing.JButton btnAdditionalProduct3;
-    private javax.swing.JButton btnAdditionalProduct4;
-    private javax.swing.JButton btnAdditionalProduct5;
-    private javax.swing.JButton btnAdditionalProduct6;
+    private javax.swing.JToggleButton btnAdditionalProduct1;
+    private javax.swing.JToggleButton btnAdditionalProduct2;
+    private javax.swing.JToggleButton btnAdditionalProduct3;
+    private javax.swing.JToggleButton btnAdditionalProduct4;
+    private javax.swing.JToggleButton btnAdditionalProduct5;
+    private javax.swing.JToggleButton btnAdditionalProduct6;
     private javax.swing.JButton btnAdminBack;
     private javax.swing.JButton btnCorrection;
+    private javax.swing.JButton btnDlgAdditionsCancel;
     private javax.swing.JButton btnDoneOrder;
     private javax.swing.JToggleButton btnNumber1;
     private javax.swing.JToggleButton btnNumber2;
@@ -1285,6 +1378,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnProduct7;
     private javax.swing.JToggleButton btnProduct8;
     private javax.swing.JToggleButton btnProduct9;
+    private javax.swing.JToggleButton btnSelectedAdditionalProduct;
     private javax.swing.JToggleButton btnSelectedAmount;
     private javax.swing.JToggleButton btnSelectedProducts;
     private javax.swing.JDialog dlgAdditionsLocalOrder;

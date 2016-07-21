@@ -23,7 +23,7 @@ public class Connect {
     static String password = "hotwings";
     static String data_base = "dbHotWings";
     static String stringConnection = "jdbc:postgresql://127.0.0.1/" + data_base + "?" + "user=" + user + "&password=" + password;
-    Connection connection = null;
+   public Connection connection = null;
     Statement sentence = null;
     ResultSet result;
 

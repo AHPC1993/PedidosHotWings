@@ -18,3 +18,27 @@ Antes de entregar el proyecto, es necesario reiniciar las secuencias
 SELECT NEXTVAL('SEQ_ORDER_NUMBER') FROM SEQ_ORDER_NUMBER;
 
 Si se borra un cliente, en los informes va a desaparecer todo sobre el cliente
+db: dbHotWings
+user: hotwings
+pw: hotwings
+
+
+------Consultas importantes-------------------
+--Consultar el número de pedidos locales en un rango dado .
+SELECT
+     tbl_localorder."order_number" AS "Número de orden",
+     tbl_localorder_details."localorder_id" AS "Id Orden",
+     tbl_localorder_details."product_name" AS "Nombre",
+     tbl_localorder_details."product_description" AS "Descripción",
+     tbl_localorder_details."product_price" AS "Precio",
+     tbl_localorder_details."product_amount" AS"Cantidad",
+     tbl_localorder_details."product_price_total" AS "Precio total producto",
+     tbl_localorder_details."notes" AS "Observaciones",
+     tbl_localorder."total_price" AS "Total pedido"
+    
+FROM
+     "public"."tbl_localorder" tbl_localorder,
+     "public"."tbl_localorder_details" tbl_localorder_details
+WHERE
+    tbl_localorder.date_order>=current_date and tbl_localorder.date_order<current_date+1 AND
+   tbl_localorder.order_number = tbl_localorder_details.order_number

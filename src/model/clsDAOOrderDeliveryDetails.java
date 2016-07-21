@@ -56,7 +56,7 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails{
      */
     public boolean insertOrderFull(String order_number, String total_price) {
 
-        String sql = "INSERT INTO public.tbl_localorder(order_number, total_price) VALUES('" + order_number + "','" + total_price + "');";
+        String sql = "INSERT INTO public.tbl_orderdelivery(order_number, total_price, date_order) VALUES('" + order_number + "','" + total_price + "', current_date);";
         System.out.println(sql);
         return connexion.insert(sql);
     }

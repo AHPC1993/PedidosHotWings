@@ -22,9 +22,12 @@ db: dbHotWings
 user: hotwings
 pw: hotwings
 
+1. Arreglar cuando se sale de algún form reiniciar todo
+2. Organizar reportes.
+
 
 ------Consultas importantes-------------------
---Consultar el número de pedidos locales en un rango dado .
+-------------------Consultar el número de pedidos locales en un rango dado .----------------------------------------
 SELECT
      tbl_localorder."order_number" AS "Número de orden",
      tbl_localorder_details."localorder_id" AS "Id Orden",
@@ -40,5 +43,31 @@ FROM
      "public"."tbl_localorder" tbl_localorder,
      "public"."tbl_localorder_details" tbl_localorder_details
 WHERE
-    tbl_localorder.date_order>=current_date and tbl_localorder.date_order<current_date+1 AND
+    tbl_localorder.date_order>=$P{date_initial} and tbl_localorder.date_order<=$P{date_final} AND
    tbl_localorder.order_number = tbl_localorder_details.order_number
+
+
+------------------------------------------Reporte de domicilios en un rango dado-------------------------------------------------------------
+SELECT
+     tbl_orderdelivery."date_order" AS "Fecha pedido",
+     (tbl_customers."namec"|| ' '  || tbl_customers."lastname") AS "Cliente",
+     tbl_orderdelivery."order_number" AS "N° de orden",
+     tbl_orderdelivery_details."localorder_id" AS "Id Orden",
+     tbl_orderdelivery_details."product_name" AS "Nombre",
+     tbl_orderdelivery_details."product_description" AS "Descripción",
+     tbl_orderdelivery_details."product_price" AS "Precio",
+     tbl_orderdelivery_details."product_amount" AS "Cantidad",
+     tbl_orderdelivery_details."product_price_total" AS "Precio total producto",
+     tbl_orderdelivery_details."notes" AS "Observaciones",
+	 tbl_orderdelivery."total_price" AS "Total pedido"
+     
+FROM
+     "public"."tbl_orderdelivery" tbl_orderdelivery,
+     "public"."tbl_orderdelivery_details" tbl_orderdelivery_details,
+     "public"."tbl_customers" tbl_customers
+WHERE
+	tbl_orderdelivery.order_number = tbl_orderdelivery_details.order_number AND
+	tbl_orderdelivery_details.customers_id = tbl_customers.customers_id AND
+	tbl_orderdelivery.date_order>=$P{date_initial} AND tbl_orderdelivery.date_order<=$P{date_final} 
+
+

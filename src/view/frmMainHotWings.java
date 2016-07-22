@@ -126,7 +126,6 @@ public class frmMainHotWings extends javax.swing.JFrame {
         btnAdmin = new javax.swing.JButton();
         btnMenuDetails = new javax.swing.JButton();
         btnCloseProgram = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         lblBackgroundMainFrame = new javax.swing.JLabel();
 
         dlgLogin.setTitle("Inicio de Sesión");
@@ -164,7 +163,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblUser.setForeground(new java.awt.Color(240, 240, 240));
         lblUser.setText("Usuario");
         pnlLogin.add(lblUser);
-        lblUser.setBounds(290, 94, 67, 29);
+        lblUser.setBounds(290, 94, 71, 29);
 
         txtUser.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -175,7 +174,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblPassword.setForeground(new java.awt.Color(240, 240, 240));
         lblPassword.setText("Contraseña");
         pnlLogin.add(lblPassword);
-        lblPassword.setBounds(290, 146, 100, 29);
+        lblPassword.setBounds(290, 146, 104, 29);
 
         btnExit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExit.setText("Salir");
@@ -327,16 +326,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCloseProgram);
-        btnCloseProgram.setBounds(1220, 605, 120, 115);
-
-        jButton1.setText("Reporte");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(1010, 480, 71, 23);
+        btnCloseProgram.setBounds(1220, 605, 120, 120);
 
         lblBackgroundMainFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         lblBackgroundMainFrame.setMaximumSize(new java.awt.Dimension(1382, 744));
@@ -422,35 +412,6 @@ public class frmMainHotWings extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCloseProgramActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        try {
-            connexion = new Connect();
-           // JasperReport masterReport = (JasperReport) JRLoader.loadObject(getClass().getClassLoader().getResource("reports/localOrdersPerRangeDay.jasper"));
-            Map parameters_report = new HashMap();
-            String date_initial = "2016-07-21";
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date dateStr = formatter.parse(date_initial);
-            parameters_report.put("date_initial",dateStr);
-            parameters_report.put("date_final",dateStr);
-           // JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parameters_report, connexion.connection);
-           // JasperViewer jViewer = new JasperViewer(jasperPrint, false);
-          //  jViewer.setTitle("Reporte de pedidos locales Hot Wings Express");
-           // jViewer.setVisible(true);
-            String dir = "src\\reports\\localOrdersPerRangeDay.jrxml.";
-            JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
-            JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, parameters_report, connexion.connection);
-            JasperViewer.viewReport(mostrarReporte);
-
-        } catch (JRException ex) {
-            System.out.println(ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(frmMainHotWings.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     public void showDialog(JDialog dialog) {
         dialog.setSize(470, 400);
         dialog.setLocationRelativeTo(this);
@@ -503,7 +464,6 @@ public class frmMainHotWings extends javax.swing.JFrame {
     private javax.swing.JButton btnOrderDelivery;
     private javax.swing.JButton btnReports;
     private javax.swing.JDialog dlgLogin;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblBackgroundMainFrame;

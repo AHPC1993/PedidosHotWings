@@ -1831,6 +1831,7 @@ public class frmAdministration extends javax.swing.JFrame {
 
         dlgSelectProducts.setTitle("Seleccionar tipo de producto a administrar");
         dlgSelectProducts.setMinimumSize(new java.awt.Dimension(702, 449));
+        dlgSelectProducts.setModal(true);
         dlgSelectProducts.setResizable(false);
         dlgSelectProducts.setSize(new java.awt.Dimension(702, 449));
 

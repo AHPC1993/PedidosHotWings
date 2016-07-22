@@ -202,6 +202,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnSelectedAdditionalProduct = new javax.swing.JToggleButton();
 
         dlgAdditionsLocalOrder.setMinimumSize(new java.awt.Dimension(711, 423));
+        dlgAdditionsLocalOrder.setModal(true);
         dlgAdditionsLocalOrder.setPreferredSize(new java.awt.Dimension(711, 523));
         dlgAdditionsLocalOrder.setSize(new java.awt.Dimension(711, 523));
         dlgAdditionsLocalOrder.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -914,51 +915,64 @@ public class frmLocalOrder extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_tblLocalOrderMouseClicked
-//ojoooooooooooooo aquí tengo que cambiar para que también adicione adicionales 
     private void btnOtherAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherAmountActionPerformed
-        PrintselectProductAndAmount();
+
         if (!btnSelectedProducts.isSelected()) {
+
             btnSelectedAmount.setSelected(true);
             String inputValue = JOptionPane.showInputDialog("Por favor ingrese la cantidad que necesita");
-            if (inputValue != null) {
+            if (inputValue == null || inputValue.isEmpty() || inputValue == "") {
+                JOptionPane.showMessageDialog(this, "Por favor ingrese una cantidad");
+            } else {
                 double amount = Double.parseDouble(inputValue);
                 if (amount > 9) {
-                    if (btnProduct1.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct1.getText(), amount);
-                    } else if (btnProduct2.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct2.getText(), amount);
-                    } else if (btnProduct3.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct3.getText(), amount);
-                    } else if (btnProduct4.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct4.getText(), amount);
-                    } else if (btnProduct5.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct5.getText(), amount);
+                    if (!btnProduct6.isSelected()) {
+                        if (btnProduct1.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct1.getText(), amount);
+                        } else if (btnProduct2.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct2.getText(), amount);
+                        } else if (btnProduct3.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct3.getText(), amount);
+                        } else if (btnProduct4.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct4.getText(), amount);
+                        } else if (btnProduct5.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct5.getText(), amount);
+                        } else if (btnProduct7.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct7.getText(), amount);
+                        } else if (btnProduct8.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct8.getText(), amount);
+                        } else if (btnProduct9.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct9.getText(), amount);
+                        }
+                        if (localOrder.insertProduct()) {
+                            txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
+                            tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
+                            txtNotes.setText("");
+
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                        }
                     } else if (btnProduct6.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct6.getText(), amount);
-                    } else if (btnProduct7.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct7.getText(), amount);
-                    } else if (btnProduct8.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct8.getText(), amount);
-                    } else if (btnProduct9.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct9.getText(), amount);
-                    }
-                    if (localOrder.insertProduct()) {
-                        txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
-                        tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
-                        txtNotes.setText("");
+                        stateTypeProduct = 1;
+                        loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), amount);
+                        if (localOrder.insertAdditionalProduct()) {
+                            txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
+                            tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
+                            txtNotes.setText("");
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                        }
 
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
                     }
-
                 } else {
                     JOptionPane.showMessageDialog(this, "La cantidad debe ser igual o mayor a 10");
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione un producto");
-        }
 
+        }
+        btnSelectedAmount.setSelected(true);
+        btnSelectedProducts.setSelected(true);
+        btnSelectedAdditionalProduct.setSelected(true);
     }//GEN-LAST:event_btnOtherAmountActionPerformed
 
     private void btnDoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneOrderActionPerformed

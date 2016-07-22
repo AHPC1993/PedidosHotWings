@@ -8,6 +8,7 @@ package view;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -25,6 +26,8 @@ import model.clsDAOOrderDeliveryDetails;
  * @author GSG
  */
 public class frmNewOrderDelivery extends javax.swing.JFrame {
+
+    // frmMainHotWings frmMain;
     model.clsDAOCustomers customers;
     String customers_id;
     int stateTypeProduct = 0;
@@ -32,6 +35,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     model.clsDAOOrderDeliveryDetails orderDelivery;
     model.clsDAOProducts products;
     model.clsDAOAdditionalProducts additionalProducts;
+
     /**
      * Creates new form frmNewOrderDelivery
      */
@@ -45,7 +49,6 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         dlgOrderDelivery.setSize(400, 700);
         dlgOrderDelivery.setLocationRelativeTo(this);
         dlgAdditionsOrderDelivery.setLocationRelativeTo(this);
-        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
@@ -135,7 +138,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 //        btnProduct9.setToolTipText(values.get(8)[1] + " $ " + values.get(8)[2]);
 
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -162,8 +165,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         txtCustomersNotes = new javax.swing.JTextArea();
         lblCustomersCity = new javax.swing.JLabel();
         lblCustomersTown = new javax.swing.JLabel();
-        cbCustomersTown = new javax.swing.JComboBox<String>();
-        cbCustomersCity = new javax.swing.JComboBox<String>();
+        cbCustomersTown = new javax.swing.JComboBox<>();
+        cbCustomersCity = new javax.swing.JComboBox<>();
         lblPhone = new javax.swing.JLabel();
         txtCustomersPhone = new javax.swing.JTextField();
         btnAddCustomer = new javax.swing.JButton();
@@ -225,9 +228,15 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
         dlgOrderDelivery.setTitle("Buscar cliente");
         dlgOrderDelivery.setMinimumSize(new java.awt.Dimension(615, 775));
+        dlgOrderDelivery.setModalityType(java.awt.Dialog.ModalityType.MODELESS);
         dlgOrderDelivery.setSize(new java.awt.Dimension(615, 775));
+        dlgOrderDelivery.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                dlgOrderDeliveryWindowClosing(evt);
+            }
+        });
 
-        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlCustomersDates.setOpaque(false);
 
         lbCustomersDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -278,9 +287,9 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         lblCustomersTown.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersTown.setText("Municipio");
 
-        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
+        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
 
-        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
+        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
 
         lblPhone.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblPhone.setText("Teléfono");
@@ -444,6 +453,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         dlgOrderDelivery.getAccessibleContext().setAccessibleDescription("");
 
         dlgAdditionsOrderDelivery.setMinimumSize(new java.awt.Dimension(711, 423));
+        dlgAdditionsOrderDelivery.setModalityType(java.awt.Dialog.ModalityType.MODELESS);
         dlgAdditionsOrderDelivery.setPreferredSize(new java.awt.Dimension(711, 523));
         dlgAdditionsOrderDelivery.setSize(new java.awt.Dimension(711, 523));
         dlgAdditionsOrderDelivery.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -587,7 +597,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
-        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlAmount.setLayout(null);
 
         numbersGroup.add(btnNumber6);
@@ -768,7 +778,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         pnlAmount.add(jPanel1);
         jPanel1.setBounds(140, 290, 220, 110);
 
-        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
 
         productsGroup.add(btnProduct1);
         btnProduct1.setText("Combo 1");
@@ -1037,16 +1047,29 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCustomersDocumentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomersDocumentKeyTyped
-          onlyNumbersInTextField(evt, txtCustomersDocument, 12);
+        onlyNumbersInTextField(evt, txtCustomersDocument, 12);
     }//GEN-LAST:event_txtCustomersDocumentKeyTyped
 
     private void txtCustomersPhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomersPhoneKeyTyped
-         onlyNumbersInTextField(evt, txtCustomersPhone, 10);
+        onlyNumbersInTextField(evt, txtCustomersPhone, 10);
     }//GEN-LAST:event_txtCustomersPhoneKeyTyped
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
-       this.setVisible(true);
-       
+        loadSetValuesCustomers();
+        if (customers.insert()) {
+            JOptionPane.showMessageDialog(dlgOrderDelivery, "Se insertó el cliente correctamente, ya puede hacer su pedido");
+            //  frmMain.setVisible(false);
+            dlgOrderDelivery.dispose();
+            this.setVisible(true);
+
+            cleanTextboxCustomers();
+
+            // frmMain.processWindowEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        } else {
+            JOptionPane.showMessageDialog(dlgOrderDelivery, "No sé insertó el cliente, por favor verifique nuevamente");
+        }
+
+
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -1061,7 +1084,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         btnSelectedAmount.setVisible(false);
         btnSelectedProducts.setVisible(false);
         btnSelectedAdditionalProduct.setVisible(false);
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btnSearchCustomerOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerOrderDeliveryActionPerformed
@@ -1102,16 +1125,19 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchCustomerOrderDeliveryActionPerformed
 
     private void btnCancelOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelOrderDeliveryActionPerformed
-        // TODO add your handling code here:
+        dlgOrderDelivery.dispose();
+        cleanTextboxCustomers();
+
     }//GEN-LAST:event_btnCancelOrderDeliveryActionPerformed
 
     private void btnContinueOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueOrderDeliveryActionPerformed
-      this.setVisible(true);
-      dlgOrderDelivery.setVisible(false);
+        this.setVisible(true);
+        dlgOrderDelivery.dispose();
+        cleanTextboxCustomers();
     }//GEN-LAST:event_btnContinueOrderDeliveryActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-      
+
     }//GEN-LAST:event_formWindowActivated
 
     private void btnNumber6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumber6ActionPerformed
@@ -1152,22 +1178,22 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
     private void btnDoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneOrderActionPerformed
         if (JOptionPane.showConfirmDialog(this,
-            "Desea confirmar el pedido con número de orden " + txtOrderNumber.getText(), "Confirmar pedido",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-        if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText())) {
-            txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
-            txtTotalOrder.setText("0");
+                "Desea confirmar el pedido con número de orden " + txtOrderNumber.getText(), "Confirmar pedido",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+            if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText())) {
+                txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
+                txtTotalOrder.setText("0");
 
-            DefaultTableModel dm = (DefaultTableModel) tblOrderDelivery.getModel();
-            int rowCount = dm.getRowCount();
-            for (int i = rowCount - 1; i >= 0; i--) {
-                dm.removeRow(i);
+                DefaultTableModel dm = (DefaultTableModel) tblOrderDelivery.getModel();
+                int rowCount = dm.getRowCount();
+                for (int i = rowCount - 1; i >= 0; i--) {
+                    dm.removeRow(i);
+                }
+
+                tblOrderDelivery.setModel(dm);
+                JOptionPane.showMessageDialog(this, "La orden ha sido procesada con éxito");
             }
-
-            tblOrderDelivery.setModel(dm);
-            JOptionPane.showMessageDialog(this, "La orden ha sido procesada con éxito");
-        }
         } else {
 
         }
@@ -1182,47 +1208,64 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
     private void btnOtherAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherAmountActionPerformed
         //PrintselectProductAndAmount();
+
         if (!btnSelectedProducts.isSelected()) {
+
             btnSelectedAmount.setSelected(true);
             String inputValue = JOptionPane.showInputDialog("Por favor ingrese la cantidad que necesita");
-            if (inputValue != null) {
+            if (inputValue == null || inputValue.isEmpty() || inputValue == "") {
+                JOptionPane.showMessageDialog(this, "Por favor ingrese una cantidad");
+            } else {
                 double amount = Double.parseDouble(inputValue);
                 if (amount > 9) {
-                    if (btnProduct1.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct1.getText(), amount);
-                    } else if (btnProduct2.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct2.getText(), amount);
-                    } else if (btnProduct3.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct3.getText(), amount);
-                    } else if (btnProduct4.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct4.getText(), amount);
-                    } else if (btnProduct5.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct5.getText(), amount);
+                    if (!btnProduct6.isSelected()) {
+                        if (btnProduct1.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct1.getText(), amount);
+                        } else if (btnProduct2.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct2.getText(), amount);
+                        } else if (btnProduct3.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct3.getText(), amount);
+                        } else if (btnProduct4.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct4.getText(), amount);
+                        } else if (btnProduct5.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct5.getText(), amount);
+                        } else if (btnProduct7.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct7.getText(), amount);
+                        } else if (btnProduct8.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct8.getText(), amount);
+                        } else if (btnProduct9.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct9.getText(), amount);
+                        }
+                        if (orderDelivery.insertProduct()) {
+                            txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
+                            tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
+                            txtNotes.setText("");
+
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                        }
                     } else if (btnProduct6.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct6.getText(), amount);
-                    } else if (btnProduct7.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct7.getText(), amount);
-                    } else if (btnProduct8.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct8.getText(), amount);
-                    } else if (btnProduct9.isSelected()) {
-                        loadSetValuesOrderDetails(btnProduct9.getText(), amount);
-                    }
-                    if (orderDelivery.insertProduct()) {
-                        txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
-                        tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
-                        txtNotes.setText("");
+                        stateTypeProduct = 1;
+                        loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), amount);
+                        if (orderDelivery.insertAdditionalProduct()) {
+                            txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
+                            tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
+                            txtNotes.setText("");
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                        }
 
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
                     }
-
                 } else {
                     JOptionPane.showMessageDialog(this, "La cantidad debe ser igual o mayor a 10");
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione un producto");
         }
+
+        btnSelectedAmount.setSelected(true);
+        btnSelectedProducts.setSelected(true);
+        btnSelectedAdditionalProduct.setSelected(true);
+
     }//GEN-LAST:event_btnOtherAmountActionPerformed
 
     private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
@@ -1315,19 +1358,19 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 orderDelivery = new clsDAOOrderDeliveryDetails();
                 String selection = String.valueOf(tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 0));
                 if (JOptionPane.showConfirmDialog(this,
-                    "Está seguro que desea eliminar el producto:\n " + (tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 1)) + "\nCon valor de: " + (tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 5)), "Eliminar producto",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                orderDelivery.setLocalOrder_id(selection);
-                orderDelivery.delete(orderDelivery.getLocalOrder_id());
-                tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
-                txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
-                deleteSelectionState = 0;
-            } else {
-                deleteSelectionState = 0;
-            }
+                        "Está seguro que desea eliminar el producto:\n " + (tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 1)) + "\nCon valor de: " + (tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 5)), "Eliminar producto",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    orderDelivery.setLocalOrder_id(selection);
+                    orderDelivery.delete(orderDelivery.getLocalOrder_id());
+                    tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
+                    txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
+                    deleteSelectionState = 0;
+                } else {
+                    deleteSelectionState = 0;
+                }
 
-        }
+            }
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -1400,7 +1443,12 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
     }//GEN-LAST:event_dlgAdditionsOrderDeliveryWindowOpened
 
-     /**
+    private void dlgOrderDeliveryWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgOrderDeliveryWindowClosing
+        dlgOrderDelivery.dispose();
+        cleanTextboxCustomers();
+    }//GEN-LAST:event_dlgOrderDeliveryWindowClosing
+
+    /**
      * Método que solo admite números y una longitud máxima de 8 caracteres.
      * Entra como parámetro un evento, que es cuando se presiona una tecla y una
      * caja de texto, la cual es la evaluada.
@@ -1423,12 +1471,57 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
     }
 
-    
+    /**
+     * Carga los valores de la clase employees con los valores que tienen las
+     * cajas de texto del JDialog employees
+     */
+    public void loadSetValuesCustomers() {
+        customers = new clsDAOCustomers();
+        customers.setDocument_id(txtCustomersDocument.getText());
+        customers.setNamec(txtCustomersName.getText());
+        customers.setLastname(txtCustomersLastName.getText());
+        customers.setAddress(txtCustomerssAddress.getText());
+        customers.setNeighborhoos(txtCustomersNeighborhood.getText());
+        customers.setTown(cbCustomersTown.getSelectedItem().toString());
+        customers.setCity(cbCustomersCity.getSelectedItem().toString());
+        customers.setPhone(txtCustomersPhone.getText());
+        customers.setNotes(txtCustomersNotes.getText());
+        customers.setCustomers_id(customers_id);
+    }
+
+    /**
+     * Limpia todas las cajas de texto del JDialog de consumidores, cambia
+     * cualquier valor que tengan por vacío
+     */
+    public void cleanTextboxCustomers() {
+        txtCustomersDocument.setText("");
+        txtCustomersName.setText("");
+        txtCustomersLastName.setText("");
+        txtCustomerssAddress.setText("");
+        txtCustomersNeighborhood.setText("");
+        txtCustomersPhone.setText("");
+        txtCustomersNotes.setText("");
+        txtCustomersDocument.setEnabled(true);
+        txtCustomersName.setEnabled(true);
+        txtCustomersLastName.setEnabled(true);
+        txtCustomerssAddress.setEnabled(true);
+        txtCustomersNeighborhood.setEnabled(true);
+        txtCustomersPhone.setEnabled(true);
+        txtCustomersNotes.setEnabled(true);
+        btnAddCustomer.setEnabled(true);
+        btnContinueOrderDelivery.setEnabled(false);
+    }
+
     /**
      * Carga los valores de la clase products con los valores que tienen las
      * cajas de texto del JDialog products
+     *
+     * @param nameP
+     * @param amount
      */
     public void loadSetValuesOrderDetails(String nameP, double amount) {
+        System.out.println(nameP);
+        System.out.println(stateTypeProduct);
         try {
             orderDelivery = new clsDAOOrderDeliveryDetails();
             orderDelivery.setCustomers_id(customers_id);
@@ -1446,8 +1539,10 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 }
 
             } else if (stateTypeProduct == 1) {
+                System.out.println("nombre: " + orderDelivery.getProduct_name());
                 result = orderDelivery.searchAdditionalProductByName();
                 if (result != null) {
+                    System.out.println(orderDelivery.getAdditional_products_id() + "Id producto");
                     orderDelivery.setAdditional_products_id(result.getString(1));
                     orderDelivery.setProduct_description(result.getString(3));
                     orderDelivery.setProduct_price(Double.parseDouble(result.getString(4)));
@@ -1461,7 +1556,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         }
 
     }
-    
+
     public void selectProductAndAmount() {
         if (btnProduct1.isSelected() && btnNumber1.isSelected()) {
             loadSetValuesOrderDetails(btnProduct1.getText(), 1);
@@ -1638,7 +1733,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
     }
 
-     public String selectAdditionalProductAndAmount() {
+    public String selectAdditionalProductAndAmount() {
 
         if (btnAdditionalProduct1.isSelected()) {
             return btnAdditionalProduct1.getText();
@@ -1656,8 +1751,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             return "";
         }
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1672,16 +1766,24 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmNewOrderDelivery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmNewOrderDelivery.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmNewOrderDelivery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmNewOrderDelivery.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmNewOrderDelivery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmNewOrderDelivery.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmNewOrderDelivery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmNewOrderDelivery.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

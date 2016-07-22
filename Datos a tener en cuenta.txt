@@ -29,6 +29,7 @@ pw: hotwings
 ------Consultas importantes-------------------
 -------------------Consultar el número de pedidos locales en un rango dado .----------------------------------------
 SELECT
+	 tbl_localorder."date_order" AS "Fecha pedido",
      tbl_localorder."order_number" AS "Número de orden",
      tbl_localorder_details."localorder_id" AS "Id Orden",
      tbl_localorder_details."product_name" AS "Nombre",

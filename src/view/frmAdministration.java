@@ -19,6 +19,7 @@ import model.clsDAOCompany;
 import model.clsDAOCustomers;
 import model.clsDAOEmployees;
 import model.clsDAOProducts;
+import model.clsDAOUsers;
 
 /**
  *
@@ -31,11 +32,13 @@ public class frmAdministration extends javax.swing.JFrame {
     String product_id;
     String customers_id;
     String local_id;
+    String usersname;
     model.clsDAOEmployees employees;
     model.clsDAOProducts products;
     model.clsDAOCustomers customers;
     model.clsDAOCompany local;
     model.clsDAOAdditionalProducts additionalProducts;
+    model.clsDAOUsers users;
 
     /**
      * Creates new form frmAdministration
@@ -56,18 +59,21 @@ public class frmAdministration extends javax.swing.JFrame {
         lblEmployeesBackgroundDialog.setSize(dim.width, dim.height);
         lblLocalsBackgroundDialog.setSize(dim.width, dim.height);
         lblAdditionalProductsBackgroundDialog.setSize(dim.width, dim.height);
+        lblUsersBackgroundDialog.setSize(dim.width, dim.height);
 
         dlgAdminEmployees.setSize(dim.width, dim.height);
         dlgAdminProducts.setSize(dim.width, dim.height);
         dlgAdminCustomers.setSize(dim.width, dim.height);
         dlgAdminLocal.setSize(dim.width, dim.height);
         dlgAdminAdditionalProducts.setSize(dim.width, dim.height);
+        dlgAdminUsers.setSize(dim.width, dim.height);
 
         dlgAdminEmployees.setUndecorated(true);
         dlgAdminProducts.setUndecorated(true);
         dlgAdminCustomers.setUndecorated(true);
         dlgAdminLocal.setUndecorated(true);
         dlgAdminAdditionalProducts.setUndecorated(true);
+        dlgAdminUsers.setUndecorated(true);
 
         barCustomersMenu.setSize(dim.width, 25);
         barEmployeesMenu.setSize(dim.width, 25);
@@ -82,18 +88,21 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminLocal.setLocationRelativeTo(this);
         dlgSelectProducts.setLocationRelativeTo(this);
         dlgAdminAdditionalProducts.setLocationRelativeTo(this);
+        dlgAdminUsers.setLocationRelativeTo(this);
 
         scrollPanelEmployeesTable.setVisible(false);
         scrollPanelProductsTable.setVisible(false);
         scrollPanelCustomersTable.setVisible(false);
         scrollPanelLocalsTable.setVisible(false);
         scrollPanelAdditionalProductsTable.setVisible(false);
+        scrollPanelUsersTable.setVisible(false);
 
         tblEmployees.setVisible(false);
         tblProducts.setVisible(false);
         tblCustomers.setVisible(false);
         tblLocals.setVisible(false);
         tblAdditionalProducts.setVisible(false);
+        tblUsers.setVisible(false);
     }
 
     /**
@@ -123,7 +132,7 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocal = new javax.swing.JLabel();
         lblPhone1 = new javax.swing.JLabel();
         txtEmployeesPhone = new javax.swing.JTextField();
-        cbLocal = new javax.swing.JComboBox<>();
+        cbLocal = new javax.swing.JComboBox<String>();
         barEmployeesMenu = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         pnlEmployeesButtons = new javax.swing.JPanel();
@@ -136,10 +145,13 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelEmployeesTable = new javax.swing.JScrollPane();
         tblEmployees = new javax.swing.JTable();
         btnEmployeesBack = new javax.swing.JButton();
+        lblEmployeesTitle = new javax.swing.JLabel();
         lblEmployeesBackgroundDialog = new javax.swing.JLabel();
         dlgAdminProducts = new javax.swing.JDialog();
         barProductsMenu = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
+        scrollPanelProductsTable = new javax.swing.JScrollPane();
+        tblProducts = new javax.swing.JTable();
         pnlProductsButtons = new javax.swing.JPanel();
         btnProductsEdit = new javax.swing.JButton();
         btnProductsDelete = new javax.swing.JButton();
@@ -147,8 +159,6 @@ public class frmAdministration extends javax.swing.JFrame {
         btnProductsSearch = new javax.swing.JButton();
         btnProductsNew = new javax.swing.JButton();
         btnProductsList = new javax.swing.JButton();
-        scrollPanelProductsTable = new javax.swing.JScrollPane();
-        tblProducts = new javax.swing.JTable();
         pnlProducts2 = new javax.swing.JPanel();
         txtProductsName = new javax.swing.JTextField();
         lblProductsName = new javax.swing.JLabel();
@@ -161,6 +171,7 @@ public class frmAdministration extends javax.swing.JFrame {
         scrolProductDescription2 = new javax.swing.JScrollPane();
         txtProductsDescription = new javax.swing.JTextArea();
         btnProductsBack = new javax.swing.JButton();
+        lblProductsTitle = new javax.swing.JLabel();
         lblProductsBackgroundDialog = new javax.swing.JLabel();
         dlgAdminCustomers = new javax.swing.JDialog();
         pnlCustomersDates = new javax.swing.JPanel();
@@ -179,12 +190,14 @@ public class frmAdministration extends javax.swing.JFrame {
         txtCustomersNotes = new javax.swing.JTextArea();
         lblCustomersCity = new javax.swing.JLabel();
         lblCustomersTown = new javax.swing.JLabel();
-        cbCustomersTown = new javax.swing.JComboBox<>();
-        cbCustomersCity = new javax.swing.JComboBox<>();
+        cbCustomersTown = new javax.swing.JComboBox<String>();
+        cbCustomersCity = new javax.swing.JComboBox<String>();
         lblPhone = new javax.swing.JLabel();
         txtCustomersPhone = new javax.swing.JTextField();
         barCustomersMenu = new javax.swing.JToolBar();
         jButton3 = new javax.swing.JButton();
+        scrollPanelCustomersTable = new javax.swing.JScrollPane();
+        tblCustomers = new javax.swing.JTable();
         pnlCustomersButtons = new javax.swing.JPanel();
         btnCustomersEdit = new javax.swing.JButton();
         btnCustomersDelete = new javax.swing.JButton();
@@ -192,37 +205,9 @@ public class frmAdministration extends javax.swing.JFrame {
         btnCustomersSearch = new javax.swing.JButton();
         btnCustomersNew = new javax.swing.JButton();
         btnCustomersList = new javax.swing.JButton();
-        scrollPanelCustomersTable = new javax.swing.JScrollPane();
-        tblCustomers = new javax.swing.JTable();
         btnCustomersBack = new javax.swing.JButton();
+        lblCustomersTitle = new javax.swing.JLabel();
         lblCustomerssBackgroundDialog = new javax.swing.JLabel();
-        dlgAdminLocal = new javax.swing.JDialog();
-        pnlLocals = new javax.swing.JPanel();
-        txtLocalsNameL = new javax.swing.JTextField();
-        lblLocalsyNit = new javax.swing.JLabel();
-        lblLocalsName = new javax.swing.JLabel();
-        txtLocalsAddress = new javax.swing.JTextField();
-        lblLocalsAddress = new javax.swing.JLabel();
-        lblLocalsNeighborhood = new javax.swing.JLabel();
-        txtLocalsNit = new javax.swing.JTextField();
-        txtLocalsNeighborhood = new javax.swing.JTextField();
-        lblLocalsTown = new javax.swing.JLabel();
-        lblLocalsCity = new javax.swing.JLabel();
-        cbLocalsTown = new javax.swing.JComboBox<>();
-        cbLocalsCity = new javax.swing.JComboBox<>();
-        barLocalMenu = new javax.swing.JToolBar();
-        jButton4 = new javax.swing.JButton();
-        pnlLocalsButtons = new javax.swing.JPanel();
-        btnLocalsEdit = new javax.swing.JButton();
-        btnLocalsDelete = new javax.swing.JButton();
-        btnLocalsInsert = new javax.swing.JButton();
-        btnLocalsSearch = new javax.swing.JButton();
-        btnLocalsNew = new javax.swing.JButton();
-        btnLocalsList = new javax.swing.JButton();
-        scrollPanelLocalsTable = new javax.swing.JScrollPane();
-        tblLocals = new javax.swing.JTable();
-        btnLocalsBack = new javax.swing.JButton();
-        lblLocalsBackgroundDialog = new javax.swing.JLabel();
         dlgAdminAdditionalProducts = new javax.swing.JDialog();
         barAdditionalProductsMenu = new javax.swing.JToolBar();
         jButton5 = new javax.swing.JButton();
@@ -247,11 +232,67 @@ public class frmAdministration extends javax.swing.JFrame {
         scrolAdditionalProductDescription = new javax.swing.JScrollPane();
         txtAdditionalProductsDescription = new javax.swing.JTextArea();
         btnAdditionalProductsBack = new javax.swing.JButton();
+        lblAdditionalProductsTitle = new javax.swing.JLabel();
         lblAdditionalProductsBackgroundDialog = new javax.swing.JLabel();
+        dlgAdminLocal = new javax.swing.JDialog();
+        pnlLocals = new javax.swing.JPanel();
+        txtLocalsNameL = new javax.swing.JTextField();
+        lblLocalsyNit = new javax.swing.JLabel();
+        lblLocalsName = new javax.swing.JLabel();
+        txtLocalsAddress = new javax.swing.JTextField();
+        lblLocalsAddress = new javax.swing.JLabel();
+        lblLocalsNeighborhood = new javax.swing.JLabel();
+        txtLocalsNit = new javax.swing.JTextField();
+        txtLocalsNeighborhood = new javax.swing.JTextField();
+        lblLocalsTown = new javax.swing.JLabel();
+        lblLocalsCity = new javax.swing.JLabel();
+        cbLocalsTown = new javax.swing.JComboBox<String>();
+        cbLocalsCity = new javax.swing.JComboBox<String>();
+        barLocalMenu = new javax.swing.JToolBar();
+        jButton4 = new javax.swing.JButton();
+        pnlLocalsButtons = new javax.swing.JPanel();
+        btnLocalsEdit = new javax.swing.JButton();
+        btnLocalsDelete = new javax.swing.JButton();
+        btnLocalsInsert = new javax.swing.JButton();
+        btnLocalsSearch = new javax.swing.JButton();
+        btnLocalsNew = new javax.swing.JButton();
+        btnLocalsList = new javax.swing.JButton();
+        scrollPanelLocalsTable = new javax.swing.JScrollPane();
+        tblLocals = new javax.swing.JTable();
+        btnLocalsBack = new javax.swing.JButton();
+        lblLocalsTitle = new javax.swing.JLabel();
+        lblLocalsBackgroundDialog = new javax.swing.JLabel();
         dlgSelectProducts = new javax.swing.JDialog();
         pnlSelectAdminProducts = new javax.swing.JPanel();
         btnSelectAdminAdditions = new javax.swing.JButton();
         btnSelectAdminProducts = new javax.swing.JButton();
+        dlgAdminUsers = new javax.swing.JDialog();
+        barUsersMenu = new javax.swing.JToolBar();
+        jButton6 = new javax.swing.JButton();
+        scrollPanelUsersTable = new javax.swing.JScrollPane();
+        tblUsers = new javax.swing.JTable();
+        pnlUsersButtons = new javax.swing.JPanel();
+        btnUsersEdit = new javax.swing.JButton();
+        btnUsersDelete = new javax.swing.JButton();
+        btnUsersInsert = new javax.swing.JButton();
+        btnUsersSearch = new javax.swing.JButton();
+        btnUersNew = new javax.swing.JButton();
+        btnUsersList = new javax.swing.JButton();
+        pnlUsers = new javax.swing.JPanel();
+        txtUsersNameUser = new javax.swing.JTextField();
+        lblUsersNameUser = new javax.swing.JLabel();
+        lblUsersPassword = new javax.swing.JLabel();
+        lblProductsNotes1 = new javax.swing.JLabel();
+        scrolProductslNotes3 = new javax.swing.JScrollPane();
+        txtUsersNotes = new javax.swing.JTextArea();
+        lblUsersPassword1 = new javax.swing.JLabel();
+        txtUsersPassword = new javax.swing.JPasswordField();
+        txtUersRepeatPassword = new javax.swing.JPasswordField();
+        cboUsersIsAdmin = new javax.swing.JComboBox();
+        lblUsersIsAdmin = new javax.swing.JLabel();
+        btnProductsBack1 = new javax.swing.JButton();
+        lblUsersTitle = new javax.swing.JLabel();
+        lblUsersBackgroundDialog = new javax.swing.JLabel();
         btnAdminProducts = new javax.swing.JButton();
         btnCompanyDates = new javax.swing.JButton();
         btnAdminEmployees = new javax.swing.JButton();
@@ -268,9 +309,9 @@ public class frmAdministration extends javax.swing.JFrame {
                 dlgAdminEmployeesWindowClosing(evt);
             }
         });
-        dlgAdminEmployees.getContentPane().setLayout(null);
+        dlgAdminEmployees.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlEmployeesDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlEmployeesDates.setOpaque(false);
 
         lblEmployeesDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -329,7 +370,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
 
-        cbLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
+        cbLocal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
 
         javax.swing.GroupLayout pnlEmployeesDatesLayout = new javax.swing.GroupLayout(pnlEmployeesDates);
         pnlEmployeesDates.setLayout(pnlEmployeesDatesLayout);
@@ -337,43 +378,50 @@ public class frmAdministration extends javax.swing.JFrame {
             pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(lblEmployeesLastName)
-                .addGap(52, 52, 52)
-                .addComponent(txtEmployeesLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(lblAddress)
-                .addGap(50, 50, 50)
-                .addComponent(txtEmployeesAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(lblJob)
-                .addGap(69, 69, 69)
-                .addComponent(txtEmployeesJob, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(lblPhone1)
-                .addGap(54, 54, 54)
-                .addComponent(txtEmployeesPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(lblLocal)
-                .addGap(77, 77, 77)
-                .addComponent(cbLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(lblNotes)
-                .addGap(83, 83, 83)
-                .addComponent(scrollNotes, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblEmployeesName)
                     .addComponent(lblEmployeesDocument))
                 .addGap(61, 61, 61)
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEmployeesDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmployeesName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtEmployeesDocument)
+                    .addComponent(txtEmployeesName))
+                .addContainerGap())
+            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
+                .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(lblEmployeesLastName)
+                        .addGap(52, 52, 52)
+                        .addComponent(txtEmployeesLastName))
+                    .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(lblAddress)
+                        .addGap(50, 50, 50)
+                        .addComponent(txtEmployeesAddress))
+                    .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(lblJob)
+                        .addGap(69, 69, 69)
+                        .addComponent(txtEmployeesJob))
+                    .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
+                        .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(lblPhone1))
+                            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(lblLocal))
+                            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(lblNotes)))
+                        .addGap(54, 54, 54)
+                        .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEmployeesPhone)
+                            .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
+                                .addComponent(cbLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(scrollNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))))
+                .addGap(12, 12, 12))
         );
         pnlEmployeesDatesLayout.setVerticalGroup(
             pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,13 +460,14 @@ public class frmAdministration extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(lblPhone1))
                     .addComponent(txtEmployeesPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(29, 29, 29)
                         .addComponent(lblLocal))
-                    .addComponent(cbLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(cbLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31)
                 .addGroup(pnlEmployeesDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEmployeesDatesLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -426,8 +475,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     .addComponent(scrollNotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        dlgAdminEmployees.getContentPane().add(pnlEmployeesDates);
-        pnlEmployeesDates.setBounds(0, 120, 0, 0);
+        dlgAdminEmployees.getContentPane().add(pnlEmployeesDates, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
 
         barEmployeesMenu.setRollover(true);
 
@@ -442,8 +490,7 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         barEmployeesMenu.add(jButton1);
 
-        dlgAdminEmployees.getContentPane().add(barEmployeesMenu);
-        barEmployeesMenu.setBounds(0, 0, 1290, 25);
+        dlgAdminEmployees.getContentPane().add(barEmployeesMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 25));
 
         pnlEmployeesButtons.setOpaque(false);
 
@@ -541,7 +588,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(btnEmployeesDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEmployeesList)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         pnlEmployeesButtonsLayout.setVerticalGroup(
             pnlEmployeesButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -556,8 +603,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        dlgAdminEmployees.getContentPane().add(pnlEmployeesButtons);
-        pnlEmployeesButtons.setBounds(0, 30, 640, 90);
+        dlgAdminEmployees.getContentPane().add(pnlEmployeesButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
         tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -573,8 +619,7 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelEmployeesTable.setViewportView(tblEmployees);
         tblEmployees.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        dlgAdminEmployees.getContentPane().add(scrollPanelEmployeesTable);
-        scrollPanelEmployeesTable.setBounds(460, 140, 870, 410);
+        dlgAdminEmployees.getContentPane().add(scrollPanelEmployeesTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 870, 410));
 
         btnEmployeesBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEmployeesBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
@@ -590,12 +635,14 @@ public class frmAdministration extends javax.swing.JFrame {
                 btnEmployeesBackActionPerformed(evt);
             }
         });
-        dlgAdminEmployees.getContentPane().add(btnEmployeesBack);
-        btnEmployeesBack.setBounds(1220, 605, 120, 120);
+        dlgAdminEmployees.getContentPane().add(btnEmployeesBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, -1));
+
+        lblEmployeesTitle.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
+        lblEmployeesTitle.setText("Administrar Empleados");
+        dlgAdminEmployees.getContentPane().add(lblEmployeesTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 350, 50));
 
         lblEmployeesBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
-        dlgAdminEmployees.getContentPane().add(lblEmployeesBackgroundDialog);
-        lblEmployeesBackgroundDialog.setBounds(0, 0, 1380, 740);
+        dlgAdminEmployees.getContentPane().add(lblEmployeesBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 740));
 
         dlgAdminProducts.setTitle("Administrar Productos");
         dlgAdminProducts.setMinimumSize(new java.awt.Dimension(1382, 744));
@@ -605,7 +652,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 dlgAdminProductsWindowClosing(evt);
             }
         });
-        dlgAdminProducts.getContentPane().setLayout(null);
+        dlgAdminProducts.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         barProductsMenu.setRollover(true);
 
@@ -620,8 +667,31 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         barProductsMenu.add(jButton2);
 
-        dlgAdminProducts.getContentPane().add(barProductsMenu);
-        barProductsMenu.setBounds(0, 0, 1290, 25);
+        dlgAdminProducts.getContentPane().add(barProductsMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 25));
+
+        tblProducts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Descripción", "Precio", "Notas"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollPanelProductsTable.setViewportView(tblProducts);
+        tblProducts.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        dlgAdminProducts.getContentPane().add(scrollPanelProductsTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 640, 410));
 
         pnlProductsButtons.setOpaque(false);
 
@@ -734,35 +804,9 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        dlgAdminProducts.getContentPane().add(pnlProductsButtons);
-        pnlProductsButtons.setBounds(0, 30, 640, 90);
+        dlgAdminProducts.getContentPane().add(pnlProductsButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
-        tblProducts.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "Descripción", "Precio", "Notas"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        scrollPanelProductsTable.setViewportView(tblProducts);
-        tblProducts.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        dlgAdminProducts.getContentPane().add(scrollPanelProductsTable);
-        scrollPanelProductsTable.setBounds(640, 122, 640, 410);
-
-        pnlProducts2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlProducts2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlProducts2.setOpaque(false);
 
         txtProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -855,8 +899,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addGap(61, 61, 61))
         );
 
-        dlgAdminProducts.getContentPane().add(pnlProducts2);
-        pnlProducts2.setBounds(0, 120, 410, 470);
+        dlgAdminProducts.getContentPane().add(pnlProducts2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 410, 470));
 
         btnProductsBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnProductsBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
@@ -872,12 +915,14 @@ public class frmAdministration extends javax.swing.JFrame {
                 btnProductsBackActionPerformed(evt);
             }
         });
-        dlgAdminProducts.getContentPane().add(btnProductsBack);
-        btnProductsBack.setBounds(1220, 605, 120, 120);
+        dlgAdminProducts.getContentPane().add(btnProductsBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, -1));
+
+        lblProductsTitle.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
+        lblProductsTitle.setText("Administrar Productos");
+        dlgAdminProducts.getContentPane().add(lblProductsTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 350, 50));
 
         lblProductsBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
-        dlgAdminProducts.getContentPane().add(lblProductsBackgroundDialog);
-        lblProductsBackgroundDialog.setBounds(-10, 0, 1390, 770);
+        dlgAdminProducts.getContentPane().add(lblProductsBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 770));
 
         dlgAdminCustomers.setTitle("Administrar Clientes");
         dlgAdminCustomers.setMinimumSize(new java.awt.Dimension(1382, 744));
@@ -887,9 +932,9 @@ public class frmAdministration extends javax.swing.JFrame {
                 dlgAdminCustomersWindowClosing(evt);
             }
         });
-        dlgAdminCustomers.getContentPane().setLayout(null);
+        dlgAdminCustomers.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlCustomersDates.setOpaque(false);
 
         lbCustomersDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -940,9 +985,9 @@ public class frmAdministration extends javax.swing.JFrame {
         lblCustomersTown.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersTown.setText("Municipio");
 
-        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
+        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
 
-        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
+        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
 
         lblPhone.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblPhone.setText("Teléfono");
@@ -960,56 +1005,46 @@ public class frmAdministration extends javax.swing.JFrame {
         pnlCustomersDatesLayout.setHorizontalGroup(
             pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(lblCustomersTown)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbCustomersTown, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCustomersDatesLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(lblCustomersLastName)
+                        .addGap(52, 52, 52)
+                        .addComponent(txtCustomersLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(lblCustomersCity)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                         .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCustomersName)
+                            .addComponent(lbCustomersDocument))
+                        .addGap(61, 61, 61)
+                        .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCustomersDocument)
+                            .addComponent(txtCustomersName)))
+                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(lblCustomersLastName)
-                                .addGap(52, 52, 52)
-                                .addComponent(txtCustomersLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblCustomersAddress)
+                                .addGap(50, 50, 50)
+                                .addComponent(txtCustomerssAddress))
                             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                                .addGap(45, 45, 45)
+                                .addGap(1, 1, 1)
                                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCustomersName)
-                                    .addComponent(lbCustomersDocument))
-                                .addGap(61, 61, 61)
-                                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCustomersDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCustomersName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lblCustomersTown)
+                                    .addComponent(lblCustomersCity)
+                                    .addComponent(lblPhone)
+                                    .addComponent(lblCustomersNotes))
+                                .addGap(5, 5, 5)
+                                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbCustomersTown, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(scrollNotes1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                                    .addComponent(txtCustomersPhone)))
                             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCustomersDatesLayout.createSequentialGroup()
-                                        .addComponent(lblCustomersNeighborhood)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCustomersDatesLayout.createSequentialGroup()
-                                        .addComponent(lblCustomersAddress)
-                                        .addGap(50, 50, 50)
-                                        .addComponent(txtCustomerssAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(5, 5, 5))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCustomersDatesLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCustomersNotes)
-                    .addComponent(lblPhone))
-                .addGap(59, 59, 59)
-                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scrollNotes1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                    .addComponent(txtCustomersPhone))
-                .addContainerGap())
+                                .addComponent(lblCustomersNeighborhood)
+                                .addGap(78, 78, 78)
+                                .addComponent(txtCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(214, 214, 214))
         );
         pnlCustomersDatesLayout.setVerticalGroup(
             pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1036,11 +1071,14 @@ public class frmAdministration extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(lblCustomersAddress))
                     .addComponent(txtCustomerssAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCustomersNeighborhood)
-                    .addComponent(txtCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(lblCustomersNeighborhood))
+                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomersTown)
                     .addComponent(cbCustomersTown, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1048,21 +1086,18 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomersCity)
                     .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPhone)
                     .addComponent(txtCustomersPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblCustomersNotes))
+                    .addComponent(lblCustomersNotes)
                     .addComponent(scrollNotes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        dlgAdminCustomers.getContentPane().add(pnlCustomersDates);
-        pnlCustomersDates.setBounds(0, 120, 380, 590);
+        dlgAdminCustomers.getContentPane().add(pnlCustomersDates, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 460, -1));
 
         barCustomersMenu.setRollover(true);
 
@@ -1077,8 +1112,23 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         barCustomersMenu.add(jButton3);
 
-        dlgAdminCustomers.getContentPane().add(barCustomersMenu);
-        barCustomersMenu.setBounds(0, 0, 1290, 25);
+        dlgAdminCustomers.getContentPane().add(barCustomersMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 25));
+
+        tblCustomers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellidos", "Dirección", "Puesto", "Teléfono", "Id local", "Notas"
+            }
+        ));
+        scrollPanelCustomersTable.setViewportView(tblCustomers);
+        tblCustomers.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        dlgAdminCustomers.getContentPane().add(scrollPanelCustomersTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 870, 410));
 
         pnlCustomersButtons.setOpaque(false);
 
@@ -1149,7 +1199,7 @@ public class frmAdministration extends javax.swing.JFrame {
 
         btnCustomersList.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCustomersList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnList.png"))); // NOI18N
-        btnCustomersList.setText("Listar Emp");
+        btnCustomersList.setText("Listar ");
         btnCustomersList.setToolTipText("Listar todos los empleados en la empresa");
         btnCustomersList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCustomersList.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -1176,7 +1226,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(btnCustomersDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCustomersList)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         pnlCustomersButtonsLayout.setVerticalGroup(
             pnlCustomersButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1191,25 +1241,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        dlgAdminCustomers.getContentPane().add(pnlCustomersButtons);
-        pnlCustomersButtons.setBounds(0, 30, 640, 90);
-
-        tblCustomers.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Cédula", "Nombre", "Apellidos", "Dirección", "Puesto", "Teléfono", "Id local", "Notas"
-            }
-        ));
-        scrollPanelCustomersTable.setViewportView(tblCustomers);
-        tblCustomers.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        dlgAdminCustomers.getContentPane().add(scrollPanelCustomersTable);
-        scrollPanelCustomersTable.setBounds(410, 122, 870, 410);
+        dlgAdminCustomers.getContentPane().add(pnlCustomersButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
         btnCustomersBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCustomersBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
@@ -1225,330 +1257,18 @@ public class frmAdministration extends javax.swing.JFrame {
                 btnCustomersBackActionPerformed(evt);
             }
         });
-        dlgAdminCustomers.getContentPane().add(btnCustomersBack);
-        btnCustomersBack.setBounds(1220, 605, 120, 115);
+        dlgAdminCustomers.getContentPane().add(btnCustomersBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, -1));
+
+        lblCustomersTitle.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
+        lblCustomersTitle.setText("Administrar Clientes");
+        dlgAdminCustomers.getContentPane().add(lblCustomersTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 350, 50));
 
         lblCustomerssBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
-        dlgAdminCustomers.getContentPane().add(lblCustomerssBackgroundDialog);
-        lblCustomerssBackgroundDialog.setBounds(-10, 0, 1330, 710);
-
-        dlgAdminLocal.setTitle("Administrar Locales");
-        dlgAdminLocal.setMinimumSize(new java.awt.Dimension(1382, 744));
-        dlgAdminLocal.setSize(new java.awt.Dimension(1382, 744));
-        dlgAdminLocal.addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                dlgAdminLocalWindowClosing(evt);
-            }
-        });
-        dlgAdminLocal.getContentPane().setLayout(null);
-
-        pnlLocals.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
-        pnlLocals.setOpaque(false);
-
-        txtLocalsNameL.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtLocalsNameL.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        lblLocalsyNit.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        lblLocalsyNit.setText("Nit");
-
-        lblLocalsName.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        lblLocalsName.setText("Nombre local");
-
-        txtLocalsAddress.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtLocalsAddress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtLocalsAddress.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtLocalsAddressKeyTyped(evt);
-            }
-        });
-
-        lblLocalsAddress.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        lblLocalsAddress.setText("Dirección");
-
-        lblLocalsNeighborhood.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        lblLocalsNeighborhood.setText("Barrio");
-
-        txtLocalsNit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtLocalsNit.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtLocalsNit.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtLocalsNitKeyTyped(evt);
-            }
-        });
-
-        txtLocalsNeighborhood.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtLocalsNeighborhood.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtLocalsNeighborhood.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtLocalsNeighborhoodKeyTyped(evt);
-            }
-        });
-
-        lblLocalsTown.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        lblLocalsTown.setText("Municipio");
-
-        lblLocalsCity.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        lblLocalsCity.setText("Departamento");
-
-        cbLocalsTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
-
-        cbLocalsCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
-
-        javax.swing.GroupLayout pnlLocalsLayout = new javax.swing.GroupLayout(pnlLocals);
-        pnlLocals.setLayout(pnlLocalsLayout);
-        pnlLocalsLayout.setHorizontalGroup(
-            pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLocalsLayout.createSequentialGroup()
-                .addGroup(pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlLocalsLayout.createSequentialGroup()
-                        .addGroup(pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlLocalsLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblLocalsCity))
-                            .addGroup(pnlLocalsLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblLocalsTown)))
-                        .addGap(73, 73, 73))
-                    .addGroup(pnlLocalsLayout.createSequentialGroup()
-                        .addContainerGap(107, Short.MAX_VALUE)
-                        .addGroup(pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(pnlLocalsLayout.createSequentialGroup()
-                                .addComponent(lblLocalsNeighborhood)
-                                .addGap(80, 80, 80))
-                            .addComponent(txtLocalsNit, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLocalsNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlLocalsLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbLocalsCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbLocalsTown, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLocalsNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLocalsAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(97, 97, 97))
-            .addGroup(pnlLocalsLayout.createSequentialGroup()
-                .addGroup(pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlLocalsLayout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(lblLocalsName))
-                    .addGroup(pnlLocalsLayout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(lblLocalsAddress))
-                    .addGroup(pnlLocalsLayout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(lblLocalsyNit)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlLocalsLayout.setVerticalGroup(
-            pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLocalsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblLocalsyNit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtLocalsNit, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(lblLocalsName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtLocalsNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblLocalsAddress)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtLocalsAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblLocalsNeighborhood)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtLocalsNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblLocalsTown)
-                .addGap(5, 5, 5)
-                .addComponent(cbLocalsTown, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblLocalsCity)
-                .addGap(18, 18, 18)
-                .addComponent(cbLocalsCity, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
-
-        dlgAdminLocal.getContentPane().add(pnlLocals);
-        pnlLocals.setBounds(30, 120, 410, 580);
-
-        barLocalMenu.setRollover(true);
-
-        jButton4.setText("Archivo");
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        barLocalMenu.add(jButton4);
-
-        dlgAdminLocal.getContentPane().add(barLocalMenu);
-        barLocalMenu.setBounds(0, 0, 1290, 25);
-
-        pnlLocalsButtons.setOpaque(false);
-
-        btnLocalsEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnLocalsEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnEdit.png"))); // NOI18N
-        btnLocalsEdit.setText("Modificar");
-        btnLocalsEdit.setToolTipText("Modificar el empleado con los datos que aparecen en las cajas de texto");
-        btnLocalsEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLocalsEdit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocalsEditActionPerformed(evt);
-            }
-        });
-
-        btnLocalsDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnLocalsDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnDelete.png"))); // NOI18N
-        btnLocalsDelete.setText("Eliminar");
-        btnLocalsDelete.setToolTipText("Eliminar un empleado");
-        btnLocalsDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLocalsDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocalsDeleteActionPerformed(evt);
-            }
-        });
-
-        btnLocalsInsert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnLocalsInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSave.png"))); // NOI18N
-        btnLocalsInsert.setText("Insertar");
-        btnLocalsInsert.setToolTipText("Ingresar un nuevo empleado");
-        btnLocalsInsert.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLocalsInsert.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsInsert.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsInsert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocalsInsertActionPerformed(evt);
-            }
-        });
-
-        btnLocalsSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnLocalsSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSearch.png"))); // NOI18N
-        btnLocalsSearch.setText("Consultar");
-        btnLocalsSearch.setToolTipText("Buscar un empleado por número de cédula");
-        btnLocalsSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLocalsSearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocalsSearchActionPerformed(evt);
-            }
-        });
-
-        btnLocalsNew.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnLocalsNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnNew.png"))); // NOI18N
-        btnLocalsNew.setText("Nuevo");
-        btnLocalsNew.setToolTipText("Limpiar las cajas de texto para crear un nuevo empleado");
-        btnLocalsNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLocalsNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocalsNewActionPerformed(evt);
-            }
-        });
-
-        btnLocalsList.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnLocalsList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnList.png"))); // NOI18N
-        btnLocalsList.setText("Listar Locales");
-        btnLocalsList.setToolTipText("Listar todos los empleados en la empresa");
-        btnLocalsList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLocalsList.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsList.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocalsListActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlLocalsButtonsLayout = new javax.swing.GroupLayout(pnlLocalsButtons);
-        pnlLocalsButtons.setLayout(pnlLocalsButtonsLayout);
-        pnlLocalsButtonsLayout.setHorizontalGroup(
-            pnlLocalsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLocalsButtonsLayout.createSequentialGroup()
-                .addComponent(btnLocalsNew)
-                .addGap(3, 3, 3)
-                .addComponent(btnLocalsInsert)
-                .addGap(3, 3, 3)
-                .addComponent(btnLocalsSearch)
-                .addGap(3, 3, 3)
-                .addComponent(btnLocalsEdit)
-                .addGap(3, 3, 3)
-                .addComponent(btnLocalsDelete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLocalsList)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlLocalsButtonsLayout.setVerticalGroup(
-            pnlLocalsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLocalsButtonsLayout.createSequentialGroup()
-                .addGroup(pnlLocalsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLocalsNew, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLocalsInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLocalsSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLocalsEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLocalsDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLocalsList, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        dlgAdminLocal.getContentPane().add(pnlLocalsButtons);
-        pnlLocalsButtons.setBounds(0, 30, 640, 90);
-
-        tblLocals.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "Descripción", "Precio", "Notas"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        scrollPanelLocalsTable.setViewportView(tblLocals);
-        tblLocals.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        dlgAdminLocal.getContentPane().add(scrollPanelLocalsTable);
-        scrollPanelLocalsTable.setBounds(640, 122, 640, 410);
-
-        btnLocalsBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnLocalsBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
-        btnLocalsBack.setText("Volver");
-        btnLocalsBack.setBorderPainted(false);
-        btnLocalsBack.setContentAreaFilled(false);
-        btnLocalsBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLocalsBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLocalsBack.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsBack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLocalsBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocalsBackActionPerformed(evt);
-            }
-        });
-        dlgAdminLocal.getContentPane().add(btnLocalsBack);
-        btnLocalsBack.setBounds(1220, 605, 120, 120);
-
-        lblLocalsBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
-        dlgAdminLocal.getContentPane().add(lblLocalsBackgroundDialog);
-        lblLocalsBackgroundDialog.setBounds(-10, 0, 1390, 740);
+        dlgAdminCustomers.getContentPane().add(lblCustomerssBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1380, 730));
 
         dlgAdminAdditionalProducts.setTitle("Administrar Productos adicionales");
         dlgAdminAdditionalProducts.setMinimumSize(new java.awt.Dimension(1382, 744));
+        dlgAdminAdditionalProducts.setPreferredSize(new java.awt.Dimension(1382, 744));
         dlgAdminAdditionalProducts.setSize(new java.awt.Dimension(1382, 744));
         dlgAdminAdditionalProducts.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -1669,7 +1389,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(btnAdditionalProductsDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdditionalProductsList)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlAdditionalProductsButtonsLayout.setVerticalGroup(
             pnlAdditionalProductsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1712,7 +1432,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminAdditionalProducts.getContentPane().add(scrollPanelAdditionalProductsTable);
         scrollPanelAdditionalProductsTable.setBounds(640, 122, 640, 410);
 
-        pnlAdditionalProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlAdditionalProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlAdditionalProducts.setOpaque(false);
 
         txtAdditionalProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -1825,13 +1545,331 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminAdditionalProducts.getContentPane().add(btnAdditionalProductsBack);
         btnAdditionalProductsBack.setBounds(1220, 605, 120, 120);
 
+        lblAdditionalProductsTitle.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
+        lblAdditionalProductsTitle.setText("Administrar Productos adicionales");
+        dlgAdminAdditionalProducts.getContentPane().add(lblAdditionalProductsTitle);
+        lblAdditionalProductsTitle.setBounds(640, 60, 500, 50);
+
         lblAdditionalProductsBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         dlgAdminAdditionalProducts.getContentPane().add(lblAdditionalProductsBackgroundDialog);
         lblAdditionalProductsBackgroundDialog.setBounds(-10, 0, 1390, 770);
 
+        dlgAdminLocal.setTitle("Administrar Locales");
+        dlgAdminLocal.setMinimumSize(new java.awt.Dimension(1382, 744));
+        dlgAdminLocal.setSize(new java.awt.Dimension(1382, 744));
+        dlgAdminLocal.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                dlgAdminLocalWindowClosing(evt);
+            }
+        });
+        dlgAdminLocal.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlLocals.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlLocals.setOpaque(false);
+
+        txtLocalsNameL.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtLocalsNameL.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lblLocalsyNit.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblLocalsyNit.setText("Nit");
+
+        lblLocalsName.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblLocalsName.setText("Nombre local");
+
+        txtLocalsAddress.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtLocalsAddress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtLocalsAddress.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLocalsAddressKeyTyped(evt);
+            }
+        });
+
+        lblLocalsAddress.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblLocalsAddress.setText("Dirección");
+
+        lblLocalsNeighborhood.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblLocalsNeighborhood.setText("Barrio");
+
+        txtLocalsNit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtLocalsNit.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtLocalsNit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLocalsNitKeyTyped(evt);
+            }
+        });
+
+        txtLocalsNeighborhood.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtLocalsNeighborhood.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtLocalsNeighborhood.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLocalsNeighborhoodKeyTyped(evt);
+            }
+        });
+
+        lblLocalsTown.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblLocalsTown.setText("Municipio");
+
+        lblLocalsCity.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblLocalsCity.setText("Departamento");
+
+        cbLocalsTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
+
+        cbLocalsCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
+
+        javax.swing.GroupLayout pnlLocalsLayout = new javax.swing.GroupLayout(pnlLocals);
+        pnlLocals.setLayout(pnlLocalsLayout);
+        pnlLocalsLayout.setHorizontalGroup(
+            pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLocalsLayout.createSequentialGroup()
+                .addGroup(pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlLocalsLayout.createSequentialGroup()
+                        .addGap(183, 183, 183)
+                        .addComponent(lblLocalsyNit))
+                    .addGroup(pnlLocalsLayout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(lblLocalsCity)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLocalsLayout.createSequentialGroup()
+                .addContainerGap(107, Short.MAX_VALUE)
+                .addGroup(pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlLocalsLayout.createSequentialGroup()
+                        .addComponent(lblLocalsNeighborhood)
+                        .addGap(80, 80, 80))
+                    .addComponent(txtLocalsNit, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97))
+            .addGroup(pnlLocalsLayout.createSequentialGroup()
+                .addGroup(pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlLocalsLayout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(lblLocalsName))
+                    .addGroup(pnlLocalsLayout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(lblLocalsAddress))
+                    .addGroup(pnlLocalsLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLocalsAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLocalsNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLocalsNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlLocalsLayout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(lblLocalsTown))
+                    .addGroup(pnlLocalsLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addGroup(pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbLocalsCity, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbLocalsTown, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        pnlLocalsLayout.setVerticalGroup(
+            pnlLocalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLocalsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblLocalsyNit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtLocalsNit, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(lblLocalsName)
+                .addGap(18, 18, 18)
+                .addComponent(txtLocalsNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblLocalsAddress)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtLocalsAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblLocalsNeighborhood)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtLocalsNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(lblLocalsTown)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbLocalsTown, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblLocalsCity)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbLocalsCity, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        dlgAdminLocal.getContentPane().add(pnlLocals, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+
+        barLocalMenu.setRollover(true);
+
+        jButton4.setText("Archivo");
+        jButton4.setFocusable(false);
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        barLocalMenu.add(jButton4);
+
+        dlgAdminLocal.getContentPane().add(barLocalMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 25));
+
+        pnlLocalsButtons.setOpaque(false);
+
+        btnLocalsEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLocalsEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnEdit.png"))); // NOI18N
+        btnLocalsEdit.setText("Modificar");
+        btnLocalsEdit.setToolTipText("Modificar el empleado con los datos que aparecen en las cajas de texto");
+        btnLocalsEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLocalsEdit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocalsEditActionPerformed(evt);
+            }
+        });
+
+        btnLocalsDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLocalsDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnDelete.png"))); // NOI18N
+        btnLocalsDelete.setText("Eliminar");
+        btnLocalsDelete.setToolTipText("Eliminar un empleado");
+        btnLocalsDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLocalsDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocalsDeleteActionPerformed(evt);
+            }
+        });
+
+        btnLocalsInsert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLocalsInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSave.png"))); // NOI18N
+        btnLocalsInsert.setText("Insertar");
+        btnLocalsInsert.setToolTipText("Ingresar un nuevo empleado");
+        btnLocalsInsert.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLocalsInsert.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsInsert.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocalsInsertActionPerformed(evt);
+            }
+        });
+
+        btnLocalsSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLocalsSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSearch.png"))); // NOI18N
+        btnLocalsSearch.setText("Consultar");
+        btnLocalsSearch.setToolTipText("Buscar un empleado por número de cédula");
+        btnLocalsSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLocalsSearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocalsSearchActionPerformed(evt);
+            }
+        });
+
+        btnLocalsNew.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLocalsNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnNew.png"))); // NOI18N
+        btnLocalsNew.setText("Nuevo");
+        btnLocalsNew.setToolTipText("Limpiar las cajas de texto para crear un nuevo empleado");
+        btnLocalsNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLocalsNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocalsNewActionPerformed(evt);
+            }
+        });
+
+        btnLocalsList.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLocalsList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnList.png"))); // NOI18N
+        btnLocalsList.setText("Listar Locales");
+        btnLocalsList.setToolTipText("Listar todos los empleados en la empresa");
+        btnLocalsList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLocalsList.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsList.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocalsListActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlLocalsButtonsLayout = new javax.swing.GroupLayout(pnlLocalsButtons);
+        pnlLocalsButtons.setLayout(pnlLocalsButtonsLayout);
+        pnlLocalsButtonsLayout.setHorizontalGroup(
+            pnlLocalsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLocalsButtonsLayout.createSequentialGroup()
+                .addComponent(btnLocalsNew)
+                .addGap(3, 3, 3)
+                .addComponent(btnLocalsInsert)
+                .addGap(3, 3, 3)
+                .addComponent(btnLocalsSearch)
+                .addGap(3, 3, 3)
+                .addComponent(btnLocalsEdit)
+                .addGap(3, 3, 3)
+                .addComponent(btnLocalsDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLocalsList)
+                .addContainerGap(122, Short.MAX_VALUE))
+        );
+        pnlLocalsButtonsLayout.setVerticalGroup(
+            pnlLocalsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLocalsButtonsLayout.createSequentialGroup()
+                .addGroup(pnlLocalsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLocalsNew, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLocalsInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLocalsSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLocalsEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLocalsDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLocalsList, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        dlgAdminLocal.getContentPane().add(pnlLocalsButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+
+        tblLocals.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Descripción", "Precio", "Notas"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollPanelLocalsTable.setViewportView(tblLocals);
+        tblLocals.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        dlgAdminLocal.getContentPane().add(scrollPanelLocalsTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 640, 410));
+
+        btnLocalsBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLocalsBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        btnLocalsBack.setText("Volver");
+        btnLocalsBack.setBorderPainted(false);
+        btnLocalsBack.setContentAreaFilled(false);
+        btnLocalsBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLocalsBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLocalsBack.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsBack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLocalsBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocalsBackActionPerformed(evt);
+            }
+        });
+        dlgAdminLocal.getContentPane().add(btnLocalsBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, -1));
+
+        lblLocalsTitle.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
+        lblLocalsTitle.setText("Administrar Locales");
+        dlgAdminLocal.getContentPane().add(lblLocalsTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 350, 50));
+
+        lblLocalsBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
+        dlgAdminLocal.getContentPane().add(lblLocalsBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 740));
+
         dlgSelectProducts.setTitle("Seleccionar tipo de producto a administrar");
         dlgSelectProducts.setMinimumSize(new java.awt.Dimension(702, 449));
-        dlgSelectProducts.setModal(true);
         dlgSelectProducts.setResizable(false);
         dlgSelectProducts.setSize(new java.awt.Dimension(702, 449));
 
@@ -1888,6 +1926,293 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(pnlSelectAdminProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
+
+        dlgAdminUsers.setTitle("Administrar Productos");
+        dlgAdminUsers.setMinimumSize(new java.awt.Dimension(1382, 744));
+        dlgAdminUsers.setSize(new java.awt.Dimension(1382, 744));
+        dlgAdminUsers.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                dlgAdminUsersWindowClosing(evt);
+            }
+        });
+        dlgAdminUsers.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        barUsersMenu.setRollover(true);
+
+        jButton6.setText("Archivo");
+        jButton6.setFocusable(false);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        barUsersMenu.add(jButton6);
+
+        dlgAdminUsers.getContentPane().add(barUsersMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 25));
+
+        tblUsers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Usuario", "Contraseña", "Descripción", "Fecha de registo", "Fecha de último ingreso", "Es administrador ?"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollPanelUsersTable.setViewportView(tblUsers);
+        tblUsers.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        dlgAdminUsers.getContentPane().add(scrollPanelUsersTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 640, 410));
+
+        pnlUsersButtons.setOpaque(false);
+
+        btnUsersEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUsersEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnEdit.png"))); // NOI18N
+        btnUsersEdit.setText("Modificar");
+        btnUsersEdit.setToolTipText("Modificar el empleado con los datos que aparecen en las cajas de texto");
+        btnUsersEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUsersEdit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnUsersEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUsersEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsersEditActionPerformed(evt);
+            }
+        });
+
+        btnUsersDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUsersDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnDelete.png"))); // NOI18N
+        btnUsersDelete.setText("Eliminar");
+        btnUsersDelete.setToolTipText("Eliminar un empleado");
+        btnUsersDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUsersDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnUsersDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUsersDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsersDeleteActionPerformed(evt);
+            }
+        });
+
+        btnUsersInsert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUsersInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSave.png"))); // NOI18N
+        btnUsersInsert.setText("Insertar");
+        btnUsersInsert.setToolTipText("Ingresar un nuevo empleado");
+        btnUsersInsert.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUsersInsert.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnUsersInsert.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUsersInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsersInsertActionPerformed(evt);
+            }
+        });
+
+        btnUsersSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUsersSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSearch.png"))); // NOI18N
+        btnUsersSearch.setText("Consultar");
+        btnUsersSearch.setToolTipText("Buscar un empleado por número de cédula");
+        btnUsersSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUsersSearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnUsersSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUsersSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsersSearchActionPerformed(evt);
+            }
+        });
+
+        btnUersNew.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUersNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnNew.png"))); // NOI18N
+        btnUersNew.setText("Nuevo");
+        btnUersNew.setToolTipText("Limpiar las cajas de texto para crear un nuevo empleado");
+        btnUersNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUersNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnUersNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUersNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUersNewActionPerformed(evt);
+            }
+        });
+
+        btnUsersList.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUsersList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnList.png"))); // NOI18N
+        btnUsersList.setText("Listar Usuarios");
+        btnUsersList.setToolTipText("Listar todos los empleados en la empresa");
+        btnUsersList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUsersList.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnUsersList.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUsersList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsersListActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlUsersButtonsLayout = new javax.swing.GroupLayout(pnlUsersButtons);
+        pnlUsersButtons.setLayout(pnlUsersButtonsLayout);
+        pnlUsersButtonsLayout.setHorizontalGroup(
+            pnlUsersButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsersButtonsLayout.createSequentialGroup()
+                .addComponent(btnUersNew)
+                .addGap(3, 3, 3)
+                .addComponent(btnUsersInsert)
+                .addGap(3, 3, 3)
+                .addComponent(btnUsersSearch)
+                .addGap(3, 3, 3)
+                .addComponent(btnUsersEdit)
+                .addGap(3, 3, 3)
+                .addComponent(btnUsersDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUsersList)
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
+        pnlUsersButtonsLayout.setVerticalGroup(
+            pnlUsersButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsersButtonsLayout.createSequentialGroup()
+                .addGroup(pnlUsersButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUersNew, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUsersInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUsersSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUsersEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUsersDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUsersList, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        dlgAdminUsers.getContentPane().add(pnlUsersButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+
+        pnlUsers.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlUsers.setOpaque(false);
+
+        txtUsersNameUser.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtUsersNameUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lblUsersNameUser.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblUsersNameUser.setText("Nombre de Usuario");
+
+        lblUsersPassword.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblUsersPassword.setText("Contraseña");
+
+        lblProductsNotes1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblProductsNotes1.setText("Notas");
+
+        txtUsersNotes.setColumns(20);
+        txtUsersNotes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtUsersNotes.setLineWrap(true);
+        txtUsersNotes.setRows(5);
+        scrolProductslNotes3.setViewportView(txtUsersNotes);
+
+        lblUsersPassword1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblUsersPassword1.setText("Repetir contraseña");
+
+        txtUsersPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtUersRepeatPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        cboUsersIsAdmin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Si", "No" }));
+        cboUsersIsAdmin.setSelectedIndex(1);
+        cboUsersIsAdmin.setToolTipText("El usuario puede administrar ?");
+
+        lblUsersIsAdmin.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lblUsersIsAdmin.setText("¿Es administrador?");
+
+        javax.swing.GroupLayout pnlUsersLayout = new javax.swing.GroupLayout(pnlUsers);
+        pnlUsers.setLayout(pnlUsersLayout);
+        pnlUsersLayout.setHorizontalGroup(
+            pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsersLayout.createSequentialGroup()
+                .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrolProductslNotes3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addGroup(pnlUsersLayout.createSequentialGroup()
+                        .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlUsersLayout.createSequentialGroup()
+                                .addGap(167, 167, 167)
+                                .addComponent(lblProductsNotes1))
+                            .addGroup(pnlUsersLayout.createSequentialGroup()
+                                .addGap(99, 99, 99)
+                                .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtUsersPassword)
+                                    .addComponent(txtUsersNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUersRepeatPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(cboUsersIsAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(pnlUsersLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(lblUsersPassword)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlUsersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblUsersNameUser)
+                .addGap(115, 115, 115))
+            .addGroup(pnlUsersLayout.createSequentialGroup()
+                .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlUsersLayout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(lblUsersPassword1))
+                    .addGroup(pnlUsersLayout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(lblUsersIsAdmin)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlUsersLayout.setVerticalGroup(
+            pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblUsersNameUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUsersNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(lblUsersPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtUsersPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblUsersPassword1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtUersRepeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(lblUsersIsAdmin)
+                .addGap(18, 18, 18)
+                .addComponent(cboUsersIsAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblProductsNotes1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scrolProductslNotes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        dlgAdminUsers.getContentPane().add(pnlUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 410, 580));
+
+        btnProductsBack1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnProductsBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        btnProductsBack1.setText("Volver");
+        btnProductsBack1.setBorderPainted(false);
+        btnProductsBack1.setContentAreaFilled(false);
+        btnProductsBack1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProductsBack1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProductsBack1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnProductsBack1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProductsBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductsBack1ActionPerformed(evt);
+            }
+        });
+        dlgAdminUsers.getContentPane().add(btnProductsBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, -1));
+
+        lblUsersTitle.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
+        lblUsersTitle.setText("Administrar Productos");
+        dlgAdminUsers.getContentPane().add(lblUsersTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 350, 50));
+
+        lblUsersBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
+        dlgAdminUsers.getContentPane().add(lblUsersBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 770));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrar");
@@ -2189,7 +2514,7 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProductsListActionPerformed
 
     private void btnAdminProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminProductsActionPerformed
-        
+
         dlgSelectProducts.setVisible(true);
 
     }//GEN-LAST:event_btnAdminProductsActionPerformed
@@ -2559,8 +2884,74 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSelectAdminAdditionsActionPerformed
 
     private void btnAdminPasswordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPasswordsActionPerformed
-        // TODO add your handling code here:
+        dlgAdminUsers.setVisible(true);
     }//GEN-LAST:event_btnAdminPasswordsActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btnUsersEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUsersEditActionPerformed
+
+    private void btnUsersDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUsersDeleteActionPerformed
+
+    private void btnUsersInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersInsertActionPerformed
+       loadSetValuesUsers();
+        if (users.insert()) {
+            JOptionPane.showMessageDialog(dlgAdminUsers, "Se insertó el usuario correctamente");
+            if (tblUsers.isVisible()) {
+                tblUsers.setModel(users.list());
+            }
+        } else {
+            JOptionPane.showMessageDialog(dlgAdminLocal, "No sé insertó el usuario");
+        }
+    }//GEN-LAST:event_btnUsersInsertActionPerformed
+
+    private void btnUsersSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersSearchActionPerformed
+         try {
+            users = new clsDAOUsers();
+            ResultSet result;
+            String search = JOptionPane.showInputDialog("Por favor ingrese el nombre de usuario a buscar");
+            users.setSearch(search);
+            result = users.search();
+            if (result != null) {
+                usersname = result.getString(1);
+                txtUsersPassword.setText(result.getString(2));
+                txtUersRepeatPassword.setText(result.getString(2));
+                txtUsersNotes.setText(result.getString(3));
+                
+            } else {
+                JOptionPane.showMessageDialog(dlgAdminUsers, "El usuario no existe, por favor verifique que el nombre de usuario esté bien escrito.");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(frmAdministration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUsersSearchActionPerformed
+
+    private void btnUersNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUersNewActionPerformed
+        cleanTextboxUsers();
+    }//GEN-LAST:event_btnUersNewActionPerformed
+
+    private void btnUsersListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersListActionPerformed
+        users = new clsDAOUsers();
+        tblUsers.setModel(users.list());
+        scrollPanelUsersTable.setVisible(true);
+        tblUsers.setVisible(true);
+        
+    }//GEN-LAST:event_btnUsersListActionPerformed
+
+    private void btnProductsBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsBack1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProductsBack1ActionPerformed
+
+    private void dlgAdminUsersWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminUsersWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dlgAdminUsersWindowClosing
 
     /**
      * Método que solo admite números y una longitud máxima de 8 caracteres.
@@ -2647,6 +3038,16 @@ public class frmAdministration extends javax.swing.JFrame {
     }
 
     /**
+     * Limpia todas las cajas de texto del JDialog de usuarios, cambia cualquier
+     * valor que tengan por vacío
+     */
+    public void cleanTextboxUsers() {
+        txtUsersNameUser.setText("");
+        txtUsersPassword.setText("");
+        txtUersRepeatPassword.setText("");
+    }
+
+    /**
      * Carga los valores de la clase employees con los valores que tienen las
      * cajas de texto del JDialog employees
      */
@@ -2729,6 +3130,23 @@ public class frmAdministration extends javax.swing.JFrame {
     }
 
     /**
+     * Carga los valores de la clase company con los valores que tienen las
+     * cajas de texto del JDialog local
+     */
+    public void loadSetValuesUsers() {
+        users = new clsDAOUsers();
+        users.setUser(txtUsersNameUser.getText());
+        users.setPasswordu(String.valueOf(txtUsersPassword.getPassword()));
+        users.setDescription(txtUsersNotes.getText());
+        if (cboUsersIsAdmin.getSelectedItem().equals("Si")) {
+            users.setIsAdmin(1);
+        }
+        if (cboUsersIsAdmin.getSelectedItem().equals("No")) {
+            users.setIsAdmin(0);
+        }
+    }
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -2769,6 +3187,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JToolBar barEmployeesMenu;
     private javax.swing.JToolBar barLocalMenu;
     private javax.swing.JToolBar barProductsMenu;
+    private javax.swing.JToolBar barUsersMenu;
     private javax.swing.JButton btnAdditionalProductsBack;
     private javax.swing.JButton btnAdditionalProductsDelete;
     private javax.swing.JButton btnAdditionalProductsEdit;
@@ -2804,6 +3223,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnLocalsNew;
     private javax.swing.JButton btnLocalsSearch;
     private javax.swing.JButton btnProductsBack;
+    private javax.swing.JButton btnProductsBack1;
     private javax.swing.JButton btnProductsDelete;
     private javax.swing.JButton btnProductsEdit;
     private javax.swing.JButton btnProductsInsert;
@@ -2812,28 +3232,38 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnProductsSearch;
     private javax.swing.JButton btnSelectAdminAdditions;
     private javax.swing.JButton btnSelectAdminProducts;
+    private javax.swing.JButton btnUersNew;
+    private javax.swing.JButton btnUsersDelete;
+    private javax.swing.JButton btnUsersEdit;
+    private javax.swing.JButton btnUsersInsert;
+    private javax.swing.JButton btnUsersList;
+    private javax.swing.JButton btnUsersSearch;
     private javax.swing.JComboBox<String> cbCustomersCity;
     private javax.swing.JComboBox<String> cbCustomersTown;
     private javax.swing.JComboBox<String> cbLocal;
     private javax.swing.JComboBox<String> cbLocalsCity;
     private javax.swing.JComboBox<String> cbLocalsTown;
+    private javax.swing.JComboBox cboUsersIsAdmin;
     private javax.swing.JDialog dlgAdminAdditionalProducts;
     private javax.swing.JDialog dlgAdminCustomers;
     private javax.swing.JDialog dlgAdminEmployees;
     private javax.swing.JDialog dlgAdminLocal;
     private javax.swing.JDialog dlgAdminProducts;
+    private javax.swing.JDialog dlgAdminUsers;
     private javax.swing.JDialog dlgSelectProducts;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel lbCustomersDocument;
     private javax.swing.JLabel lblAdditionalPrice;
     private javax.swing.JLabel lblAdditionalProductsBackgroundDialog;
     private javax.swing.JLabel lblAdditionalProductsDescription;
     private javax.swing.JLabel lblAdditionalProductsName;
     private javax.swing.JLabel lblAdditionalProductsNotes;
+    private javax.swing.JLabel lblAdditionalProductsTitle;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBackgroundAdmin;
     private javax.swing.JLabel lblCustomersAddress;
@@ -2842,12 +3272,14 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JLabel lblCustomersName;
     private javax.swing.JLabel lblCustomersNeighborhood;
     private javax.swing.JLabel lblCustomersNotes;
+    private javax.swing.JLabel lblCustomersTitle;
     private javax.swing.JLabel lblCustomersTown;
     private javax.swing.JLabel lblCustomerssBackgroundDialog;
     private javax.swing.JLabel lblEmployeesBackgroundDialog;
     private javax.swing.JLabel lblEmployeesDocument;
     private javax.swing.JLabel lblEmployeesLastName;
     private javax.swing.JLabel lblEmployeesName;
+    private javax.swing.JLabel lblEmployeesTitle;
     private javax.swing.JLabel lblJob;
     private javax.swing.JLabel lblLocal;
     private javax.swing.JLabel lblLocalsAddress;
@@ -2855,6 +3287,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JLabel lblLocalsCity;
     private javax.swing.JLabel lblLocalsName;
     private javax.swing.JLabel lblLocalsNeighborhood;
+    private javax.swing.JLabel lblLocalsTitle;
     private javax.swing.JLabel lblLocalsTown;
     private javax.swing.JLabel lblLocalsyNit;
     private javax.swing.JLabel lblNotes;
@@ -2865,6 +3298,14 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JLabel lblProductsDescription;
     private javax.swing.JLabel lblProductsName;
     private javax.swing.JLabel lblProductsNotes;
+    private javax.swing.JLabel lblProductsNotes1;
+    private javax.swing.JLabel lblProductsTitle;
+    private javax.swing.JLabel lblUsersBackgroundDialog;
+    private javax.swing.JLabel lblUsersIsAdmin;
+    private javax.swing.JLabel lblUsersNameUser;
+    private javax.swing.JLabel lblUsersPassword;
+    private javax.swing.JLabel lblUsersPassword1;
+    private javax.swing.JLabel lblUsersTitle;
     private javax.swing.JPanel pnlAdditionalProducts;
     private javax.swing.JPanel pnlAdditionalProductsButtons;
     private javax.swing.JPanel pnlCustomersButtons;
@@ -2876,10 +3317,13 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JPanel pnlProducts2;
     private javax.swing.JPanel pnlProductsButtons;
     private javax.swing.JPanel pnlSelectAdminProducts;
+    private javax.swing.JPanel pnlUsers;
+    private javax.swing.JPanel pnlUsersButtons;
     private javax.swing.JScrollPane scrolAdditionalProductDescription;
     private javax.swing.JScrollPane scrolAdditionalProductslNotes;
     private javax.swing.JScrollPane scrolProductDescription2;
     private javax.swing.JScrollPane scrolProductslNotes2;
+    private javax.swing.JScrollPane scrolProductslNotes3;
     private javax.swing.JScrollPane scrollNotes;
     private javax.swing.JScrollPane scrollNotes1;
     private javax.swing.JScrollPane scrollPanelAdditionalProductsTable;
@@ -2887,11 +3331,13 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollPanelEmployeesTable;
     private javax.swing.JScrollPane scrollPanelLocalsTable;
     private javax.swing.JScrollPane scrollPanelProductsTable;
+    private javax.swing.JScrollPane scrollPanelUsersTable;
     private javax.swing.JTable tblAdditionalProducts;
     private javax.swing.JTable tblCustomers;
     private javax.swing.JTable tblEmployees;
     private javax.swing.JTable tblLocals;
     private javax.swing.JTable tblProducts;
+    private javax.swing.JTable tblUsers;
     private javax.swing.JTextArea txtAdditionalProductsDescription;
     private javax.swing.JTextField txtAdditionalProductsName;
     private javax.swing.JTextArea txtAdditionalProductsNotes;
@@ -2918,5 +3364,9 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JTextField txtProductsName;
     private javax.swing.JTextArea txtProductsNotes;
     private javax.swing.JTextField txtProductsPrice;
+    private javax.swing.JPasswordField txtUersRepeatPassword;
+    private javax.swing.JTextField txtUsersNameUser;
+    private javax.swing.JTextArea txtUsersNotes;
+    private javax.swing.JPasswordField txtUsersPassword;
     // End of variables declaration//GEN-END:variables
 }

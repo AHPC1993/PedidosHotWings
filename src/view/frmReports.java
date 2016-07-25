@@ -9,6 +9,7 @@ import com.toedter.calendar.JDateChooser;
 import controller.Connect;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -391,9 +392,11 @@ public class frmReports extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(null, dateFinalParams, "Fecha final", JOptionPane.PLAIN_MESSAGE);
             String dateFinalStr = changeFormatDate.format(((JDateChooser) dateFinalParams[1]).getDate());
             Date dateFinal = changeFormatDate.parse(dateFinalStr);
+            
             Map parameters_report = new HashMap();
             parameters_report.put("date_initial", dateInitial);
             parameters_report.put("date_final", dateFinal);
+            parameters_report.put("logo", getClass().getClassLoader().getResource("resources/images/logoHotWings.jpeg"));
             //  String dir = "src\\reports\\localOrdersPerRangeDay.jrxml.";//windows
             String dir = "src/reports/" + nameReport;
             JOptionPane.showMessageDialog(this, "Por favor espere un momento mientras le informe carga");

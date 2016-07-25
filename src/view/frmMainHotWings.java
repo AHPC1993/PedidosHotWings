@@ -77,7 +77,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
         model.clsDAOLogin daoLogin = new model.clsDAOLogin();
         daoLogin.setUser(txtUser.getText());
-        daoLogin.setPassword(txtPassword.getText());
+        daoLogin.setPassword(String.valueOf(txtPassword.getPassword()));
         if ("".equals(daoLogin.getUser()) || "".equals(daoLogin.getPassword())) {
             JOptionPane.showMessageDialog(this, "El usuario o la contraseña no pueden estar en blanco.");
         } else if (daoLogin.validate() == false) {

@@ -287,10 +287,10 @@ public class frmAdministration extends javax.swing.JFrame {
         txtUsersNotes = new javax.swing.JTextArea();
         lblUsersPassword1 = new javax.swing.JLabel();
         txtUsersPassword = new javax.swing.JPasswordField();
-        txtUersRepeatPassword = new javax.swing.JPasswordField();
+        txtUsersRepeatPassword = new javax.swing.JPasswordField();
         cboUsersIsAdmin = new javax.swing.JComboBox();
         lblUsersIsAdmin = new javax.swing.JLabel();
-        btnProductsBack1 = new javax.swing.JButton();
+        btnUsersBack = new javax.swing.JButton();
         lblUsersTitle = new javax.swing.JLabel();
         lblUsersBackgroundDialog = new javax.swing.JLabel();
         btnAdminProducts = new javax.swing.JButton();
@@ -2115,7 +2115,7 @@ public class frmAdministration extends javax.swing.JFrame {
 
         txtUsersPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        txtUersRepeatPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtUsersRepeatPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         cboUsersIsAdmin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Si", "No" }));
         cboUsersIsAdmin.setSelectedIndex(1);
@@ -2141,7 +2141,7 @@ public class frmAdministration extends javax.swing.JFrame {
                                 .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtUsersPassword)
                                     .addComponent(txtUsersNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUersRepeatPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(txtUsersRepeatPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                                     .addComponent(cboUsersIsAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -2177,7 +2177,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblUsersPassword1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtUersRepeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUsersRepeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(lblUsersIsAdmin)
                 .addGap(18, 18, 18)
@@ -2191,24 +2191,24 @@ public class frmAdministration extends javax.swing.JFrame {
 
         dlgAdminUsers.getContentPane().add(pnlUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 410, 580));
 
-        btnProductsBack1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnProductsBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
-        btnProductsBack1.setText("Volver");
-        btnProductsBack1.setBorderPainted(false);
-        btnProductsBack1.setContentAreaFilled(false);
-        btnProductsBack1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnProductsBack1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnProductsBack1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnProductsBack1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnProductsBack1.addActionListener(new java.awt.event.ActionListener() {
+        btnUsersBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnUsersBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        btnUsersBack.setText("Volver");
+        btnUsersBack.setBorderPainted(false);
+        btnUsersBack.setContentAreaFilled(false);
+        btnUsersBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUsersBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUsersBack.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnUsersBack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUsersBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProductsBack1ActionPerformed(evt);
+                btnUsersBackActionPerformed(evt);
             }
         });
-        dlgAdminUsers.getContentPane().add(btnProductsBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, -1));
+        dlgAdminUsers.getContentPane().add(btnUsersBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, -1));
 
         lblUsersTitle.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
-        lblUsersTitle.setText("Administrar Productos");
+        lblUsersTitle.setText("Administrar Usuarios");
         dlgAdminUsers.getContentPane().add(lblUsersTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 350, 50));
 
         lblUsersBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
@@ -2384,6 +2384,7 @@ public class frmAdministration extends javax.swing.JFrame {
         loadSetValuesEmployees();
         if (employees.insert()) {
             JOptionPane.showMessageDialog(dlgAdminEmployees, "Se insertó el empleado correctamente");
+            cleanTextboxEmployees();
             if (tblEmployees.isVisible()) {
                 tblEmployees.setModel(employees.list());
             }
@@ -2407,6 +2408,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (tblEmployees.isVisible()) {
                 tblEmployees.setModel(employees.list());
             }
+            cleanTextboxEmployees();
         } else {
             JOptionPane.showMessageDialog(dlgAdminEmployees, "No ha podido ser modificado el empleado, intente nuevamente y verifique que el empleado exista.");
         }
@@ -2434,6 +2436,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (tblProducts.isVisible()) {
                 tblProducts.setModel(products.list());
             }
+            cleanTextboxProducts();
         } else {
             JOptionPane.showMessageDialog(dlgAdminProducts, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
         }
@@ -2465,6 +2468,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (tblProducts.isVisible()) {
                 tblProducts.setModel(products.list());
             }
+            cleanTextboxProducts();
         } else {
             JOptionPane.showMessageDialog(dlgAdminProducts, "No sé insertó el producto");
         }
@@ -2540,6 +2544,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (tblCustomers.isVisible()) {
                 tblCustomers.setModel(customers.list());
             }
+            cleanTextboxCustomers();
         } else {
             JOptionPane.showMessageDialog(dlgAdminCustomers, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
         }
@@ -2568,6 +2573,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (tblCustomers.isVisible()) {
                 tblCustomers.setModel(customers.list());
             }
+            cleanTextboxCustomers();
         } else {
             JOptionPane.showMessageDialog(dlgAdminCustomers, "No sé insertó el cliente");
         }
@@ -2652,6 +2658,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (tblLocals.isVisible()) {
                 tblLocals.setModel(local.list());
             }
+            cleanTextboxLocals();
         } else {
             JOptionPane.showMessageDialog(dlgAdminLocal, "No ha podido ser modificado el local, intente nuevamente y verifique que el local exista.");
         }
@@ -2683,6 +2690,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (tblLocals.isVisible()) {
                 tblLocals.setModel(local.list());
             }
+            cleanTextboxLocals();
         } else {
             JOptionPane.showMessageDialog(dlgAdminLocal, "No sé insertó el local");
         }
@@ -2791,6 +2799,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (tblAdditionalProducts.isVisible()) {
                 tblAdditionalProducts.setModel(additionalProducts.list());
             }
+            cleanTextboxAdditionalProducts();
         } else {
             JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
         }
@@ -2819,6 +2828,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (tblAdditionalProducts.isVisible()) {
                 tblAdditionalProducts.setModel(additionalProducts.list());
             }
+            cleanTextboxAdditionalProducts();
         } else {
             JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No sé insertó el producto adicional");
         }
@@ -2892,27 +2902,60 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnUsersEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersEditActionPerformed
-        // TODO add your handling code here:
+        loadSetValuesUsers();
+        String result = "";
+        if (users.getPasswordu().equals(users.getRepeatPassword())) {
+            result = users.edit();
+            if (result.equals("correcto")) {
+                JOptionPane.showMessageDialog(dlgAdminUsers, "El producto ha sido modificado correctamente.");
+                if (tblUsers.isVisible()) {
+                    tblUsers.setModel(users.list());
+                }
+                cleanTextboxUsers();
+            } else {
+                JOptionPane.showMessageDialog(dlgAdminUsers, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(dlgAdminUsers, "Las contraseñas no coinciden, por favor verifíquelas.");
+        }
+
+
     }//GEN-LAST:event_btnUsersEditActionPerformed
 
     private void btnUsersDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUsersDeleteActionPerformed
-
-    private void btnUsersInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersInsertActionPerformed
-       loadSetValuesUsers();
-        if (users.insert()) {
-            JOptionPane.showMessageDialog(dlgAdminUsers, "Se insertó el usuario correctamente");
+        users = new clsDAOUsers();
+        String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del usuario a eliminar");
+        users.setSearch(namep);
+        String result = users.delete();
+        if (result.equals("correcto")) {
+            JOptionPane.showMessageDialog(dlgAdminUsers, "El Usuario ha sido elminado correctamente.");
             if (tblUsers.isVisible()) {
                 tblUsers.setModel(users.list());
             }
+        } else if (result.equals("error")) {
+            JOptionPane.showMessageDialog(dlgAdminUsers, "No ha podido ser eliminado el usuario, intente nuevamente y verifique que el usuario exista.");
+        }
+    }//GEN-LAST:event_btnUsersDeleteActionPerformed
+
+    private void btnUsersInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersInsertActionPerformed
+        loadSetValuesUsers();
+        if (users.getPasswordu().equals(users.getRepeatPassword())) {
+            if (users.insert()) {
+                JOptionPane.showMessageDialog(dlgAdminUsers, "Se insertó el usuario correctamente");
+                if (tblUsers.isVisible()) {
+                    tblUsers.setModel(users.list());
+                }
+                cleanTextboxUsers();
+            } else {
+                JOptionPane.showMessageDialog(dlgAdminUsers, "No sé insertó el usuario");
+            }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminLocal, "No sé insertó el usuario");
+            JOptionPane.showMessageDialog(dlgAdminUsers, "Las contraseñas no coinciden, por favor verifíquelas.");
         }
     }//GEN-LAST:event_btnUsersInsertActionPerformed
 
     private void btnUsersSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersSearchActionPerformed
-         try {
+        try {
             users = new clsDAOUsers();
             ResultSet result;
             String search = JOptionPane.showInputDialog("Por favor ingrese el nombre de usuario a buscar");
@@ -2920,10 +2963,17 @@ public class frmAdministration extends javax.swing.JFrame {
             result = users.search();
             if (result != null) {
                 usersname = result.getString(1);
+                txtUsersNameUser.setText(usersname);
+                txtUsersNameUser.setEnabled(false);
                 txtUsersPassword.setText(result.getString(2));
-                txtUersRepeatPassword.setText(result.getString(2));
+                txtUsersRepeatPassword.setText(result.getString(2));
                 txtUsersNotes.setText(result.getString(3));
-                
+                if (result.getString(6).equals("0")) {
+                    cboUsersIsAdmin.setSelectedIndex(1);
+                } else {
+                    cboUsersIsAdmin.setSelectedIndex(0);
+                }
+
             } else {
                 JOptionPane.showMessageDialog(dlgAdminUsers, "El usuario no existe, por favor verifique que el nombre de usuario esté bien escrito.");
             }
@@ -2942,12 +2992,13 @@ public class frmAdministration extends javax.swing.JFrame {
         tblUsers.setModel(users.list());
         scrollPanelUsersTable.setVisible(true);
         tblUsers.setVisible(true);
-        
+
     }//GEN-LAST:event_btnUsersListActionPerformed
 
-    private void btnProductsBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsBack1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnProductsBack1ActionPerformed
+    private void btnUsersBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersBackActionPerformed
+        this.setVisible(true);
+        dlgAdminUsers.setVisible(false);
+    }//GEN-LAST:event_btnUsersBackActionPerformed
 
     private void dlgAdminUsersWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminUsersWindowClosing
         // TODO add your handling code here:
@@ -3043,8 +3094,9 @@ public class frmAdministration extends javax.swing.JFrame {
      */
     public void cleanTextboxUsers() {
         txtUsersNameUser.setText("");
+        txtUsersNameUser.setEnabled(true);
         txtUsersPassword.setText("");
-        txtUersRepeatPassword.setText("");
+        txtUsersRepeatPassword.setText("");
     }
 
     /**
@@ -3134,9 +3186,11 @@ public class frmAdministration extends javax.swing.JFrame {
      * cajas de texto del JDialog local
      */
     public void loadSetValuesUsers() {
+
         users = new clsDAOUsers();
         users.setUser(txtUsersNameUser.getText());
         users.setPasswordu(String.valueOf(txtUsersPassword.getPassword()));
+        users.setRepeatPassword(String.valueOf(txtUsersRepeatPassword.getPassword()));
         users.setDescription(txtUsersNotes.getText());
         if (cboUsersIsAdmin.getSelectedItem().equals("Si")) {
             users.setIsAdmin(1);
@@ -3223,7 +3277,6 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnLocalsNew;
     private javax.swing.JButton btnLocalsSearch;
     private javax.swing.JButton btnProductsBack;
-    private javax.swing.JButton btnProductsBack1;
     private javax.swing.JButton btnProductsDelete;
     private javax.swing.JButton btnProductsEdit;
     private javax.swing.JButton btnProductsInsert;
@@ -3233,6 +3286,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnSelectAdminAdditions;
     private javax.swing.JButton btnSelectAdminProducts;
     private javax.swing.JButton btnUersNew;
+    private javax.swing.JButton btnUsersBack;
     private javax.swing.JButton btnUsersDelete;
     private javax.swing.JButton btnUsersEdit;
     private javax.swing.JButton btnUsersInsert;
@@ -3364,9 +3418,9 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JTextField txtProductsName;
     private javax.swing.JTextArea txtProductsNotes;
     private javax.swing.JTextField txtProductsPrice;
-    private javax.swing.JPasswordField txtUersRepeatPassword;
     private javax.swing.JTextField txtUsersNameUser;
     private javax.swing.JTextArea txtUsersNotes;
     private javax.swing.JPasswordField txtUsersPassword;
+    private javax.swing.JPasswordField txtUsersRepeatPassword;
     // End of variables declaration//GEN-END:variables
 }

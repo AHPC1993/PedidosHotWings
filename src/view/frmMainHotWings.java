@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import static java.lang.String.format;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,18 +32,22 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import model.clsDAOUsers;
 
 /**
  *
  * @author allan
  */
 public class frmMainHotWings extends javax.swing.JFrame {
+
     controller.Connect connexion;
     frmNewOrderDelivery frmOrderDelivery;
     frmAdministration frmAdmin;
     frmLocalOrder frmLocalO;
     frmReports frmReport;
     int count = 5;
+    model.clsDAOUsers users;
+    model.clsDAOLogin daoLogin;
 
     /**
      * Creates new form frmLoginHotWings
@@ -59,6 +64,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         Dimension dim = toolkit.getScreenSize();
         this.setSize(dim.width, dim.height);
         initComponents();
+        btnAdmin.setVisible(false);
         //  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         //Se crea el background contenido en un label y se le da tamaño y posición al jdialog
@@ -74,8 +80,8 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
     /*Método que permite validar el usuario y la contraseña para poder ver el frame.*/
     public void validateLogin() {
-
-        model.clsDAOLogin daoLogin = new model.clsDAOLogin();
+        users = new clsDAOUsers();
+        daoLogin = new model.clsDAOLogin();
         daoLogin.setUser(txtUser.getText());
         daoLogin.setPassword(String.valueOf(txtPassword.getPassword()));
         if ("".equals(daoLogin.getUser()) || "".equals(daoLogin.getPassword())) {
@@ -91,6 +97,10 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
         } else {
             JOptionPane.showMessageDialog(this, "Bienvenido(a) " + daoLogin.getUser());
+            lblCurrentUser.setText(daoLogin.getUser());
+            users.updateLastEntry(daoLogin.getUser());
+            isAdmin(lblCurrentUser.getText());
+
             SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.ModerateSkin");
             // this.btnOrderDelivery.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
 
@@ -126,6 +136,8 @@ public class frmMainHotWings extends javax.swing.JFrame {
         btnAdmin = new javax.swing.JButton();
         btnMenuDetails = new javax.swing.JButton();
         btnCloseProgram = new javax.swing.JButton();
+        lblCurrentUser = new javax.swing.JLabel();
+        lblCurrentUser1 = new javax.swing.JLabel();
         lblBackgroundMainFrame = new javax.swing.JLabel();
 
         dlgLogin.setTitle("Inicio de Sesión");
@@ -293,7 +305,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAdmin);
-        btnAdmin.setBounds(1010, 50, 330, 255);
+        btnAdmin.setBounds(1010, 70, 330, 255);
 
         btnMenuDetails.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnMenuDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmMain/iconBtnMenuDetails.png"))); // NOI18N
@@ -328,6 +340,18 @@ public class frmMainHotWings extends javax.swing.JFrame {
         getContentPane().add(btnCloseProgram);
         btnCloseProgram.setBounds(1220, 605, 120, 120);
 
+        lblCurrentUser.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        lblCurrentUser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCurrentUser.setText("Usuario: ");
+        getContentPane().add(lblCurrentUser);
+        lblCurrentUser.setBounds(1210, 10, 170, 50);
+
+        lblCurrentUser1.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        lblCurrentUser1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCurrentUser1.setText("Usuario: ");
+        getContentPane().add(lblCurrentUser1);
+        lblCurrentUser1.setBounds(1060, 10, 170, 50);
+
         lblBackgroundMainFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         lblBackgroundMainFrame.setMaximumSize(new java.awt.Dimension(1382, 744));
         lblBackgroundMainFrame.setMinimumSize(new java.awt.Dimension(1382, 744));
@@ -337,6 +361,17 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void isAdmin(String user) {
+        users = new clsDAOUsers();
+        String isAdmin = users.isAdmin(user);
+        if (isAdmin.equals("1")) {
+            btnAdmin.setVisible(true);
+        } else {
+
+        }
+
+    }
 
     private void dlgLoginWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgLoginWindowClosed
 
@@ -394,7 +429,25 @@ public class frmMainHotWings extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReportsActionPerformed
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        frmAdmin.setVisible(true);
+
+        JPanel panelPass = new JPanel();
+        JLabel labelPass = new JLabel("Por favor ingrese su contraseña de usuario");
+        JPasswordField pass = new JPasswordField(20);
+        panelPass.add(labelPass);
+        panelPass.add(pass);
+        String[] options = new String[]{"Aceptar", "Cancelar"};
+        int password = JOptionPane.showOptionDialog(null, panelPass, "Contraseña",
+                JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[1]);
+        if(password == 0){
+        if (daoLogin.getPassword().equals(String.valueOf(pass.getPassword()))) {
+            frmAdmin.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Contraseña incorrecta, por favor verifíquela.");
+        }   
+        }
+        
+
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnMenuDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuDetailsActionPerformed
@@ -467,6 +520,8 @@ public class frmMainHotWings extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblBackgroundMainFrame;
+    private javax.swing.JLabel lblCurrentUser;
+    private javax.swing.JLabel lblCurrentUser1;
     private javax.swing.JLabel lblIconHotWings;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUser;

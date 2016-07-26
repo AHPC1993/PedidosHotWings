@@ -15,8 +15,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author allan
  */
-public class clsDAOUsers extends clsUsers{
-    
+public class clsDAOUsers extends clsUsers {
+
     controller.Connect connexion;
 
     public clsDAOUsers() {
@@ -25,12 +25,12 @@ public class clsDAOUsers extends clsUsers{
 
     public boolean insert() {
 
-        String sql = "INSERT INTO tbl_login(users, passwordu, description, date_register, date_in, isadmin) VALUES ('" + super.getUser()+ "','" + super.getPasswordu()+ "','" + super.getDescription()+ "',current_date,current_date,'"+super.getIsAdmin()+"');";
+        String sql = "INSERT INTO tbl_login(users, passwordu, description, date_register, date_in, isadmin) VALUES ('" + super.getUser() + "','" + super.getPasswordu() + "','" + super.getDescription() + "',current_date,current_date,'" + super.getIsAdmin() + "');";
         return connexion.insert(sql);
     }
 
     public ResultSet search() {
-        String sql = "Select * FROM tbl_login WHERE UPPER(user) = UPPER('" + super.getSearch()+ "');";
+        String sql = "Select * FROM tbl_login WHERE UPPER(users) = UPPER('" + super.getSearch() + "');";
         ResultSet results = null;
         results = connexion.search(sql);
         try {
@@ -46,19 +46,41 @@ public class clsDAOUsers extends clsUsers{
         return null;
     }
 
+    public String isAdmin(String user) {
+        String sql = "Select isadmin from tbl_login WHERE UPPER(users) = UPPER('" + user + "');";
+        ResultSet results = null;
+        results = connexion.search(sql);
+        try {
+            if (results.next()) {
+                return results.getString(1);
+            } 
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "Error";
+        }
+        return null;
+    }
+    
+   
+
     public String delete() {
-        String sql = "DELETE FROM tbl_login WHERE UPPER(user) = UPPER('" + super.getUser()+  "');";
+        String sql = "DELETE FROM tbl_login WHERE UPPER(users) = UPPER('" + super.getSearch() + "');";
         return connexion.delete(sql);
     }
 
     public String edit() {
-        String sql = "UPDATE tbl_login SET passwordu='" + super.getPasswordu()+ "',description='" + super.getDescription()+"',isadmin='" + super.getIsAdmin()+  "' WHERE UPPER(user) = UPPER('" + super.getUser() + "');";
+        String sql = "UPDATE tbl_login SET passwordu='" + super.getPasswordu() + "',description='" + super.getDescription() + "',isadmin='" + super.getIsAdmin() + "' WHERE UPPER(users) = UPPER('" + super.getUser() + "');";
+        return connexion.edit(sql);
+    }
+
+    public String updateLastEntry(String user) {
+        String sql = "UPDATE tbl_login SET date_in=current_date WHERE UPPER(users) = UPPER('" + user + "');";
         return connexion.edit(sql);
     }
 
     public DefaultTableModel list() {
         String[] columnName = {"Usurio", "Contraseña", "Descripción", "Fecha de registro", "Fecha de último ingreso", "Es administrador"};
-        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0){
+        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -86,5 +108,5 @@ public class clsDAOUsers extends clsUsers{
         }
         return null;
     }
-    
+
 }

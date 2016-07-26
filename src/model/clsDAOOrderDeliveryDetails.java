@@ -9,15 +9,19 @@ import controller.Connect;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author GSG
  */
-public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails{
- controller.Connect connexion;
+public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
+
+    controller.Connect connexion;
 
     public clsDAOOrderDeliveryDetails() {
         connexion = new Connect();
@@ -26,7 +30,8 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails{
     /**
      * Inserta en la tabla tbl_orderlocal_details, un producto con su cantidad,
      * valor y valor total.
-     * @return 
+     *
+     * @return
      */
     public boolean insertProduct() {
 
@@ -34,15 +39,16 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails{
         System.out.println(sql);
         return connexion.insert(sql);
     }
-    
-        /**
-     * Inserta en la tabla tbl_orderlocal_details, un producto adicional con su cantidad,
-     * valor y valor total.
-     * @return 
+
+    /**
+     * Inserta en la tabla tbl_orderlocal_details, un producto adicional con su
+     * cantidad, valor y valor total.
+     *
+     * @return
      */
     public boolean insertAdditionalProduct() {
 
-        String sql = "INSERT INTO public.tbl_orderdelivery_details(order_number, additional_products_id,customers_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), additional_products_id,'" + super.getCustomers_id() + "',namep, description, price ,'" + super.getProduct_amount() + "','" + super.getProduct_price_total() + "','" + super.getNotes() + "',NEXTVAL('SEQ_ORDERDELIVERY_DETAILS') from tbl_additional_products WHERE additional_products_id ='" + super.getAdditional_products_id()+ "';";
+        String sql = "INSERT INTO public.tbl_orderdelivery_details(order_number, additional_products_id,customers_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), additional_products_id,'" + super.getCustomers_id() + "',namep, description, price ,'" + super.getProduct_amount() + "','" + super.getProduct_price_total() + "','" + super.getNotes() + "',NEXTVAL('SEQ_ORDERDELIVERY_DETAILS') from tbl_additional_products WHERE additional_products_id ='" + super.getAdditional_products_id() + "';";
         System.out.println(sql);
         return connexion.insert(sql);
     }
@@ -50,13 +56,15 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails{
     /**
      * Inserta en la tabla orderlocal, con el total del pedido y el número de
      * orden, con el fin de visualizar después todo lqo eu contiene el pedido.
+     *
      * @param order_number
      * @param total_price
-     * @return 
+     * @param employee_id
+     * @return
      */
-    public boolean insertOrderFull(String order_number, String total_price) {
+    public boolean insertOrderFull(String order_number, String total_price, String employee_id) {
 
-        String sql = "INSERT INTO public.tbl_orderdelivery(order_number, total_price, date_order) VALUES('" + order_number + "','" + total_price + "', current_date);";
+        String sql = "INSERT INTO public.tbl_orderdelivery(order_number, total_price, date_order,employee_id) VALUES('" + order_number + "','" + total_price + "', current_date,(SELECT employee_id FROM tbl_employees Where employee_id = '" + employee_id + "'));";
         System.out.println(sql);
         return connexion.insert(sql);
     }
@@ -92,8 +100,8 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails{
         }
         return null;
     }
-    
-       public ResultSet searchAdditionalProductByName() {
+
+    public ResultSet searchAdditionalProductByName() {
         String sql = "Select * FROM public.tbl_additional_products WHERE UPPER(namep) = UPPER('" + super.getProduct_name() + "');";
         ResultSet results = null;
         results = connexion.search(sql);
@@ -109,6 +117,22 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails{
         return null;
     }
 
+    public ResultSet searchEmployeesJobDelivery() {
+        try {
+            String sql = "Select employee_id,  namee || ' ' || lastname FROM public.tbl_employees WHERE UPPER(job) = UPPER('Domicilio');";
+            ResultSet results = null;
+            results = connexion.search(sql);
+            if (results.next()) {
+                return results;
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+
+    }
 
     public String selectOrderNumber() {
         String sql = "SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER;";
@@ -141,8 +165,8 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails{
         }
         return null;
     }
-    
-      public String incrementOrderNumber() {
+
+    public String incrementOrderNumber() {
         String sql = "SELECT NEXTVAL('SEQ_ORDER_NUMBER') FROM SEQ_ORDERDELIVERY_DETAILS;";
         ResultSet results = null;
         results = connexion.search(sql);
@@ -181,7 +205,7 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails{
 
         try {
             ResultSet result = null;
-            String sql = "Select localOrder_id, product_name, product_description, product_price, product_amount, product_price_total, notes FROM public.tbl_orderdelivery_details WHERE order_number='"+order_number+"';";
+            String sql = "Select localOrder_id, product_name, product_description, product_price, product_amount, product_price_total, notes FROM public.tbl_orderdelivery_details WHERE order_number='" + order_number + "';";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();
@@ -229,7 +253,7 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails{
         }
         return null;
     }
-    
+
     public LinkedList listAdditionalProducts() {
         int numberButtons = 6;
         LinkedList<String[]> dates = new LinkedList<>();

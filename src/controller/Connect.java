@@ -23,7 +23,7 @@ public class Connect {
     static String password = "hotwings";
     static String data_base = "dbHotWings";
     static String stringConnection = "jdbc:postgresql://127.0.0.1/" + data_base + "?" + "user=" + user + "&password=" + password;
-   public Connection connection = null;
+    public Connection connection = null;
     Statement sentence = null;
     ResultSet result;
 
@@ -84,7 +84,12 @@ public class Connect {
         try {
             sentence = connection.createStatement();
             int results = sentence.executeUpdate(sql);
-            return "correcto";
+            if (results == 1) {
+                return "correcto";
+            } else  {
+                return "error";
+            }
+
         } catch (SQLException e) {
             System.out.println("Error eliminando..." + e);
             return "error";

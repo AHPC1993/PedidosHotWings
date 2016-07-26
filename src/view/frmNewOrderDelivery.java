@@ -12,10 +12,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -1076,7 +1079,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgOrderDelivery, "No sé insertó el cliente, por favor verifique nuevamente");
             }
         } else {
-            JOptionPane.showMessageDialog(dlgOrderDelivery, "Por favor rellene los campos que le faltan.");
+            JOptionPane.showMessageDialog(dlgOrderDelivery, "Por favor rellene los campos que están subrayados en rojo.");
 
         }
 
@@ -1099,14 +1102,14 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         } else if (txtCustomersName.getBorder().equals(borderEmptyField)) {
             txtCustomersName.setBorder(borderDefault);
         }
-        
+
         if (txtCustomersNeighborhood.getText().isEmpty()) {
             txtCustomersNeighborhood.setBorder(borderEmptyField);
             state = false;
         } else if (txtCustomersNeighborhood.getBorder().equals(borderEmptyField)) {
             txtCustomersNeighborhood.setBorder(borderDefault);
         }
-        
+
         if (txtCustomerssAddress.getText().isEmpty()) {
             txtCustomerssAddress.setBorder(borderEmptyField);
             state = false;
@@ -1228,7 +1231,27 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 "Desea confirmar el pedido con número de orden " + txtOrderNumber.getText(), "Confirmar pedido",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-            if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText())) {
+            ResultSet result = orderDelivery.searchEmployeesJobDelivery();
+            JComboBox jcbListEmployees = new JComboBox();
+            ArrayList<String> listEmployees_id = new ArrayList<>();
+            String employee_id = "";
+            try {
+                jcbListEmployees.addItem(result.getString(2));
+                listEmployees_id.add(result.getString(1));
+                while (result.next()) {
+                    System.out.println(result.getString(2));
+                    jcbListEmployees.addItem(result.getString(2));
+                    listEmployees_id.add(result.getString(1));
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            if (listEmployees_id.size() > 0) {
+
+                JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
+                employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
+            }
+            if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText(), employee_id)) {
                 txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
                 txtTotalOrder.setText("0");
 

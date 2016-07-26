@@ -72,3 +72,50 @@ WHERE
 	tbl_orderdelivery.date_order>=$P{date_initial} AND tbl_orderdelivery.date_order<=$P{date_final} 
 
 
+Campos obligatorios.
+Empleados
+Cédula
+Nombre
+Apellidos
+Dirección
+Puesto
+Teléfono
+
+Productos
+Nombre
+Descripción
+Precio
+
+Clientes
+Nombre
+Apellidos
+Dirección
+Barrio
+Teléfono
+
+Productos adicionales
+Nombre
+Descripción
+Precio
+
+Locales
+Nit
+Nombre Local
+Dirección
+Barrio
+
+Usuarios
+Nombre de usuario
+Contraseña
+Repetir contraseña
+
+Reportes a generar.
+Pedidos locales en un rango de días OK
+Pedidos Domicilios en un rango de días OK
+Barrio que más pide OK
+Top Clientes por número de compras
+Número de pedidos por cliente en cierta fecha
+Empleado que va a llevar el domicilio
+Inventario
+Reporte de inventario
+Organizar empleados para que salga mensaje cuando la cédula exista	

@@ -5,33 +5,11 @@
  */
 package view;
 
-import controller.Connect;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
-import org.pushingpixels.substance.api.shaper.*;
-import org.pushingpixels.substance.api.skin.SkinInfo;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import static java.lang.String.format;
-import java.sql.ResultSet;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import model.clsDAOUsers;
 
 /**
@@ -175,7 +153,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblUser.setForeground(new java.awt.Color(240, 240, 240));
         lblUser.setText("Usuario");
         pnlLogin.add(lblUser);
-        lblUser.setBounds(290, 94, 71, 29);
+        lblUser.setBounds(290, 94, 67, 29);
 
         txtUser.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -186,7 +164,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblPassword.setForeground(new java.awt.Color(240, 240, 240));
         lblPassword.setText("Contraseña");
         pnlLogin.add(lblPassword);
-        lblPassword.setBounds(290, 146, 104, 29);
+        lblPassword.setBounds(290, 146, 100, 29);
 
         btnExit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExit.setText("Salir");
@@ -338,15 +316,17 @@ public class frmMainHotWings extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCloseProgram);
-        btnCloseProgram.setBounds(1220, 605, 120, 120);
+        btnCloseProgram.setBounds(1220, 605, 120, 115);
 
         lblCurrentUser.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        lblCurrentUser.setForeground(new java.awt.Color(0, 0, 204));
         lblCurrentUser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblCurrentUser.setText("Usuario: ");
         getContentPane().add(lblCurrentUser);
         lblCurrentUser.setBounds(1210, 10, 170, 50);
 
         lblCurrentUser1.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        lblCurrentUser1.setForeground(new java.awt.Color(0, 0, 204));
         lblCurrentUser1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCurrentUser1.setText("Usuario: ");
         getContentPane().add(lblCurrentUser1);

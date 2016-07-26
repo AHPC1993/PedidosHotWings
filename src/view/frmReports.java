@@ -75,7 +75,6 @@ public class frmReports extends javax.swing.JFrame {
 
         dlgReportsOrders.setTitle("Tipo de reporte ");
         dlgReportsOrders.setMinimumSize(new java.awt.Dimension(711, 423));
-        dlgReportsOrders.setModalityType(java.awt.Dialog.ModalityType.MODELESS);
         dlgReportsOrders.setSize(new java.awt.Dimension(711, 523));
         dlgReportsOrders.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -92,7 +91,12 @@ public class frmReports extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton1");
+        jButton2.setText("Lista de barrios donde más piden");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("jButton1");
 
@@ -360,20 +364,27 @@ public class frmReports extends javax.swing.JFrame {
 
         dlgReportsOrders.setVisible(false);
         // this.setVisible(true);
-        generateReport("localOrdersPerRangeDay.jrxml", "Pedidos locales");
+        generateReport("localOrdersPerRangeDay.jrxml", "Pedidos locales","dates");
     }//GEN-LAST:event_btnDlgReportsOrdersLocalActionPerformed
 
 
     private void btnDlgReportsOrdersDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsOrdersDeliveryActionPerformed
         dlgReportsOrders.setVisible(false);
         this.setVisible(true);
-        generateReport("orderDeliveryPerRangeDay.jrxml", "Domicilios realizados");
+        generateReport("orderDeliveryPerRangeDay.jrxml", "Domicilios realizados","dates");
     }//GEN-LAST:event_btnDlgReportsOrdersDeliveryActionPerformed
 
-    public void generateReport(String nameReport, String title) {
-        try {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       dlgReportsOrders.setVisible(false);
+        this.setVisible(true);
+        generateReport("topNeighBorhoodsOrders.jrxml", "Lista de barrios donde más piden","normal");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void generateReport(String nameReport, String title, String typeReport) {
+        try {
+            Map parameters_report = new HashMap();
             connexion = new Connect();
+            if(typeReport.equals("dates")){
             //Creo el calendario
             JDateChooser dateChooser = new JDateChooser();
             //Le doy formato al calendadio
@@ -393,9 +404,10 @@ public class frmReports extends javax.swing.JFrame {
             String dateFinalStr = changeFormatDate.format(((JDateChooser) dateFinalParams[1]).getDate());
             Date dateFinal = changeFormatDate.parse(dateFinalStr);
             
-            Map parameters_report = new HashMap();
+           
             parameters_report.put("date_initial", dateInitial);
             parameters_report.put("date_final", dateFinal);
+            }
             parameters_report.put("logo", getClass().getClassLoader().getResource("resources/images/logoHotWings.jpeg"));
             //  String dir = "src\\reports\\localOrdersPerRangeDay.jrxml.";//windows
             String dir = "src/reports/" + nameReport;

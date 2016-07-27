@@ -13,10 +13,12 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -116,8 +118,6 @@ public class frmAdministration extends javax.swing.JFrame {
         tblAdditionalProducts.setVisible(false);
         tblUsers.setVisible(false);
 
-//        String[] elements = new String[]{"Cat", "Dog", "Lion", "Mouse"};
-//        AutoCompleteSupport.install(txtCustomersNeighborhood, GlazedLists.eventListOf(elements));
     }
 
     /**
@@ -199,7 +199,6 @@ public class frmAdministration extends javax.swing.JFrame {
         txtCustomersDocument = new javax.swing.JTextField();
         lblCustomersAddress = new javax.swing.JLabel();
         lblCustomersNeighborhood = new javax.swing.JLabel();
-        txtCustomersNeighborhood = new javax.swing.JTextField();
         lblCustomersNotes = new javax.swing.JLabel();
         scrollNotes1 = new javax.swing.JScrollPane();
         txtCustomersNotes = new javax.swing.JTextArea();
@@ -209,6 +208,7 @@ public class frmAdministration extends javax.swing.JFrame {
         cbCustomersCity = new javax.swing.JComboBox<>();
         lblPhone = new javax.swing.JLabel();
         txtCustomersPhone = new javax.swing.JTextField();
+        cboCustomersNeighborhood = new javax.swing.JComboBox<>();
         barCustomersMenu = new javax.swing.JToolBar();
         jButton3 = new javax.swing.JButton();
         scrollPanelCustomersTable = new javax.swing.JScrollPane();
@@ -983,9 +983,6 @@ public class frmAdministration extends javax.swing.JFrame {
         lblCustomersNeighborhood.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersNeighborhood.setText("Barrio");
 
-        txtCustomersNeighborhood.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtCustomersNeighborhood.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         lblCustomersNotes.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersNotes.setText("Notas");
 
@@ -1014,33 +1011,17 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
 
+        cboCustomersNeighborhood.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout pnlCustomersDatesLayout = new javax.swing.GroupLayout(pnlCustomersDates);
         pnlCustomersDates.setLayout(pnlCustomersDatesLayout);
         pnlCustomersDatesLayout.setHorizontalGroup(
             pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCustomersDatesLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(lblCustomersLastName)
-                        .addGap(52, 52, 52)
-                        .addComponent(txtCustomersLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCustomersName)
-                            .addComponent(lbCustomersDocument))
-                        .addGap(61, 61, 61)
-                        .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCustomersDocument)
-                            .addComponent(txtCustomersName)))
                     .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                                .addComponent(lblCustomersAddress)
-                                .addGap(50, 50, 50)
-                                .addComponent(txtCustomerssAddress))
+                        .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1048,16 +1029,45 @@ public class frmAdministration extends javax.swing.JFrame {
                                     .addComponent(lblCustomersCity)
                                     .addComponent(lblPhone)
                                     .addComponent(lblCustomersNotes))
-                                .addGap(5, 5, 5)
-                                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbCustomersTown, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(scrollNotes1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                                    .addComponent(txtCustomersPhone)))
+                                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                                        .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                                                .addGap(11, 11, 11)
+                                                .addComponent(cbCustomersTown, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(scrollNotes1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtCustomersPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                                .addComponent(lblCustomersNeighborhood)
-                                .addGap(78, 78, 78)
-                                .addComponent(txtCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCustomersAddress)
+                                    .addComponent(lblCustomersNeighborhood))
+                                .addGap(50, 50, 50)
+                                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCustomerssAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCustomersName)
+                                    .addComponent(lbCustomersDocument))
+                                .addGap(61, 61, 61))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCustomersDatesLayout.createSequentialGroup()
+                                .addComponent(lblCustomersLastName)
+                                .addGap(49, 49, 49)))
+                        .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCustomersDocument)
+                            .addComponent(txtCustomersName)
+                            .addComponent(txtCustomersLastName))))
                 .addGap(214, 214, 214))
         );
         pnlCustomersDatesLayout.setVerticalGroup(
@@ -1085,14 +1095,11 @@ public class frmAdministration extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(lblCustomersAddress))
                     .addComponent(txtCustomerssAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(lblCustomersNeighborhood))
-                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22)
+                .addGap(8, 8, 8)
+                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCustomersNeighborhood)
+                    .addComponent(cboCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomersTown)
                     .addComponent(cbCustomersTown, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2602,22 +2609,32 @@ public class frmAdministration extends javax.swing.JFrame {
         listTxtValidate.add(txtCustomersName);
         listTxtValidate.add(txtCustomersLastName);
         listTxtValidate.add(txtCustomerssAddress);
-        listTxtValidate.add(txtCustomersNeighborhood);
+        // listTxtValidate.add(cbo);
         listTxtValidate.add(txtCustomersPhone);
-        if (validateFields(listTxtValidate, listTxtAreaValidate)) {
-            loadSetValuesCustomers();
-            String result = "";
-            result = customers.edit();
-            if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminCustomers, "El cliente ha sido modificado correctamente.");
-                if (tblCustomers.isVisible()) {
-                    tblCustomers.setModel(customers.list());
+        if (validateFields(listTxtValidate, listTxtAreaValidate) && !cboCustomersNeighborhood.getEditor().toString().isEmpty()) {
+            cboCustomersNeighborhood.setBorder(borderDefault);
+            if (customers.findDuplicateCustomers(txtCustomersPhone.getText()).equals("no_existe")) {
+                loadSetValuesCustomers();
+                String result = "";
+                result = customers.edit();
+                if (result.equals("correcto")) {
+                    JOptionPane.showMessageDialog(dlgAdminCustomers, "El cliente ha sido modificado correctamente.");
+                    if (tblCustomers.isVisible()) {
+                        tblCustomers.setModel(customers.list());
+                    }
+                    cleanTextboxCustomers();
+                } else {
+                    JOptionPane.showMessageDialog(dlgAdminCustomers, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
                 }
-                cleanTextboxCustomers();
             } else {
-                JOptionPane.showMessageDialog(dlgAdminCustomers, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+                JOptionPane.showMessageDialog(dlgAdminEmployees, "El número de teléfono ya existe en esa base de datos, por favor regístrelo con otro número.");
             }
         } else {
+            if (cboCustomersNeighborhood.getEditor().getItem() == null) {
+                cboCustomersNeighborhood.setBorder(borderEmptyField);
+            } else if (cboCustomersNeighborhood.getBorder().equals(borderEmptyField)) {
+                cboCustomersNeighborhood.setBorder(borderDefault);
+            }
             JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
 
         }
@@ -2625,7 +2642,7 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void btnCustomersDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersDeleteActionPerformed
         customers = new clsDAOCustomers();
-        String search = JOptionPane.showInputDialog("Por favor ingrese el número telefónico o el nombre de la persona a buscar");
+        String search = JOptionPane.showInputDialog("Por favor ingrese el número telefónico  de la persona a buscar");
         customers.setSearch(search);
         String result = customers.delete();
         if (result.equals("correcto")) {
@@ -2634,7 +2651,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 tblCustomers.setModel(customers.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(dlgAdminCustomers, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
+            JOptionPane.showMessageDialog(dlgAdminCustomers, "No ha podido ser eliminado el cliente, intente nuevamente y verifique que el cliente exista.");
         }
 
     }//GEN-LAST:event_btnCustomersDeleteActionPerformed
@@ -2645,20 +2662,29 @@ public class frmAdministration extends javax.swing.JFrame {
         listTxtValidate.add(txtCustomersName);
         listTxtValidate.add(txtCustomersLastName);
         listTxtValidate.add(txtCustomerssAddress);
-        listTxtValidate.add(txtCustomersNeighborhood);
         listTxtValidate.add(txtCustomersPhone);
-        if (validateFields(listTxtValidate, listTxtAreaValidate)) {
-            loadSetValuesCustomers();
-            if (customers.insert()) {
-                JOptionPane.showMessageDialog(dlgAdminCustomers, "Se insertó el cliente correctamente");
-                if (tblCustomers.isVisible()) {
-                    tblCustomers.setModel(customers.list());
+        if (validateFields(listTxtValidate, listTxtAreaValidate) && cboCustomersNeighborhood.getEditor().getItem() != null) {
+            cboCustomersNeighborhood.setBorder(borderDefault);
+            if (customers.findDuplicateCustomers(txtCustomersPhone.getText()).equals("no_existe")) {
+                loadSetValuesCustomers();
+                if (customers.insert()) {
+                    JOptionPane.showMessageDialog(dlgAdminCustomers, "Se insertó el cliente correctamente");
+                    if (tblCustomers.isVisible()) {
+                        tblCustomers.setModel(customers.list());
+                    }
+                    cleanTextboxCustomers();
+                } else {
+                    JOptionPane.showMessageDialog(dlgAdminCustomers, "No sé insertó el cliente");
                 }
-                cleanTextboxCustomers();
             } else {
-                JOptionPane.showMessageDialog(dlgAdminCustomers, "No sé insertó el cliente");
+                JOptionPane.showMessageDialog(dlgAdminEmployees, "El número de teléfono ya existe en esa base de datos, por favor regístrelo con otro número.");
             }
         } else {
+            if (cboCustomersNeighborhood.getEditor().getItem() == null) {
+                cboCustomersNeighborhood.setBorder(borderEmptyField);
+            } else if (cboCustomersNeighborhood.getBorder().equals(borderEmptyField)) {
+                cboCustomersNeighborhood.setBorder(borderDefault);
+            }
             JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
 
         }
@@ -2673,7 +2699,7 @@ public class frmAdministration extends javax.swing.JFrame {
         try {
             customers = new clsDAOCustomers();
             ResultSet result;
-            String search = JOptionPane.showInputDialog("Por favor ingrese el número telefónico o el nombre de la persona a buscar");
+            String search = JOptionPane.showInputDialog("Por favor ingrese el número telefónico de la persona a buscar");
             customers.setSearch(search);
             result = customers.search();
             if (result != null) {
@@ -2682,7 +2708,8 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtCustomersName.setText(result.getString(3));
                 txtCustomersLastName.setText(result.getString(4));
                 txtCustomerssAddress.setText(result.getString(5));
-                txtCustomersNeighborhood.setText(result.getString(6));
+                cboCustomersNeighborhood.setSelectedItem(result.getString(6));
+
                 txtCustomersPhone.setText(result.getString(9));
                 txtCustomersNotes.setText(result.getString(10));
 
@@ -2709,6 +2736,8 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCustomersListActionPerformed
 
     private void btnAdminCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminCustomersActionPerformed
+        customers = new clsDAOCustomers();
+        customers.loadCboNeighborhood(cboCustomersNeighborhood);
         dlgAdminCustomers.setVisible(true);
     }//GEN-LAST:event_btnAdminCustomersActionPerformed
 
@@ -3216,9 +3245,10 @@ public class frmAdministration extends javax.swing.JFrame {
         txtCustomersName.setText("");
         txtCustomersLastName.setText("");
         txtCustomerssAddress.setText("");
-        txtCustomersNeighborhood.setText("");
         txtCustomersPhone.setText("");
         txtCustomersNotes.setText("");
+        cboCustomersNeighborhood.setSelectedItem("");
+
     }
 
     /**
@@ -3302,7 +3332,7 @@ public class frmAdministration extends javax.swing.JFrame {
         customers.setNamec(txtCustomersName.getText());
         customers.setLastname(txtCustomersLastName.getText());
         customers.setAddress(txtCustomerssAddress.getText());
-        customers.setNeighborhoos(txtCustomersNeighborhood.getText());
+        customers.setNeighborhoos(cboCustomersNeighborhood.getEditor().getItem().toString());
         customers.setTown(cbCustomersTown.getSelectedItem().toString());
         customers.setCity(cbCustomersCity.getSelectedItem().toString());
         customers.setPhone(txtCustomersPhone.getText());
@@ -3366,6 +3396,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 }
             }
         }
+
         return state;
     }
 
@@ -3467,6 +3498,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbLocal;
     private javax.swing.JComboBox<String> cbLocalsCity;
     private javax.swing.JComboBox<String> cbLocalsTown;
+    private javax.swing.JComboBox<String> cboCustomersNeighborhood;
     private javax.swing.JComboBox cboUsersIsAdmin;
     private javax.swing.JDialog dlgAdminAdditionalProducts;
     private javax.swing.JDialog dlgAdminCustomers;
@@ -3569,7 +3601,6 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JTextField txtCustomersDocument;
     private javax.swing.JTextField txtCustomersLastName;
     private javax.swing.JTextField txtCustomersName;
-    private javax.swing.JTextField txtCustomersNeighborhood;
     private javax.swing.JTextArea txtCustomersNotes;
     private javax.swing.JTextField txtCustomersPhone;
     private javax.swing.JTextField txtCustomerssAddress;

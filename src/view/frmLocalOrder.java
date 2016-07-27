@@ -18,6 +18,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -984,13 +985,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
                 txtOrderNumber.setText(localOrder.incrementOrderNumber());
                 txtTotalOrder.setText("0");
 
-                DefaultTableModel dm = (DefaultTableModel) tblLocalOrder.getModel();
-                int rowCount = dm.getRowCount();
-                for (int i = rowCount - 1; i >= 0; i--) {
-                    dm.removeRow(i);
-                }
-
-                tblLocalOrder.setModel(dm);
+               clearTable(tblLocalOrder);
                 JOptionPane.showMessageDialog(this, "La orden ha sido procesada con éxito");
             }
         } else {
@@ -999,7 +994,17 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDoneOrderActionPerformed
 
     private void btnAdminBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminBackActionPerformed
-        this.setVisible(false);
+        if (JOptionPane.showConfirmDialog(this,
+                "Está seguro de que quiere salir? Si sale y hay algún pedido en ejecución, este será eliminado", "Salir y cancelar pedido?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+             localOrder.cancelOrderButtonBack(txtOrderNumber.getText());
+             this.setVisible(false);
+             clearTable(tblLocalOrder);
+             
+        } else {
+            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        }
     }//GEN-LAST:event_btnAdminBackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1073,6 +1078,17 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnDlgAdditionsCancelActionPerformed
 
+    
+     public void clearTable(JTable table){
+         DefaultTableModel dm = (DefaultTableModel) table.getModel();
+                int rowCount = dm.getRowCount();
+                for (int i = rowCount - 1; i >= 0; i--) {
+                    dm.removeRow(i);
+                }
+
+                table.setModel(dm);
+    }
+    
     public void PrintselectProductAndAmount() {
         for (int i = 1; i <= 6; i++) {
             for (int j = 1; j <= 9; j++) {

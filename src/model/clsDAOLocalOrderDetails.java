@@ -164,6 +164,12 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
         String sql = "DELETE FROM public.tbl_localorder_details WHERE UPPER(localorder_id) = UPPER('" + localOrder_id + "');";
         return connexion.delete(sql);
     }
+    
+    
+      public String cancelOrderButtonBack(String order_number) {
+        String sql = "DELETE FROM public.tbl_localorder_details WHERE UPPER(order_number) = UPPER('" + order_number + "');";
+        return connexion.delete(sql);
+    }
 
     public String edit() {
         //debo de pensar en hacer filtro por orden y por id del producto

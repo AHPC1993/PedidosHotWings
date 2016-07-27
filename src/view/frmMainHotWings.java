@@ -391,6 +391,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
     private void btnOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDeliveryActionPerformed
         // frmOrderDelivery.setVisible(true);
+       
         frmOrderDelivery.dlgOrderDelivery.setVisible(true);
 
     }//GEN-LAST:event_btnOrderDeliveryActionPerformed

@@ -182,9 +182,15 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
         }
         return null;
     }
+    
 
     public String delete(String localOrder_id) {
         String sql = "DELETE FROM public.tbl_orderdelivery_details WHERE UPPER(localorder_id) = UPPER('" + localOrder_id + "');";
+        return connexion.delete(sql);
+    }
+    
+     public String cancelOrderButtonBack(String order_number) {
+        String sql = "DELETE FROM public.tbl_orderdelivery_details WHERE UPPER(order_number) = UPPER('" + order_number + "');";
         return connexion.delete(sql);
     }
 

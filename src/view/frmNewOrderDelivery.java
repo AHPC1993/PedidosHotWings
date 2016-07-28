@@ -23,8 +23,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.clsDAOCustomers;
 import model.clsDAOOrderDeliveryDetails;
@@ -171,20 +173,20 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         txtCustomersDocument = new javax.swing.JTextField();
         lblCustomersAddress = new javax.swing.JLabel();
         lblCustomersNeighborhood = new javax.swing.JLabel();
-        txtCustomersNeighborhood = new javax.swing.JTextField();
         lblCustomersNotes = new javax.swing.JLabel();
         scrollNotes1 = new javax.swing.JScrollPane();
         txtCustomersNotes = new javax.swing.JTextArea();
         lblCustomersCity = new javax.swing.JLabel();
         lblCustomersTown = new javax.swing.JLabel();
-        cbCustomersTown = new javax.swing.JComboBox<String>();
-        cbCustomersCity = new javax.swing.JComboBox<String>();
+        cbCustomersTown = new javax.swing.JComboBox<>();
+        cbCustomersCity = new javax.swing.JComboBox<>();
         lblPhone = new javax.swing.JLabel();
         txtCustomersPhone = new javax.swing.JTextField();
         btnAddCustomer = new javax.swing.JButton();
         btnSearchCustomerOrderDelivery = new javax.swing.JButton();
         btnCancelOrderDelivery = new javax.swing.JButton();
         btnContinueOrderDelivery = new javax.swing.JButton();
+        cboCustomersNeighborhood = new javax.swing.JComboBox<>();
         dlgAdditionsOrderDelivery = new javax.swing.JDialog();
         pblAdditionsLocalOrder = new javax.swing.JPanel();
         btnAdditionalProduct2 = new javax.swing.JToggleButton();
@@ -245,9 +247,12 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 dlgOrderDeliveryWindowClosing(evt);
             }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                dlgOrderDeliveryWindowOpened(evt);
+            }
         });
 
-        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlCustomersDates.setOpaque(false);
 
         lbCustomersDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -282,9 +287,6 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         lblCustomersNeighborhood.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersNeighborhood.setText("Barrio");
 
-        txtCustomersNeighborhood.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtCustomersNeighborhood.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         lblCustomersNotes.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersNotes.setText("Notas");
 
@@ -298,9 +300,9 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         lblCustomersTown.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersTown.setText("Municipio");
 
-        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
+        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
 
-        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
+        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
 
         lblPhone.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblPhone.setText("Teléfono");
@@ -346,6 +348,9 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
+        cboCustomersNeighborhood.setEditable(true);
+        cboCustomersNeighborhood.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout pnlCustomersDatesLayout = new javax.swing.GroupLayout(pnlCustomersDates);
         pnlCustomersDates.setLayout(pnlCustomersDatesLayout);
         pnlCustomersDatesLayout.setHorizontalGroup(
@@ -374,7 +379,10 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                                 .addComponent(txtCustomersPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                                 .addGap(26, 26, 26)
-                                .addComponent(scrollNotes1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(scrollNotes1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(cboCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                         .addGap(174, 174, 174)
                         .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -384,7 +392,6 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                             .addComponent(txtCustomersName, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                             .addComponent(txtCustomersLastName)
                             .addComponent(txtCustomerssAddress)
-                            .addComponent(txtCustomersNeighborhood)
                             .addComponent(txtCustomersDocument))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -416,11 +423,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCustomerssAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCustomersAddress))
-                .addGap(24, 24, 24)
+                .addGap(26, 26, 26)
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomersNeighborhood)
-                    .addComponent(txtCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(cboCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomersTown)
                     .addComponent(cbCustomersTown, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -612,7 +619,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
-        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlAmount.setLayout(null);
 
         numbersGroup.add(btnNumber6);
@@ -793,7 +800,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         pnlAmount.add(jPanel1);
         jPanel1.setBounds(140, 290, 220, 110);
 
-        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
 
         productsGroup.add(btnProduct1);
         btnProduct1.setText("Combo 1");
@@ -923,6 +930,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        tblOrderDelivery.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         tblOrderDelivery.setShowVerticalLines(false);
         tblOrderDelivery.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1070,21 +1078,30 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCustomersPhoneKeyTyped
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
-        loadSetValuesCustomers();
-        if (validateFields()) {
-            if (customers.insert()) {
-                JOptionPane.showMessageDialog(dlgOrderDelivery, "Se insertó el cliente correctamente, ya puede hacer su pedido");
-                //  frmMain.setVisible(false);
-                dlgOrderDelivery.dispose();
-                this.setVisible(true);
+        if (validateFields() && cboCustomersNeighborhood.getEditor().getItem() != null) {
+            cboCustomersNeighborhood.setBorder(borderDefault);
+            if (customers.findDuplicateCustomers(txtCustomersPhone.getText()).equals("no_existe")) {
+                loadSetValuesCustomers();
 
-                cleanTextboxCustomers();
+                if (customers.insert()) {
+                    JOptionPane.showMessageDialog(dlgOrderDelivery, "Se insertó el cliente correctamente, ya puede hacer su pedido");
+                    //  frmMain.setVisible(false);
+                    dlgOrderDelivery.dispose();
+                    this.setVisible(true);
+                    cleanTextboxCustomers();
 
-                // frmMain.processWindowEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                } else {
+                    JOptionPane.showMessageDialog(dlgOrderDelivery, "No sé insertó el cliente, por favor verifique nuevamente");
+                }
             } else {
-                JOptionPane.showMessageDialog(dlgOrderDelivery, "No sé insertó el cliente, por favor verifique nuevamente");
+                JOptionPane.showMessageDialog(dlgOrderDelivery, "El número de teléfono ya existe en esa base de datos, por favor regístrelo con otro número.");
             }
         } else {
+            if (cboCustomersNeighborhood.getEditor().getItem() == null) {
+                cboCustomersNeighborhood.setBorder(borderEmptyField);
+            } else if (cboCustomersNeighborhood.getBorder().equals(borderEmptyField)) {
+                cboCustomersNeighborhood.setBorder(borderDefault);
+            }
             JOptionPane.showMessageDialog(dlgOrderDelivery, "Por favor rellene los campos que están subrayados en rojo.");
 
         }
@@ -1107,13 +1124,6 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             state = false;
         } else if (txtCustomersName.getBorder().equals(borderEmptyField)) {
             txtCustomersName.setBorder(borderDefault);
-        }
-
-        if (txtCustomersNeighborhood.getText().isEmpty()) {
-            txtCustomersNeighborhood.setBorder(borderEmptyField);
-            state = false;
-        } else if (txtCustomersNeighborhood.getBorder().equals(borderEmptyField)) {
-            txtCustomersNeighborhood.setBorder(borderDefault);
         }
 
         if (txtCustomerssAddress.getText().isEmpty()) {
@@ -1141,6 +1151,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         btnSelectedProducts.setVisible(false);
         btnSelectedAdditionalProduct.setVisible(false);
 
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btnSearchCustomerOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerOrderDeliveryActionPerformed
@@ -1157,14 +1168,14 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 txtCustomersName.setText(result.getString(3));
                 txtCustomersLastName.setText(result.getString(4));
                 txtCustomerssAddress.setText(result.getString(5));
-                txtCustomersNeighborhood.setText(result.getString(6));
+                cboCustomersNeighborhood.setSelectedItem(result.getString(6));
                 txtCustomersPhone.setText(result.getString(9));
                 txtCustomersNotes.setText(result.getString(10));
                 txtCustomersDocument.setEnabled(false);
                 txtCustomersName.setEnabled(false);
                 txtCustomersLastName.setEnabled(false);
                 txtCustomerssAddress.setEnabled(false);
-                txtCustomersNeighborhood.setEnabled(false);
+                cboCustomersNeighborhood.setEnabled(false);
                 txtCustomersPhone.setEnabled(false);
                 txtCustomersNotes.setEnabled(false);
                 btnAddCustomer.setEnabled(false);
@@ -1256,7 +1267,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
                     employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
                 }
-                if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText(), employee_id)) {
+                if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
                     txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
                     txtTotalOrder.setText("0");
 
@@ -1320,6 +1331,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                             txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
                             tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
                             txtNotes.setText("");
+                            centerElementsTable(tblOrderDelivery);
 
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
@@ -1331,6 +1343,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                             txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
                             tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
                             txtNotes.setText("");
+                            centerElementsTable(tblOrderDelivery);
+
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
                         }
@@ -1358,7 +1372,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                         txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
                         tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
                         txtNotes.setText("");
-
+                        centerElementsTable(tblOrderDelivery);
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
                     }
@@ -1377,6 +1391,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                         txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
                         tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
                         txtNotes.setText("");
+                        centerElementsTable(tblOrderDelivery);
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
                     }
@@ -1391,6 +1406,20 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         btnSelectedProducts.setSelected(true);
         btnSelectedAdditionalProduct.setSelected(true);
     }//GEN-LAST:event_btnAddProductActionPerformed
+
+    public void centerElementsTable(JTable table) {
+        DefaultTableCellRenderer rendererCenter = new DefaultTableCellRenderer();
+        rendererCenter.setHorizontalAlignment(SwingConstants.CENTER);
+        DefaultTableCellRenderer rendererRight = new DefaultTableCellRenderer();
+        rendererRight.setHorizontalAlignment(SwingConstants.RIGHT);
+        table.getColumnModel().getColumn(0).setCellRenderer(rendererCenter);
+        table.getColumnModel().getColumn(1).setCellRenderer(rendererCenter);
+        table.getColumnModel().getColumn(2).setCellRenderer(rendererCenter);
+        table.getColumnModel().getColumn(4).setCellRenderer(rendererCenter);
+        table.getColumnModel().getColumn(6).setCellRenderer(rendererCenter);
+        table.getColumnModel().getColumn(3).setCellRenderer(rendererRight);
+        table.getColumnModel().getColumn(5).setCellRenderer(rendererRight);
+    }
 
     private void btnProduct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduct1ActionPerformed
 
@@ -1469,13 +1498,16 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             } else {
                 this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             }
+        } else {
+            this.setVisible(false);
+            clearTable(tblOrderDelivery);
         }
 
     }//GEN-LAST:event_btnAdminBackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         double change = Double.parseDouble(JOptionPane.showInputDialog("Devuelta de cuánto?"));
-        double total = Double.parseDouble(txtTotalOrder.getText());
+        double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
         if (change < total) {
             JOptionPane.showMessageDialog(this, "El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente");
         } else {
@@ -1545,6 +1577,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowStateChanged
 
+    private void dlgOrderDeliveryWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgOrderDeliveryWindowOpened
+        customers = new clsDAOCustomers();
+        customers.loadCboNeighborhood(cboCustomersNeighborhood);
+    }//GEN-LAST:event_dlgOrderDeliveryWindowOpened
+
     /**
      * Método que solo admite números y una longitud máxima de 8 caracteres.
      * Entra como parámetro un evento, que es cuando se presiona una tecla y una
@@ -1578,7 +1615,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         customers.setNamec(txtCustomersName.getText());
         customers.setLastname(txtCustomersLastName.getText());
         customers.setAddress(txtCustomerssAddress.getText());
-        customers.setNeighborhoos(txtCustomersNeighborhood.getText());
+        customers.setNeighborhoos(cboCustomersNeighborhood.getEditor().getItem().toString());
         customers.setTown(cbCustomersTown.getSelectedItem().toString());
         customers.setCity(cbCustomersCity.getSelectedItem().toString());
         customers.setPhone(txtCustomersPhone.getText());
@@ -1595,14 +1632,14 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         txtCustomersName.setText("");
         txtCustomersLastName.setText("");
         txtCustomerssAddress.setText("");
-        txtCustomersNeighborhood.setText("");
+        cboCustomersNeighborhood.setSelectedItem("");
         txtCustomersPhone.setText("");
         txtCustomersNotes.setText("");
         txtCustomersDocument.setEnabled(true);
         txtCustomersName.setEnabled(true);
         txtCustomersLastName.setEnabled(true);
         txtCustomerssAddress.setEnabled(true);
-        txtCustomersNeighborhood.setEnabled(true);
+        cboCustomersNeighborhood.setEnabled(true);
         txtCustomersPhone.setEnabled(true);
         txtCustomersNotes.setEnabled(true);
         btnAddCustomer.setEnabled(true);
@@ -1930,6 +1967,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnSelectedProducts;
     private javax.swing.JComboBox<String> cbCustomersCity;
     private javax.swing.JComboBox<String> cbCustomersTown;
+    private javax.swing.JComboBox<String> cboCustomersNeighborhood;
     private javax.swing.JDialog dlgAdditionsOrderDelivery;
     public javax.swing.JDialog dlgOrderDelivery;
     private javax.swing.JButton jButton1;
@@ -1959,7 +1997,6 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private javax.swing.JTextField txtCustomersDocument;
     private javax.swing.JTextField txtCustomersLastName;
     private javax.swing.JTextField txtCustomersName;
-    private javax.swing.JTextField txtCustomersNeighborhood;
     private javax.swing.JTextArea txtCustomersNotes;
     private javax.swing.JTextField txtCustomersPhone;
     private javax.swing.JTextField txtCustomerssAddress;

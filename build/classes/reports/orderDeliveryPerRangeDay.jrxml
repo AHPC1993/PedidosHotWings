@@ -28,11 +28,13 @@
      tbl_orderdelivery_details."localorder_id" AS "Id Orden",
      tbl_orderdelivery_details."product_name" AS "Nombre",
      tbl_orderdelivery_details."product_description" AS "Descripción",
-     tbl_orderdelivery_details."product_price" AS "Precio",
+to_char(tbl_orderdelivery_details."product_price",'FM999,999,999') AS "Precio",
      tbl_orderdelivery_details."product_amount" AS "Cantidad",
-     tbl_orderdelivery_details."product_price_total" AS "Precio total producto",
+to_char(tbl_orderdelivery_details."product_price_total",'FM999,999,999')
+     AS "Precio total producto",
      tbl_orderdelivery_details."notes" AS "Observaciones",
-	 tbl_orderdelivery."total_price" AS "Total pedido"
+to_char(tbl_orderdelivery."total_price",'FM999,999,999')
+	  AS "Total pedido"
      
 FROM
      "public"."tbl_orderdelivery" tbl_orderdelivery,
@@ -49,11 +51,11 @@ WHERE
 	<field name="Id Orden" class="java.lang.String"/>
 	<field name="Nombre" class="java.lang.String"/>
 	<field name="Descripción" class="java.lang.String"/>
-	<field name="Precio" class="java.math.BigDecimal"/>
+	<field name="Precio" class="java.lang.String"/>
 	<field name="Cantidad" class="java.math.BigDecimal"/>
-	<field name="Precio total producto" class="java.math.BigDecimal"/>
+	<field name="Precio total producto" class="java.lang.String"/>
 	<field name="Observaciones" class="java.lang.String"/>
-	<field name="Total pedido" class="java.math.BigDecimal"/>
+	<field name="Total pedido" class="java.lang.String"/>
 	<group name="Fecha pedido">
 		<groupExpression><![CDATA[$F{Fecha pedido}]]></groupExpression>
 		<groupHeader>

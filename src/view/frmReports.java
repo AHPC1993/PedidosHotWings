@@ -24,6 +24,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import org.apache.commons.collections.bidimap.AbstractBidiMapDecorator;
 
 /**
  *
@@ -31,6 +32,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class frmReports extends javax.swing.JFrame {
 
+    Map parameters_report;
     controller.Connect connexion;
 
     /**
@@ -45,6 +47,7 @@ public class frmReports extends javax.swing.JFrame {
         this.setSize(dim.width, dim.height);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dlgReportsOrders.setLocationRelativeTo(this);
+        dlgReportsCustomers.setLocationRelativeTo(this);
     }
 
     /**
@@ -59,22 +62,30 @@ public class frmReports extends javax.swing.JFrame {
         dlgReportsOrders = new javax.swing.JDialog();
         pnlReportsOrders = new javax.swing.JPanel();
         btnDlgReportsOrdersDelivery = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDlgReportsTopNeighborhood = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btnDlgReportsOrdersLocal = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         btnDlgAdditionsCancel = new javax.swing.JButton();
+        dlgReportsCustomers = new javax.swing.JDialog();
+        pnlReportsOrders1 = new javax.swing.JPanel();
+        btnDlgReportsCustomersFindOrdersPerCustomer = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        btnDlgReportsTopCustomers = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        btnDlgAdditionsCancel1 = new javax.swing.JButton();
         btnReports3 = new javax.swing.JButton();
         btnAdminEmployees = new javax.swing.JButton();
         btnReports2 = new javax.swing.JButton();
-        btnReports5 = new javax.swing.JButton();
-        btnReports4 = new javax.swing.JButton();
         btnReportsBack = new javax.swing.JButton();
         lblBackgroundReports = new javax.swing.JLabel();
 
         dlgReportsOrders.setTitle("Tipo de reporte ");
         dlgReportsOrders.setMinimumSize(new java.awt.Dimension(711, 423));
+        dlgReportsOrders.setModal(true);
         dlgReportsOrders.setSize(new java.awt.Dimension(711, 523));
         dlgReportsOrders.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -84,17 +95,20 @@ public class frmReports extends javax.swing.JFrame {
 
         pnlReportsOrders.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de reporte", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
 
-        btnDlgReportsOrdersDelivery.setText("Pedidos a domicilio en un rango de días");
+        btnDlgReportsOrdersDelivery.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnDlgReportsOrdersDelivery.setText("<html><center>Pedidos a domicilio<br /> en un rango de días<center>\n</html>\n\n");
+        btnDlgReportsOrdersDelivery.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDlgReportsOrdersDelivery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDlgReportsOrdersDeliveryActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Lista de barrios donde más piden");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDlgReportsTopNeighborhood.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnDlgReportsTopNeighborhood.setText("<html><center>Lista de barrios <br> donde más piden</center></html>\n\n");
+        btnDlgReportsTopNeighborhood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDlgReportsTopNeighborhoodActionPerformed(evt);
             }
         });
 
@@ -102,7 +116,10 @@ public class frmReports extends javax.swing.JFrame {
 
         jButton4.setText("jButton1");
 
-        btnDlgReportsOrdersLocal.setText("Pedidos Locales en un rango de días");
+        btnDlgReportsOrdersLocal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnDlgReportsOrdersLocal.setText("<html><center>Pedidos locales <br>en un rango de días</center></html>\n");
+        btnDlgReportsOrdersLocal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDlgReportsOrdersLocal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDlgReportsOrdersLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDlgReportsOrdersLocalActionPerformed(evt);
@@ -125,7 +142,7 @@ public class frmReports extends javax.swing.JFrame {
                     .addGroup(pnlReportsOrdersLayout.createSequentialGroup()
                         .addComponent(btnDlgReportsOrdersDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDlgReportsTopNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlReportsOrdersLayout.createSequentialGroup()
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -135,10 +152,11 @@ public class frmReports extends javax.swing.JFrame {
         pnlReportsOrdersLayout.setVerticalGroup(
             pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlReportsOrdersLayout.createSequentialGroup()
-                .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDlgReportsOrdersDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDlgReportsOrdersLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDlgReportsOrdersDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDlgReportsOrdersLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDlgReportsTopNeighborhood, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,8 +191,121 @@ public class frmReports extends javax.swing.JFrame {
             .addGroup(dlgReportsOrdersLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlReportsOrders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDlgAdditionsCancel)
+                .addGap(12, 12, 12))
+        );
+
+        dlgReportsCustomers.setTitle("Tipo de reporte ");
+        dlgReportsCustomers.setMinimumSize(new java.awt.Dimension(711, 423));
+        dlgReportsCustomers.setModal(true);
+        dlgReportsCustomers.setSize(new java.awt.Dimension(711, 523));
+        dlgReportsCustomers.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                dlgReportsCustomersWindowOpened(evt);
+            }
+        });
+
+        pnlReportsOrders1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de reporte", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
+
+        btnDlgReportsCustomersFindOrdersPerCustomer.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnDlgReportsCustomersFindOrdersPerCustomer.setText("<html><center>Reporte de pedidos<br />de un cliente<center>\n</html>\n\n");
+        btnDlgReportsCustomersFindOrdersPerCustomer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDlgReportsCustomersFindOrdersPerCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDlgReportsCustomersFindOrdersPerCustomerActionPerformed(evt);
+            }
+        });
+
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton5.setText("Jbutton");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("jButton1");
+
+        jButton8.setText("jButton1");
+
+        btnDlgReportsTopCustomers.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnDlgReportsTopCustomers.setText("<html><center>Top clientes que <br>más pedidos hacen</center></html>\n");
+        btnDlgReportsTopCustomers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDlgReportsTopCustomers.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDlgReportsTopCustomers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDlgReportsTopCustomersActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("jButton1");
+
+        javax.swing.GroupLayout pnlReportsOrders1Layout = new javax.swing.GroupLayout(pnlReportsOrders1);
+        pnlReportsOrders1.setLayout(pnlReportsOrders1Layout);
+        pnlReportsOrders1Layout.setHorizontalGroup(
+            pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlReportsOrders1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDlgReportsTopCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlReportsOrders1Layout.createSequentialGroup()
+                        .addComponent(btnDlgReportsCustomersFindOrdersPerCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlReportsOrders1Layout.createSequentialGroup()
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+        pnlReportsOrders1Layout.setVerticalGroup(
+            pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlReportsOrders1Layout.createSequentialGroup()
+                .addGroup(pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDlgReportsTopCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                    .addComponent(btnDlgReportsCustomersFindOrdersPerCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(btnDlgAdditionsCancel))
+                .addGroup(pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        btnDlgAdditionsCancel1.setText("Cancelar");
+        btnDlgAdditionsCancel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDlgAdditionsCancel1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dlgReportsCustomersLayout = new javax.swing.GroupLayout(dlgReportsCustomers.getContentPane());
+        dlgReportsCustomers.getContentPane().setLayout(dlgReportsCustomersLayout);
+        dlgReportsCustomersLayout.setHorizontalGroup(
+            dlgReportsCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgReportsCustomersLayout.createSequentialGroup()
+                .addGroup(dlgReportsCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dlgReportsCustomersLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(btnDlgAdditionsCancel1))
+                    .addGroup(dlgReportsCustomersLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnlReportsOrders1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dlgReportsCustomersLayout.setVerticalGroup(
+            dlgReportsCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgReportsCustomersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlReportsOrders1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDlgAdditionsCancel1)
+                .addGap(12, 12, 12))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -210,41 +341,13 @@ public class frmReports extends javax.swing.JFrame {
 
         btnReports2.setBackground(javax.swing.UIManager.getDefaults().getColor("textHighlight"));
         btnReports2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnReports2.setText("Administrar productos");
+        btnReports2.setText("Reporte Clientes");
         btnReports2.setBorderPainted(false);
         btnReports2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReports2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnReports2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReports2ActionPerformed(evt);
-            }
-        });
-
-        btnReports5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnReports5.setText("Administrar clientes");
-        btnReports5.setBorderPainted(false);
-        btnReports5.setContentAreaFilled(false);
-        btnReports5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnReports5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReports5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnReports5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnReports5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReports5ActionPerformed(evt);
-            }
-        });
-
-        btnReports4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnReports4.setText("Administrador de contraseñas");
-        btnReports4.setBorderPainted(false);
-        btnReports4.setContentAreaFilled(false);
-        btnReports4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnReports4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReports4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnReports4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnReports4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReports4ActionPerformed(evt);
             }
         });
 
@@ -281,13 +384,8 @@ public class frmReports extends javax.swing.JFrame {
                             .addGap(1066, 1066, 1066)
                             .addComponent(btnReports3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(76, 76, 76)
-                            .addComponent(btnReports4, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(860, 860, 860)
+                            .addGap(1226, 1226, 1226)
                             .addComponent(btnReportsBack, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(586, 586, 586)
-                            .addComponent(btnReports5, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(576, 576, 576)
                             .addComponent(btnReports2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -307,15 +405,8 @@ public class frmReports extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(50, 50, 50)
                             .addComponent(btnReports3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(130, 130, 130)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnReports4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(165, 165, 165)
-                                    .addComponent(btnReportsBack, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(440, 440, 440)
-                            .addComponent(btnReports5, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(295, 295, 295)
+                            .addComponent(btnReportsBack, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(40, 40, 40)
                             .addComponent(btnReports2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -332,20 +423,12 @@ public class frmReports extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdminEmployeesActionPerformed
 
     private void btnReports2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReports2ActionPerformed
-
+        dlgReportsCustomers.setVisible(true);
     }//GEN-LAST:event_btnReports2ActionPerformed
 
     private void btnReports3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReports3ActionPerformed
 
     }//GEN-LAST:event_btnReports3ActionPerformed
-
-    private void btnReports5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReports5ActionPerformed
-
-    }//GEN-LAST:event_btnReports5ActionPerformed
-
-    private void btnReports4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReports4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReports4ActionPerformed
 
     private void btnReportsBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsBackActionPerformed
         this.setVisible(false);
@@ -364,50 +447,102 @@ public class frmReports extends javax.swing.JFrame {
 
         dlgReportsOrders.setVisible(false);
         // this.setVisible(true);
-        generateReport("localOrdersPerRangeDay.jrxml", "Pedidos locales","dates");
+        loadDatesCalendarForReports("localOrdersPerRangeDay.jrxml", "Pedidos locales");
     }//GEN-LAST:event_btnDlgReportsOrdersLocalActionPerformed
 
 
     private void btnDlgReportsOrdersDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsOrdersDeliveryActionPerformed
         dlgReportsOrders.setVisible(false);
         this.setVisible(true);
-        generateReport("orderDeliveryPerRangeDay.jrxml", "Domicilios realizados","dates");
+        loadDatesCalendarForReports("orderDeliveryPerRangeDay.jrxml", "Domicilios realizados");
+        // generateReport("orderDeliveryPerRangeDay.jrxml", "Domicilios realizados", "dates");
     }//GEN-LAST:event_btnDlgReportsOrdersDeliveryActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       dlgReportsOrders.setVisible(false);
+    private void btnDlgReportsTopNeighborhoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsTopNeighborhoodActionPerformed
+        dlgReportsOrders.setVisible(false);
         this.setVisible(true);
-        generateReport("topNeighBorhoodsOrders.jrxml", "Lista de barrios donde más piden","normal");
-    }//GEN-LAST:event_jButton2ActionPerformed
+        parameters_report = new HashMap();
+        generateReport("topNeighBorhoodsOrders.jrxml", "Lista de barrios donde más piden", parameters_report);
+    }//GEN-LAST:event_btnDlgReportsTopNeighborhoodActionPerformed
 
-    public void generateReport(String nameReport, String title, String typeReport) {
-        try {
-            Map parameters_report = new HashMap();
-            connexion = new Connect();
-            if(typeReport.equals("dates")){
-            //Creo el calendario
-            JDateChooser dateChooser = new JDateChooser();
-            //Le doy formato al calendadio
-            dateChooser.setDateFormatString("dd-MM-yyyy");
-            //Creación de variables para mandar al JOption
-            String message;
-            SimpleDateFormat changeFormatDate = new SimpleDateFormat("yyyy-MM-dd");
-            message = "Por favor seleccione la fecha inicial\n";
-            Object[] dateInitParams = {message, dateChooser};
-            JOptionPane.showConfirmDialog(null, dateInitParams, "Fecha inicial", JOptionPane.PLAIN_MESSAGE);
-            
-            String dateInitialStr = changeFormatDate.format(((JDateChooser) dateInitParams[1]).getDate());
-            Date dateInitial = changeFormatDate.parse(dateInitialStr);
-            message = "Por favor seleccione la fecha final\n";
-            Object[] dateFinalParams = {message, dateChooser};
-            JOptionPane.showConfirmDialog(null, dateFinalParams, "Fecha final", JOptionPane.PLAIN_MESSAGE);
-            String dateFinalStr = changeFormatDate.format(((JDateChooser) dateFinalParams[1]).getDate());
-            Date dateFinal = changeFormatDate.parse(dateFinalStr);
-            
-           
-            parameters_report.put("date_initial", dateInitial);
-            parameters_report.put("date_final", dateFinal);
+    private void btnDlgReportsCustomersFindOrdersPerCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsCustomersFindOrdersPerCustomerActionPerformed
+        dlgReportsCustomers.setVisible(false);
+        this.setVisible(true);
+        parameters_report = new HashMap();
+        connexion = new Connect();
+        String phone_customer = JOptionPane.showInputDialog("Por favor ingrese el número de teléfono del cliente");
+        if(!phone_customer.isEmpty()){
+         parameters_report.put("phone_customer", phone_customer);
+        generateReport("OrdersDeliveryPerCustomer.jrxml", "Lista de pedidos por un cliente determinado", parameters_report);
+    
+        }else{
+            JOptionPane.showMessageDialog(dlgReportsCustomers, "No ingresó ningún número, por favor vuelva a intentarlo");
+        }
+       
+    }//GEN-LAST:event_btnDlgReportsCustomersFindOrdersPerCustomerActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnDlgReportsTopCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsTopCustomersActionPerformed
+        dlgReportsCustomers.setVisible(false);
+        this.setVisible(true);
+        parameters_report = new HashMap();
+        connexion = new Connect();
+        generateReport("topCustomersOrdersAndTotalOrders.jrxml", "Top clientes que más han pedido", parameters_report);
+    }//GEN-LAST:event_btnDlgReportsTopCustomersActionPerformed
+
+    private void btnDlgAdditionsCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgAdditionsCancel1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDlgAdditionsCancel1ActionPerformed
+
+    private void dlgReportsCustomersWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgReportsCustomersWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dlgReportsCustomersWindowOpened
+
+    public void loadDatesCalendarForReports(String nameReport, String title) {
+        parameters_report = new HashMap();
+        connexion = new Connect();
+
+        //Creo el calendario
+        JDateChooser dateChooser = new JDateChooser();
+        //Le doy formato al calendadio
+        dateChooser.setDateFormatString("dd-MM-yyyy");
+        //Creación de variables para mandar al JOption
+        String message;
+        SimpleDateFormat changeFormatDate = new SimpleDateFormat("yyyy-MM-dd");
+        message = "Por favor seleccione la fecha inicial\n";
+        Object[] dateInitParams = {message, dateChooser};
+        JOptionPane.showConfirmDialog(null, dateInitParams, "Fecha inicial", JOptionPane.PLAIN_MESSAGE);
+        if (((JDateChooser) dateInitParams[1]).getDate() != null) {
+            try {
+                String dateInitialStr = changeFormatDate.format(((JDateChooser) dateInitParams[1]).getDate());
+                Date dateInitial = changeFormatDate.parse(dateInitialStr);
+                message = "Por favor seleccione la fecha final\n";
+                Object[] dateFinalParams = {message, dateChooser};
+                JOptionPane.showConfirmDialog(null, dateFinalParams, "Fecha final", JOptionPane.PLAIN_MESSAGE);
+                if (((JDateChooser) dateFinalParams[1]).getDate() != null) {
+                    String dateFinalStr = changeFormatDate.format(((JDateChooser) dateFinalParams[1]).getDate());
+                    Date dateFinal = changeFormatDate.parse(dateFinalStr);
+                    parameters_report.put("date_initial", dateInitial);
+                    parameters_report.put("date_final", dateFinal);
+                    generateReport(nameReport, title, parameters_report);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Es necesario que ingrese una fecha final, por favor repita el proceso.");
+                }
+            } catch (ParseException ex) {
+                System.out.println(ex);
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Es necesario que ingrese una fecha inicial, por favor repita el proceso");
+        }
+
+    }
+
+    public void generateReport(String nameReport, String title, Map parameters_report) {
+        try {
+
             parameters_report.put("logo", getClass().getClassLoader().getResource("resources/images/logoHotWings.jpeg"));
             //  String dir = "src\\reports\\localOrdersPerRangeDay.jrxml.";//windows
             String dir = "src/reports/" + nameReport;
@@ -416,12 +551,12 @@ public class frmReports extends javax.swing.JFrame {
             JasperPrint showReport = JasperFillManager.fillReport(reportJasper, parameters_report, connexion.connection);
             JasperViewer jasperViewer = new JasperViewer(showReport, false);
             jasperViewer.setTitle(title);
+            jasperViewer.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+
             jasperViewer.setVisible(true);
             // JasperViewer.viewReport(showReport);
 
         } catch (JRException ex) {
-            System.out.println(ex);
-        } catch (ParseException ex) {
             System.out.println(ex);
         }
     }
@@ -464,19 +599,26 @@ public class frmReports extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminEmployees;
     private javax.swing.JButton btnDlgAdditionsCancel;
+    private javax.swing.JButton btnDlgAdditionsCancel1;
+    private javax.swing.JButton btnDlgReportsCustomersFindOrdersPerCustomer;
     private javax.swing.JButton btnDlgReportsOrdersDelivery;
     private javax.swing.JButton btnDlgReportsOrdersLocal;
+    private javax.swing.JButton btnDlgReportsTopCustomers;
+    private javax.swing.JButton btnDlgReportsTopNeighborhood;
     private javax.swing.JButton btnReports2;
     private javax.swing.JButton btnReports3;
-    private javax.swing.JButton btnReports4;
-    private javax.swing.JButton btnReports5;
     private javax.swing.JButton btnReportsBack;
+    private javax.swing.JDialog dlgReportsCustomers;
     private javax.swing.JDialog dlgReportsOrders;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel lblBackgroundReports;
     private javax.swing.JPanel pnlReportsOrders;
+    private javax.swing.JPanel pnlReportsOrders1;
     // End of variables declaration//GEN-END:variables
 }

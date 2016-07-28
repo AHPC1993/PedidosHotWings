@@ -151,7 +151,7 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
     }
 
     public String selectTotalOrder(String orderNumber) {
-        String sql = "SELECT SUM(product_price_total) FROM tbl_orderdelivery_details WHERE order_number='" + orderNumber + "';";
+        String sql = "SELECT to_char(SUM(product_price_total),'FM9,999,999') FROM tbl_orderdelivery_details WHERE order_number='" + orderNumber + "';";
         ResultSet results = null;
         results = connexion.search(sql);
         try {
@@ -201,6 +201,8 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
     }
 
     public DefaultTableModel list(String order_number) {
+        
+        //String[] columnName = {"Id Item", "Producto", "Descripción", "Precio", "Cant", "Total", "Observaciones"};
         String[] columnName = {"Id Item", "Producto", "Descripción", "Precio", "Cant", "Total", "Observaciones"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
             @Override
@@ -211,7 +213,7 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
 
         try {
             ResultSet result = null;
-            String sql = "Select localOrder_id, product_name, product_description, product_price, product_amount, product_price_total, notes FROM public.tbl_orderdelivery_details WHERE order_number='" + order_number + "';";
+            String sql = "Select localOrder_id, product_name, product_description, to_char(product_price,'FM9,999,999'), product_amount, to_char(product_price_total,'FM9,999,999'), notes FROM public.tbl_orderdelivery_details WHERE order_number='" + order_number + "';";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();

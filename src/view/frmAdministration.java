@@ -89,11 +89,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminAdditionalProducts.setUndecorated(true);
         dlgAdminUsers.setUndecorated(true);
 
-        barCustomersMenu.setSize(dim.width, 25);
-        barEmployeesMenu.setSize(dim.width, 25);
-        barLocalMenu.setSize(dim.width, 25);
-        barProductsMenu.setSize(dim.width, 25);
-        barAdditionalProductsMenu.setSize(dim.width, 25);
+
 
         this.setLocationRelativeTo(this);
         dlgAdminEmployees.setLocationRelativeTo(this);
@@ -148,8 +144,6 @@ public class frmAdministration extends javax.swing.JFrame {
         txtEmployeesPhone = new javax.swing.JTextField();
         cbLocal = new javax.swing.JComboBox<>();
         cbEmployeesJob = new javax.swing.JComboBox<>();
-        barEmployeesMenu = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
         pnlEmployeesButtons = new javax.swing.JPanel();
         btnEmployeesEdit = new javax.swing.JButton();
         btnEmployeesDelete = new javax.swing.JButton();
@@ -163,8 +157,6 @@ public class frmAdministration extends javax.swing.JFrame {
         lblEmployeesTitle = new javax.swing.JLabel();
         lblEmployeesBackgroundDialog = new javax.swing.JLabel();
         dlgAdminProducts = new javax.swing.JDialog();
-        barProductsMenu = new javax.swing.JToolBar();
-        jButton2 = new javax.swing.JButton();
         scrollPanelProductsTable = new javax.swing.JScrollPane();
         tblProducts = new javax.swing.JTable();
         pnlProductsButtons = new javax.swing.JPanel();
@@ -209,8 +201,6 @@ public class frmAdministration extends javax.swing.JFrame {
         lblPhone = new javax.swing.JLabel();
         txtCustomersPhone = new javax.swing.JTextField();
         cboCustomersNeighborhood = new javax.swing.JComboBox<>();
-        barCustomersMenu = new javax.swing.JToolBar();
-        jButton3 = new javax.swing.JButton();
         scrollPanelCustomersTable = new javax.swing.JScrollPane();
         tblCustomers = new javax.swing.JTable();
         pnlCustomersButtons = new javax.swing.JPanel();
@@ -224,8 +214,6 @@ public class frmAdministration extends javax.swing.JFrame {
         lblCustomersTitle = new javax.swing.JLabel();
         lblCustomerssBackgroundDialog = new javax.swing.JLabel();
         dlgAdminAdditionalProducts = new javax.swing.JDialog();
-        barAdditionalProductsMenu = new javax.swing.JToolBar();
-        jButton5 = new javax.swing.JButton();
         pnlAdditionalProductsButtons = new javax.swing.JPanel();
         btnAdditionalProductsEdit = new javax.swing.JButton();
         btnAdditionalProductsDelete = new javax.swing.JButton();
@@ -263,8 +251,6 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocalsCity = new javax.swing.JLabel();
         cbLocalsTown = new javax.swing.JComboBox<>();
         cbLocalsCity = new javax.swing.JComboBox<>();
-        barLocalMenu = new javax.swing.JToolBar();
-        jButton4 = new javax.swing.JButton();
         pnlLocalsButtons = new javax.swing.JPanel();
         btnLocalsEdit = new javax.swing.JButton();
         btnLocalsDelete = new javax.swing.JButton();
@@ -282,8 +268,6 @@ public class frmAdministration extends javax.swing.JFrame {
         btnSelectAdminAdditions = new javax.swing.JButton();
         btnSelectAdminProducts = new javax.swing.JButton();
         dlgAdminUsers = new javax.swing.JDialog();
-        barUsersMenu = new javax.swing.JToolBar();
-        jButton6 = new javax.swing.JButton();
         scrollPanelUsersTable = new javax.swing.JScrollPane();
         tblUsers = new javax.swing.JTable();
         pnlUsersButtons = new javax.swing.JPanel();
@@ -491,21 +475,6 @@ public class frmAdministration extends javax.swing.JFrame {
 
         dlgAdminEmployees.getContentPane().add(pnlEmployeesDates, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
 
-        barEmployeesMenu.setRollover(true);
-
-        jButton1.setText("Archivo");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        barEmployeesMenu.add(jButton1);
-
-        dlgAdminEmployees.getContentPane().add(barEmployeesMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 25));
-
         pnlEmployeesButtons.setOpaque(false);
 
         btnEmployeesEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -656,7 +625,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminEmployees.getContentPane().add(lblEmployeesTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 350, 50));
 
         lblEmployeesBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
-        dlgAdminEmployees.getContentPane().add(lblEmployeesBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 740));
+        dlgAdminEmployees.getContentPane().add(lblEmployeesBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 770));
 
         dlgAdminProducts.setTitle("Administrar Productos");
         dlgAdminProducts.setMinimumSize(new java.awt.Dimension(1382, 744));
@@ -667,21 +636,6 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         dlgAdminProducts.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        barProductsMenu.setRollover(true);
-
-        jButton2.setText("Archivo");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        barProductsMenu.add(jButton2);
-
-        dlgAdminProducts.getContentPane().add(barProductsMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 25));
 
         tblProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -945,6 +899,9 @@ public class frmAdministration extends javax.swing.JFrame {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 dlgAdminCustomersWindowClosing(evt);
             }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                dlgAdminCustomersWindowOpened(evt);
+            }
         });
         dlgAdminCustomers.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1031,14 +988,11 @@ public class frmAdministration extends javax.swing.JFrame {
                                     .addComponent(lblCustomersNotes))
                                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                                        .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                                                .addGap(11, 11, 11)
-                                                .addComponent(cbCustomersTown, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(11, 11, 11)
+                                        .addComponent(cbCustomersTown, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                                         .addGap(10, 10, 10)
                                         .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1119,21 +1073,6 @@ public class frmAdministration extends javax.swing.JFrame {
         );
 
         dlgAdminCustomers.getContentPane().add(pnlCustomersDates, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 460, -1));
-
-        barCustomersMenu.setRollover(true);
-
-        jButton3.setText("Archivo");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        barCustomersMenu.add(jButton3);
-
-        dlgAdminCustomers.getContentPane().add(barCustomersMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 25));
 
         tblCustomers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1285,7 +1224,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminCustomers.getContentPane().add(lblCustomersTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 350, 50));
 
         lblCustomerssBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
-        dlgAdminCustomers.getContentPane().add(lblCustomerssBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1380, 730));
+        dlgAdminCustomers.getContentPane().add(lblCustomerssBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 770));
 
         dlgAdminAdditionalProducts.setTitle("Administrar Productos adicionales");
         dlgAdminAdditionalProducts.setMinimumSize(new java.awt.Dimension(1382, 744));
@@ -1296,22 +1235,6 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         dlgAdminAdditionalProducts.getContentPane().setLayout(null);
-
-        barAdditionalProductsMenu.setRollover(true);
-
-        jButton5.setText("Archivo");
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        barAdditionalProductsMenu.add(jButton5);
-
-        dlgAdminAdditionalProducts.getContentPane().add(barAdditionalProductsMenu);
-        barAdditionalProductsMenu.setBounds(0, 0, 1290, 25);
 
         pnlAdditionalProductsButtons.setOpaque(false);
 
@@ -1713,21 +1636,6 @@ public class frmAdministration extends javax.swing.JFrame {
 
         dlgAdminLocal.getContentPane().add(pnlLocals, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
-        barLocalMenu.setRollover(true);
-
-        jButton4.setText("Archivo");
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        barLocalMenu.add(jButton4);
-
-        dlgAdminLocal.getContentPane().add(barLocalMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 25));
-
         pnlLocalsButtons.setOpaque(false);
 
         btnLocalsEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1886,7 +1794,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminLocal.getContentPane().add(lblLocalsTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 350, 50));
 
         lblLocalsBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
-        dlgAdminLocal.getContentPane().add(lblLocalsBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 740));
+        dlgAdminLocal.getContentPane().add(lblLocalsBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 770));
 
         dlgSelectProducts.setTitle("Seleccionar tipo de producto a administrar");
         dlgSelectProducts.setMinimumSize(new java.awt.Dimension(702, 449));
@@ -1956,21 +1864,6 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         dlgAdminUsers.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        barUsersMenu.setRollover(true);
-
-        jButton6.setText("Archivo");
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        barUsersMenu.add(jButton6);
-
-        dlgAdminUsers.getContentPane().add(barUsersMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 25));
 
         tblUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2349,10 +2242,6 @@ public class frmAdministration extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnEmployeesNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesNewActionPerformed
         cleanTextboxEmployees();
     }//GEN-LAST:event_btnEmployeesNewActionPerformed
@@ -2472,10 +2361,6 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelEmployeesTable.setVisible(true);
         tblEmployees.setVisible(true);
     }//GEN-LAST:event_btnEmployeesListActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnProductsEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsEditActionPerformed
 
@@ -2598,10 +2483,6 @@ public class frmAdministration extends javax.swing.JFrame {
     private void txtCustomersDocumentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomersDocumentKeyTyped
         onlyNumbersInTextField(evt, txtCustomersDocument, 12);
     }//GEN-LAST:event_txtCustomersDocumentKeyTyped
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnCustomersEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersEditActionPerformed
         listTxtValidate = new LinkedList<>();
@@ -2736,8 +2617,7 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCustomersListActionPerformed
 
     private void btnAdminCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminCustomersActionPerformed
-        customers = new clsDAOCustomers();
-        customers.loadCboNeighborhood(cboCustomersNeighborhood);
+       
         dlgAdminCustomers.setVisible(true);
     }//GEN-LAST:event_btnAdminCustomersActionPerformed
 
@@ -2757,10 +2637,6 @@ public class frmAdministration extends javax.swing.JFrame {
     private void txtLocalsAddressKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocalsAddressKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLocalsAddressKeyTyped
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnLocalsEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalsEditActionPerformed
         listTxtValidate = new LinkedList<>();
@@ -2921,10 +2797,6 @@ public class frmAdministration extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAdminBackActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void btnAdditionalProductsEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsEditActionPerformed
         listTxtValidate = new LinkedList<>();
         listTxtAreaValidate = new LinkedList<>();
@@ -3052,10 +2924,6 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminUsers.setVisible(true);
     }//GEN-LAST:event_btnAdminPasswordsActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     private void btnUsersEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersEditActionPerformed
         listTxtValidate = new LinkedList<>();
         listTxtAreaValidate = new LinkedList<>();
@@ -3177,6 +3045,11 @@ public class frmAdministration extends javax.swing.JFrame {
     private void dlgAdminUsersWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminUsersWindowClosing
         // TODO add your handling code here:
     }//GEN-LAST:event_dlgAdminUsersWindowClosing
+
+    private void dlgAdminCustomersWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminCustomersWindowOpened
+       customers = new clsDAOCustomers();
+        customers.loadCboNeighborhood(cboCustomersNeighborhood);
+    }//GEN-LAST:event_dlgAdminCustomersWindowOpened
 
     /**
      * Método que solo admite números y una longitud máxima de 8 caracteres.
@@ -3436,12 +3309,6 @@ public class frmAdministration extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToolBar barAdditionalProductsMenu;
-    private javax.swing.JToolBar barCustomersMenu;
-    private javax.swing.JToolBar barEmployeesMenu;
-    private javax.swing.JToolBar barLocalMenu;
-    private javax.swing.JToolBar barProductsMenu;
-    private javax.swing.JToolBar barUsersMenu;
     private javax.swing.JButton btnAdditionalProductsBack;
     private javax.swing.JButton btnAdditionalProductsDelete;
     private javax.swing.JButton btnAdditionalProductsEdit;
@@ -3507,12 +3374,6 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JDialog dlgAdminProducts;
     private javax.swing.JDialog dlgAdminUsers;
     private javax.swing.JDialog dlgSelectProducts;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel lbCustomersDocument;
     private javax.swing.JLabel lblAdditionalPrice;
     private javax.swing.JLabel lblAdditionalProductsBackgroundDialog;

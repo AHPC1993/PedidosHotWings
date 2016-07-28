@@ -26,8 +26,9 @@ pw: hotwings
 2. Organizar reportes.
 
 
-------Consultas importantes-------------------
--------------------Consultar el número de pedidos locales en un rango dado .----------------------------------------
+------------------------------------------------------------Consultas importantes---------------------------------------------------------------------------
+
+-----------------------------------------------Consultar el número de pedidos locales en un rango dado .---------------------------------------------------------
 SELECT
 	 tbl_localorder."date_order" AS "Fecha pedido",
      tbl_localorder."order_number" AS "Número de orden",
@@ -48,7 +49,7 @@ WHERE
    tbl_localorder.order_number = tbl_localorder_details.order_number
 
 
-------------------------------------------Reporte de domicilios en un rango dado-------------------------------------------------------------
+--------------------------------------------------------Reporte de domicilios en un rango dado-------------------------------------------------------------
 SELECT
      tbl_orderdelivery."date_order" AS "Fecha pedido",
      (tbl_customers."namec"|| ' '  || tbl_customers."lastname") AS "Cliente",
@@ -72,49 +73,58 @@ WHERE
 	tbl_orderdelivery.date_order>=$P{date_initial} AND tbl_orderdelivery.date_order<=$P{date_final} 
 
 
-Campos obligatorios.
-Empleados
-Cédula
-Nombre
-Apellidos
-Dirección
-Puesto
-Teléfono
+----------------------------------------------------------Reporte lista de barrios donde más piden----------------------------------------------------------------
 
-Productos
-Nombre
-Descripción
-Precio
+SELECT customers.neighborhood "Barrio", COUNT(DISTINCT order_delivery.order_number) "Número de pedidos"
+FROM tbl_orderdelivery_details order_delivery_details, tbl_orderdelivery order_delivery, tbl_customers customers
+WHERE order_delivery_details.order_number = order_delivery.order_number
+AND customers.customers_id = order_delivery_details.customers_id
+Group by customers.neighborhood
+Order by 2 desc;
 
-Clientes
-Nombre
-Apellidos
-Dirección
-Barrio
-Teléfono
+------------------------------------------Reporte de top clientes que más piden con valor total de pedidos---------------------------------------------------------
 
-Productos adicionales
-Nombre
-Descripción
-Precio
+SELECT (customers.namec || ' ' || customers.lastname) "Nombre cliente", COUNT(DISTINCT order_delivery.order_number) "Número de pedidos relizados", TO_CHAR(SUM(order_delivery.total_price),'FM999,999,999') "Total Pedidos"
+FROM tbl_orderdelivery_details order_delivery_details, tbl_orderdelivery order_delivery, tbl_customers customers
+WHERE order_delivery_details.order_number = order_delivery.order_number
+AND customers.customers_id = order_delivery_details.customers_id
+Group by 1
+Order by 2 desc;
 
-Locales
-Nit
-Nombre Local
-Dirección
-Barrio
+------------------------------------------Reporte de  clientes Con sus respectivos pedidos-------------------------------------------------------------------
 
-Usuarios
-Nombre de usuario
-Contraseña
-Repetir contraseña
+SELECT
+     tbl_orderdelivery."date_order" AS "Fecha pedido",
+     (tbl_customers."namec"|| ' '  || tbl_customers."lastname") AS "Cliente",
+     tbl_orderdelivery."order_number" AS "N° de orden",
+     tbl_orderdelivery_details."localorder_id" AS "Id Orden",
+     tbl_orderdelivery_details."product_name" AS "Nombre producto",
+     tbl_orderdelivery_details."product_description" AS "Descripción",
+to_char(tbl_orderdelivery_details."product_price",'FM999,999,999') AS "Precio",
+     tbl_orderdelivery_details."product_amount" AS "Cantidad",
+to_char(tbl_orderdelivery_details."product_price_total",'FM999,999,999')
+     AS "Precio total producto",
+     tbl_orderdelivery_details."notes" AS "Observaciones",
+to_char(tbl_orderdelivery."total_price",'FM999,999,999')
+	  AS "Total pedido"
+     
+FROM
+     "public"."tbl_orderdelivery" tbl_orderdelivery,
+     "public"."tbl_orderdelivery_details" tbl_orderdelivery_details,
+     "public"."tbl_customers" tbl_customers
+WHERE
+	tbl_orderdelivery.order_number = tbl_orderdelivery_details.order_number AND
+	tbl_orderdelivery_details.customers_id = (SELECT tbl_customers2.customers_id FROM "public"."tbl_customers" tbl_customers2 WHERE tbl_customers2.phone = $P{phone_customer}) AND
+	tbl_customers.customers_id = tbl_orderdelivery_details.customers_id
+
+
 
 Reportes a generar.
-OK   Pedidos locales en un rango de días OK
-OK   Pedidos Domicilios en un rango de días OK
-OK    Barrio que más pide OK
+OK   Pedidos locales en un rango de días 
+OK   Pedidos Domicilios en un rango de días 
+OK    Barrio que más pide 
 Top Clientes por número de compras
-Número de pedidos por cliente en cierta fecha
+OK  Número de pedidos por cliente
 OK   Empleado que va a llevar el domicilio OK
 Inventario
 Reporte de inventario
@@ -124,3 +134,10 @@ OK   Organizar clientes ya que no permite eliminar por duplicados OK
 OK   Al salir de una orden local o de domicilio, debe haber una confirmación y se deben borrar todos los pedidos para ese número de orden OK
 OK   Aumentar número de orden cada que se entre a pedido local o a domicilios
 Organizar los botones de los productos adicionales y productos normales
+OK Organizar para que le salgan unidades, descenas y centenas tanto en los reportes como en las tablas.
+OK Volver más grande el texto en las tablas
+OK Centrar el contenido de las tablas y justificar a la derecha los números.
+OK Agregar en la tabla de domicilios por id cliente, no por teléfono
+OK Arreglar combobox autocomplete
+Las pantallas aparecen con el background a medias, arreglarlo
+

@@ -125,7 +125,7 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
     }
 
     public String selectTotalOrder(String orderNumber) {
-        String sql = "SELECT SUM(product_price_total) FROM tbl_localorder_details WHERE order_number='" + orderNumber + "';";
+        String sql = "SELECT to_char(SUM(product_price_total),'FM999,999,999') FROM tbl_localorder_details WHERE order_number='" + orderNumber + "';";
         ResultSet results = null;
         results = connexion.search(sql);
         try {
@@ -185,7 +185,7 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
 
         try {
             ResultSet result = null;
-            String sql = "Select localOrder_id, product_name, product_description, product_price, product_amount, product_price_total, notes FROM public.tbl_localorder_details WHERE order_number='"+order_number+"';";
+            String sql = "Select localOrder_id, product_name, product_description, to_char(product_price,'FM999,999,999'), product_amount, to_char(product_price_total,'FM999,999,999'), notes FROM public.tbl_localorder_details WHERE order_number='"+order_number+"';";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();

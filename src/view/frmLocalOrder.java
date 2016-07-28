@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -833,7 +834,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
                         txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
                         tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
                         txtNotes.setText("");
-
+                        centerElementsTable(tblLocalOrder);
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
                     }
@@ -852,6 +853,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
                         txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
                         tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
                         txtNotes.setText("");
+                        centerElementsTable(tblLocalOrder);
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
                     }
@@ -866,6 +868,20 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnSelectedProducts.setSelected(true);
         btnSelectedAdditionalProduct.setSelected(true);
     }//GEN-LAST:event_btnAddProductActionPerformed
+
+    public void centerElementsTable(JTable table) {
+        DefaultTableCellRenderer rendererCenter = new DefaultTableCellRenderer();
+        rendererCenter.setHorizontalAlignment(SwingConstants.CENTER);
+        DefaultTableCellRenderer rendererRight = new DefaultTableCellRenderer();
+        rendererRight.setHorizontalAlignment(SwingConstants.RIGHT);
+        table.getColumnModel().getColumn(0).setCellRenderer(rendererCenter);
+        table.getColumnModel().getColumn(1).setCellRenderer(rendererCenter);
+        table.getColumnModel().getColumn(2).setCellRenderer(rendererCenter);
+        table.getColumnModel().getColumn(4).setCellRenderer(rendererCenter);
+        table.getColumnModel().getColumn(6).setCellRenderer(rendererCenter);
+        table.getColumnModel().getColumn(3).setCellRenderer(rendererRight);
+        table.getColumnModel().getColumn(5).setCellRenderer(rendererRight);
+    }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         loadNameProductValues();
@@ -948,6 +964,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
                             txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
                             tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
                             txtNotes.setText("");
+                            centerElementsTable(tblLocalOrder);
 
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
@@ -959,6 +976,8 @@ public class frmLocalOrder extends javax.swing.JFrame {
                             txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
                             tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
                             txtNotes.setText("");
+                            centerElementsTable(tblLocalOrder);
+
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
                         }
@@ -981,7 +1000,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
                     "Desea confirmar el pedido con número de orden " + txtOrderNumber.getText(), "Confirmar pedido",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                if (localOrder.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText())) {
+                if (localOrder.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""))) {
                     txtOrderNumber.setText(localOrder.incrementOrderNumber());
                     txtTotalOrder.setText("0");
 
@@ -1010,12 +1029,15 @@ public class frmLocalOrder extends javax.swing.JFrame {
             } else {
                 this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             }
+        } else {
+            this.setVisible(false);
+            clearTable(tblLocalOrder);
         }
     }//GEN-LAST:event_btnAdminBackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         double change = Double.parseDouble(JOptionPane.showInputDialog("Devuelta de cuánto?"));
-        double total = Double.parseDouble(txtTotalOrder.getText());
+        double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
         if (change < total) {
             JOptionPane.showMessageDialog(this, "El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente");
         } else {

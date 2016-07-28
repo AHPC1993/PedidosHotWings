@@ -10,6 +10,8 @@ import java.awt.Toolkit;
 import javax.swing.*;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import javax.swing.JOptionPane;
+import model.clsDAOLocalOrderDetails;
+import model.clsDAOOrderDeliveryDetails;
 import model.clsDAOUsers;
 
 /**
@@ -17,7 +19,8 @@ import model.clsDAOUsers;
  * @author allan
  */
 public class frmMainHotWings extends javax.swing.JFrame {
-
+    model.clsDAOOrderDeliveryDetails orderDelivery;
+    model.clsDAOLocalOrderDetails localOrder;
     controller.Connect connexion;
     frmNewOrderDelivery frmOrderDelivery;
     frmAdministration frmAdmin;
@@ -386,12 +389,15 @@ public class frmMainHotWings extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAcceptActionPerformed
 
     private void btnLocalOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalOrderActionPerformed
+       localOrder = new clsDAOLocalOrderDetails();
+        frmLocalO.txtOrderNumber.setText(localOrder.selectOrderNumber());
         frmLocalO.setVisible(true);
     }//GEN-LAST:event_btnLocalOrderActionPerformed
 
     private void btnOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDeliveryActionPerformed
         // frmOrderDelivery.setVisible(true);
-       
+     orderDelivery = new clsDAOOrderDeliveryDetails();
+        frmOrderDelivery.txtOrderNumber.setText(orderDelivery.selectOrderNumber());
         frmOrderDelivery.dlgOrderDelivery.setVisible(true);
 
     }//GEN-LAST:event_btnOrderDeliveryActionPerformed

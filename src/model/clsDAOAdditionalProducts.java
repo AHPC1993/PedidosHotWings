@@ -78,7 +78,6 @@ public class clsDAOAdditionalProducts extends clsAdditionalProducts{
                     row[i - 1] = result.getObject(i);
                 }
 
-                System.out.println("");
                 tblModel.addRow(row);
             }
             return tblModel;

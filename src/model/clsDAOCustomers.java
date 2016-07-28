@@ -130,7 +130,6 @@ public class clsDAOCustomers extends clsCustomers {
                 }
                 return listOfNeighborhood;
             } else {
-                System.out.println("No encontré ni un solo registro");
                 return null;
             }
         } catch (SQLException ex) {

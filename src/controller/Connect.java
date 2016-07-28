@@ -53,7 +53,7 @@ public class Connect {
                 return false;
             }
         } catch (SQLException ex) {
-            System.out.println("Error en la consulta:  " + sql);
+            System.out.println("Error en la consulta:  " + ex);
         }
         return false;
     }

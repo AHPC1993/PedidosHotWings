@@ -177,8 +177,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         txtCustomersNotes = new javax.swing.JTextArea();
         lblCustomersCity = new javax.swing.JLabel();
         lblCustomersTown = new javax.swing.JLabel();
-        cbCustomersTown = new javax.swing.JComboBox<>();
-        cbCustomersCity = new javax.swing.JComboBox<>();
+        cbCustomersTown = new javax.swing.JComboBox<String>();
+        cbCustomersCity = new javax.swing.JComboBox<String>();
         lblPhone = new javax.swing.JLabel();
         txtCustomersPhone = new javax.swing.JTextField();
         btnAddCustomer = new javax.swing.JButton();
@@ -247,7 +247,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
-        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlCustomersDates.setOpaque(false);
 
         lbCustomersDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -298,9 +298,9 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         lblCustomersTown.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersTown.setText("Municipio");
 
-        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
+        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
 
-        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
+        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
 
         lblPhone.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblPhone.setText("Teléfono");
@@ -612,7 +612,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
-        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlAmount.setLayout(null);
 
         numbersGroup.add(btnNumber6);
@@ -793,7 +793,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         pnlAmount.add(jPanel1);
         jPanel1.setBounds(140, 290, 220, 110);
 
-        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
 
         productsGroup.add(btnProduct1);
         btnProduct1.setText("Combo 1");
@@ -1232,53 +1232,53 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNumber9ActionPerformed
 
     private void btnDoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneOrderActionPerformed
-        if (JOptionPane.showConfirmDialog(this,
-                "Desea confirmar el pedido con número de orden " + txtOrderNumber.getText(), "Confirmar pedido",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-            ResultSet result = orderDelivery.searchEmployeesJobDelivery();
-            JComboBox jcbListEmployees = new JComboBox();
-            ArrayList<String> listEmployees_id = new ArrayList<>();
-            String employee_id = "";
-            try {
-                jcbListEmployees.addItem(result.getString(2));
-                listEmployees_id.add(result.getString(1));
-                while (result.next()) {
-                    System.out.println(result.getString(2));
+        if (tblOrderDelivery.getRowCount() > 0) {
+            if (JOptionPane.showConfirmDialog(this,
+                    "Desea confirmar el pedido con número de orden " + txtOrderNumber.getText(), "Confirmar pedido",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                ResultSet result = orderDelivery.searchEmployeesJobDelivery();
+                JComboBox jcbListEmployees = new JComboBox();
+                ArrayList<String> listEmployees_id = new ArrayList<>();
+                String employee_id = "";
+                try {
                     jcbListEmployees.addItem(result.getString(2));
                     listEmployees_id.add(result.getString(1));
+                    while (result.next()) {
+                        jcbListEmployees.addItem(result.getString(2));
+                        listEmployees_id.add(result.getString(1));
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
                 }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            if (listEmployees_id.size() > 0) {
+                if (listEmployees_id.size() > 0) {
 
-                JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
-                employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
-            }
-            if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText(), employee_id)) {
-                txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
-                txtTotalOrder.setText("0");
+                    JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
+                    employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
+                }
+                if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText(), employee_id)) {
+                    txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
+                    txtTotalOrder.setText("0");
 
-                clearTable(tblOrderDelivery);
-                JOptionPane.showMessageDialog(this, "La orden ha sido procesada con éxito");
+                    clearTable(tblOrderDelivery);
+                    JOptionPane.showMessageDialog(this, "La orden ha sido procesada con éxito");
+                }
             }
         } else {
-
+            JOptionPane.showMessageDialog(this, "No hay todavía ningún producto para realizar la compra.");
         }
     }//GEN-LAST:event_btnDoneOrderActionPerformed
 
-    
-    public void clearTable(JTable table){
-         DefaultTableModel dm = (DefaultTableModel) table.getModel();
-                int rowCount = dm.getRowCount();
-                for (int i = rowCount - 1; i >= 0; i--) {
-                    dm.removeRow(i);
-                }
+    public void clearTable(JTable table) {
+        DefaultTableModel dm = (DefaultTableModel) table.getModel();
+        int rowCount = dm.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            dm.removeRow(i);
+        }
 
-                table.setModel(dm);
+        table.setModel(dm);
     }
-    
+
     private void btnCorrectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrectionActionPerformed
         if (tblOrderDelivery.getRowCount() > 0) {
             deleteSelectionState = 1;
@@ -1457,20 +1457,20 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }//GEN-LAST:event_tblOrderDeliveryMouseClicked
 
     private void btnAdminBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminBackActionPerformed
-         if (JOptionPane.showConfirmDialog(this,
-                "Está seguro de que quiere salir? Si sale y hay algún pedido en ejecución, este será eliminado", "Salir y cancelar pedido?",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-             orderDelivery.cancelOrderButtonBack(txtOrderNumber.getText());
-             this.setVisible(false);
-             clearTable(tblOrderDelivery);
-             
-        } else {
-            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        if (tblOrderDelivery.getRowCount() > 0) {
+            if (JOptionPane.showConfirmDialog(this,
+                    "Está en la mitad de un pedido, si sale, el pedido será eliminado ¿Está seguro de que quiere salir? ", "Salir y cancelar pedido?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                orderDelivery.cancelOrderButtonBack(txtOrderNumber.getText());
+                this.setVisible(false);
+                clearTable(tblOrderDelivery);
+
+            } else {
+                this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            }
         }
-   
-        
-        
+
     }//GEN-LAST:event_btnAdminBackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1617,8 +1617,6 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
      * @param amount
      */
     public void loadSetValuesOrderDetails(String nameP, double amount) {
-        System.out.println(nameP);
-        System.out.println(stateTypeProduct);
         try {
             orderDelivery = new clsDAOOrderDeliveryDetails();
             orderDelivery.setCustomers_id(customers_id);
@@ -1636,10 +1634,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 }
 
             } else if (stateTypeProduct == 1) {
-                System.out.println("nombre: " + orderDelivery.getProduct_name());
                 result = orderDelivery.searchAdditionalProductByName();
                 if (result != null) {
-                    System.out.println(orderDelivery.getAdditional_products_id() + "Id producto");
                     orderDelivery.setAdditional_products_id(result.getString(1));
                     orderDelivery.setProduct_description(result.getString(3));
                     orderDelivery.setProduct_price(Double.parseDouble(result.getString(4)));
@@ -1968,7 +1964,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private javax.swing.JTextField txtCustomersPhone;
     private javax.swing.JTextField txtCustomerssAddress;
     private javax.swing.JTextArea txtNotes;
-    private javax.swing.JTextField txtOrderNumber;
+    public javax.swing.JTextField txtOrderNumber;
     private javax.swing.JTextField txtTotalOrder;
     // End of variables declaration//GEN-END:variables
 }

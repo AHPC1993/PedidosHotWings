@@ -27,6 +27,8 @@ import model.clsDAOAdditionalProducts;
 import model.clsDAOCompany;
 import model.clsDAOCustomers;
 import model.clsDAOEmployees;
+import model.clsDAOInventory;
+import model.clsDAOInventoryHistory;
 import model.clsDAOProducts;
 import model.clsDAOUsers;
 
@@ -46,12 +48,16 @@ public class frmAdministration extends javax.swing.JFrame {
     String customers_id;
     String local_id;
     String usersname;
+    String inventory_id;
+    String history_id;
     model.clsDAOEmployees employees;
     model.clsDAOProducts products;
     model.clsDAOCustomers customers;
     model.clsDAOCompany local;
     model.clsDAOAdditionalProducts additionalProducts;
     model.clsDAOUsers users;
+    model.clsDAOInventory inventory;
+    model.clsDAOInventoryHistory inventoryHistory;
 
     /**
      * Creates new form frmAdministration
@@ -74,6 +80,8 @@ public class frmAdministration extends javax.swing.JFrame {
         lblLocalsBackgroundDialog.setSize(dim.width, dim.height);
         lblAdditionalProductsBackgroundDialog.setSize(dim.width, dim.height);
         lblUsersBackgroundDialog.setSize(dim.width, dim.height);
+        lblInventoryBackgroundDialog.setSize(dim.width, dim.height);
+        lblInventoryHistoryBackgroundDialog.setSize(dim.width, dim.height);
 
         dlgAdminEmployees.setSize(dim.width, dim.height);
         dlgAdminProducts.setSize(dim.width, dim.height);
@@ -81,6 +89,8 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminLocal.setSize(dim.width, dim.height);
         dlgAdminAdditionalProducts.setSize(dim.width, dim.height);
         dlgAdminUsers.setSize(dim.width, dim.height);
+        dlgAdminInventory.setSize(dim.width, dim.height);
+        dlgAdminInventoryHistory.setSize(dim.width, dim.height);
 
         dlgAdminEmployees.setUndecorated(true);
         dlgAdminProducts.setUndecorated(true);
@@ -88,8 +98,8 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminLocal.setUndecorated(true);
         dlgAdminAdditionalProducts.setUndecorated(true);
         dlgAdminUsers.setUndecorated(true);
-
-
+        dlgAdminInventory.setUndecorated(true);
+        dlgAdminInventoryHistory.setUndecorated(true);
 
         this.setLocationRelativeTo(this);
         dlgAdminEmployees.setLocationRelativeTo(this);
@@ -99,6 +109,9 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgSelectProducts.setLocationRelativeTo(this);
         dlgAdminAdditionalProducts.setLocationRelativeTo(this);
         dlgAdminUsers.setLocationRelativeTo(this);
+        dlgAdminInventory.setLocationRelativeTo(this);
+        dlgAdminInventoryHistory.setLocationRelativeTo(this);
+        dlgSelectInventory.setLocationRelativeTo(this);
 
         scrollPanelEmployeesTable.setVisible(false);
         scrollPanelProductsTable.setVisible(false);
@@ -106,6 +119,8 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelLocalsTable.setVisible(false);
         scrollPanelAdditionalProductsTable.setVisible(false);
         scrollPanelUsersTable.setVisible(false);
+        scrollPanelInventoryHistoryTable.setVisible(false);
+        scrollPanelInventoryTable.setVisible(false);
 
         tblEmployees.setVisible(false);
         tblProducts.setVisible(false);
@@ -113,6 +128,8 @@ public class frmAdministration extends javax.swing.JFrame {
         tblLocals.setVisible(false);
         tblAdditionalProducts.setVisible(false);
         tblUsers.setVisible(false);
+        tblInventory.setVisible(false);
+        tblInventoryHistory.setVisible(false);
 
     }
 
@@ -292,12 +309,56 @@ public class frmAdministration extends javax.swing.JFrame {
         btnUsersBack = new javax.swing.JButton();
         lblUsersTitle = new javax.swing.JLabel();
         lblUsersBackgroundDialog = new javax.swing.JLabel();
+        dlgAdminInventoryHistory = new javax.swing.JDialog();
+        scrollPanelInventoryHistoryTable = new javax.swing.JScrollPane();
+        tblInventoryHistory = new javax.swing.JTable();
+        pnlInventoryHistoryButtons = new javax.swing.JPanel();
+        btnInventoryHistoryEdit = new javax.swing.JButton();
+        btnInventoryHistoryDelete = new javax.swing.JButton();
+        btnInventoryHistoryInsert = new javax.swing.JButton();
+        btnInventoryHistoryList = new javax.swing.JButton();
+        btnInventoryHistorySearch = new javax.swing.JButton();
+        pnlInventoryHistory = new javax.swing.JPanel();
+        lblInventoryHistoryProduct = new javax.swing.JLabel();
+        lblInventoryHistoryActionInOut = new javax.swing.JLabel();
+        lblInventoryHistoryAmount = new javax.swing.JLabel();
+        cboInventoryHistoryInOut = new javax.swing.JComboBox();
+        cboInventoryHistoryProduct = new javax.swing.JComboBox();
+        txtInventoryHistoryAmount = new javax.swing.JTextField();
+        btnInventoryHistoryBack = new javax.swing.JButton();
+        lblInventoryHistoryTitle = new javax.swing.JLabel();
+        lblInventoryHistoryBackgroundDialog = new javax.swing.JLabel();
+        dlgSelectInventory = new javax.swing.JDialog();
+        pnlSelectAdminInventory = new javax.swing.JPanel();
+        btnSelectInventoryHistory = new javax.swing.JButton();
+        btnSelectInventory1 = new javax.swing.JButton();
+        dlgAdminInventory = new javax.swing.JDialog();
+        scrollPanelInventoryTable = new javax.swing.JScrollPane();
+        tblInventory = new javax.swing.JTable();
+        pnlInventoryButtons = new javax.swing.JPanel();
+        btnInventoryEdit = new javax.swing.JButton();
+        btnInventoryDelete = new javax.swing.JButton();
+        btnInventoryInsert = new javax.swing.JButton();
+        btnInventorySearch = new javax.swing.JButton();
+        btnInventoryNew = new javax.swing.JButton();
+        btnInventoryList = new javax.swing.JButton();
+        pnlInventory = new javax.swing.JPanel();
+        lblInventoryProduct = new javax.swing.JLabel();
+        scrollInventoryNotes = new javax.swing.JScrollPane();
+        txtInventoryNotes = new javax.swing.JTextArea();
+        lblInventoryNotes = new javax.swing.JLabel();
+        txtInventoryProduct = new javax.swing.JTextField();
+        btnInventoryBack = new javax.swing.JButton();
+        lblInventoryTitle = new javax.swing.JLabel();
+        lblInventoryBackgroundDialog = new javax.swing.JLabel();
         btnAdminProducts = new javax.swing.JButton();
         btnCompanyDates = new javax.swing.JButton();
         btnAdminEmployees = new javax.swing.JButton();
         btnAdminPasswords = new javax.swing.JButton();
         btnAdminCustomers = new javax.swing.JButton();
         btnAdminBack = new javax.swing.JButton();
+        btnAdminInventory = new javax.swing.JButton();
+        btnAdminOrders = new javax.swing.JButton();
         lblBackgroundAdmin = new javax.swing.JLabel();
 
         dlgAdminEmployees.setTitle("Administrar Empleados");
@@ -997,8 +1058,7 @@ public class frmAdministration extends javax.swing.JFrame {
                                         .addGap(10, 10, 10)
                                         .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(scrollNotes1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCustomersPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                            .addComponent(txtCustomersPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCustomersAddress)
@@ -1006,7 +1066,8 @@ public class frmAdministration extends javax.swing.JFrame {
                                 .addGap(50, 50, 50)
                                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCustomerssAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cboCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(cboCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2030,6 +2091,7 @@ public class frmAdministration extends javax.swing.JFrame {
 
         txtUsersRepeatPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        cboUsersIsAdmin.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cboUsersIsAdmin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Si", "No" }));
         cboUsersIsAdmin.setSelectedIndex(1);
         cboUsersIsAdmin.setToolTipText("El usuario puede administrar ?");
@@ -2043,7 +2105,7 @@ public class frmAdministration extends javax.swing.JFrame {
             pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUsersLayout.createSequentialGroup()
                 .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrolProductslNotes3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addComponent(scrolProductslNotes3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                     .addGroup(pnlUsersLayout.createSequentialGroup()
                         .addGroup(pnlUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlUsersLayout.createSequentialGroup()
@@ -2091,11 +2153,11 @@ public class frmAdministration extends javax.swing.JFrame {
                 .addComponent(lblUsersPassword1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtUsersRepeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(lblUsersIsAdmin)
-                .addGap(18, 18, 18)
-                .addComponent(cboUsersIsAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cboUsersIsAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblProductsNotes1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrolProductslNotes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2127,6 +2189,511 @@ public class frmAdministration extends javax.swing.JFrame {
         lblUsersBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         dlgAdminUsers.getContentPane().add(lblUsersBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 770));
 
+        dlgAdminInventoryHistory.setTitle("Administrar Productos");
+        dlgAdminInventoryHistory.setMinimumSize(new java.awt.Dimension(1382, 744));
+        dlgAdminInventoryHistory.setSize(new java.awt.Dimension(1382, 744));
+        dlgAdminInventoryHistory.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                dlgAdminInventoryHistoryWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                dlgAdminInventoryHistoryWindowOpened(evt);
+            }
+        });
+        dlgAdminInventoryHistory.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblInventoryHistory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Usuario", "Contraseña", "Descripción", "Fecha de registo", "Fecha de último ingreso", "Es administrador ?"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollPanelInventoryHistoryTable.setViewportView(tblInventoryHistory);
+        tblInventoryHistory.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        dlgAdminInventoryHistory.getContentPane().add(scrollPanelInventoryHistoryTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 640, 410));
+
+        pnlInventoryHistoryButtons.setOpaque(false);
+
+        btnInventoryHistoryEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInventoryHistoryEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnEdit.png"))); // NOI18N
+        btnInventoryHistoryEdit.setText("Modificar");
+        btnInventoryHistoryEdit.setToolTipText("Modificar el empleado con los datos que aparecen en las cajas de texto");
+        btnInventoryHistoryEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryHistoryEdit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistoryEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistoryEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryHistoryEditActionPerformed(evt);
+            }
+        });
+
+        btnInventoryHistoryDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInventoryHistoryDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnDelete.png"))); // NOI18N
+        btnInventoryHistoryDelete.setText("Eliminar");
+        btnInventoryHistoryDelete.setToolTipText("Eliminar un empleado");
+        btnInventoryHistoryDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryHistoryDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistoryDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistoryDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryHistoryDeleteActionPerformed(evt);
+            }
+        });
+
+        btnInventoryHistoryInsert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInventoryHistoryInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSave.png"))); // NOI18N
+        btnInventoryHistoryInsert.setText("Insertar");
+        btnInventoryHistoryInsert.setToolTipText("Ingresar un nuevo empleado");
+        btnInventoryHistoryInsert.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryHistoryInsert.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistoryInsert.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistoryInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryHistoryInsertActionPerformed(evt);
+            }
+        });
+
+        btnInventoryHistoryList.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInventoryHistoryList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnList.png"))); // NOI18N
+        btnInventoryHistoryList.setText("Listar Inventario");
+        btnInventoryHistoryList.setToolTipText("Listar todos los empleados en la empresa");
+        btnInventoryHistoryList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryHistoryList.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistoryList.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistoryList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryHistoryListActionPerformed(evt);
+            }
+        });
+
+        btnInventoryHistorySearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInventoryHistorySearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSearch.png"))); // NOI18N
+        btnInventoryHistorySearch.setText("Consultar");
+        btnInventoryHistorySearch.setToolTipText("Buscar un empleado por número de cédula");
+        btnInventoryHistorySearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryHistorySearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistorySearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistorySearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryHistorySearchActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlInventoryHistoryButtonsLayout = new javax.swing.GroupLayout(pnlInventoryHistoryButtons);
+        pnlInventoryHistoryButtons.setLayout(pnlInventoryHistoryButtonsLayout);
+        pnlInventoryHistoryButtonsLayout.setHorizontalGroup(
+            pnlInventoryHistoryButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInventoryHistoryButtonsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnInventoryHistoryInsert)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInventoryHistorySearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnInventoryHistoryEdit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnInventoryHistoryDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnInventoryHistoryList)
+                .addContainerGap())
+        );
+        pnlInventoryHistoryButtonsLayout.setVerticalGroup(
+            pnlInventoryHistoryButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInventoryHistoryButtonsLayout.createSequentialGroup()
+                .addGroup(pnlInventoryHistoryButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnInventoryHistoryInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInventoryHistoryEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInventoryHistoryDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInventoryHistoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInventoryHistorySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 22, Short.MAX_VALUE))
+        );
+
+        dlgAdminInventoryHistory.getContentPane().add(pnlInventoryHistoryButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+
+        pnlInventoryHistory.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlInventoryHistory.setOpaque(false);
+
+        lblInventoryHistoryProduct.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
+        lblInventoryHistoryProduct.setText("Producto");
+
+        lblInventoryHistoryActionInOut.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
+        lblInventoryHistoryActionInOut.setText("¿Entra o sale?");
+
+        lblInventoryHistoryAmount.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
+        lblInventoryHistoryAmount.setText("Cantidad");
+
+        cboInventoryHistoryInOut.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cboInventoryHistoryInOut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Entra", "Sale" }));
+        cboInventoryHistoryInOut.setToolTipText("El producto entra o sale");
+
+        cboInventoryHistoryProduct.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cboInventoryHistoryProduct.setToolTipText("Productos que entran o salen");
+
+        javax.swing.GroupLayout pnlInventoryHistoryLayout = new javax.swing.GroupLayout(pnlInventoryHistory);
+        pnlInventoryHistory.setLayout(pnlInventoryHistoryLayout);
+        pnlInventoryHistoryLayout.setHorizontalGroup(
+            pnlInventoryHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInventoryHistoryLayout.createSequentialGroup()
+                .addGroup(pnlInventoryHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInventoryHistoryLayout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(lblInventoryHistoryAmount))
+                    .addGroup(pnlInventoryHistoryLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addGroup(pnlInventoryHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cboInventoryHistoryInOut, 0, 244, Short.MAX_VALUE)
+                            .addComponent(cboInventoryHistoryProduct, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtInventoryHistoryAmount))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnlInventoryHistoryLayout.createSequentialGroup()
+                .addGroup(pnlInventoryHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInventoryHistoryLayout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(lblInventoryHistoryActionInOut))
+                    .addGroup(pnlInventoryHistoryLayout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(lblInventoryHistoryProduct)))
+                .addGap(0, 131, Short.MAX_VALUE))
+        );
+        pnlInventoryHistoryLayout.setVerticalGroup(
+            pnlInventoryHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInventoryHistoryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblInventoryHistoryProduct)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cboInventoryHistoryProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblInventoryHistoryActionInOut)
+                .addGap(8, 8, 8)
+                .addComponent(cboInventoryHistoryInOut, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblInventoryHistoryAmount)
+                .addGap(18, 18, 18)
+                .addComponent(txtInventoryHistoryAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+
+        dlgAdminInventoryHistory.getContentPane().add(pnlInventoryHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 420, 390));
+
+        btnInventoryHistoryBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnInventoryHistoryBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        btnInventoryHistoryBack.setText("Volver");
+        btnInventoryHistoryBack.setBorderPainted(false);
+        btnInventoryHistoryBack.setContentAreaFilled(false);
+        btnInventoryHistoryBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInventoryHistoryBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryHistoryBack.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistoryBack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryHistoryBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryHistoryBackActionPerformed(evt);
+            }
+        });
+        dlgAdminInventoryHistory.getContentPane().add(btnInventoryHistoryBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, -1));
+
+        lblInventoryHistoryTitle.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
+        lblInventoryHistoryTitle.setText("Administrar Usuarios");
+        dlgAdminInventoryHistory.getContentPane().add(lblInventoryHistoryTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 350, 50));
+
+        lblInventoryHistoryBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
+        dlgAdminInventoryHistory.getContentPane().add(lblInventoryHistoryBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 770));
+
+        dlgSelectInventory.setTitle("Seleccionar tipo de producto a administrar");
+        dlgSelectInventory.setMinimumSize(new java.awt.Dimension(702, 449));
+        dlgSelectInventory.setModal(true);
+        dlgSelectInventory.setResizable(false);
+        dlgSelectInventory.setSize(new java.awt.Dimension(702, 449));
+
+        pnlSelectAdminInventory.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Selección de tipo de productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
+
+        btnSelectInventoryHistory.setText("Administrar productos en inventario");
+        btnSelectInventoryHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectInventoryHistoryActionPerformed(evt);
+            }
+        });
+
+        btnSelectInventory1.setText("Agregar o eliminar productos de inventario");
+        btnSelectInventory1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectInventory1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlSelectAdminInventoryLayout = new javax.swing.GroupLayout(pnlSelectAdminInventory);
+        pnlSelectAdminInventory.setLayout(pnlSelectAdminInventoryLayout);
+        pnlSelectAdminInventoryLayout.setHorizontalGroup(
+            pnlSelectAdminInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectAdminInventoryLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(btnSelectInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(btnSelectInventoryHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+        pnlSelectAdminInventoryLayout.setVerticalGroup(
+            pnlSelectAdminInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSelectAdminInventoryLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(pnlSelectAdminInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSelectInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelectInventoryHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout dlgSelectInventoryLayout = new javax.swing.GroupLayout(dlgSelectInventory.getContentPane());
+        dlgSelectInventory.getContentPane().setLayout(dlgSelectInventoryLayout);
+        dlgSelectInventoryLayout.setHorizontalGroup(
+            dlgSelectInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgSelectInventoryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlSelectAdminInventory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        dlgSelectInventoryLayout.setVerticalGroup(
+            dlgSelectInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgSelectInventoryLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(pnlSelectAdminInventory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        dlgAdminInventory.setTitle("Administrar Productos");
+        dlgAdminInventory.setMinimumSize(new java.awt.Dimension(1382, 744));
+        dlgAdminInventory.setSize(new java.awt.Dimension(1382, 744));
+        dlgAdminInventory.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                dlgAdminInventoryWindowClosing(evt);
+            }
+        });
+        dlgAdminInventory.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblInventory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Usuario", "Contraseña", "Descripción", "Fecha de registo", "Fecha de último ingreso", "Es administrador ?"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollPanelInventoryTable.setViewportView(tblInventory);
+        tblInventory.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        dlgAdminInventory.getContentPane().add(scrollPanelInventoryTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 640, 410));
+
+        pnlInventoryButtons.setOpaque(false);
+
+        btnInventoryEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInventoryEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnEdit.png"))); // NOI18N
+        btnInventoryEdit.setText("Modificar");
+        btnInventoryEdit.setToolTipText("Modificar el empleado con los datos que aparecen en las cajas de texto");
+        btnInventoryEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryEdit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryEditActionPerformed(evt);
+            }
+        });
+
+        btnInventoryDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInventoryDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnDelete.png"))); // NOI18N
+        btnInventoryDelete.setText("Eliminar");
+        btnInventoryDelete.setToolTipText("Eliminar un empleado");
+        btnInventoryDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryDeleteActionPerformed(evt);
+            }
+        });
+
+        btnInventoryInsert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInventoryInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSave.png"))); // NOI18N
+        btnInventoryInsert.setText("Insertar");
+        btnInventoryInsert.setToolTipText("Ingresar un nuevo empleado");
+        btnInventoryInsert.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryInsert.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryInsert.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryInsertActionPerformed(evt);
+            }
+        });
+
+        btnInventorySearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInventorySearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSearch.png"))); // NOI18N
+        btnInventorySearch.setText("Consultar");
+        btnInventorySearch.setToolTipText("Buscar un empleado por número de cédula");
+        btnInventorySearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventorySearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventorySearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventorySearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventorySearchActionPerformed(evt);
+            }
+        });
+
+        btnInventoryNew.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInventoryNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnNew.png"))); // NOI18N
+        btnInventoryNew.setText("Nuevo");
+        btnInventoryNew.setToolTipText("Limpiar las cajas de texto para crear un nuevo empleado");
+        btnInventoryNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryNewActionPerformed(evt);
+            }
+        });
+
+        btnInventoryList.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInventoryList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnList.png"))); // NOI18N
+        btnInventoryList.setText("Listar productos");
+        btnInventoryList.setToolTipText("Listar todos los empleados en la empresa");
+        btnInventoryList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryList.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryList.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryListActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlInventoryButtonsLayout = new javax.swing.GroupLayout(pnlInventoryButtons);
+        pnlInventoryButtons.setLayout(pnlInventoryButtonsLayout);
+        pnlInventoryButtonsLayout.setHorizontalGroup(
+            pnlInventoryButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInventoryButtonsLayout.createSequentialGroup()
+                .addComponent(btnInventoryNew)
+                .addGap(3, 3, 3)
+                .addComponent(btnInventoryInsert)
+                .addGap(3, 3, 3)
+                .addComponent(btnInventorySearch)
+                .addGap(3, 3, 3)
+                .addComponent(btnInventoryEdit)
+                .addGap(3, 3, 3)
+                .addComponent(btnInventoryDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnInventoryList)
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
+        pnlInventoryButtonsLayout.setVerticalGroup(
+            pnlInventoryButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInventoryButtonsLayout.createSequentialGroup()
+                .addGroup(pnlInventoryButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnInventoryNew, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInventoryInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInventorySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInventoryEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInventoryDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInventoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        dlgAdminInventory.getContentPane().add(pnlInventoryButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+
+        pnlInventory.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlInventory.setOpaque(false);
+
+        lblInventoryProduct.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
+        lblInventoryProduct.setText("Producto");
+
+        txtInventoryNotes.setColumns(20);
+        txtInventoryNotes.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
+        txtInventoryNotes.setRows(5);
+        scrollInventoryNotes.setViewportView(txtInventoryNotes);
+
+        lblInventoryNotes.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
+        lblInventoryNotes.setText("Notas");
+
+        txtInventoryProduct.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtInventoryProduct.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        javax.swing.GroupLayout pnlInventoryLayout = new javax.swing.GroupLayout(pnlInventory);
+        pnlInventory.setLayout(pnlInventoryLayout);
+        pnlInventoryLayout.setHorizontalGroup(
+            pnlInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInventoryLayout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addComponent(lblInventoryProduct)
+                .addGap(0, 166, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInventoryLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblInventoryNotes)
+                .addGap(173, 173, 173))
+            .addGroup(pnlInventoryLayout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addGroup(pnlInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scrollInventoryNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(txtInventoryProduct))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlInventoryLayout.setVerticalGroup(
+            pnlInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInventoryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblInventoryProduct)
+                .addGap(17, 17, 17)
+                .addComponent(txtInventoryProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(lblInventoryNotes)
+                .addGap(18, 18, 18)
+                .addComponent(scrollInventoryNotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        dlgAdminInventory.getContentPane().add(pnlInventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 420, 340));
+
+        btnInventoryBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnInventoryBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        btnInventoryBack.setText("Volver");
+        btnInventoryBack.setBorderPainted(false);
+        btnInventoryBack.setContentAreaFilled(false);
+        btnInventoryBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInventoryBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInventoryBack.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryBack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInventoryBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventoryBackActionPerformed(evt);
+            }
+        });
+        dlgAdminInventory.getContentPane().add(btnInventoryBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, -1));
+
+        lblInventoryTitle.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
+        lblInventoryTitle.setText("Administrar Productos de inventario");
+        dlgAdminInventory.getContentPane().add(lblInventoryTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 530, 50));
+
+        lblInventoryBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
+        dlgAdminInventory.getContentPane().add(lblInventoryBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 770));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrar");
         setMinimumSize(new java.awt.Dimension(1382, 744));
@@ -2148,10 +2715,10 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAdminProducts);
-        btnAdminProducts.setBounds(570, 40, 290, 260);
+        btnAdminProducts.setBounds(130, 370, 250, 210);
 
         btnCompanyDates.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCompanyDates.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/pp.jpg"))); // NOI18N
+        btnCompanyDates.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/iconBtnAdminLocals.jpg"))); // NOI18N
         btnCompanyDates.setText("Administrar Locales");
         btnCompanyDates.setBorderPainted(false);
         btnCompanyDates.setContentAreaFilled(false);
@@ -2165,7 +2732,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCompanyDates);
-        btnCompanyDates.setBounds(1060, 50, 290, 260);
+        btnCompanyDates.setBounds(1060, 50, 250, 210);
 
         btnAdminEmployees.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdminEmployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/iconBtnAdminEmployees.png"))); // NOI18N
@@ -2182,7 +2749,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAdminEmployees);
-        btnAdminEmployees.setBounds(70, 40, 290, 260);
+        btnAdminEmployees.setBounds(720, 50, 250, 210);
 
         btnAdminPasswords.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdminPasswords.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/iconBtnAdminPasswords.png"))); // NOI18N
@@ -2199,11 +2766,11 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAdminPasswords);
-        btnAdminPasswords.setBounds(70, 440, 290, 260);
+        btnAdminPasswords.setBounds(400, 50, 250, 210);
 
         btnAdminCustomers.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdminCustomers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/iconBtnAdminCustomers1.png"))); // NOI18N
-        btnAdminCustomers.setText("Administrar clientes");
+        btnAdminCustomers.setText("Administrar Clientes");
         btnAdminCustomers.setBorderPainted(false);
         btnAdminCustomers.setContentAreaFilled(false);
         btnAdminCustomers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -2216,7 +2783,7 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAdminCustomers);
-        btnAdminCustomers.setBounds(580, 440, 290, 260);
+        btnAdminCustomers.setBounds(40, 50, 250, 210);
 
         btnAdminBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdminBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
@@ -2234,6 +2801,40 @@ public class frmAdministration extends javax.swing.JFrame {
         });
         getContentPane().add(btnAdminBack);
         btnAdminBack.setBounds(1220, 605, 120, 110);
+
+        btnAdminInventory.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAdminInventory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/iconBtnAdminInventory.png"))); // NOI18N
+        btnAdminInventory.setText("Inventario");
+        btnAdminInventory.setBorderPainted(false);
+        btnAdminInventory.setContentAreaFilled(false);
+        btnAdminInventory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdminInventory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdminInventory.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdminInventory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdminInventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminInventoryActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAdminInventory);
+        btnAdminInventory.setBounds(590, 370, 250, 210);
+
+        btnAdminOrders.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAdminOrders.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/frmAdministration/iconBtnAdminOrders.png"))); // NOI18N
+        btnAdminOrders.setText("Administrar Ordenes");
+        btnAdminOrders.setBorderPainted(false);
+        btnAdminOrders.setContentAreaFilled(false);
+        btnAdminOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdminOrders.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdminOrders.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdminOrders.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdminOrders.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminOrdersActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAdminOrders);
+        btnAdminOrders.setBounds(1030, 370, 250, 210);
 
         lblBackgroundAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         getContentPane().add(lblBackgroundAdmin);
@@ -2617,7 +3218,7 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCustomersListActionPerformed
 
     private void btnAdminCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminCustomersActionPerformed
-       
+
         dlgAdminCustomers.setVisible(true);
     }//GEN-LAST:event_btnAdminCustomersActionPerformed
 
@@ -3047,9 +3648,222 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_dlgAdminUsersWindowClosing
 
     private void dlgAdminCustomersWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminCustomersWindowOpened
-       customers = new clsDAOCustomers();
+        customers = new clsDAOCustomers();
         customers.loadCboNeighborhood(cboCustomersNeighborhood);
     }//GEN-LAST:event_dlgAdminCustomersWindowOpened
+
+    private void btnAdminInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminInventoryActionPerformed
+        dlgSelectInventory.setVisible(true);
+
+    }//GEN-LAST:event_btnAdminInventoryActionPerformed
+
+    private void btnAdminOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminOrdersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdminOrdersActionPerformed
+
+    private void btnInventoryHistoryEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInventoryHistoryEditActionPerformed
+
+    private void btnInventoryHistoryDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInventoryHistoryDeleteActionPerformed
+
+    private void btnInventoryHistoryInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryInsertActionPerformed
+        listTxtValidate = new LinkedList<>();
+        listTxtAreaValidate = new LinkedList<>();
+        listTxtValidate.add(txtInventoryHistoryAmount);
+        if (validateFields(listTxtValidate, listTxtAreaValidate)) {
+            loadSetValuesInventoryHistory();
+            
+                if (inventoryHistory.insert()) {
+                    JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "Se hicieron los cambios en el inventario respectivos");
+                    if (tblInventoryHistory.isVisible()) {
+                        tblInventoryHistory.setModel(inventoryHistory.list());
+                    }
+                    txtInventoryHistoryAmount.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "No sé hicieron cambios en el inventario");
+                }
+            
+        } else {
+            JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "Por favor rellene los campos que están subrayados en rojo.");
+
+        }
+
+
+    }//GEN-LAST:event_btnInventoryHistoryInsertActionPerformed
+
+    private void btnInventoryHistoryListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryListActionPerformed
+       inventoryHistory = new clsDAOInventoryHistory();
+        tblInventoryHistory.setModel(inventoryHistory.list());
+        scrollPanelInventoryHistoryTable.setVisible(true);
+        tblInventoryHistory.setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_btnInventoryHistoryListActionPerformed
+
+    private void btnInventoryHistoryBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInventoryHistoryBackActionPerformed
+
+    private void dlgAdminInventoryHistoryWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminInventoryHistoryWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dlgAdminInventoryHistoryWindowClosing
+
+    private void btnSelectInventoryHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectInventoryHistoryActionPerformed
+       inventoryHistory = new clsDAOInventoryHistory();
+       ArrayList<String> productsInv =  inventoryHistory.loadCboProductsPerName();
+        cboInventoryHistoryProduct.removeAllItems();
+        for (int i = 0; i < productsInv.size(); i++) {
+            cboInventoryHistoryProduct.addItem(productsInv.get(i));
+        }
+        dlgSelectInventory.setVisible(false);
+        dlgAdminInventoryHistory.setVisible(true);
+    }//GEN-LAST:event_btnSelectInventoryHistoryActionPerformed
+
+    private void btnSelectInventory1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectInventory1ActionPerformed
+        dlgSelectInventory.setVisible(false);
+        dlgAdminInventory.setVisible(true);
+    }//GEN-LAST:event_btnSelectInventory1ActionPerformed
+
+    private void btnInventoryEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryEditActionPerformed
+        listTxtValidate = new LinkedList<>();
+        listTxtAreaValidate = new LinkedList<>();
+        listTxtValidate.add(txtInventoryProduct);
+        if (validateFields(listTxtValidate, listTxtAreaValidate)) {
+            loadSetValuesInventory();
+            String result = "";
+            result = inventory.edit();
+            if (result.equals("correcto")) {
+                JOptionPane.showMessageDialog(dlgAdminInventory, "El producto ha sido modificado correctamente.");
+                if (tblInventory.isVisible()) {
+                    tblInventory.setModel(inventory.list());
+                }
+                cleanTextboxInventory();
+            } else {
+                JOptionPane.showMessageDialog(dlgAdminInventory, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(dlgAdminInventory, "Por favor rellene los campos que están subrayados en rojo.");
+        }
+
+
+    }//GEN-LAST:event_btnInventoryEditActionPerformed
+
+    private void btnInventoryDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryDeleteActionPerformed
+
+        inventory = new clsDAOInventory();
+        String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto a eliminar");
+        inventory.setSearch(namep);
+        String result = inventory.delete();
+        if (result.equals("correcto")) {
+            JOptionPane.showMessageDialog(dlgAdminInventory, "El producto ha sido elminado correctamente.");
+            if (tblInventory.isVisible()) {
+                tblInventory.setModel(inventory.list());
+            }
+        } else if (result.equals("error")) {
+            JOptionPane.showMessageDialog(dlgAdminInventory, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
+        }
+
+
+    }//GEN-LAST:event_btnInventoryDeleteActionPerformed
+
+    private void btnInventoryInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryInsertActionPerformed
+        listTxtValidate = new LinkedList<>();
+        listTxtAreaValidate = new LinkedList<>();
+        listTxtValidate.add(txtInventoryProduct);
+        if (validateFields(listTxtValidate, listTxtAreaValidate)) {
+            loadSetValuesInventory();
+            if (inventory.insert()) {
+                JOptionPane.showMessageDialog(dlgAdminInventory, "Se insertó el producto correctamente");
+                if (tblInventory.isVisible()) {
+                    tblInventory.setModel(inventory.list());
+                }
+                cleanTextboxInventory();
+            } else {
+                JOptionPane.showMessageDialog(dlgAdminInventory, "No sé insertó el producto");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(dlgAdminInventory, "Por favor rellene los campos que están subrayados en rojo.");
+
+        }
+
+
+    }//GEN-LAST:event_btnInventoryInsertActionPerformed
+
+    private void btnInventorySearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventorySearchActionPerformed
+        try {
+            inventory = new clsDAOInventory();
+            ResultSet result;
+            String search = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto a buscar");
+            inventory.setSearch(search);
+            result = inventory.search();
+            if (result != null) {
+                inventory_id = result.getString(1);
+                txtInventoryProduct.setText(result.getString(2));
+                txtInventoryNotes.setText(result.getString(5));
+
+            } else {
+                JOptionPane.showMessageDialog(dlgAdminInventory, "El producto no existe, por favor verifique que el nombre del producto esté bien escrito.");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(frmAdministration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_btnInventorySearchActionPerformed
+
+    private void btnInventoryNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryNewActionPerformed
+        cleanTextboxInventory();
+    }//GEN-LAST:event_btnInventoryNewActionPerformed
+
+    private void btnInventoryListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryListActionPerformed
+        inventory = new clsDAOInventory();
+        tblInventory.setModel(inventory.list());
+        scrollPanelInventoryTable.setVisible(true);
+        tblInventory.setVisible(true);
+
+
+    }//GEN-LAST:event_btnInventoryListActionPerformed
+
+    private void btnInventoryBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryBackActionPerformed
+        this.setVisible(true);
+        dlgAdminInventory.setVisible(false);
+        cleanTextboxInventory();
+    }//GEN-LAST:event_btnInventoryBackActionPerformed
+
+    private void dlgAdminInventoryWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminInventoryWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dlgAdminInventoryWindowClosing
+
+    private void btnInventoryHistorySearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistorySearchActionPerformed
+        try {
+            inventoryHistory = new clsDAOInventoryHistory();
+            ResultSet result;
+            String search = JOptionPane.showInputDialog("Por favor ingrese el número de identificación del producto a buscar");
+            inventoryHistory.setSearch(search);
+            result = inventoryHistory.search();
+            if (result != null) {
+                history_id = result.getString(1);
+                cboInventoryHistoryProduct.setSelectedItem(result.getString(2));
+                //txtInventoryNotes.setText(result.getString(5));
+
+            } else {
+                JOptionPane.showMessageDialog(dlgAdminInventory, "El producto no existe, por favor verifique que el nombre del producto esté bien escrito.");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(frmAdministration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnInventoryHistorySearchActionPerformed
+
+    private void dlgAdminInventoryHistoryWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminInventoryHistoryWindowOpened
+       
+    }//GEN-LAST:event_dlgAdminInventoryHistoryWindowOpened
 
     /**
      * Método que solo admite números y una longitud máxima de 8 caracteres.
@@ -3144,6 +3958,15 @@ public class frmAdministration extends javax.swing.JFrame {
         txtUsersNameUser.setEnabled(true);
         txtUsersPassword.setText("");
         txtUsersRepeatPassword.setText("");
+    }
+
+    /**
+     * Limpia todas las cajas de texto del JDialog de inventario, cambia
+     * cualquier valor que tengan por vacío
+     */
+    public void cleanTextboxInventory() {
+        txtInventoryProduct.setText("");
+        txtInventoryNotes.setText("");
     }
 
     /**
@@ -3247,6 +4070,33 @@ public class frmAdministration extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Carga los valores de la clase company con los valores que tienen las
+     * cajas de texto del JDialog local
+     */
+    public void loadSetValuesInventory() {
+        inventory = new clsDAOInventory();
+        inventory.setNameProduct(txtInventoryProduct.getText());
+        inventory.setNotes(txtInventoryNotes.getText());
+        inventory.setInventory_id(inventory_id);
+    }
+
+    /**
+     * Carga los valores de la clase company con los valores que tienen las
+     * cajas de texto del JDialog local
+     */
+    public void loadSetValuesInventoryHistory() {
+        inventoryHistory = new clsDAOInventoryHistory();
+        if (cboInventoryHistoryInOut.getSelectedItem().toString().equals("Entra")) {
+            inventoryHistory.setAmountIn(Double.parseDouble(txtInventoryHistoryAmount.getText()));
+        } else if (cboInventoryHistoryInOut.getSelectedItem().toString().equals("Sale")) {
+            inventoryHistory.setAmountOut(Double.parseDouble(txtInventoryHistoryAmount.getText()));
+        }
+        inventoryHistory.setHistory_id(history_id);
+        inventoryHistory.setNameProduct(cboInventoryHistoryProduct.getSelectedItem().toString());
+
+    }
+
     public boolean validateFields(LinkedList<JTextField> listTxt, LinkedList<JTextArea> listTxtArea) {
         boolean state = true;
         if (listTxt.size() > 0) {
@@ -3319,6 +4169,8 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnAdminBack;
     private javax.swing.JButton btnAdminCustomers;
     private javax.swing.JButton btnAdminEmployees;
+    private javax.swing.JButton btnAdminInventory;
+    private javax.swing.JButton btnAdminOrders;
     private javax.swing.JButton btnAdminPasswords;
     private javax.swing.JButton btnAdminProducts;
     private javax.swing.JButton btnCompanyDates;
@@ -3336,6 +4188,19 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnEmployeesList;
     private javax.swing.JButton btnEmployeesNew;
     private javax.swing.JButton btnEmployeesSearch;
+    private javax.swing.JButton btnInventoryBack;
+    private javax.swing.JButton btnInventoryDelete;
+    private javax.swing.JButton btnInventoryEdit;
+    private javax.swing.JButton btnInventoryHistoryBack;
+    private javax.swing.JButton btnInventoryHistoryDelete;
+    private javax.swing.JButton btnInventoryHistoryEdit;
+    private javax.swing.JButton btnInventoryHistoryInsert;
+    private javax.swing.JButton btnInventoryHistoryList;
+    private javax.swing.JButton btnInventoryHistorySearch;
+    private javax.swing.JButton btnInventoryInsert;
+    private javax.swing.JButton btnInventoryList;
+    private javax.swing.JButton btnInventoryNew;
+    private javax.swing.JButton btnInventorySearch;
     private javax.swing.JButton btnLocalsBack;
     private javax.swing.JButton btnLocalsDelete;
     private javax.swing.JButton btnLocalsEdit;
@@ -3352,6 +4217,8 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnProductsSearch;
     private javax.swing.JButton btnSelectAdminAdditions;
     private javax.swing.JButton btnSelectAdminProducts;
+    private javax.swing.JButton btnSelectInventory1;
+    private javax.swing.JButton btnSelectInventoryHistory;
     private javax.swing.JButton btnUersNew;
     private javax.swing.JButton btnUsersBack;
     private javax.swing.JButton btnUsersDelete;
@@ -3366,13 +4233,18 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbLocalsCity;
     private javax.swing.JComboBox<String> cbLocalsTown;
     private javax.swing.JComboBox<String> cboCustomersNeighborhood;
+    private javax.swing.JComboBox cboInventoryHistoryInOut;
+    private javax.swing.JComboBox cboInventoryHistoryProduct;
     private javax.swing.JComboBox cboUsersIsAdmin;
     private javax.swing.JDialog dlgAdminAdditionalProducts;
     private javax.swing.JDialog dlgAdminCustomers;
     private javax.swing.JDialog dlgAdminEmployees;
+    private javax.swing.JDialog dlgAdminInventory;
+    private javax.swing.JDialog dlgAdminInventoryHistory;
     private javax.swing.JDialog dlgAdminLocal;
     private javax.swing.JDialog dlgAdminProducts;
     private javax.swing.JDialog dlgAdminUsers;
+    private javax.swing.JDialog dlgSelectInventory;
     private javax.swing.JDialog dlgSelectProducts;
     private javax.swing.JLabel lbCustomersDocument;
     private javax.swing.JLabel lblAdditionalPrice;
@@ -3397,6 +4269,15 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JLabel lblEmployeesLastName;
     private javax.swing.JLabel lblEmployeesName;
     private javax.swing.JLabel lblEmployeesTitle;
+    private javax.swing.JLabel lblInventoryBackgroundDialog;
+    private javax.swing.JLabel lblInventoryHistoryActionInOut;
+    private javax.swing.JLabel lblInventoryHistoryAmount;
+    private javax.swing.JLabel lblInventoryHistoryBackgroundDialog;
+    private javax.swing.JLabel lblInventoryHistoryProduct;
+    private javax.swing.JLabel lblInventoryHistoryTitle;
+    private javax.swing.JLabel lblInventoryNotes;
+    private javax.swing.JLabel lblInventoryProduct;
+    private javax.swing.JLabel lblInventoryTitle;
     private javax.swing.JLabel lblJob;
     private javax.swing.JLabel lblLocal;
     private javax.swing.JLabel lblLocalsAddress;
@@ -3429,10 +4310,15 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JPanel pnlCustomersDates;
     private javax.swing.JPanel pnlEmployeesButtons;
     private javax.swing.JPanel pnlEmployeesDates;
+    private javax.swing.JPanel pnlInventory;
+    private javax.swing.JPanel pnlInventoryButtons;
+    private javax.swing.JPanel pnlInventoryHistory;
+    private javax.swing.JPanel pnlInventoryHistoryButtons;
     private javax.swing.JPanel pnlLocals;
     private javax.swing.JPanel pnlLocalsButtons;
     private javax.swing.JPanel pnlProducts2;
     private javax.swing.JPanel pnlProductsButtons;
+    private javax.swing.JPanel pnlSelectAdminInventory;
     private javax.swing.JPanel pnlSelectAdminProducts;
     private javax.swing.JPanel pnlUsers;
     private javax.swing.JPanel pnlUsersButtons;
@@ -3441,17 +4327,22 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrolProductDescription2;
     private javax.swing.JScrollPane scrolProductslNotes2;
     private javax.swing.JScrollPane scrolProductslNotes3;
+    private javax.swing.JScrollPane scrollInventoryNotes;
     private javax.swing.JScrollPane scrollNotes;
     private javax.swing.JScrollPane scrollNotes1;
     private javax.swing.JScrollPane scrollPanelAdditionalProductsTable;
     private javax.swing.JScrollPane scrollPanelCustomersTable;
     private javax.swing.JScrollPane scrollPanelEmployeesTable;
+    private javax.swing.JScrollPane scrollPanelInventoryHistoryTable;
+    private javax.swing.JScrollPane scrollPanelInventoryTable;
     private javax.swing.JScrollPane scrollPanelLocalsTable;
     private javax.swing.JScrollPane scrollPanelProductsTable;
     private javax.swing.JScrollPane scrollPanelUsersTable;
     private javax.swing.JTable tblAdditionalProducts;
     private javax.swing.JTable tblCustomers;
     private javax.swing.JTable tblEmployees;
+    private javax.swing.JTable tblInventory;
+    private javax.swing.JTable tblInventoryHistory;
     private javax.swing.JTable tblLocals;
     private javax.swing.JTable tblProducts;
     private javax.swing.JTable tblUsers;
@@ -3471,6 +4362,9 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmployeesName;
     private javax.swing.JTextArea txtEmployeesNotes;
     private javax.swing.JTextField txtEmployeesPhone;
+    private javax.swing.JTextField txtInventoryHistoryAmount;
+    private javax.swing.JTextArea txtInventoryNotes;
+    private javax.swing.JTextField txtInventoryProduct;
     private javax.swing.JTextField txtLocalsAddress;
     private javax.swing.JTextField txtLocalsNameL;
     private javax.swing.JTextField txtLocalsNeighborhood;

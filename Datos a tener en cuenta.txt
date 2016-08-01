@@ -2,11 +2,13 @@ Secuencias.
 Para ordenes locales_ SEQ_ORDER_NUMBER
 Locales: 100X    SEQ_LOCALS
 Pedidos locales: 200X SEQ_LOCALORDER_DETAILS
-Pedidos domicilios: 800 SEQ_ORDERDELIVERY_DETAILS
 Productos: 300X SEQ_PRODUCTS
 Empleados: 400X SEQ_EMPLOYEES
 Clientes: 500X  SEQ_CUSTOMERS
+Inventario: 600X SEQ_INVENTORY
+Historial de inventario: 900X SEQ_HISTORY_INVENTORY
 Productos adicionales: 700X SEQ_ADDITIONAL_PRODUCTS
+Pedidos domicilios: 800 SEQ_ORDERDELIVERY_DETAILS
 
 CREATE SEQUENCE SEQ_XXXX START 301;
 Antes de entregar el proyecto, es necesario reiniciar las secuencias

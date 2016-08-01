@@ -123,7 +123,7 @@ Reportes a generar.
 OK   Pedidos locales en un rango de días 
 OK   Pedidos Domicilios en un rango de días 
 OK    Barrio que más pide 
-Top Clientes por número de compras
+OK    Top Clientes por número de compras
 OK  Número de pedidos por cliente
 OK   Empleado que va a llevar el domicilio OK
 Inventario
@@ -141,3 +141,8 @@ OK Agregar en la tabla de domicilios por id cliente, no por teléfono
 OK Arreglar combobox autocomplete
 Las pantallas aparecen con el background a medias, arreglarlo
 
+Reporte de barrios en un rango de fechas
+Cancelar pedidos, CRUD
+Inventario, que se reste automáticamente al hacer un pedido.
+Inventario debe y haber por producto.
+Agrandar joption

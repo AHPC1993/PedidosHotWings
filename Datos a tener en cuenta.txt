@@ -148,3 +148,4 @@ Cancelar pedidos, CRUD
 Inventario, que se reste automáticamente al hacer un pedido.
 Inventario debe y haber por producto.
 Agrandar joption
+Cambiar todas las fechas a TIMESTAMP

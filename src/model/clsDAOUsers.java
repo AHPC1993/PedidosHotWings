@@ -9,6 +9,7 @@ import controller.Connect;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -101,6 +102,8 @@ public class clsDAOUsers extends clsUsers {
 
                 System.out.println("");
                 tblModel.addRow(row);
+         
+               
             }
             return tblModel;
         } catch (SQLException e) {

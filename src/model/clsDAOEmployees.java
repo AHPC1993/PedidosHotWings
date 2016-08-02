@@ -62,7 +62,6 @@ public class clsDAOEmployees extends clsEmployees {
     }
 
     public DefaultTableModel list() {
-        JComboBox combo = new JComboBox();
         String[] columnName = {"Cédula", "Nombre", "Apellidos", "Puesto", "Teléfono", "Notas", "Local Id", "Dirección"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0);
         try {

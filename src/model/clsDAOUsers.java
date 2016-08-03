@@ -26,8 +26,28 @@ public class clsDAOUsers extends clsUsers {
 
     public boolean insert() {
 
-        String sql = "INSERT INTO tbl_login(users, passwordu, description, date_register, date_in, isadmin) VALUES ('" + super.getUser() + "','" + super.getPasswordu() + "','" + super.getDescription() + "',current_date,current_date,'" + super.getIsAdmin() + "');";
+        String sql = "INSERT INTO tbl_login(users, passwordu, description, date_register, date_in, isadmin) VALUES ('" + super.getUser() + "','" + super.getPasswordu() + "','" + super.getDescription() + "',(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')),(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')),'" + super.getIsAdmin() + "');";
         return connexion.insert(sql);
+    }
+    
+    
+    
+    
+     public String findDuplicateUsers(String username){
+        String sql = "Select * FROM public.tbl_login WHERE UPPER(users) = UPPER('" + username + "');";
+        ResultSet results = null;
+        results = connexion.search(sql);
+        try {
+            if (results.next()) {
+                return "existe";
+            } else {
+                //  return "El empleado que usted está buscando no existe, por favor verifique nuevamente.";
+                return "no_existe";
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null; 
     }
 
     public ResultSet search() {
@@ -75,7 +95,7 @@ public class clsDAOUsers extends clsUsers {
     }
 
     public String updateLastEntry(String user) {
-        String sql = "UPDATE tbl_login SET date_in=current_date WHERE UPPER(users) = UPPER('" + user + "');";
+        String sql = "UPDATE tbl_login SET date_in=(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')) WHERE UPPER(users) = UPPER('" + user + "');";
         return connexion.edit(sql);
     }
 

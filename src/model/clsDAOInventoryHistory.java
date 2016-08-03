@@ -17,19 +17,20 @@ import javax.swing.table.DefaultTableModel;
  * @author GSG
  */
 public class clsDAOInventoryHistory extends clsInventoryHistory {
- controller.Connect connexion;
+
+    controller.Connect connexion;
 
     public clsDAOInventoryHistory() {
         connexion = new Connect();
     }
-    
-     public boolean insert() {
-        String sql = "INSERT INTO public.tbl_inventory_history(history_id, inventory_id, amount_in, amount_out, date_update) VALUES (nextval('SEQ_HISTORY_INVENTORY'),(SELECT Inventory_id FROM tbl_inventory WHERE name_product='" + super.getNameProduct()+ "'),'" + super.getAmountIn()+ "','"+super.getAmountOut()+"',(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')));";
+
+    public boolean insert() {
+        String sql = "INSERT INTO public.tbl_inventory_history(history_id, inventory_id, amount_in, amount_out, date_update) VALUES (nextval('SEQ_HISTORY_INVENTORY'),(SELECT Inventory_id FROM tbl_inventory WHERE name_product='" + super.getNameProduct() + "'),'" + super.getAmountIn() + "','" + super.getAmountOut() + "',(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')));";
         return connexion.insert(sql);
     }
 
     public ResultSet search() {
-        String sql = "Select his.history_id, (SELECT DISTINCT inv.name_product FROM tbl_inventory inv WHERE inv.inventory_id = his.inventory_id),his.amount_in, his.amount_out FROM public.tbl_inventory_history his WHERE UPPER(his.history_id)=UPPER('" +  super.getSearch()+ "');";
+        String sql = "Select his.history_id, (SELECT DISTINCT inv.name_product FROM tbl_inventory inv WHERE inv.inventory_id = his.inventory_id),his.amount_in, his.amount_out FROM public.tbl_inventory_history his WHERE UPPER(his.history_id)=UPPER('" + super.getSearch() + "');";
         ResultSet results = null;
         results = connexion.search(sql);
         try {
@@ -44,20 +45,27 @@ public class clsDAOInventoryHistory extends clsInventoryHistory {
         return null;
     }
 
+
+
     public String delete() {
-        String sql = "DELETE FROM public.tbl_inventory_history WHERE  UPPER(history_id)=UPPER('" +  super.getSearch()+ "');";
+        String sql = "DELETE FROM public.tbl_inventory_history WHERE  UPPER(history_id)=UPPER('" + super.getSearch() + "');";
         return connexion.delete(sql);
     }
 
     public String edit() {
 
-        String sql = "UPDATE public.tbl_inventory_history SET amount_in='" + super.getAmountIn()+ "', amount_out='" + super.getAmountOut()+ "', date_update=(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')) WHERE UPPER(history_id)=UPPER('" +  super.getHistory_id()+ "');";
+        String sql = "UPDATE public.tbl_inventory_history SET amount_in='" + super.getAmountIn() + "', amount_out='" + super.getAmountOut() + "', date_update=(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')) WHERE UPPER(history_id)=UPPER('" + super.getHistory_id() + "');";
         return connexion.edit(sql);
     }
 
     public DefaultTableModel list() {
         String[] columnName = {"Fecha", "Id Inventario", "Producto", "Cantidad Entrante", "Cantidad que sale"};
-        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0);
+        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         try {
             ResultSet result = null;
             String sql = "SELECT TO_CHAR(date_update,'YYYY/MM/DD HH:MI'), history_id, (SELECT DISTINCT inv.name_product FROM tbl_inventory inv WHERE inv.inventory_id = his.inventory_id), amount_in, amount_out FROM tbl_inventory_history his, tbl_inventory inv   WHERE inv.inventory_id = his.inventory_id ORDER BY 2 DESC;";
@@ -77,10 +85,8 @@ public class clsDAOInventoryHistory extends clsInventoryHistory {
         }
         return null;
     }
- 
-    
-    
-     public ArrayList<String> loadCboProductsPerName() {
+
+    public ArrayList<String> loadCboProductsPerName() {
         ArrayList<String> listOfProductsName = new ArrayList<>();
         try {
             String sql = "SELECT DISTINCT name_product FROM tbl_inventory ORDER BY 1 ASC;";
@@ -100,5 +106,5 @@ public class clsDAOInventoryHistory extends clsInventoryHistory {
             return null;
         }
     }
-    
+
 }

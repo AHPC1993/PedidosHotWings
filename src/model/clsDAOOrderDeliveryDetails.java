@@ -64,7 +64,7 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
      */
     public boolean insertOrderFull(String order_number, String total_price, String employee_id) {
 
-        String sql = "INSERT INTO public.tbl_orderdelivery(order_number, total_price, date_order,employee_id) VALUES('" + order_number + "','" + total_price + "', current_date,(SELECT employee_id FROM tbl_employees Where employee_id = '" + employee_id + "'));";
+        String sql = "INSERT INTO public.tbl_orderdelivery(order_number, total_price, date_order,employee_id) VALUES('" + order_number + "','" + total_price + "', (SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')),(SELECT employee_id FROM tbl_employees Where employee_id = '" + employee_id + "'));";
         System.out.println(sql);
         return connexion.insert(sql);
     }
@@ -202,7 +202,6 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
 
     public DefaultTableModel list(String order_number) {
         
-        //String[] columnName = {"Id Item", "Producto", "Descripción", "Precio", "Cant", "Total", "Observaciones"};
         String[] columnName = {"Id Item", "Producto", "Descripción", "Precio", "Cant", "Total", "Observaciones"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
             @Override

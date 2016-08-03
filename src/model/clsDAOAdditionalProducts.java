@@ -24,8 +24,25 @@ public class clsDAOAdditionalProducts extends clsAdditionalProducts{
 
     public boolean insert() {
 
-        String sql = "INSERT INTO public.tbl_additional_products(id_additional_products, namep, description, price, notes)VALUES (nextval('SEQ_ADDITIONAL_PRODUCTS'),'" + super.getNamep() + "','" + super.getDescription() + "','" + super.getPrice() + "','" + super.getNotes() + "');";
+        String sql = "INSERT INTO public.tbl_additional_products(additional_products_id, namep, description, price, notes)VALUES (nextval('SEQ_ADDITIONAL_PRODUCTS'),'" + super.getNamep() + "','" + super.getDescription() + "','" + super.getPrice() + "','" + super.getNotes() + "');";
         return connexion.insert(sql);
+    }
+    
+     public String findDuplicateAdditionalProducts(String productname){
+        String sql = "Select * FROM public.tbl_additional_products WHERE UPPER(namep) = UPPER('" + productname + "');";
+        ResultSet results = null;
+        results = connexion.search(sql);
+        try {
+            if (results.next()) {
+                return "existe";
+            } else {
+                //  return "El empleado que usted está buscando no existe, por favor verifique nuevamente.";
+                return "no_existe";
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null; 
     }
 
     public ResultSet search() {

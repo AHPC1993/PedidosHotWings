@@ -30,6 +30,24 @@ public class clsDAOProducts extends clsProducts {
         return connexion.insert(sql);
     }
 
+    
+     public String findDuplicateProducts(String productname){
+        String sql = "Select * FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + productname + "');";
+        ResultSet results = null;
+        results = connexion.search(sql);
+        try {
+            if (results.next()) {
+                return "existe";
+            } else {
+                //  return "El empleado que usted está buscando no existe, por favor verifique nuevamente.";
+                return "no_existe";
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null; 
+    }
+    
     public ResultSet search() {
         String sql = "Select * FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getNamep() + "');";
         ResultSet results = null;

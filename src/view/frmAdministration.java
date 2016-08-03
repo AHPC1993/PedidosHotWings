@@ -54,6 +54,12 @@ public class frmAdministration extends javax.swing.JFrame {
     String usersname;
     String inventory_id;
     String history_id;
+    String tempAadditionalProduct;
+    String tempEmployeesDocument;
+    String tempProductsName;
+    String tempCustomersPhone;
+    String tempUserName;
+    String tempInventoryProduct;
     model.clsDAOEmployees employees;
     model.clsDAOProducts products;
     model.clsDAOCustomers customers;
@@ -3023,6 +3029,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (result != null) {
                 employee_id = result.getString(1);
                 txtEmployeesDocument.setText(result.getString(2));
+                tempEmployeesDocument = result.getString(2);
                 txtEmployeesName.setText(result.getString(3));
                 txtEmployeesLastName.setText(result.getString(4));
                 if (result.getString(5).equals("Domicilio")) {
@@ -3058,15 +3065,20 @@ public class frmAdministration extends javax.swing.JFrame {
         listTxtValidate.add(txtEmployeesPhone);
         if (validateFields(listTxtValidate, listTxtAreaValidate)) {
             loadSetValuesEmployees();
-            if (employees.insert()) {
-                JOptionPane.showMessageDialog(dlgAdminEmployees, "Se insertó el empleado correctamente");
-                cleanTextboxEmployees();
-                if (tblEmployees.isVisible()) {
-                    tblEmployees.setModel(employees.list());
-                }
+            if (employees.findDuplicateEmployees(txtEmployeesDocument.getText()).equals("no_existe")) {
 
+                if (employees.insert()) {
+                    JOptionPane.showMessageDialog(dlgAdminEmployees, "Se insertó el empleado correctamente");
+                    cleanTextboxEmployees();
+                    if (tblEmployees.isVisible()) {
+                        tblEmployees.setModel(employees.list());
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(dlgAdminEmployees, "No sé insertó el empleado");
+                }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminEmployees, "No sé insertó el empleado");
+                JOptionPane.showMessageDialog(dlgAdminEmployees, "Ya existe un empleado identificado con ese número de documento, por favor revise nuevamente.");
             }
         } else {
             JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
@@ -3090,15 +3102,21 @@ public class frmAdministration extends javax.swing.JFrame {
         listTxtValidate.add(txtEmployeesPhone);
         if (validateFields(listTxtValidate, listTxtAreaValidate)) {
             loadSetValuesEmployees();
-            result = employees.edit();
-            if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminEmployees, "El empleado ha sido modificado correctamente.");
-                if (tblEmployees.isVisible()) {
-                    tblEmployees.setModel(employees.list());
+            if (employees.findDuplicateEmployees(txtEmployeesDocument.getText()).equals("no_existe") || (employees.findDuplicateEmployees(txtEmployeesDocument.getText()).equals("existe") && tempEmployeesDocument.equals(employees.getDocument_id()))) {
+
+                result = employees.edit();
+                if (result.equals("correcto")) {
+                    JOptionPane.showMessageDialog(dlgAdminEmployees, "El empleado ha sido modificado correctamente.");
+                    if (tblEmployees.isVisible()) {
+                        tblEmployees.setModel(employees.list());
+                    }
+                    cleanTextboxEmployees();
+                } else {
+                    JOptionPane.showMessageDialog(dlgAdminEmployees, "No ha podido ser modificado el empleado, intente nuevamente y verifique que el empleado exista.");
                 }
-                cleanTextboxEmployees();
             } else {
-                JOptionPane.showMessageDialog(dlgAdminEmployees, "No ha podido ser modificado el empleado, intente nuevamente y verifique que el empleado exista.");
+                JOptionPane.showMessageDialog(dlgAdminEmployees, "Ya existe un empleado identificado con ese número de documento, por favor revise nuevamente.");
+
             }
         } else {
             JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
@@ -3123,15 +3141,21 @@ public class frmAdministration extends javax.swing.JFrame {
         listTxtValidate.add(txtProductsPrice);
         if (validateFields(listTxtValidate, listTxtAreaValidate)) {
             loadSetValuesProducts();
-            result = products.edit();
-            if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminProducts, "El producto ha sido modificado correctamente.");
-                if (tblProducts.isVisible()) {
-                    tblProducts.setModel(products.list());
+            if (products.findDuplicateProducts(txtProductsName.getText()).equals("no_existe") || (products.findDuplicateProducts(txtProductsName.getText()).equals("existe") && tempProductsName.equals(products.getNamep()))) {
+
+                result = products.edit();
+                if (result.equals("correcto")) {
+                    JOptionPane.showMessageDialog(dlgAdminProducts, "El producto ha sido modificado correctamente.");
+                    if (tblProducts.isVisible()) {
+                        tblProducts.setModel(products.list());
+                    }
+                    cleanTextboxProducts();
+                } else {
+                    JOptionPane.showMessageDialog(dlgAdminProducts, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
                 }
-                cleanTextboxProducts();
             } else {
-                JOptionPane.showMessageDialog(dlgAdminProducts, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+                JOptionPane.showMessageDialog(dlgAdminProducts, "Ya existe un producto con ese nombre, por favor inténtolo con otro nombre");
+
             }
         } else {
             JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
@@ -3165,14 +3189,19 @@ public class frmAdministration extends javax.swing.JFrame {
         listTxtValidate.add(txtProductsPrice);
         if (validateFields(listTxtValidate, listTxtAreaValidate)) {
             loadSetValuesProducts();
-            if (products.insert()) {
-                JOptionPane.showMessageDialog(dlgAdminProducts, "Se insertó el producto correctamente");
-                if (tblProducts.isVisible()) {
-                    tblProducts.setModel(products.list());
+            if (products.findDuplicateProducts(txtProductsName.getText()).equals("no_existe")) {
+
+                if (products.insert()) {
+                    JOptionPane.showMessageDialog(dlgAdminProducts, "Se insertó el producto correctamente");
+                    if (tblProducts.isVisible()) {
+                        tblProducts.setModel(products.list());
+                    }
+                    cleanTextboxProducts();
+                } else {
+                    JOptionPane.showMessageDialog(dlgAdminProducts, "No sé insertó el producto");
                 }
-                cleanTextboxProducts();
             } else {
-                JOptionPane.showMessageDialog(dlgAdminProducts, "No sé insertó el producto");
+                JOptionPane.showMessageDialog(dlgAdminProducts, "Ya existe un producto con ese nombre, por favor inténtolo con otro nombre");
             }
         } else {
             JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
@@ -3194,6 +3223,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (result != null) {
                 product_id = result.getString(1);
                 txtProductsName.setText(result.getString(2));
+                tempProductsName = result.getString(2);
                 txtProductsDescription.setText(result.getString(3));
                 txtProductsPrice.setText(result.getString(4));
                 txtProductsNotes.setText(result.getString(5));
@@ -3245,7 +3275,7 @@ public class frmAdministration extends javax.swing.JFrame {
         listTxtValidate.add(txtCustomersPhone);
         if (validateFields(listTxtValidate, listTxtAreaValidate) && !cboCustomersNeighborhood.getEditor().toString().isEmpty()) {
             cboCustomersNeighborhood.setBorder(borderDefault);
-            if (customers.findDuplicateCustomers(txtCustomersPhone.getText()).equals("no_existe")) {
+            if (customers.findDuplicateCustomers(txtCustomersPhone.getText()).equals("no_existe") || (customers.findDuplicateCustomers(txtCustomersPhone.getText()).equals("existe") && tempCustomersPhone.equals(customers.getPhone()))) {
                 loadSetValuesCustomers();
                 String result = "";
                 result = customers.edit();
@@ -3341,8 +3371,8 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtCustomersLastName.setText(result.getString(4));
                 txtCustomerssAddress.setText(result.getString(5));
                 cboCustomersNeighborhood.setSelectedItem(result.getString(6));
-
                 txtCustomersPhone.setText(result.getString(9));
+                tempCustomersPhone = result.getString(9);
                 txtCustomersNotes.setText(result.getString(10));
 
             } else {
@@ -3521,24 +3551,32 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void btnCustomersBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersBackActionPerformed
         this.setVisible(true);
+        scrollPanelCustomersTable.setVisible(false);
+        tblCustomers.setVisible(false);
         dlgAdminCustomers.setVisible(false);
         cleanTextboxCustomers();
     }//GEN-LAST:event_btnCustomersBackActionPerformed
 
     private void btnProductsBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsBackActionPerformed
         this.setVisible(true);
+        scrollPanelProductsTable.setVisible(false);
+        tblProducts.setVisible(false);
         dlgAdminProducts.setVisible(false);
         cleanTextboxProducts();
     }//GEN-LAST:event_btnProductsBackActionPerformed
 
     private void btnEmployeesBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesBackActionPerformed
         this.setVisible(true);
+        scrollPanelEmployeesTable.setVisible(false);
+        tblEmployees.setVisible(false);
         dlgAdminEmployees.setVisible(false);
         cleanTextboxEmployees();
     }//GEN-LAST:event_btnEmployeesBackActionPerformed
 
     private void btnLocalsBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalsBackActionPerformed
         this.setVisible(true);
+        scrollPanelLocalsTable.setVisible(false);
+        tblLocals.setVisible(false);
         dlgAdminLocal.setVisible(false);
         cleanTextboxLocals();
     }//GEN-LAST:event_btnLocalsBackActionPerformed
@@ -3557,15 +3595,20 @@ public class frmAdministration extends javax.swing.JFrame {
         if (validateFields(listTxtValidate, listTxtAreaValidate)) {
             loadSetValuesAdditionalProducts();
             String result = "";
-            result = additionalProducts.edit();
-            if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "El producto ha sido modificado correctamente.");
-                if (tblAdditionalProducts.isVisible()) {
-                    tblAdditionalProducts.setModel(additionalProducts.list());
+            if (additionalProducts.findDuplicateAdditionalProducts(txtAdditionalProductsName.getText()).equals("no_existe") || (additionalProducts.findDuplicateAdditionalProducts(txtAdditionalProductsName.getText()).equals("existe") && tempAadditionalProduct.equals(additionalProducts.getNamep()))) {
+
+                result = additionalProducts.edit();
+                if (result.equals("correcto")) {
+                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "El producto ha sido modificado correctamente.");
+                    if (tblAdditionalProducts.isVisible()) {
+                        tblAdditionalProducts.setModel(additionalProducts.list());
+                    }
+                    cleanTextboxAdditionalProducts();
+                } else {
+                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
                 }
-                cleanTextboxAdditionalProducts();
             } else {
-                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "Ya existe un producto con ese nombre, por favor intente con otro nombre.");
             }
         } else {
             JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
@@ -3596,14 +3639,19 @@ public class frmAdministration extends javax.swing.JFrame {
         listTxtAreaValidate.add(txtAdditionalProductsDescription);
         if (validateFields(listTxtValidate, listTxtAreaValidate)) {
             loadSetValuesAdditionalProducts();
-            if (additionalProducts.insert()) {
-                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "Se insertó el producto adicional correctamente");
-                if (tblAdditionalProducts.isVisible()) {
-                    tblAdditionalProducts.setModel(additionalProducts.list());
+            if (additionalProducts.findDuplicateAdditionalProducts(txtAdditionalProductsName.getText()).equals("no_existe")) {
+
+                if (additionalProducts.insert()) {
+                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "Se insertó el producto adicional correctamente");
+                    if (tblAdditionalProducts.isVisible()) {
+                        tblAdditionalProducts.setModel(additionalProducts.list());
+                    }
+                    cleanTextboxAdditionalProducts();
+                } else {
+                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No sé insertó el producto adicional");
                 }
-                cleanTextboxAdditionalProducts();
             } else {
-                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No sé insertó el producto adicional");
+                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "Ya existe un producto con ese nombre, por favor intente con otro nombre.");
             }
         } else {
             JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
@@ -3621,6 +3669,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (result != null) {
                 additional_product_id = result.getString(1);
                 txtAdditionalProductsName.setText(result.getString(2));
+                tempAadditionalProduct = result.getString(2);
                 txtAdditionalProductsDescription.setText(result.getString(3));
                 txtAdditionalProductsPrice.setText(result.getString(4));
                 txtAdditionalProductsNotes.setText(result.getString(5));
@@ -3651,6 +3700,8 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void btnAdditionalProductsBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsBackActionPerformed
         this.setVisible(true);
+        scrollPanelAdditionalProductsTable.setVisible(false);
+        tblAdditionalProducts.setVisible(false);
         dlgAdminAdditionalProducts.setVisible(false);
         cleanTextboxAdditionalProducts();
     }//GEN-LAST:event_btnAdditionalProductsBackActionPerformed
@@ -3685,15 +3736,21 @@ public class frmAdministration extends javax.swing.JFrame {
             loadSetValuesUsers();
             String result = "";
             if (users.getPasswordu().equals(users.getRepeatPassword())) {
-                result = users.edit();
-                if (result.equals("correcto")) {
-                    JOptionPane.showMessageDialog(dlgAdminUsers, "El producto ha sido modificado correctamente.");
-                    if (tblUsers.isVisible()) {
-                        tblUsers.setModel(users.list());
+                if (users.findDuplicateUsers(txtUsersNameUser.getText()).equals("no_existe") || (users.findDuplicateUsers(txtUsersNameUser.getText()).equals("existe") && tempUserName.equals(users.getUser()))) {
+
+                    result = users.edit();
+                    if (result.equals("correcto")) {
+                        JOptionPane.showMessageDialog(dlgAdminUsers, "El producto ha sido modificado correctamente.");
+                        if (tblUsers.isVisible()) {
+                            tblUsers.setModel(users.list());
+                        }
+                        cleanTextboxUsers();
+                    } else {
+                        JOptionPane.showMessageDialog(dlgAdminUsers, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
                     }
-                    cleanTextboxUsers();
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminUsers, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+                    JOptionPane.showMessageDialog(dlgAdminUsers, "Ya existe un usuario con ese nombre, por favor cambie el nombre de usuario.");
+
                 }
             } else {
                 JOptionPane.showMessageDialog(dlgAdminUsers, "Las contraseñas no coinciden, por favor verifíquelas.");
@@ -3728,14 +3785,18 @@ public class frmAdministration extends javax.swing.JFrame {
         if (validateFields(listTxtValidate, listTxtAreaValidate)) {
             loadSetValuesUsers();
             if (users.getPasswordu().equals(users.getRepeatPassword())) {
-                if (users.insert()) {
-                    JOptionPane.showMessageDialog(dlgAdminUsers, "Se insertó el usuario correctamente");
-                    if (tblUsers.isVisible()) {
-                        tblUsers.setModel(users.list());
+                if (users.findDuplicateUsers(txtUsersNameUser.getText()).equals("no_existe")) {
+                    if (users.insert()) {
+                        JOptionPane.showMessageDialog(dlgAdminUsers, "Se insertó el usuario correctamente");
+                        if (tblUsers.isVisible()) {
+                            tblUsers.setModel(users.list());
+                        }
+                        cleanTextboxUsers();
+                    } else {
+                        JOptionPane.showMessageDialog(dlgAdminUsers, "No sé insertó el usuario");
                     }
-                    cleanTextboxUsers();
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminUsers, "No sé insertó el usuario");
+                    JOptionPane.showMessageDialog(dlgAdminUsers, "Ya existe un usuario con ese nombre, por favor cambie el nombre de usuario.");
                 }
             } else {
                 JOptionPane.showMessageDialog(dlgAdminUsers, "Las contraseñas no coinciden, por favor verifíquelas.");
@@ -3755,6 +3816,7 @@ public class frmAdministration extends javax.swing.JFrame {
             result = users.search();
             if (result != null) {
                 usersname = result.getString(1);
+                tempUserName = result.getString(1);
                 txtUsersNameUser.setText(usersname);
                 txtUsersNameUser.setEnabled(false);
                 txtUsersPassword.setText(result.getString(2));
@@ -3789,6 +3851,8 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void btnUsersBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersBackActionPerformed
         this.setVisible(true);
+        scrollPanelUsersTable.setVisible(false);
+        tblUsers.setVisible(false);
         dlgAdminUsers.setVisible(false);
         cleanTextboxUsers();
     }//GEN-LAST:event_btnUsersBackActionPerformed
@@ -3808,7 +3872,7 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdminInventoryActionPerformed
 
     private void btnAdminOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminOrdersActionPerformed
-       dlgAdminOrders.setVisible(true);
+        dlgAdminOrders.setVisible(true);
     }//GEN-LAST:event_btnAdminOrdersActionPerformed
 
     private void btnInventoryHistoryEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryEditActionPerformed
@@ -3820,6 +3884,9 @@ public class frmAdministration extends javax.swing.JFrame {
             String result = "";
             result = inventoryHistory.edit();
             if (result.equals("correcto")) {
+                inventory = new clsDAOInventory();
+                String inventory_id2 = inventory.searchInventoryIdFromProductName(inventoryHistory.getNameProduct());
+                inventory.updateTotalAmount(inventory_id2);
                 JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "El producto ha sido modificado correctamente.");
                 if (tblInventoryHistory.isVisible()) {
                     tblInventoryHistory.setModel(inventoryHistory.list());
@@ -3859,7 +3926,11 @@ public class frmAdministration extends javax.swing.JFrame {
             loadSetValuesInventoryHistory();
 
             if (inventoryHistory.insert()) {
+                inventory = new clsDAOInventory();
+                String inventory_id2 = inventory.searchInventoryIdFromProductName(inventoryHistory.getNameProduct());
+                inventory.updateTotalAmount(inventory_id2);
                 JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "Se hicieron los cambios en el inventario respectivos");
+
                 if (tblInventoryHistory.isVisible()) {
                     tblInventoryHistory.setModel(inventoryHistory.list());
                 }
@@ -3887,6 +3958,8 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void btnInventoryHistoryBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryBackActionPerformed
         this.setVisible(true);
+        scrollPanelInventoryHistoryTable.setVisible(false);
+        tblInventoryHistory.setVisible(false);
         dlgAdminInventoryHistory.setVisible(false);
         txtInventoryHistoryAmount.setText("");
     }//GEN-LAST:event_btnInventoryHistoryBackActionPerformed
@@ -3918,15 +3991,21 @@ public class frmAdministration extends javax.swing.JFrame {
         if (validateFields(listTxtValidate, listTxtAreaValidate)) {
             loadSetValuesInventory();
             String result = "";
-            result = inventory.edit();
-            if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminInventory, "El producto ha sido modificado correctamente.");
-                if (tblInventory.isVisible()) {
-                    tblInventory.setModel(inventory.list());
+            if (inventory.findDuplicateProductsInventory(txtInventoryProduct.getText()).equals("no_existe") || (inventory.findDuplicateProductsInventory(txtInventoryProduct.getText()).equals("existe") && tempInventoryProduct.equals(inventory.getNameProduct()))) {
+
+                result = inventory.edit();
+                if (result.equals("correcto")) {
+                    JOptionPane.showMessageDialog(dlgAdminInventory, "El producto ha sido modificado correctamente.");
+                    if (tblInventory.isVisible()) {
+                        tblInventory.setModel(inventory.list());
+                    }
+                    cleanTextboxInventory();
+                } else {
+                    JOptionPane.showMessageDialog(dlgAdminInventory, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
                 }
-                cleanTextboxInventory();
             } else {
-                JOptionPane.showMessageDialog(dlgAdminInventory, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+            JOptionPane.showMessageDialog(dlgAdminInventory, "Ya existe un producto con ese nombre por favor intente con otro nombre para ese producto.");
+
             }
         } else {
             JOptionPane.showMessageDialog(dlgAdminInventory, "Por favor rellene los campos que están subrayados en rojo.");
@@ -3958,17 +4037,22 @@ public class frmAdministration extends javax.swing.JFrame {
         listTxtAreaValidate = new LinkedList<>();
         listTxtValidate.add(txtInventoryProduct);
         if (validateFields(listTxtValidate, listTxtAreaValidate)) {
-            loadSetValuesInventory();
-            if (inventory.insert()) {
-                JOptionPane.showMessageDialog(dlgAdminInventory, "Se insertó el producto correctamente");
-                if (tblInventory.isVisible()) {
-                    tblInventory.setModel(inventory.list());
-                }
-                cleanTextboxInventory();
-            } else {
-                JOptionPane.showMessageDialog(dlgAdminInventory, "No sé insertó el producto");
-            }
+            if (inventory.findDuplicateProductsInventory(txtInventoryProduct.getText()).equals("no_existe")) {
 
+                loadSetValuesInventory();
+                if (inventory.insert()) {
+                    JOptionPane.showMessageDialog(dlgAdminInventory, "Se insertó el producto correctamente");
+                    if (tblInventory.isVisible()) {
+                        tblInventory.setModel(inventory.list());
+                    }
+                    cleanTextboxInventory();
+                } else {
+                    JOptionPane.showMessageDialog(dlgAdminInventory, "No sé insertó el producto");
+                }
+            } else {
+                JOptionPane.showMessageDialog(dlgAdminInventory, "El producto ya existe, por favor inserte el producto para inventario con otro nombre.");
+
+            }
         } else {
             JOptionPane.showMessageDialog(dlgAdminInventory, "Por favor rellene los campos que están subrayados en rojo.");
 
@@ -3987,6 +4071,7 @@ public class frmAdministration extends javax.swing.JFrame {
             if (result != null) {
                 inventory_id = result.getString(1);
                 txtInventoryProduct.setText(result.getString(2));
+                tempInventoryProduct = result.getString(2);
                 txtInventoryNotes.setText(result.getString(5));
 
             } else {
@@ -4014,7 +4099,10 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInventoryListActionPerformed
 
     private void btnInventoryBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryBackActionPerformed
+
         this.setVisible(true);
+        scrollPanelInventoryTable.setVisible(false);
+        tblInventory.setVisible(false);
         dlgAdminInventory.setVisible(false);
         cleanTextboxInventory();
     }//GEN-LAST:event_btnInventoryBackActionPerformed
@@ -4057,7 +4145,7 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_dlgAdminInventoryHistoryWindowOpened
 
     private void btnOrdersGDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersGDeleteActionPerformed
-         ordersGeneral = new clsOrdersGeneral();
+        ordersGeneral = new clsOrdersGeneral();
         String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto a eliminar");
         ordersGeneral.setOrder_number(namep);
         String result = ordersGeneral.deleteLocalOrder();
@@ -4075,7 +4163,7 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrdersGDeleteActionPerformed
 
     private void btnInventoryHistoryList1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryList1ActionPerformed
-       ordersGeneral = new clsOrdersGeneral();
+        ordersGeneral = new clsOrdersGeneral();
         tblOrdersGeneral.setModel(ordersGeneral.list());
         scrollPanelOrdersGTable.setVisible(true);
         tblOrdersGeneral.setVisible(true);
@@ -4088,7 +4176,10 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInventoryHistorySearch1ActionPerformed
 
     private void btnInventoryHistoryBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryBack1ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(true);
+        scrollPanelOrdersGTable.setVisible(false);
+        tblOrdersGeneral.setVisible(false);
+        dlgAdminOrders.setVisible(false);
     }//GEN-LAST:event_btnInventoryHistoryBack1ActionPerformed
 
     private void dlgAdminOrdersWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminOrdersWindowClosing

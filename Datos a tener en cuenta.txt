@@ -141,11 +141,15 @@ OK Volver más grande el texto en las tablas
 OK Centrar el contenido de las tablas y justificar a la derecha los números.
 OK Agregar en la tabla de domicilios por id cliente, no por teléfono
 OK Arreglar combobox autocomplete
-Las pantallas aparecen con el background a medias, arreglarlo
-
+OK Las pantallas aparecen con el background a medias, arreglarlo
+-------------------------------------------
 Reporte de barrios en un rango de fechas
-Cancelar pedidos, CRUD
-Inventario, que se reste automáticamente al hacer un pedido.
-Inventario debe y haber por producto.
+OK Cancelar pedidos, CRUD
+NO ES POSIBLE . Inventario, que se reste automáticamente al hacer un pedido.
+OK Inventario debe y haber por producto.
 Agrandar joption
-Cambiar todas las fechas a TIMESTAMP
+OK Cambiar todas las fechas a TIMESTAMP
+Arreglar para que no existan duplicados en los crud. USUARIOS(USER), ÉMPLEADOS(CEDULA), PRODUCTOS(NOMBRE), PROD ADICIONALES(NOMBRE)
+
+MIRAR FORMA DE ORDENAR LOS BOTONES PARA LOS COMBOS Y TODO ESO
+CLientes mal

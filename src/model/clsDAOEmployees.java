@@ -32,6 +32,24 @@ public class clsDAOEmployees extends clsEmployees {
         return connexion.insert(sql);
     }
 
+    public String findDuplicateEmployees(String document){
+        String sql = "Select * FROM public.tbl_employees WHERE UPPER(document_id) = UPPER('" + document + "');";
+        ResultSet results = null;
+        results = connexion.search(sql);
+        try {
+            if (results.next()) {
+                return "existe";
+            } else {
+                //  return "El empleado que usted está buscando no existe, por favor verifique nuevamente.";
+                return "no_existe";
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null; 
+    }
+    
+    
     public ResultSet search() {
         String sql = "Select * FROM public.tbl_employees WHERE UPPER(document_id)=UPPER('" + super.getDocument_id() + "');";
         ResultSet results = null;
@@ -63,7 +81,12 @@ public class clsDAOEmployees extends clsEmployees {
 
     public DefaultTableModel list() {
         String[] columnName = {"Cédula", "Nombre", "Apellidos", "Puesto", "Teléfono", "Notas", "Local Id", "Dirección"};
-        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0);
+         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         try {
             ResultSet result = null;
             String sql = "Select document_id, namee, lastname, job, phone, notes, local_id, address FROM public.tbl_employees;";

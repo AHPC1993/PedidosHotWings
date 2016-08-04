@@ -3275,8 +3275,8 @@ public class frmAdministration extends javax.swing.JFrame {
         listTxtValidate.add(txtCustomersPhone);
         if (validateFields(listTxtValidate, listTxtAreaValidate) && !cboCustomersNeighborhood.getEditor().toString().isEmpty()) {
             cboCustomersNeighborhood.setBorder(borderDefault);
+            loadSetValuesCustomers();
             if (customers.findDuplicateCustomers(txtCustomersPhone.getText()).equals("no_existe") || (customers.findDuplicateCustomers(txtCustomersPhone.getText()).equals("existe") && tempCustomersPhone.equals(customers.getPhone()))) {
-                loadSetValuesCustomers();
                 String result = "";
                 result = customers.edit();
                 if (result.equals("correcto")) {
@@ -4004,7 +4004,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(dlgAdminInventory, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
                 }
             } else {
-            JOptionPane.showMessageDialog(dlgAdminInventory, "Ya existe un producto con ese nombre por favor intente con otro nombre para ese producto.");
+                JOptionPane.showMessageDialog(dlgAdminInventory, "Ya existe un producto con ese nombre por favor intente con otro nombre para ese producto.");
 
             }
         } else {

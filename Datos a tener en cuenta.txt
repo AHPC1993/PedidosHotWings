@@ -75,15 +75,20 @@ WHERE
 	tbl_orderdelivery.date_order>=$P{date_initial} AND tbl_orderdelivery.date_order<=$P{date_final} 
 
 
-----------------------------------------------------------Reporte lista de barrios donde más piden----------------------------------------------------------------
-
-SELECT customers.neighborhood "Barrio", COUNT(DISTINCT order_delivery.order_number) "Número de pedidos"
+----------------------------------------------------------Reporte lista de barrios donde más piden por fecha------------------------------------------------------
+SELECT 
+     to_char(order_delivery.date_order,'YYYY-MM-DD')Fecha,
+     COUNT(DISTINCT order_delivery.order_number)"Número de pedidos",
+     customers."neighborhood" AS Barrio
 FROM tbl_orderdelivery_details order_delivery_details, tbl_orderdelivery order_delivery, tbl_customers customers
 WHERE order_delivery_details.order_number = order_delivery.order_number
-AND customers.customers_id = order_delivery_details.customers_id
-Group by customers.neighborhood
-Order by 2 desc;
-
+AND customers.customers_id = order_delivery_details.customers_id AND
+order_delivery.date_order>=$P{date_initial} AND order_delivery.date_order<=$P{date_final}
+GROUP BY
+     fecha,
+     customers.neighborhood
+ORDER BY
+     1 DESC, 2 asc
 ------------------------------------------Reporte de top clientes que más piden con valor total de pedidos---------------------------------------------------------
 
 SELECT (customers.namec || ' ' || customers.lastname) "Nombre cliente", COUNT(DISTINCT order_delivery.order_number) "Número de pedidos relizados", TO_CHAR(SUM(order_delivery.total_price),'FM999,999,999') "Total Pedidos"
@@ -128,9 +133,9 @@ OK    Barrio que más pide
 OK    Top Clientes por número de compras
 OK  Número de pedidos por cliente
 OK   Empleado que va a llevar el domicilio OK
-Inventario
-Reporte de inventario
-Organizar empleados para que salga mensaje cuando la cédula exista	
+OK Inventario
+Reporte de historial de inventario
+OK Organizar empleados para que salga mensaje cuando la cédula exista	
 OK   Organizar clientes para que solo un número de teléfono reciba e inserte, de lo contrario ya existe OK
 OK   Organizar clientes ya que no permite eliminar por duplicados OK
 OK   Al salir de una orden local o de domicilio, debe haber una confirmación y se deben borrar todos los pedidos para ese número de orden OK
@@ -143,13 +148,11 @@ OK Agregar en la tabla de domicilios por id cliente, no por teléfono
 OK Arreglar combobox autocomplete
 OK Las pantallas aparecen con el background a medias, arreglarlo
 -------------------------------------------
-Reporte de barrios en un rango de fechas
+OK Reporte de barrios en un rango de fechas
 OK Cancelar pedidos, CRUD
 NO ES POSIBLE . Inventario, que se reste automáticamente al hacer un pedido.
 OK Inventario debe y haber por producto.
-Agrandar joption
 OK Cambiar todas las fechas a TIMESTAMP
-Arreglar para que no existan duplicados en los crud. USUARIOS(USER), ÉMPLEADOS(CEDULA), PRODUCTOS(NOMBRE), PROD ADICIONALES(NOMBRE)
-
+OK Arreglar para que no existan duplicados en los crud. USUARIOS(USER), ÉMPLEADOS(CEDULA), PRODUCTOS(NOMBRE), PROD ADICIONALES(NOMBRE)
+Agrandar joption
 MIRAR FORMA DE ORDENAR LOS BOTONES PARA LOS COMBOS Y TODO ESO
-CLientes mal

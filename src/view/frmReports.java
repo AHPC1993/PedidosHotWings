@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -458,7 +459,9 @@ public class frmReports extends javax.swing.JFrame {
         dlgReportsOrders.setVisible(false);
         this.setVisible(true);
         parameters_report = new HashMap();
-        generateReport("topNeighBorhoodsOrders.jrxml", "Lista de barrios donde más piden", parameters_report);
+        loadDatesCalendarForReports("topNeighBorhoodsOrders.jrxml", "Lista de barrios donde más piden");
+
+        // generateReport("topNeighBorhoodsOrders.jrxml", "Lista de barrios donde más piden", parameters_report);
     }//GEN-LAST:event_btnDlgReportsTopNeighborhoodActionPerformed
 
     private void btnDlgReportsCustomersFindOrdersPerCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsCustomersFindOrdersPerCustomerActionPerformed
@@ -467,14 +470,14 @@ public class frmReports extends javax.swing.JFrame {
         parameters_report = new HashMap();
         connexion = new Connect();
         String phone_customer = JOptionPane.showInputDialog("Por favor ingrese el número de teléfono del cliente");
-        if(!phone_customer.isEmpty()){
-         parameters_report.put("phone_customer", phone_customer);
-        generateReport("OrdersDeliveryPerCustomer.jrxml", "Lista de pedidos por un cliente determinado", parameters_report);
-    
-        }else{
+        if (!phone_customer.isEmpty()) {
+            parameters_report.put("phone_customer", phone_customer);
+            generateReport("OrdersDeliveryPerCustomer.jrxml", "Lista de pedidos por un cliente determinado", parameters_report);
+
+        } else {
             JOptionPane.showMessageDialog(dlgReportsCustomers, "No ingresó ningún número, por favor vuelva a intentarlo");
         }
-       
+
     }//GEN-LAST:event_btnDlgReportsCustomersFindOrdersPerCustomerActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -497,6 +500,15 @@ public class frmReports extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dlgReportsCustomersWindowOpened
 
+    /**
+     * Para cargar un reporte que tiene como parámetros una fecha de inicio y
+     * una fecha final, se llama a este método, el cual convierte una cadena en
+     * un Date y por último este es casteado a timestamp. En la fecha final se
+     * aumenta un día con el fin de que tenga en cuenta la fecha final
+     *
+     * @param nameReport
+     * @param title
+     */
     public void loadDatesCalendarForReports(String nameReport, String title) {
         parameters_report = new HashMap();
         connexion = new Connect();
@@ -521,8 +533,12 @@ public class frmReports extends javax.swing.JFrame {
                 if (((JDateChooser) dateFinalParams[1]).getDate() != null) {
                     String dateFinalStr = changeFormatDate.format(((JDateChooser) dateFinalParams[1]).getDate());
                     Date dateFinal = changeFormatDate.parse(dateFinalStr);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(dateFinal);
+                    calendar.add(Calendar.HOUR, 23);
+                    java.sql.Timestamp dateFinalFull = new java.sql.Timestamp(calendar.getTime().getTime());
                     parameters_report.put("date_initial", dateInitial);
-                    parameters_report.put("date_final", dateFinal);
+                    parameters_report.put("date_final", dateFinalFull);
                     generateReport(nameReport, title, parameters_report);
                 } else {
                     JOptionPane.showMessageDialog(this, "Es necesario que ingrese una fecha final, por favor repita el proceso.");
@@ -536,6 +552,15 @@ public class frmReports extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Método encargado de generar el reporte, entra por parámetro el nombre del
+     * reporte, el título que llevará y los parámetros que son necesarios para
+     * generar el reporte.
+     *
+     * @param nameReport
+     * @param title
+     * @param parameters_report
+     */
     public void generateReport(String nameReport, String title, Map parameters_report) {
         try {
 

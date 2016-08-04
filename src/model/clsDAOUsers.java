@@ -24,16 +24,25 @@ public class clsDAOUsers extends clsUsers {
         connexion = new Connect();
     }
 
+    /**
+     * Método encargado de insertar usuarios para el ingreso de la aplicación en
+     * la base de datos del sistema.
+     *
+     * @return
+     */
     public boolean insert() {
 
         String sql = "INSERT INTO tbl_login(users, passwordu, description, date_register, date_in, isadmin) VALUES ('" + super.getUser() + "','" + super.getPasswordu() + "','" + super.getDescription() + "',(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')),(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')),'" + super.getIsAdmin() + "');";
         return connexion.insert(sql);
     }
-    
-    
-    
-    
-     public String findDuplicateUsers(String username){
+
+    /**
+     * Método encargado de encontrar usuarios duplicados en la base de datos.
+     *
+     * @param productname
+     * @return
+     */
+    public String findDuplicateUsers(String username) {
         String sql = "Select * FROM public.tbl_login WHERE UPPER(users) = UPPER('" + username + "');";
         ResultSet results = null;
         results = connexion.search(sql);
@@ -47,9 +56,14 @@ public class clsDAOUsers extends clsUsers {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return null; 
+        return null;
     }
 
+    /**
+     * Método encargado de traer información sobre un usuario específico.
+     *
+     * @return
+     */
     public ResultSet search() {
         String sql = "Select * FROM tbl_login WHERE UPPER(users) = UPPER('" + super.getSearch() + "');";
         ResultSet results = null;
@@ -67,6 +81,13 @@ public class clsDAOUsers extends clsUsers {
         return null;
     }
 
+    /**
+     * Método encargado de verificar si un usuario que ha ingresado al sistema
+     * tiene el rol de administrador o no.
+     *
+     * @param user
+     * @return
+     */
     public String isAdmin(String user) {
         String sql = "Select isadmin from tbl_login WHERE UPPER(users) = UPPER('" + user + "');";
         ResultSet results = null;
@@ -74,31 +95,51 @@ public class clsDAOUsers extends clsUsers {
         try {
             if (results.next()) {
                 return results.getString(1);
-            } 
+            }
         } catch (SQLException e) {
             System.out.println(e);
             return "Error";
         }
         return null;
     }
-    
-   
 
+    /**
+     * Método encargado de eliminar un usuario.
+     *
+     * @return
+     */
     public String delete() {
         String sql = "DELETE FROM tbl_login WHERE UPPER(users) = UPPER('" + super.getSearch() + "');";
         return connexion.delete(sql);
     }
 
+    /**
+     * Método encargado de editar un usuario.
+     *
+     * @return
+     */
     public String edit() {
         String sql = "UPDATE tbl_login SET passwordu='" + super.getPasswordu() + "',description='" + super.getDescription() + "',isadmin='" + super.getIsAdmin() + "' WHERE UPPER(users) = UPPER('" + super.getUser() + "');";
         return connexion.edit(sql);
     }
 
+    /**
+     * Método encargado de actualizar la última vez que un usuario ingresó.
+     *
+     * @param user
+     * @return
+     */
     public String updateLastEntry(String user) {
         String sql = "UPDATE tbl_login SET date_in=(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')) WHERE UPPER(users) = UPPER('" + user + "');";
         return connexion.edit(sql);
     }
 
+    /**
+     * Método encargado de listar todos los usuarios que hay en el sistema y
+     * devolverlos en una tabla.
+     *
+     * @return
+     */
     public DefaultTableModel list() {
         String[] columnName = {"Usurio", "Contraseña", "Descripción", "Fecha de registro", "Fecha de último ingreso", "Es administrador"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
@@ -122,8 +163,7 @@ public class clsDAOUsers extends clsUsers {
 
                 System.out.println("");
                 tblModel.addRow(row);
-         
-               
+
             }
             return tblModel;
         } catch (SQLException e) {

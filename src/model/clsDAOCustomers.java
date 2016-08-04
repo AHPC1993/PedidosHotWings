@@ -27,7 +27,24 @@ public class clsDAOCustomers extends clsCustomers {
         connexion = new Connect();
     }
 
-    public String findDuplicateCustomers(String numberphone){
+    /**
+     * Método encargado de insertar clientes en la base de datos del sistema.
+     *
+     * @return
+     */
+    public boolean insert() {
+        String sql = "INSERT INTO public.tbl_customers(customers_id, document_id, namec, lastname, address, neighborhood, town, city, phone, notes)VALUES (nextval('SEQ_CUSTOMERS'),'" + super.getDocument_id() + "','" + super.getNamec() + "','" + super.getLastname() + "','" + super.getAddress() + "','" + super.getNeighborhood() + "','" + super.getTown() + "','" + super.getCity() + "','" + super.getPhone() + "','" + super.getNotes() + "');";
+        return connexion.insert(sql);
+    }
+
+    /**
+     * Método encargado de encontrar elementos duplicados en el número
+     * telefónico de los clientes.
+     *
+     * @param numberphone
+     * @return
+     */
+    public String findDuplicateCustomers(String numberphone) {
         String sql = "Select * FROM public.tbl_customers WHERE UPPER(phone) = UPPER('" + numberphone + "');";
         ResultSet results = null;
         results = connexion.search(sql);
@@ -41,14 +58,14 @@ public class clsDAOCustomers extends clsCustomers {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return null; 
-    }
-    
-    public boolean insert() {
-        String sql = "INSERT INTO public.tbl_customers(customers_id, document_id, namec, lastname, address, neighborhood, town, city, phone, notes)VALUES (nextval('SEQ_CUSTOMERS'),'" + super.getDocument_id() + "','" + super.getNamec() + "','" + super.getLastname() + "','" + super.getAddress() + "','" + super.getNeighborhood() + "','" + super.getTown() + "','" + super.getCity() + "','" + super.getPhone() + "','" + super.getNotes() + "');";
-        return connexion.insert(sql);
+        return null;
     }
 
+    /**
+     * Método encargado de traer información sobre un cliente específico.
+     *
+     * @return
+     */
     public ResultSet search() {
         String sql = "Select * FROM public.tbl_customers WHERE UPPER(phone) = UPPER('" + super.getSearch() + "');";
         ResultSet results = null;
@@ -66,16 +83,32 @@ public class clsDAOCustomers extends clsCustomers {
         return null;
     }
 
+    /**
+     * Método encargado de eliminar un cliente.
+     *
+     * @return
+     */
     public String delete() {
         String sql = "DELETE FROM public.tbl_customers WHERE UPPER(phone) = UPPER('" + super.getSearch() + "');";
         return connexion.delete(sql);
     }
 
+    /**
+     * Método encargado de editar un cliente.
+     *
+     * @return
+     */
     public String edit() {
         String sql = "UPDATE public.tbl_customers SET document_id='" + super.getDocument_id() + "',namec='" + super.getNamec() + "', lastname='" + super.getLastname() + "', address='" + super.getAddress() + "',neighborhood='" + super.getNeighborhood() + "', town='" + super.getTown() + "', city='" + super.getCity() + "',phone='" + super.getPhone() + "', notes='" + super.getNotes() + "' WHERE UPPER(customers_id) = UPPER('" + super.getCustomers_id() + "');";
         return connexion.edit(sql);
     }
 
+    /**
+     * Método encargado de listar todos los clientes que hay en la base de
+     * datos.
+     *
+     * @return
+     */
     public DefaultTableModel list() {
         String[] columnName = {"Cédula", "Nombre", "Apellido", "Dirección", "Barrio", "Municipio", "Departamento", "Teléfono", "Notas"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
@@ -107,6 +140,12 @@ public class clsDAOCustomers extends clsCustomers {
         return null;
     }
 
+    /**
+     * Método que lista todos los barrios existentens en un ComboBox
+     *
+     * @param combo
+     * @return
+     */
     public JComboBox loadCboNeighborhood(JComboBox combo) {
         ArrayList<String> listOfNeighborhood = searchNeighBorhoodCustomers();
         Object[] elements = new Object[listOfNeighborhood.size()];
@@ -117,6 +156,12 @@ public class clsDAOCustomers extends clsCustomers {
         return combo;
     }
 
+    /**
+     * Método encargado de buscar los barrios que existen en la base de datos
+     * ordenada de forma ascendente.
+     *
+     * @return
+     */
     public ArrayList<String> searchNeighBorhoodCustomers() {
         ArrayList<String> listOfNeighborhood = new ArrayList<>();
         try {

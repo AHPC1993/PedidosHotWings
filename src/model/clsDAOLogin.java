@@ -16,6 +16,9 @@ public class clsDAOLogin extends clsLogin {
         connexion = new controller.Connect();      
     }
     
+    /**
+     *Valida si un usuario ha ingresado bien la contraseña y si ese usuario existe.
+     */
     public boolean validate(){
     String SQL = "SELECT * FROM public.tbl_login WHERE USERS='" + super.getUser() +"' AND PASSWORDU='"+ super.getPassword() + "';";
     if(connexion.validateSQL(SQL) == false){

@@ -4367,7 +4367,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="pnlInventoryHistoryButtons1">
+        <Container class="javax.swing.JPanel" name="pnlOrdersGButtons">
           <Properties>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
@@ -4386,7 +4386,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnOrdersGDelete" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnInventoryHistoryList1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnOrdersGList" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="208" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -4396,7 +4396,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnOrdersGDelete" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                          <Component id="btnInventoryHistoryList1" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                          <Component id="btnOrdersGList" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                           <Component id="btnInventoryHistorySearch1" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
@@ -4423,7 +4423,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdersGDeleteActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnInventoryHistoryList1">
+            <Component class="javax.swing.JButton" name="btnOrdersGList">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="1"/>
@@ -4431,14 +4431,14 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/images/menuCrud/iconBtnList.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Listar Inventario"/>
+                <Property name="text" type="java.lang.String" value="Listar &#xf3;rdenes"/>
                 <Property name="toolTipText" type="java.lang.String" value="Listar todos los empleados en la empresa"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalAlignment" type="int" value="3"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInventoryHistoryList1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdersGListActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnInventoryHistorySearch1">
@@ -4461,7 +4461,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnInventoryHistoryBack1">
+        <Component class="javax.swing.JButton" name="btnOrdersGBack">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -4480,7 +4480,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInventoryHistoryBack1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdersGBackActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -4488,20 +4488,20 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblInventoryHistoryTitle1">
+        <Component class="javax.swing.JLabel" name="lblOrdersGTitle">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Noto Sans" size="28" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Administrar Ordenes locales"/>
+            <Property name="text" type="java.lang.String" value="Administrar Ordenes"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="640" y="60" width="390" height="50"/>
+              <AbsoluteConstraints x="520" y="60" width="390" height="50"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblInventoryHistoryBackgroundDialog1">
+        <Component class="javax.swing.JLabel" name="lblOrdersGBackgroundDialog">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/resources/images/555.jpg"/>

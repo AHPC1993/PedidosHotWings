@@ -24,13 +24,25 @@ public class clsDAOInventory extends clsInventory {
         connexion = new Connect();
     }
 
+    /**
+     * Método encargado de insertar los datos que el usuario selecciona. Estos
+     * datos son insertados en la tabla encargada de llevar el inventario de
+     * productos
+     *
+     * @return
+     */
     public boolean insert() {
         String sql = "INSERT INTO public.tbl_inventory(inventory_id, name_product, total_amount, date_creation, notes) VALUES (nextval('SEQ_INVENTORY'),'" + super.getNameProduct() + "','" + super.getTotalAmount() + "',(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')),'" + super.getNotes() + "');";
         return connexion.insert(sql);
     }
-    
-    
-     public String findDuplicateProductsInventory(String productName){
+
+    /**
+     * Método encargado de encontrar elementos duplicados en el inventario.
+     *
+     * @param productName
+     * @return
+     */
+    public String findDuplicateProductsInventory(String productName) {
         String sql = "Select * FROM public.tbl_inventory WHERE UPPER(name_product) = UPPER('" + productName + "');";
         ResultSet results = null;
         results = connexion.search(sql);
@@ -44,9 +56,15 @@ public class clsDAOInventory extends clsInventory {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return null; 
+        return null;
     }
 
+    /**
+     * Método encargado de traer información sobre un producto de inventario
+     * específico.
+     *
+     * @return
+     */
     public ResultSet search() {
         String sql = "Select * FROM public.tbl_inventory WHERE UPPER(name_product)=UPPER('" + super.getSearch() + "');";
         ResultSet results = null;
@@ -65,22 +83,37 @@ public class clsDAOInventory extends clsInventory {
         return null;
     }
 
+    /**
+     * Método encargado de eliminar un item del inventario.
+     * @return 
+     */
     public String delete() {
         String sql = "DELETE FROM public.tbl_inventory WHERE UPPER(name_product)=UPPER('" + super.getSearch() + "');";
         return connexion.delete(sql);
     }
 
+    /**
+     * Método encargado de modificar un producto del inventario.
+     */
     public String edit() {
 
         String sql = "UPDATE public.tbl_inventory SET name_product='" + super.getNameProduct() + "', notes='" + super.getNotes() + "' WHERE UPPER(inventory_id)=UPPER('" + super.getInventory_id() + "');";
         return connexion.edit(sql);
     }
 
+    /**
+     *Método encargado de actualizar la cantidad existente de un producto de inventario.
+     */
     public String updateTotalAmount(String inventory_id) {
         String sql = "UPDATE public.tbl_inventory inv  SET total_amount=    (SELECT SUM(amount_in)-SUM(amount_out) FROM tbl_inventory_history his Where his.Inventory_id = '" + inventory_id + "')  WHERE inv.Inventory_id = '" + inventory_id + "';";
         return connexion.edit(sql);
     }
 
+     /**
+     *Método encargado de buscar el id de un producto recibiendo como parámetro el nombre del producto.
+     * @param productName
+     * @return 
+     */
     public String searchInventoryIdFromProductName(String productName) {
         String sql = "Select DISTINCT inv.inventory_id FROM public.tbl_inventory inv WHERE UPPER(inv.name_product)=UPPER('" + productName + "');";
         ResultSet results = null;
@@ -97,6 +130,10 @@ public class clsDAOInventory extends clsInventory {
         return "";
     }
 
+     /**
+     *Método encargado listar los productos de inventario en una tabla.
+     * @return 
+     */
     public DefaultTableModel list() {
         String[] columnName = {"Producto", "Cantidad existente", "Notas", "Fecha de creación"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {

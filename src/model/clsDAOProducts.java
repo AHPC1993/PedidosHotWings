@@ -24,14 +24,26 @@ public class clsDAOProducts extends clsProducts {
         connexion = new Connect();
     }
 
+    /**
+     * Método encargado de insertar productos para vender en la base de datos
+     * del sistema.
+     *
+     * @return
+     */
     public boolean insert() {
 
         String sql = "INSERT INTO public.tbl_products(id_products, namep, description, price, notes)VALUES (nextval('SEQ_PRODUCTS'),'" + super.getNamep() + "','" + super.getDescription() + "','" + super.getPrice() + "','" + super.getNotes() + "');";
         return connexion.insert(sql);
     }
 
-    
-     public String findDuplicateProducts(String productname){
+    /**
+     * Método encargado de encontrar elementos duplicados en los productos de
+     * venta al público.
+     *
+     * @param productname
+     * @return
+     */
+    public String findDuplicateProducts(String productname) {
         String sql = "Select * FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + productname + "');";
         ResultSet results = null;
         results = connexion.search(sql);
@@ -45,9 +57,14 @@ public class clsDAOProducts extends clsProducts {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return null; 
+        return null;
     }
-    
+
+    /**
+     * Método encargado de traer información sobre un producto específico.
+     *
+     * @return
+     */
     public ResultSet search() {
         String sql = "Select * FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getNamep() + "');";
         ResultSet results = null;
@@ -66,20 +83,36 @@ public class clsDAOProducts extends clsProducts {
         return null;
     }
 
+    /**
+     * Método encargado de eliminar un producto.
+     *
+     * @return
+     */
     public String delete() {
         String sql = "DELETE FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getNamep() + "');";
         return connexion.delete(sql);
     }
 
+    /**
+     * Método encargado de editar un producto.
+     *
+     * @return
+     */
     public String edit() {
 
         String sql = "UPDATE public.tbl_products SET namep='" + super.getNamep() + "',description='" + super.getDescription() + "', price='" + super.getPrice() + "', notes='" + super.getNotes() + "' WHERE UPPER(id_products) = UPPER('" + super.getId_products() + "');";
         return connexion.edit(sql);
     }
 
+    /**
+     * Método encargado de listar todos los productos que hay en el sistema y
+     * devolverlos en una tabla.
+     *
+     * @return
+     */
     public DefaultTableModel list() {
         String[] columnName = {"Nombre", "Descripción", "Precio", "Notas"};
-        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0){
+        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;

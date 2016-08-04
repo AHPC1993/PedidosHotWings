@@ -24,11 +24,22 @@ public class clsDAOInventoryHistory extends clsInventoryHistory {
         connexion = new Connect();
     }
 
+    /**
+     * Método encargado de insertar datos sobe el historial de inventario en la
+     * base de datos del sistema.
+     *
+     * @return
+     */
     public boolean insert() {
         String sql = "INSERT INTO public.tbl_inventory_history(history_id, inventory_id, amount_in, amount_out, date_update) VALUES (nextval('SEQ_HISTORY_INVENTORY'),(SELECT Inventory_id FROM tbl_inventory WHERE name_product='" + super.getNameProduct() + "'),'" + super.getAmountIn() + "','" + super.getAmountOut() + "',(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')));";
         return connexion.insert(sql);
     }
 
+    /**
+     * Método encargado de traer información sobre el historial de inventario.
+     *
+     * @return
+     */
     public ResultSet search() {
         String sql = "Select his.history_id, (SELECT DISTINCT inv.name_product FROM tbl_inventory inv WHERE inv.inventory_id = his.inventory_id),his.amount_in, his.amount_out FROM public.tbl_inventory_history his WHERE UPPER(his.history_id)=UPPER('" + super.getSearch() + "');";
         ResultSet results = null;
@@ -45,19 +56,33 @@ public class clsDAOInventoryHistory extends clsInventoryHistory {
         return null;
     }
 
-
-
+    /**
+     * Método encargado de eliminar un item del historial de inventarios.
+     *
+     * @return
+     */
     public String delete() {
         String sql = "DELETE FROM public.tbl_inventory_history WHERE  UPPER(history_id)=UPPER('" + super.getSearch() + "');";
         return connexion.delete(sql);
     }
 
+    /**
+     * Método encargado de editar un item del historial de inventarios.
+     *
+     * @return
+     */
     public String edit() {
 
         String sql = "UPDATE public.tbl_inventory_history SET amount_in='" + super.getAmountIn() + "', amount_out='" + super.getAmountOut() + "', date_update=(SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')) WHERE UPPER(history_id)=UPPER('" + super.getHistory_id() + "');";
         return connexion.edit(sql);
     }
 
+    /**
+     * Método encargado de listar todo el historial de lo que entra y sale en el
+     * inventario
+     *
+     * @return
+     */
     public DefaultTableModel list() {
         String[] columnName = {"Fecha", "Id Inventario", "Producto", "Cantidad Entrante", "Cantidad que sale"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
@@ -86,6 +111,11 @@ public class clsDAOInventoryHistory extends clsInventoryHistory {
         return null;
     }
 
+      /**
+     * Método que lista todos los productos  existentens en un ComboBox
+     *
+     * @return
+     */
     public ArrayList<String> loadCboProductsPerName() {
         ArrayList<String> listOfProductsName = new ArrayList<>();
         try {

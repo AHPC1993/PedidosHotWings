@@ -23,12 +23,25 @@ public class clsDAOCompany extends clsCompany {
         connexion = new Connect();
     }
 
+    /**
+     * Método encargado de insertar los datos que el usuario selecciona. Estos
+     * datos son insertados en la tabla encargada de tener los datos sobre los
+     * locales.
+     *
+     * @return
+     */
     public boolean insert() {
 
         String sql = "INSERT INTO public.tbl_local(local_id, nit, namel, address, neighborhood, town, city) VALUES (nextval('SEQ_LOCALS'),'" + super.getNit() + "','" + super.getName() + "','" + super.getAddress() + "','" + super.getNeighborhood() + "','" + super.getTown() + "','" + super.getCity() + "');";
         return connexion.insert(sql);
     }
 
+    /**
+     * Método encargado de traer información sobre un local específico
+     * específico.
+     *
+     * @return
+     */
     public ResultSet search() {
         String sql = "Select * FROM public.tbl_local WHERE UPPER(namel) = UPPER('" + super.getSearch() + "') OR UPPER(neighborhood) = UPPER('" + super.getSearch() + "');";
         ResultSet results = null;
@@ -46,19 +59,33 @@ public class clsDAOCompany extends clsCompany {
         return null;
     }
 
+    /**
+     * Método encargado de eliminar un local de la empresa.
+     * @return 
+     */
     public String delete() {
         String sql = "DELETE FROM public.tbl_local WHERE UPPER(namel) = UPPER('" + super.getSearch() + "') OR UPPER(neighborhood) = UPPER('" + super.getSearch() + "');";
         return connexion.delete(sql);
     }
 
+     /**
+     * Método encargado de editar un local de la empresa.
+     * @return 
+     */
     public String edit() {
         String sql = "UPDATE public.tbl_local SET nit='" + super.getNit() + "',namel='" + super.getName() + "', address='" + super.getAddress() + "', neighborhood='" + super.getNeighborhood() + "',town='" + super.getTown() + "', city='" + super.getCity() + "' WHERE UPPER(local_id) = UPPER('" + super.getLocal_id() + "');";
         return connexion.edit(sql);
     }
 
+    /**
+     * Método encargado de listar todos los locales que hay en la base de
+     * datos.
+     *
+     * @return
+     */
     public DefaultTableModel list() {
         String[] columnName = {"Nit", "Nombre Local", "Dirección", "Barrio", "Municipio", "Departamento"};
-        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0){
+        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;

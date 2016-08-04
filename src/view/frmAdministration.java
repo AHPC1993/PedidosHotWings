@@ -93,6 +93,7 @@ public class frmAdministration extends javax.swing.JFrame {
         lblUsersBackgroundDialog.setSize(dim.width, dim.height);
         lblInventoryBackgroundDialog.setSize(dim.width, dim.height);
         lblInventoryHistoryBackgroundDialog.setSize(dim.width, dim.height);
+        lblOrdersGBackgroundDialog.setSize(dim.width, dim.height);
 
         dlgAdminEmployees.setSize(dim.width, dim.height);
         dlgAdminProducts.setSize(dim.width, dim.height);
@@ -102,6 +103,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminUsers.setSize(dim.width, dim.height);
         dlgAdminInventory.setSize(dim.width, dim.height);
         dlgAdminInventoryHistory.setSize(dim.width, dim.height);
+        dlgAdminOrders.setSize(dim.width, dim.height);
 
         dlgAdminEmployees.setUndecorated(true);
         dlgAdminProducts.setUndecorated(true);
@@ -111,6 +113,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminUsers.setUndecorated(true);
         dlgAdminInventory.setUndecorated(true);
         dlgAdminInventoryHistory.setUndecorated(true);
+        dlgAdminOrders.setUndecorated(true);
 
         this.setLocationRelativeTo(this);
         dlgAdminEmployees.setLocationRelativeTo(this);
@@ -123,6 +126,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminInventory.setLocationRelativeTo(this);
         dlgAdminInventoryHistory.setLocationRelativeTo(this);
         dlgSelectInventory.setLocationRelativeTo(this);
+        dlgAdminOrders.setLocationRelativeTo(this);
 
         scrollPanelEmployeesTable.setVisible(false);
         scrollPanelProductsTable.setVisible(false);
@@ -132,6 +136,7 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelUsersTable.setVisible(false);
         scrollPanelInventoryHistoryTable.setVisible(false);
         scrollPanelInventoryTable.setVisible(false);
+        scrollPanelOrdersGTable.setVisible(false);
 
         tblEmployees.setVisible(false);
         tblProducts.setVisible(false);
@@ -141,6 +146,7 @@ public class frmAdministration extends javax.swing.JFrame {
         tblUsers.setVisible(false);
         tblInventory.setVisible(false);
         tblInventoryHistory.setVisible(false);
+        tblOrdersGeneral.setVisible(false);
 
     }
 
@@ -365,13 +371,13 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgAdminOrders = new javax.swing.JDialog();
         scrollPanelOrdersGTable = new javax.swing.JScrollPane();
         tblOrdersGeneral = new javax.swing.JTable();
-        pnlInventoryHistoryButtons1 = new javax.swing.JPanel();
+        pnlOrdersGButtons = new javax.swing.JPanel();
         btnOrdersGDelete = new javax.swing.JButton();
-        btnInventoryHistoryList1 = new javax.swing.JButton();
+        btnOrdersGList = new javax.swing.JButton();
         btnInventoryHistorySearch1 = new javax.swing.JButton();
-        btnInventoryHistoryBack1 = new javax.swing.JButton();
-        lblInventoryHistoryTitle1 = new javax.swing.JLabel();
-        lblInventoryHistoryBackgroundDialog1 = new javax.swing.JLabel();
+        btnOrdersGBack = new javax.swing.JButton();
+        lblOrdersGTitle = new javax.swing.JLabel();
+        lblOrdersGBackgroundDialog = new javax.swing.JLabel();
         btnAdminProducts = new javax.swing.JButton();
         btnCompanyDates = new javax.swing.JButton();
         btnAdminEmployees = new javax.swing.JButton();
@@ -2761,7 +2767,7 @@ public class frmAdministration extends javax.swing.JFrame {
 
         dlgAdminOrders.getContentPane().add(scrollPanelOrdersGTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 740, 410));
 
-        pnlInventoryHistoryButtons1.setOpaque(false);
+        pnlOrdersGButtons.setOpaque(false);
 
         btnOrdersGDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnOrdersGDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnDelete.png"))); // NOI18N
@@ -2776,16 +2782,16 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
 
-        btnInventoryHistoryList1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnInventoryHistoryList1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnList.png"))); // NOI18N
-        btnInventoryHistoryList1.setText("Listar Inventario");
-        btnInventoryHistoryList1.setToolTipText("Listar todos los empleados en la empresa");
-        btnInventoryHistoryList1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInventoryHistoryList1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnInventoryHistoryList1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnInventoryHistoryList1.addActionListener(new java.awt.event.ActionListener() {
+        btnOrdersGList.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnOrdersGList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnList.png"))); // NOI18N
+        btnOrdersGList.setText("Listar órdenes");
+        btnOrdersGList.setToolTipText("Listar todos los empleados en la empresa");
+        btnOrdersGList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnOrdersGList.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnOrdersGList.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnOrdersGList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInventoryHistoryList1ActionPerformed(evt);
+                btnOrdersGListActionPerformed(evt);
             }
         });
 
@@ -2802,53 +2808,53 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout pnlInventoryHistoryButtons1Layout = new javax.swing.GroupLayout(pnlInventoryHistoryButtons1);
-        pnlInventoryHistoryButtons1.setLayout(pnlInventoryHistoryButtons1Layout);
-        pnlInventoryHistoryButtons1Layout.setHorizontalGroup(
-            pnlInventoryHistoryButtons1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInventoryHistoryButtons1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlOrdersGButtonsLayout = new javax.swing.GroupLayout(pnlOrdersGButtons);
+        pnlOrdersGButtons.setLayout(pnlOrdersGButtonsLayout);
+        pnlOrdersGButtonsLayout.setHorizontalGroup(
+            pnlOrdersGButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrdersGButtonsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnInventoryHistorySearch1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnOrdersGDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnInventoryHistoryList1)
+                .addComponent(btnOrdersGList)
                 .addContainerGap(208, Short.MAX_VALUE))
         );
-        pnlInventoryHistoryButtons1Layout.setVerticalGroup(
-            pnlInventoryHistoryButtons1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInventoryHistoryButtons1Layout.createSequentialGroup()
-                .addGroup(pnlInventoryHistoryButtons1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlOrdersGButtonsLayout.setVerticalGroup(
+            pnlOrdersGButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrdersGButtonsLayout.createSequentialGroup()
+                .addGroup(pnlOrdersGButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnOrdersGDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInventoryHistoryList1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOrdersGList, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInventoryHistorySearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 22, Short.MAX_VALUE))
         );
 
-        dlgAdminOrders.getContentPane().add(pnlInventoryHistoryButtons1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+        dlgAdminOrders.getContentPane().add(pnlOrdersGButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
-        btnInventoryHistoryBack1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnInventoryHistoryBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
-        btnInventoryHistoryBack1.setText("Volver");
-        btnInventoryHistoryBack1.setBorderPainted(false);
-        btnInventoryHistoryBack1.setContentAreaFilled(false);
-        btnInventoryHistoryBack1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnInventoryHistoryBack1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInventoryHistoryBack1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnInventoryHistoryBack1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnInventoryHistoryBack1.addActionListener(new java.awt.event.ActionListener() {
+        btnOrdersGBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnOrdersGBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        btnOrdersGBack.setText("Volver");
+        btnOrdersGBack.setBorderPainted(false);
+        btnOrdersGBack.setContentAreaFilled(false);
+        btnOrdersGBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOrdersGBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnOrdersGBack.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnOrdersGBack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnOrdersGBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInventoryHistoryBack1ActionPerformed(evt);
+                btnOrdersGBackActionPerformed(evt);
             }
         });
-        dlgAdminOrders.getContentPane().add(btnInventoryHistoryBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, -1));
+        dlgAdminOrders.getContentPane().add(btnOrdersGBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, -1));
 
-        lblInventoryHistoryTitle1.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
-        lblInventoryHistoryTitle1.setText("Administrar Ordenes locales");
-        dlgAdminOrders.getContentPane().add(lblInventoryHistoryTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 390, 50));
+        lblOrdersGTitle.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
+        lblOrdersGTitle.setText("Administrar Ordenes");
+        dlgAdminOrders.getContentPane().add(lblOrdersGTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 390, 50));
 
-        lblInventoryHistoryBackgroundDialog1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
-        dlgAdminOrders.getContentPane().add(lblInventoryHistoryBackgroundDialog1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 770));
+        lblOrdersGBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
+        dlgAdminOrders.getContentPane().add(lblOrdersGBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 770));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrar");
@@ -4162,25 +4168,25 @@ public class frmAdministration extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnOrdersGDeleteActionPerformed
 
-    private void btnInventoryHistoryList1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryList1ActionPerformed
+    private void btnOrdersGListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersGListActionPerformed
         ordersGeneral = new clsOrdersGeneral();
         tblOrdersGeneral.setModel(ordersGeneral.list());
         scrollPanelOrdersGTable.setVisible(true);
         tblOrdersGeneral.setVisible(true);
 
 
-    }//GEN-LAST:event_btnInventoryHistoryList1ActionPerformed
+    }//GEN-LAST:event_btnOrdersGListActionPerformed
 
     private void btnInventoryHistorySearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistorySearch1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInventoryHistorySearch1ActionPerformed
 
-    private void btnInventoryHistoryBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryBack1ActionPerformed
+    private void btnOrdersGBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersGBackActionPerformed
         this.setVisible(true);
         scrollPanelOrdersGTable.setVisible(false);
         tblOrdersGeneral.setVisible(false);
         dlgAdminOrders.setVisible(false);
-    }//GEN-LAST:event_btnInventoryHistoryBack1ActionPerformed
+    }//GEN-LAST:event_btnOrdersGBackActionPerformed
 
     private void dlgAdminOrdersWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminOrdersWindowClosing
         // TODO add your handling code here:
@@ -4211,13 +4217,17 @@ public class frmAdministration extends javax.swing.JFrame {
     public void onlyNumbersInTextField(java.awt.event.KeyEvent evt, JTextField txtNumber, int amountCharacters) {
         if (!Character.isDigit(evt.getKeyChar()) && !Character.isISOControl(evt.getKeyChar())) {
             Toolkit.getDefaultToolkit().beep();
+            txtNumber.setText("");
             evt.consume();
             JOptionPane.showMessageDialog(null, "Por favor ingrese solamente números, sin puntuación o letras", "Validando datos", JOptionPane.ERROR_MESSAGE);
+            
         }
         int k = (int) evt.getKeyChar();
         if (txtNumber.getText().length() >= amountCharacters) {
             evt.setKeyChar((char) KeyEvent.VK_CLEAR);//Limpiar el caracter ingresado
+             txtNumber.setText("");
             JOptionPane.showMessageDialog(null, "Ha excedido el número máximo de caracteres! (" + amountCharacters + ")", "Validando Datos", JOptionPane.ERROR_MESSAGE);
+            txtNumber.setText("");
         }
 
     }
@@ -4386,8 +4396,8 @@ public class frmAdministration extends javax.swing.JFrame {
     }
 
     /**
-     * Carga los valores de la clase company con los valores que tienen las
-     * cajas de texto del JDialog local
+     * Carga los valores de la clase users con los valores que tienen las
+     * cajas de texto del JDialog users
      */
     public void loadSetValuesUsers() {
 
@@ -4405,8 +4415,8 @@ public class frmAdministration extends javax.swing.JFrame {
     }
 
     /**
-     * Carga los valores de la clase company con los valores que tienen las
-     * cajas de texto del JDialog local
+     * Carga los valores de la clase inventory con los valores que tienen las
+     * cajas de texto del JDialog inventory
      */
     public void loadSetValuesInventory() {
         inventory = new clsDAOInventory();
@@ -4416,8 +4426,8 @@ public class frmAdministration extends javax.swing.JFrame {
     }
 
     /**
-     * Carga los valores de la clase company con los valores que tienen las
-     * cajas de texto del JDialog local
+     * Carga los valores de la clase inventoryHistory con los valores que tienen
+     * las cajas de texto del JDialog historyInventory
      */
     public void loadSetValuesInventoryHistory() {
         inventoryHistory = new clsDAOInventoryHistory();
@@ -4431,6 +4441,16 @@ public class frmAdministration extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Método que permite validar que los campos en una caja de texto no esté
+     * vacía le entra como parámetro una lista de cajas de texto y una lista de
+     * áreas de texto y ya se valida si están vacías, de ser así se ponen de
+     * color rojo.
+     *
+     * @param listTxt
+     * @param listTxtArea
+     * @return
+     */
     public boolean validateFields(LinkedList<JTextField> listTxt, LinkedList<JTextArea> listTxtArea) {
         boolean state = true;
         if (listTxt.size() > 0) {
@@ -4526,12 +4546,10 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnInventoryDelete;
     private javax.swing.JButton btnInventoryEdit;
     private javax.swing.JButton btnInventoryHistoryBack;
-    private javax.swing.JButton btnInventoryHistoryBack1;
     private javax.swing.JButton btnInventoryHistoryDelete;
     private javax.swing.JButton btnInventoryHistoryEdit;
     private javax.swing.JButton btnInventoryHistoryInsert;
     private javax.swing.JButton btnInventoryHistoryList;
-    private javax.swing.JButton btnInventoryHistoryList1;
     private javax.swing.JButton btnInventoryHistorySearch;
     private javax.swing.JButton btnInventoryHistorySearch1;
     private javax.swing.JButton btnInventoryInsert;
@@ -4545,7 +4563,9 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnLocalsList;
     private javax.swing.JButton btnLocalsNew;
     private javax.swing.JButton btnLocalsSearch;
+    private javax.swing.JButton btnOrdersGBack;
     private javax.swing.JButton btnOrdersGDelete;
+    private javax.swing.JButton btnOrdersGList;
     private javax.swing.JButton btnProductsBack;
     private javax.swing.JButton btnProductsDelete;
     private javax.swing.JButton btnProductsEdit;
@@ -4612,10 +4632,8 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JLabel lblInventoryHistoryActionInOut;
     private javax.swing.JLabel lblInventoryHistoryAmount;
     private javax.swing.JLabel lblInventoryHistoryBackgroundDialog;
-    private javax.swing.JLabel lblInventoryHistoryBackgroundDialog1;
     private javax.swing.JLabel lblInventoryHistoryProduct;
     private javax.swing.JLabel lblInventoryHistoryTitle;
-    private javax.swing.JLabel lblInventoryHistoryTitle1;
     private javax.swing.JLabel lblInventoryNotes;
     private javax.swing.JLabel lblInventoryProduct;
     private javax.swing.JLabel lblInventoryTitle;
@@ -4630,6 +4648,8 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JLabel lblLocalsTown;
     private javax.swing.JLabel lblLocalsyNit;
     private javax.swing.JLabel lblNotes;
+    private javax.swing.JLabel lblOrdersGBackgroundDialog;
+    private javax.swing.JLabel lblOrdersGTitle;
     private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblPhone1;
     private javax.swing.JLabel lblPrice;
@@ -4655,9 +4675,9 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JPanel pnlInventoryButtons;
     private javax.swing.JPanel pnlInventoryHistory;
     private javax.swing.JPanel pnlInventoryHistoryButtons;
-    private javax.swing.JPanel pnlInventoryHistoryButtons1;
     private javax.swing.JPanel pnlLocals;
     private javax.swing.JPanel pnlLocalsButtons;
+    private javax.swing.JPanel pnlOrdersGButtons;
     private javax.swing.JPanel pnlProducts2;
     private javax.swing.JPanel pnlProductsButtons;
     private javax.swing.JPanel pnlSelectAdminInventory;

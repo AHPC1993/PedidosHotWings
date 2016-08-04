@@ -27,12 +27,24 @@ public class clsDAOEmployees extends clsEmployees {
         connexion = new Connect();
     }
 
+    /**
+     * Método encargado de insertar empleados en la base de datos del sistema.
+     *
+     * @return
+     */
     public boolean insert() {
         String sql = "INSERT INTO public.tbl_employees(employee_id, document_id, namee, lastname, job, phone, notes,local_id, address)  VALUES (nextval('SEQ_EMPLOYEES'),'" + super.getDocument_id() + "','" + super.getNamee() + "','" + super.getLastname() + "','" + super.getJob() + "','" + super.getPhone() + "','" + super.getNotes() + "','" + super.getLocal_id() + "','" + super.getAddress() + "');";
         return connexion.insert(sql);
     }
 
-    public String findDuplicateEmployees(String document){
+    /**
+     * Método encargado de encontrar elementos duplicados en los empleados
+     * registrados.
+     *
+     * @param document
+     * @return
+     */
+    public String findDuplicateEmployees(String document) {
         String sql = "Select * FROM public.tbl_employees WHERE UPPER(document_id) = UPPER('" + document + "');";
         ResultSet results = null;
         results = connexion.search(sql);
@@ -46,10 +58,14 @@ public class clsDAOEmployees extends clsEmployees {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return null; 
+        return null;
     }
-    
-    
+
+    /**
+     * Método encargado de traer información sobre un empleado específico.
+     *
+     * @return
+     */
     public ResultSet search() {
         String sql = "Select * FROM public.tbl_employees WHERE UPPER(document_id)=UPPER('" + super.getDocument_id() + "');";
         ResultSet results = null;
@@ -68,20 +84,34 @@ public class clsDAOEmployees extends clsEmployees {
         return null;
     }
 
+    /**
+     * Método encargado de eliminar un empleado.
+     * @return 
+     */
     public String delete() {
         String sql = "DELETE FROM public.tbl_employees WHERE document_id = '" + super.getDocument_id() + "';";
         return connexion.delete(sql);
     }
 
+    /**
+     * Método encargado de editar un empleado.
+     * @return 
+     */
     public String edit() {
 
         String sql = "UPDATE public.tbl_employees SET document_id='" + super.getDocument_id() + "',namee='" + super.getNamee() + "', lastname='" + super.getLastname() + "', job='" + super.getJob() + "', phone='" + super.getPhone() + "', notes='" + super.getNotes() + "', local_id='" + super.getLocal_id() + "', address='" + super.getAddress() + "' WHERE employee_id = '" + super.getDoc_temp() + "';";
         return connexion.edit(sql);
     }
 
+    /**
+     * Método encargado de listar todos los empleados que hay en la base de
+     * datos.
+     *
+     * @return
+     */
     public DefaultTableModel list() {
         String[] columnName = {"Cédula", "Nombre", "Apellidos", "Puesto", "Teléfono", "Notas", "Local Id", "Dirección"};
-         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
+        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -96,7 +126,7 @@ public class clsDAOEmployees extends clsEmployees {
             while (result.next()) {
                 Object[] row = new Object[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i-1] = result.getObject(i);
+                    row[i - 1] = result.getObject(i);
                 }
                 tblModel.addRow(row);
             }

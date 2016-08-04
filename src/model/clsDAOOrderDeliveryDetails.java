@@ -69,6 +69,12 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
         return connexion.insert(sql);
     }
 
+    /**
+     * Método encargado de traer información sobre una orden para domicilio
+     * específica.
+     *
+     * @return
+     */
     public ResultSet search() {
         String sql = "Select * FROM public.tbl_orderdelivery_details WHERE UPPER(localorder_id) = UPPER('" + super.getLocalOrder_id() + "');";
         ResultSet results = null;
@@ -85,6 +91,11 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
         return null;
     }
 
+    /**
+     * Método que permite buscar un producto por su nombre.
+     *
+     * @return
+     */
     public ResultSet searchProductByName() {
         String sql = "Select * FROM public.tbl_products WHERE UPPER(namep) = UPPER('" + super.getProduct_name() + "');";
         ResultSet results = null;
@@ -101,6 +112,11 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
         return null;
     }
 
+    /**
+     * Método que permite buscar un producto adicional por su nombre.
+     *
+     * @return
+     */
     public ResultSet searchAdditionalProductByName() {
         String sql = "Select * FROM public.tbl_additional_products WHERE UPPER(namep) = UPPER('" + super.getProduct_name() + "');";
         ResultSet results = null;
@@ -117,6 +133,12 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
         return null;
     }
 
+    /**
+     * Método que permite buscar un empleado con su número de ID, su nombre y
+     * apellido, solo para aquellos empleados que son domicilios
+     *
+     * @return
+     */
     public ResultSet searchEmployeesJobDelivery() {
         try {
             String sql = "Select employee_id,  namee || ' ' || lastname FROM public.tbl_employees WHERE UPPER(job) = UPPER('Domicilio');";
@@ -134,6 +156,11 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
 
     }
 
+    /**
+     * Método que muestra el número de orden actual
+     *
+     * @return
+     */
     public String selectOrderNumber() {
         String sql = "SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER;";
         ResultSet results = null;
@@ -150,6 +177,12 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
         return null;
     }
 
+    /**
+     * Método que muestra el total de la orden de domicilio en un pedido.
+     *
+     * @param orderNumber
+     * @return
+     */
     public String selectTotalOrder(String orderNumber) {
         String sql = "SELECT to_char(SUM(product_price_total),'FM9,999,999') FROM tbl_orderdelivery_details WHERE order_number='" + orderNumber + "';";
         ResultSet results = null;
@@ -166,6 +199,12 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
         return null;
     }
 
+    /**
+     * Método que incrementa el número de orden(el general) cuando se finaliza
+     * un pedido.
+     *
+     * @return
+     */
     public String incrementOrderNumber() {
         String sql = "SELECT NEXTVAL('SEQ_ORDER_NUMBER') FROM SEQ_ORDERDELIVERY_DETAILS;";
         ResultSet results = null;
@@ -182,26 +221,50 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
         }
         return null;
     }
-    
 
+    /**
+     * Método encargado de eliminar un item de una orden para domicilio.
+     *
+     * @return
+     */
     public String delete(String localOrder_id) {
         String sql = "DELETE FROM public.tbl_orderdelivery_details WHERE UPPER(localorder_id) = UPPER('" + localOrder_id + "');";
         return connexion.delete(sql);
     }
-    
-     public String cancelOrderButtonBack(String order_number) {
+
+    /**
+     * Método encargado de cancelar(eliminar) una orden de domicilio cuando se
+     * de clic en el botón volver.
+     *
+     * @param order_number
+     * @return
+     */
+    public String cancelOrderButtonBack(String order_number) {
         String sql = "DELETE FROM public.tbl_orderdelivery_details WHERE UPPER(order_number) = UPPER('" + order_number + "');";
         return connexion.delete(sql);
     }
 
+    /**
+     * Método encargado de editar un item de una orden para domicilio.
+     *
+     * @return
+     */
     public String edit() {
         //debo de pensar en hacer filtro por orden y por id del producto
         String sql = "UPDATE public.tbl_orderdelivery_details SET product_id='" + super.getProduct_id() + "',product_name='" + super.getProduct_name() + "', product_description='" + super.getProduct_description() + "', product_price='" + super.getProduct_price() + "',product_amount='" + super.getProduct_amount() + "' WHERE UPPER(order_number) = UPPER('" + super.getOrder_number() + "');";
         return connexion.edit(sql);
     }
 
+    /**
+     * Método encargado de listar todos los productos que están siendo pedidos
+     * en una orden específica y devolverlos en una tabla que será visualizada
+     * por el usuario.
+     *
+     * @param order_number
+     * @return
+     */
     public DefaultTableModel list(String order_number) {
-        
+
         String[] columnName = {"Id Item", "Producto", "Descripción", "Precio", "Cant", "Total", "Observaciones"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
             @Override
@@ -231,6 +294,11 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
         return null;
     }
 
+    /**
+     * Método encargado de listar todos los productos que existen en el sistema.
+     *
+     * @return
+     */
     public LinkedList listProducts() {
         int numberButtons = 9;
         LinkedList<String[]> dates = new LinkedList<>();
@@ -261,6 +329,12 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
         return null;
     }
 
+    /**
+     * Método encargado de listar todos los productos adicionales que existen en
+     * el sistema.
+     *
+     * @return
+     */
     public LinkedList listAdditionalProducts() {
         int numberButtons = 6;
         LinkedList<String[]> dates = new LinkedList<>();

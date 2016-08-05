@@ -155,4 +155,8 @@ OK Inventario debe y haber por producto.
 OK Cambiar todas las fechas a TIMESTAMP
 OK Arreglar para que no existan duplicados en los crud. USUARIOS(USER), ÉMPLEADOS(CEDULA), PRODUCTOS(NOMBRE), PROD ADICIONALES(NOMBRE)
 Agrandar joption
+OK Cada reporte tiene un total general
 MIRAR FORMA DE ORDENAR LOS BOTONES PARA LOS COMBOS Y TODO ESO
+OK reporte de historial de inventario, con total de lo que entra y sale cada día en cada item.
+
+Double.valueOf($F{Precio total producto}.replace(",",""))

@@ -22,7 +22,7 @@
 	<parameter name="logo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
-     tbl_localorder."date_order" AS "Fecha pedido",
+to_char(tbl_localorder."date_order",'YYYY-MM-DD') AS "Fecha pedido",
      tbl_localorder."order_number" AS "Número de orden",
      tbl_localorder_details."localorder_id" AS "Id Orden",
      tbl_localorder_details."product_name" AS "Nombre",
@@ -42,7 +42,7 @@ WHERE
     tbl_localorder.date_order>=$P{date_initial} and tbl_localorder.date_order<=$P{date_final} AND
    tbl_localorder.order_number = tbl_localorder_details.order_number]]>
 	</queryString>
-	<field name="Fecha pedido" class="java.sql.Date"/>
+	<field name="Fecha pedido" class="java.lang.String"/>
 	<field name="Número de orden" class="java.lang.String"/>
 	<field name="Id Orden" class="java.lang.String"/>
 	<field name="Nombre" class="java.lang.String"/>
@@ -52,6 +52,10 @@ WHERE
 	<field name="Precio total producto" class="java.lang.String"/>
 	<field name="Observaciones" class="java.lang.String"/>
 	<field name="Total pedido" class="java.lang.String"/>
+	<variable name="totalOrderDay" class="java.math.BigDecimal" resetType="Group" resetGroup="Fecha pedido" calculation="Sum">
+		<variableExpression><![CDATA[Double.valueOf($F{Precio total producto}.replace(",",""))]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
 	<group name="Fecha pedido">
 		<groupExpression><![CDATA[$F{Fecha pedido}]]></groupExpression>
 		<groupHeader>
@@ -75,7 +79,15 @@ WHERE
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="11"/>
+			<band height="28">
+				<textField>
+					<reportElement x="622" y="3" width="170" height="25" uuid="b7371d2b-aee2-4a01-afc9-ade5503c6abb"/>
+					<textElement textAlignment="Center">
+						<font size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Total día:" +$V{totalOrderDay}]]></textFieldExpression>
+				</textField>
+			</band>
 		</groupFooter>
 	</group>
 	<group name="Número de orden">

@@ -74,6 +74,15 @@ public class frmReports extends javax.swing.JFrame {
         btnDlgReportsTopCustomers = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         btnDlgAdditionsCancel1 = new javax.swing.JButton();
+        dlgReportsOthers = new javax.swing.JDialog();
+        pnlReportsOrders2 = new javax.swing.JPanel();
+        btnDlgReportsOrdersDelivery1 = new javax.swing.JButton();
+        btnDlgReportsTopNeighborhood1 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        btnDlgReportsInventoryHistory = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        btnDlgAdditionsCancel2 = new javax.swing.JButton();
         btnReports3 = new javax.swing.JButton();
         btnAdminEmployees = new javax.swing.JButton();
         btnReports2 = new javax.swing.JButton();
@@ -305,19 +314,128 @@ public class frmReports extends javax.swing.JFrame {
                 .addGap(12, 12, 12))
         );
 
+        dlgReportsOthers.setTitle("Tipo de reporte ");
+        dlgReportsOthers.setMinimumSize(new java.awt.Dimension(711, 423));
+        dlgReportsOthers.setModal(true);
+        dlgReportsOthers.setSize(new java.awt.Dimension(711, 523));
+        dlgReportsOthers.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                dlgReportsOthersWindowOpened(evt);
+            }
+        });
+
+        pnlReportsOrders2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de reporte", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
+
+        btnDlgReportsOrdersDelivery1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnDlgReportsOrdersDelivery1.setText("<html><center>Pedidos a domicilio<br /> en un rango de días<center>\n</html>\n\n");
+        btnDlgReportsOrdersDelivery1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDlgReportsOrdersDelivery1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDlgReportsOrdersDelivery1ActionPerformed(evt);
+            }
+        });
+
+        btnDlgReportsTopNeighborhood1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnDlgReportsTopNeighborhood1.setText("<html><center>Lista de barrios <br> donde más piden</center></html>\n\n");
+        btnDlgReportsTopNeighborhood1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDlgReportsTopNeighborhood1ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setText("jButton1");
+
+        jButton11.setText("jButton1");
+
+        btnDlgReportsInventoryHistory.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnDlgReportsInventoryHistory.setText("<html><center>Historial de inventario <br>en un rango de días</center></html> ");
+        btnDlgReportsInventoryHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDlgReportsInventoryHistory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDlgReportsInventoryHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDlgReportsInventoryHistoryActionPerformed(evt);
+            }
+        });
+
+        jButton12.setText("jButton1");
+
+        javax.swing.GroupLayout pnlReportsOrders2Layout = new javax.swing.GroupLayout(pnlReportsOrders2);
+        pnlReportsOrders2.setLayout(pnlReportsOrders2Layout);
+        pnlReportsOrders2Layout.setHorizontalGroup(
+            pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlReportsOrders2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDlgReportsInventoryHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlReportsOrders2Layout.createSequentialGroup()
+                        .addComponent(btnDlgReportsOrdersDelivery1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDlgReportsTopNeighborhood1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlReportsOrders2Layout.createSequentialGroup()
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+        pnlReportsOrders2Layout.setVerticalGroup(
+            pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlReportsOrders2Layout.createSequentialGroup()
+                .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDlgReportsOrdersDelivery1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDlgReportsInventoryHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDlgReportsTopNeighborhood1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
+        btnDlgAdditionsCancel2.setText("Cancelar");
+        btnDlgAdditionsCancel2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDlgAdditionsCancel2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dlgReportsOthersLayout = new javax.swing.GroupLayout(dlgReportsOthers.getContentPane());
+        dlgReportsOthers.getContentPane().setLayout(dlgReportsOthersLayout);
+        dlgReportsOthersLayout.setHorizontalGroup(
+            dlgReportsOthersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgReportsOthersLayout.createSequentialGroup()
+                .addGroup(dlgReportsOthersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dlgReportsOthersLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(btnDlgAdditionsCancel2))
+                    .addGroup(dlgReportsOthersLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnlReportsOrders2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dlgReportsOthersLayout.setVerticalGroup(
+            dlgReportsOthersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgReportsOthersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlReportsOrders2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDlgAdditionsCancel2)
+                .addGap(12, 12, 12))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Generar reportes");
         setMinimumSize(new java.awt.Dimension(1382, 744));
         setSize(new java.awt.Dimension(1382, 744));
 
-        btnReports3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnReports3.setText("Administrar Locales");
-        btnReports3.setBorderPainted(false);
-        btnReports3.setContentAreaFilled(false);
+        btnReports3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnReports3.setText("Otros");
         btnReports3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReports3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReports3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnReports3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnReports3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReports3ActionPerformed(evt);
@@ -424,7 +542,7 @@ public class frmReports extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReports2ActionPerformed
 
     private void btnReports3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReports3ActionPerformed
-
+        dlgReportsOthers.setVisible(true);
     }//GEN-LAST:event_btnReports3ActionPerformed
 
     private void btnReportsBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsBackActionPerformed
@@ -499,6 +617,29 @@ public class frmReports extends javax.swing.JFrame {
     private void dlgReportsCustomersWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgReportsCustomersWindowOpened
         // TODO add your handling code here:
     }//GEN-LAST:event_dlgReportsCustomersWindowOpened
+
+    private void btnDlgReportsOrdersDelivery1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsOrdersDelivery1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDlgReportsOrdersDelivery1ActionPerformed
+
+    private void btnDlgReportsTopNeighborhood1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsTopNeighborhood1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDlgReportsTopNeighborhood1ActionPerformed
+
+    private void btnDlgReportsInventoryHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsInventoryHistoryActionPerformed
+       dlgReportsOthers.setVisible(false);
+        this.setVisible(true);
+        parameters_report = new HashMap();
+        loadDatesCalendarForReports("inventoryHistoryTotalPerDates.jrxml", "Historial de inventario por fechas");
+    }//GEN-LAST:event_btnDlgReportsInventoryHistoryActionPerformed
+
+    private void btnDlgAdditionsCancel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgAdditionsCancel2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDlgAdditionsCancel2ActionPerformed
+
+    private void dlgReportsOthersWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgReportsOthersWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dlgReportsOthersWindowOpened
 
     /**
      * Para cargar un reporte que tiene como parámetros una fecha de inicio y
@@ -621,16 +762,24 @@ public class frmReports extends javax.swing.JFrame {
     private javax.swing.JButton btnAdminEmployees;
     private javax.swing.JButton btnDlgAdditionsCancel;
     private javax.swing.JButton btnDlgAdditionsCancel1;
+    private javax.swing.JButton btnDlgAdditionsCancel2;
     private javax.swing.JButton btnDlgReportsCustomersFindOrdersPerCustomer;
+    private javax.swing.JButton btnDlgReportsInventoryHistory;
     private javax.swing.JButton btnDlgReportsOrdersDelivery;
+    private javax.swing.JButton btnDlgReportsOrdersDelivery1;
     private javax.swing.JButton btnDlgReportsOrdersLocal;
     private javax.swing.JButton btnDlgReportsTopCustomers;
     private javax.swing.JButton btnDlgReportsTopNeighborhood;
+    private javax.swing.JButton btnDlgReportsTopNeighborhood1;
     private javax.swing.JButton btnReports2;
     private javax.swing.JButton btnReports3;
     private javax.swing.JButton btnReportsBack;
     private javax.swing.JDialog dlgReportsCustomers;
     private javax.swing.JDialog dlgReportsOrders;
+    private javax.swing.JDialog dlgReportsOthers;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -641,5 +790,6 @@ public class frmReports extends javax.swing.JFrame {
     private javax.swing.JLabel lblBackgroundReports;
     private javax.swing.JPanel pnlReportsOrders;
     private javax.swing.JPanel pnlReportsOrders1;
+    private javax.swing.JPanel pnlReportsOrders2;
     // End of variables declaration//GEN-END:variables
 }

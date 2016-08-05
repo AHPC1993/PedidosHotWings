@@ -51,6 +51,10 @@ WHERE
 	<field name="Precio total producto" class="java.lang.String"/>
 	<field name="Observaciones" class="java.lang.String"/>
 	<field name="Total pedido" class="java.lang.String"/>
+	<variable name="totalOrders" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[Double.valueOf($F{Precio total producto}.replace(",",""))]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
 	<group name="Cliente">
 		<groupExpression><![CDATA[$F{Cliente}]]></groupExpression>
 		<groupHeader>
@@ -74,7 +78,15 @@ WHERE
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="6"/>
+			<band height="24">
+				<textField>
+					<reportElement x="569" y="0" width="228" height="22" uuid="7c8e4196-543b-4939-a3c1-f673f05c2ccd"/>
+					<textElement textAlignment="Center">
+						<font size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Total de pedidos: "+ $V{totalOrders}]]></textFieldExpression>
+				</textField>
+			</band>
 		</groupFooter>
 	</group>
 	<group name="Fecha pedido">

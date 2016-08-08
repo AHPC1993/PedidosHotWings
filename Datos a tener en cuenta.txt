@@ -124,6 +124,38 @@ WHERE
 	tbl_orderdelivery_details.customers_id = (SELECT tbl_customers2.customers_id FROM "public"."tbl_customers" tbl_customers2 WHERE tbl_customers2.phone = $P{phone_customer}) AND
 	tbl_customers.customers_id = tbl_orderdelivery_details.customers_id
 
+------------------------------------------Reporte de  pedidos llevados por un domicilio dado-------------------------------------------------------------------
+
+
+SELECT
+to_char(tbl_orderdelivery."date_order",'YYYY-MM-DD') AS "Fecha pedido",
+      (tbl_employees."namee"|| ' '  || tbl_employees."lastname") AS "Datos Domicilio",
+     (tbl_customers."namec"|| ' '  || tbl_customers."lastname" || ' - '  || tbl_customers.neighborhood) AS "Datos Cliente",
+     tbl_orderdelivery."order_number" AS "N° de orden",
+     tbl_orderdelivery_details."localorder_id" AS "Id Orden",
+     tbl_orderdelivery_details."product_name" AS "Nombre producto",
+to_char(tbl_orderdelivery_details."product_price",'FM999,999,999') AS "Precio",
+     tbl_orderdelivery_details."product_amount" AS "Cantidad",
+to_char(tbl_orderdelivery_details."product_price_total",'FM999,999,999')
+     AS "Precio total producto",
+to_char(tbl_orderdelivery."total_price",'FM999,999,999')
+       AS "Total pedido"
+     
+FROM
+     "public"."tbl_orderdelivery" tbl_orderdelivery,
+     "public"."tbl_orderdelivery_details" tbl_orderdelivery_details,
+     "public"."tbl_customers" tbl_customers,
+     "public"."tbl_employees" tbl_employees
+WHERE
+     tbl_orderdelivery.order_number = tbl_orderdelivery_details.order_number AND
+     tbl_orderdelivery.employee_id = $P{employee_id}   AND
+     tbl_orderdelivery.employee_id = tbl_employees.employee_id AND
+     tbl_customers.customers_id = tbl_orderdelivery_details.customers_id AND
+     tbl_orderdelivery.date_order>=$P{date_initial} AND tbl_orderdelivery.date_order<=$P{date_final}
+     Order by 1 desc;
+
+
+-------------------------------------------------------------------------------------------------------------
 
 
 Reportes a generar.
@@ -134,7 +166,7 @@ OK    Top Clientes por número de compras
 OK  Número de pedidos por cliente
 OK   Empleado que va a llevar el domicilio OK
 OK Inventario
-Reporte de historial de inventario
+OK Reporte de historial de inventario
 OK Organizar empleados para que salga mensaje cuando la cédula exista	
 OK   Organizar clientes para que solo un número de teléfono reciba e inserte, de lo contrario ya existe OK
 OK   Organizar clientes ya que no permite eliminar por duplicados OK
@@ -158,5 +190,8 @@ Agrandar joption
 OK Cada reporte tiene un total general
 MIRAR FORMA DE ORDENAR LOS BOTONES PARA LOS COMBOS Y TODO ESO
 OK reporte de historial de inventario, con total de lo que entra y sale cada día en cada item.
+OK Cuando se da ALT + F4 El pedido sigue ahí
+OK Reporte de cantidad de pedidos llevados por un domicilio en un rango de fechas
+En los valores double tira excepción (devuelta de cuánto    )
 
 Double.valueOf($F{Precio total producto}.replace(",",""))

@@ -83,10 +83,6 @@
                                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                                       <Component id="btnAddCustomer" min="-2" pref="103" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Component id="txtCustomersPhone" min="-2" pref="270" max="-2" attributes="0"/>
-                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                       <Component id="scrollNotes1" min="-2" pref="270" max="-2" attributes="0"/>
@@ -94,6 +90,10 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                       <Component id="cboCustomersNeighborhood" min="-2" pref="194" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="txtCustomersPhone" min="-2" pref="270" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -105,16 +105,16 @@
                                       <Component id="cbCustomersCity" min="-2" pref="200" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="txtCustomersName" pref="270" max="32767" attributes="0"/>
-                                  <Component id="txtCustomersLastName" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtCustomerssAddress" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtCustomersDocument" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtCustomersLastName" alignment="0" pref="270" max="32767" attributes="0"/>
+                                  <Component id="txtCustomerssAddress" alignment="0" pref="270" max="32767" attributes="0"/>
+                                  <Component id="txtCustomersDocument" alignment="0" pref="270" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnSearchCustomerOrderDelivery" min="-2" pref="87" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="btnContinueOrderDelivery" min="-2" pref="103" max="-2" attributes="0"/>
+                          <Component id="btnSearchCustomerOrderDelivery" min="-2" pref="87" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="41" max="32767" attributes="0"/>
                   </Group>
@@ -618,6 +618,7 @@
   <Events>
     <EventHandler event="windowStateChanged" listener="java.awt.event.WindowStateListener" parameters="java.awt.event.WindowEvent" handler="formWindowStateChanged"/>
     <EventHandler event="windowActivated" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowActivated"/>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
     <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
   </Events>
   <AuxValues>

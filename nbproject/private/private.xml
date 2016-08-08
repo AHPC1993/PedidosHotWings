@@ -4,7 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmReports.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/model/clsDAOInventoryHistory.java</file>
+            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/reports/orderDeliveryPerEmployee.jrxml</file>
+            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/reports/topNeighBorhoodsOrders.jrxml</file>
+            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmNewOrderDelivery.java</file>
+            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/reports/OrdersDeliveryPerCustomer.jrxml</file>
         </group>
     </open-files>
 </project-private>

@@ -3011,17 +3011,17 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void btnEmployeesDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesDeleteActionPerformed
         employees = new clsDAOEmployees();
-        String document = JOptionPane.showInputDialog("Por favor ingrese la cédula del empleado a eliminar");
+        String document = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese la cédula del empleado a eliminar</font></p></html>");
         employees.setDocument_id(document);
         String result = "";
         result = employees.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "El empleado ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">El empleado ha sido elminado correctamente.</font></p></html>");
             if (tblEmployees.isVisible()) {
                 tblEmployees.setModel(employees.list());
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "No ha podido ser eliminado el empleado, intente nuevamente y verifique que el empleado exista.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">No ha podido ser eliminado el empleado, intente nuevamente y verifique que el empleado exista.</font></p></html>");
         }
     }//GEN-LAST:event_btnEmployeesDeleteActionPerformed
 
@@ -3029,7 +3029,7 @@ public class frmAdministration extends javax.swing.JFrame {
         try {
             employees = new clsDAOEmployees();
             ResultSet result;
-            String document = JOptionPane.showInputDialog("Por favor ingrese el número de cédula del empleado a buscar");
+            String document = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el número de cédula del empleado a buscar</font></p></html>");
             employees.setDocument_id(document);
             result = employees.search();
             if (result != null) {
@@ -3051,7 +3051,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtEmployeesNotes.setText(result.getString(7));
                 txtEmployeesAddress.setText(result.getString(9));
             } else {
-                JOptionPane.showMessageDialog(dlgAdminEmployees, "El empleado no existe, por favor verifique que la cédula esté bien escrita.");
+                JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">El empleado no existe, por favor verifique que la cédula esté bien escrita.</font></p></html>");
             }
 
         } catch (SQLException ex) {
@@ -3074,20 +3074,20 @@ public class frmAdministration extends javax.swing.JFrame {
             if (employees.findDuplicateEmployees(txtEmployeesDocument.getText()).equals("no_existe")) {
 
                 if (employees.insert()) {
-                    JOptionPane.showMessageDialog(dlgAdminEmployees, "Se insertó el empleado correctamente");
+                    JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Se insertó el empleado correctamente</font></p></html>");
                     cleanTextboxEmployees();
                     if (tblEmployees.isVisible()) {
                         tblEmployees.setModel(employees.list());
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminEmployees, "No sé insertó el empleado");
+                    JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">No sé insertó el empleado</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminEmployees, "Ya existe un empleado identificado con ese número de documento, por favor revise nuevamente.");
+                JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Ya existe un empleado identificado con ese número de documento, por favor revise nuevamente.</font></p></html>");
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
         }
     }//GEN-LAST:event_btnEmployeesInsertActionPerformed
 
@@ -3112,20 +3112,20 @@ public class frmAdministration extends javax.swing.JFrame {
 
                 result = employees.edit();
                 if (result.equals("correcto")) {
-                    JOptionPane.showMessageDialog(dlgAdminEmployees, "El empleado ha sido modificado correctamente.");
+                    JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">El empleado ha sido modificado correctamente.</font></p></html>");
                     if (tblEmployees.isVisible()) {
                         tblEmployees.setModel(employees.list());
                     }
                     cleanTextboxEmployees();
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminEmployees, "No ha podido ser modificado el empleado, intente nuevamente y verifique que el empleado exista.");
+                    JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">No ha podido ser modificado el empleado, intente nuevamente y verifique que el empleado exista.</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminEmployees, "Ya existe un empleado identificado con ese número de documento, por favor revise nuevamente.");
+                JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Ya existe un empleado identificado con ese número de documento, por favor revise nuevamente.</font></p></html>");
 
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
         }
 
     }//GEN-LAST:event_btnEmployeesEditActionPerformed
@@ -3151,36 +3151,36 @@ public class frmAdministration extends javax.swing.JFrame {
 
                 result = products.edit();
                 if (result.equals("correcto")) {
-                    JOptionPane.showMessageDialog(dlgAdminProducts, "El producto ha sido modificado correctamente.");
+                    JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"6\">El producto ha sido modificado correctamente.</font></p></html>");
                     if (tblProducts.isVisible()) {
                         tblProducts.setModel(products.list());
                     }
                     cleanTextboxProducts();
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminProducts, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+                    JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"6\">No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminProducts, "Ya existe un producto con ese nombre, por favor inténtolo con otro nombre");
+                JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"6\">Ya existe un producto con ese nombre, por favor inténtolo con otro nombre</font></p></html>");
 
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
         }
 
     }//GEN-LAST:event_btnProductsEditActionPerformed
 
     private void btnProductsDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsDeleteActionPerformed
         products = new clsDAOProducts();
-        String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto a eliminar");
+        String namep = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el nombre del producto a eliminar</font></p></html>");
         products.setNamep(namep);
         String result = products.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(dlgAdminProducts, "El producto ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"6\">El producto ha sido elminado correctamente.</font></p></html>");
             if (tblProducts.isVisible()) {
                 tblProducts.setModel(products.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(dlgAdminProducts, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
+            JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"6\">No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
         }
 
 
@@ -3198,19 +3198,19 @@ public class frmAdministration extends javax.swing.JFrame {
             if (products.findDuplicateProducts(txtProductsName.getText()).equals("no_existe")) {
 
                 if (products.insert()) {
-                    JOptionPane.showMessageDialog(dlgAdminProducts, "Se insertó el producto correctamente");
+                    JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"6\">Se insertó el producto correctamente</font></p></html>");
                     if (tblProducts.isVisible()) {
                         tblProducts.setModel(products.list());
                     }
                     cleanTextboxProducts();
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminProducts, "No sé insertó el producto");
+                    JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"6\">No sé insertó el producto</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminProducts, "Ya existe un producto con ese nombre, por favor inténtolo con otro nombre");
+                JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"6\">Ya existe un producto con ese nombre, por favor inténtolo con otro nombre</font></p></html>");
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
         }
     }//GEN-LAST:event_btnProductsInsertActionPerformed
 
@@ -3223,7 +3223,7 @@ public class frmAdministration extends javax.swing.JFrame {
         try {
             products = new clsDAOProducts();
             ResultSet result;
-            String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto a buscar");
+            String namep = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el nombre del producto a buscar</font></p></html>");
             products.setNamep(namep);
             result = products.search();
             if (result != null) {
@@ -3235,7 +3235,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtProductsNotes.setText(result.getString(5));
 
             } else {
-                JOptionPane.showMessageDialog(dlgAdminProducts, "El producto no existe, por favor verifique que el nombre del producto esté bien escrito.");
+                JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"6\">El producto no existe, por favor verifique que el nombre del producto esté bien escrito.</font></p></html>");
             }
 
         } catch (SQLException ex) {
@@ -3286,16 +3286,16 @@ public class frmAdministration extends javax.swing.JFrame {
                 String result = "";
                 result = customers.edit();
                 if (result.equals("correcto")) {
-                    JOptionPane.showMessageDialog(dlgAdminCustomers, "El cliente ha sido modificado correctamente.");
+                    JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"6\">El cliente ha sido modificado correctamente.</font></p></html>");
                     if (tblCustomers.isVisible()) {
                         tblCustomers.setModel(customers.list());
                     }
                     cleanTextboxCustomers();
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminCustomers, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+                    JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"6\">No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminEmployees, "El número de teléfono ya existe en esa base de datos, por favor regístrelo con otro número.");
+                JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">El número de teléfono ya existe en esa base de datos, por favor regístrelo con otro número.</font></p></html>");
             }
         } else {
             if (cboCustomersNeighborhood.getEditor().getItem() == null) {
@@ -3303,23 +3303,23 @@ public class frmAdministration extends javax.swing.JFrame {
             } else if (cboCustomersNeighborhood.getBorder().equals(borderEmptyField)) {
                 cboCustomersNeighborhood.setBorder(borderDefault);
             }
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
 
         }
     }//GEN-LAST:event_btnCustomersEditActionPerformed
 
     private void btnCustomersDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersDeleteActionPerformed
         customers = new clsDAOCustomers();
-        String search = JOptionPane.showInputDialog("Por favor ingrese el número telefónico  de la persona a buscar");
+        String search = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el número telefónico  de la persona a buscar</font></p></html>");
         customers.setSearch(search);
         String result = customers.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(dlgAdminCustomers, "El cliente ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"6\">El cliente ha sido elminado correctamente.</font></p></html>");
             if (tblCustomers.isVisible()) {
                 tblCustomers.setModel(customers.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(dlgAdminCustomers, "No ha podido ser eliminado el cliente, intente nuevamente y verifique que el cliente exista.");
+            JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"6\">No ha podido ser eliminado el cliente, intente nuevamente y verifique que el cliente exista.</font></p></html>");
         }
 
     }//GEN-LAST:event_btnCustomersDeleteActionPerformed
@@ -3336,16 +3336,16 @@ public class frmAdministration extends javax.swing.JFrame {
             if (customers.findDuplicateCustomers(txtCustomersPhone.getText()).equals("no_existe")) {
                 loadSetValuesCustomers();
                 if (customers.insert()) {
-                    JOptionPane.showMessageDialog(dlgAdminCustomers, "Se insertó el cliente correctamente");
+                    JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"6\">Se insertó el cliente correctamente</font></p></html>");
                     if (tblCustomers.isVisible()) {
                         tblCustomers.setModel(customers.list());
                     }
                     cleanTextboxCustomers();
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminCustomers, "No sé insertó el cliente");
+                    JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"6\">No sé insertó el cliente</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminEmployees, "El número de teléfono ya existe en esa base de datos, por favor regístrelo con otro número.");
+                JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">El número de teléfono ya existe en esa base de datos, por favor regístrelo con otro número.</font></p></html>");
             }
         } else {
             if (cboCustomersNeighborhood.getEditor().getItem() == null) {
@@ -3353,7 +3353,7 @@ public class frmAdministration extends javax.swing.JFrame {
             } else if (cboCustomersNeighborhood.getBorder().equals(borderEmptyField)) {
                 cboCustomersNeighborhood.setBorder(borderDefault);
             }
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.");
 
         }
 
@@ -3367,7 +3367,7 @@ public class frmAdministration extends javax.swing.JFrame {
         try {
             customers = new clsDAOCustomers();
             ResultSet result;
-            String search = JOptionPane.showInputDialog("Por favor ingrese el número telefónico de la persona a buscar");
+            String search = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el número telefónico de la persona a buscar</font></p></html>");
             customers.setSearch(search);
             result = customers.search();
             if (result != null) {
@@ -3382,7 +3382,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtCustomersNotes.setText(result.getString(10));
 
             } else {
-                JOptionPane.showMessageDialog(dlgAdminCustomers, "El cliente no existe, por favor verifique que el nombre del cliente o el número esté bien escrito.");
+                JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"6\">El cliente no existe, por favor verifique que el nombre del cliente o el número esté bien escrito.</font></p></html>");
             }
 
         } catch (SQLException ex) {
@@ -3410,15 +3410,27 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void dlgAdminEmployeesWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminEmployeesWindowClosing
         this.setVisible(true);
+        scrollPanelEmployeesTable.setVisible(false);
+        tblEmployees.setVisible(false);
+        dlgAdminEmployees.setVisible(false);
+        cleanTextboxEmployees();
 
     }//GEN-LAST:event_dlgAdminEmployeesWindowClosing
 
     private void dlgAdminProductsWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminProductsWindowClosing
         this.setVisible(true);
+        scrollPanelProductsTable.setVisible(false);
+        tblProducts.setVisible(false);
+        dlgAdminProducts.setVisible(false);
+        cleanTextboxProducts();
     }//GEN-LAST:event_dlgAdminProductsWindowClosing
 
     private void dlgAdminCustomersWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminCustomersWindowClosing
         this.setVisible(true);
+        scrollPanelCustomersTable.setVisible(false);
+        tblCustomers.setVisible(false);
+        dlgAdminCustomers.setVisible(false);
+        cleanTextboxCustomers();
     }//GEN-LAST:event_dlgAdminCustomersWindowClosing
 
     private void txtLocalsAddressKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocalsAddressKeyTyped
@@ -3437,31 +3449,31 @@ public class frmAdministration extends javax.swing.JFrame {
             String result = "";
             result = local.edit();
             if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminLocal, "El local ha sido modificado correctamente.");
+                JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"6\">El local ha sido modificado correctamente.</font></p></html>");
                 if (tblLocals.isVisible()) {
                     tblLocals.setModel(local.list());
                 }
                 cleanTextboxLocals();
             } else {
-                JOptionPane.showMessageDialog(dlgAdminLocal, "No ha podido ser modificado el local, intente nuevamente y verifique que el local exista.");
+                JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"6\">No ha podido ser modificado el local, intente nuevamente y verifique que el local exista.</font></p></html>");
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
         }
     }//GEN-LAST:event_btnLocalsEditActionPerformed
 
     private void btnLocalsDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalsDeleteActionPerformed
         local = new clsDAOCompany();
-        String search = JOptionPane.showInputDialog("Por favor ingrese el nombre o el barrio del local a buscar");
+        String search = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el nombre o el barrio del local a buscar</font></p></html>");
         local.setSearch(search);
         String result = local.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(dlgAdminLocal, "El local ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"6\">El local ha sido elminado correctamente.</font></p></html>");
             if (tblLocals.isVisible()) {
                 tblLocals.setModel(local.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(dlgAdminLocal, "No ha podido ser eliminado el local, intente nuevamente y verifique que el local exista.");
+            JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"6\">No ha podido ser eliminado el local, intente nuevamente y verifique que el local exista.</font></p></html>");
         }
 
 
@@ -3477,16 +3489,16 @@ public class frmAdministration extends javax.swing.JFrame {
         if (validateFields(listTxtValidate, listTxtAreaValidate)) {
             loadSetValuesLocals();
             if (local.insert()) {
-                JOptionPane.showMessageDialog(dlgAdminLocal, "Se insertó el Local correctamente");
+                JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"6\">Se insertó el Local correctamente</font></p></html>");
                 if (tblLocals.isVisible()) {
                     tblLocals.setModel(local.list());
                 }
                 cleanTextboxLocals();
             } else {
-                JOptionPane.showMessageDialog(dlgAdminLocal, "No sé insertó el local");
+                JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"6\">No sé insertó el local</font></p></html>");
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
         }
     }//GEN-LAST:event_btnLocalsInsertActionPerformed
 
@@ -3494,7 +3506,7 @@ public class frmAdministration extends javax.swing.JFrame {
         try {
             local = new clsDAOCompany();
             ResultSet result;
-            String search = JOptionPane.showInputDialog("Por favor ingrese el nombre o el barrio del local a buscar");
+            String search = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el nombre o el barrio del local a buscar</font></p></html>");
             local.setSearch(search);
             result = local.search();
             if (result != null) {
@@ -3504,7 +3516,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtLocalsAddress.setText(result.getString(4));
                 txtLocalsNeighborhood.setText(result.getString(5));
             } else {
-                JOptionPane.showMessageDialog(dlgAdminLocal, "El local no existe, por favor verifique que el nombre o barrio del local esté bien escrito.");
+                JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"6\">El local no existe, por favor verifique que el nombre o barrio del local esté bien escrito.</font></p></html>");
             }
 
         } catch (SQLException ex) {
@@ -3528,6 +3540,10 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void dlgAdminLocalWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminLocalWindowClosing
         this.setVisible(true);
+        scrollPanelLocalsTable.setVisible(false);
+        tblLocals.setVisible(false);
+        dlgAdminLocal.setVisible(false);
+        cleanTextboxLocals();
 
     }//GEN-LAST:event_dlgAdminLocalWindowClosing
 
@@ -3605,34 +3621,34 @@ public class frmAdministration extends javax.swing.JFrame {
 
                 result = additionalProducts.edit();
                 if (result.equals("correcto")) {
-                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "El producto ha sido modificado correctamente.");
+                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"6\">El producto ha sido modificado correctamente.</font></p></html>");
                     if (tblAdditionalProducts.isVisible()) {
                         tblAdditionalProducts.setModel(additionalProducts.list());
                     }
                     cleanTextboxAdditionalProducts();
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"6\">No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "Ya existe un producto con ese nombre, por favor intente con otro nombre.");
+                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"6\">Ya existe un producto con ese nombre, por favor intente con otro nombre.</font></p></html>");
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
         }
     }//GEN-LAST:event_btnAdditionalProductsEditActionPerformed
 
     private void btnAdditionalProductsDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsDeleteActionPerformed
         additionalProducts = new clsDAOAdditionalProducts();
-        String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto adicional a eliminar");
+        String namep = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el nombre del producto adicional a eliminar</font></p></html>");
         additionalProducts.setNamep(namep);
         String result = additionalProducts.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "El producto adicional ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"6\">El producto adicional ha sido elminado correctamente.</font></p></html>");
             if (tblAdditionalProducts.isVisible()) {
                 tblAdditionalProducts.setModel(additionalProducts.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
+            JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"6\">No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
         }
 
     }//GEN-LAST:event_btnAdditionalProductsDeleteActionPerformed
@@ -3648,19 +3664,19 @@ public class frmAdministration extends javax.swing.JFrame {
             if (additionalProducts.findDuplicateAdditionalProducts(txtAdditionalProductsName.getText()).equals("no_existe")) {
 
                 if (additionalProducts.insert()) {
-                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "Se insertó el producto adicional correctamente");
+                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"6\">Se insertó el producto adicional correctamente</font></p></html>");
                     if (tblAdditionalProducts.isVisible()) {
                         tblAdditionalProducts.setModel(additionalProducts.list());
                     }
                     cleanTextboxAdditionalProducts();
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "No sé insertó el producto adicional");
+                    JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"6\">No sé insertó el producto adicional</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "Ya existe un producto con ese nombre, por favor intente con otro nombre.");
+                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"6\">Ya existe un producto con ese nombre, por favor intente con otro nombre.</font></p></html>");
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
 
         }
     }//GEN-LAST:event_btnAdditionalProductsInsertActionPerformed
@@ -3669,7 +3685,7 @@ public class frmAdministration extends javax.swing.JFrame {
         try {
             additionalProducts = new clsDAOAdditionalProducts();
             ResultSet result;
-            String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto adicional a buscar");
+            String namep = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el nombre del producto adicional a buscar</font></p></html>");
             additionalProducts.setNamep(namep);
             result = additionalProducts.search();
             if (result != null) {
@@ -3681,7 +3697,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtAdditionalProductsNotes.setText(result.getString(5));
 
             } else {
-                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "El producto no existe, por favor verifique que el nombre del producto esté bien escrito.");
+                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"6\">El producto no existe, por favor verifique que el nombre del producto esté bien escrito.</font></p></html>");
             }
 
         } catch (SQLException ex) {
@@ -3713,7 +3729,11 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdditionalProductsBackActionPerformed
 
     private void dlgAdminAdditionalProductsWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminAdditionalProductsWindowClosing
-        // TODO add your handling code here:
+        this.setVisible(true);
+        scrollPanelAdditionalProductsTable.setVisible(false);
+        tblAdditionalProducts.setVisible(false);
+        dlgAdminAdditionalProducts.setVisible(false);
+        cleanTextboxAdditionalProducts();
     }//GEN-LAST:event_dlgAdminAdditionalProductsWindowClosing
 
     private void btnSelectAdminProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectAdminProductsActionPerformed
@@ -3746,39 +3766,39 @@ public class frmAdministration extends javax.swing.JFrame {
 
                     result = users.edit();
                     if (result.equals("correcto")) {
-                        JOptionPane.showMessageDialog(dlgAdminUsers, "El producto ha sido modificado correctamente.");
+                        JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"6\">El producto ha sido modificado correctamente.</font></p></html>");
                         if (tblUsers.isVisible()) {
                             tblUsers.setModel(users.list());
                         }
                         cleanTextboxUsers();
                     } else {
-                        JOptionPane.showMessageDialog(dlgAdminUsers, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+                        JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"6\">No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminUsers, "Ya existe un usuario con ese nombre, por favor cambie el nombre de usuario.");
+                    JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"6\">Ya existe un usuario con ese nombre, por favor cambie el nombre de usuario.</font></p></html>");
 
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminUsers, "Las contraseñas no coinciden, por favor verifíquelas.");
+                JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"6\">Las contraseñas no coinciden, por favor verifíquelas.</font></p></html>");
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.");
         }
 
     }//GEN-LAST:event_btnUsersEditActionPerformed
 
     private void btnUsersDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersDeleteActionPerformed
         users = new clsDAOUsers();
-        String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del usuario a eliminar");
+        String namep = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el nombre del usuario a eliminar</font></p></html>");
         users.setSearch(namep);
         String result = users.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(dlgAdminUsers, "El Usuario ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"6\">El Usuario ha sido elminado correctamente.</font></p></html>");
             if (tblUsers.isVisible()) {
                 tblUsers.setModel(users.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(dlgAdminUsers, "No ha podido ser eliminado el usuario, intente nuevamente y verifique que el usuario exista.");
+            JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"6\">No ha podido ser eliminado el usuario, intente nuevamente y verifique que el usuario exista.</font></p></html>");
         }
     }//GEN-LAST:event_btnUsersDeleteActionPerformed
 
@@ -3793,22 +3813,22 @@ public class frmAdministration extends javax.swing.JFrame {
             if (users.getPasswordu().equals(users.getRepeatPassword())) {
                 if (users.findDuplicateUsers(txtUsersNameUser.getText()).equals("no_existe")) {
                     if (users.insert()) {
-                        JOptionPane.showMessageDialog(dlgAdminUsers, "Se insertó el usuario correctamente");
+                        JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"6\">Se insertó el usuario correctamente</font></p></html>");
                         if (tblUsers.isVisible()) {
                             tblUsers.setModel(users.list());
                         }
                         cleanTextboxUsers();
                     } else {
-                        JOptionPane.showMessageDialog(dlgAdminUsers, "No sé insertó el usuario");
+                        JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"6\">No sé insertó el usuario</font></p></html>");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminUsers, "Ya existe un usuario con ese nombre, por favor cambie el nombre de usuario.");
+                    JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"6\">Ya existe un usuario con ese nombre, por favor cambie el nombre de usuario.</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminUsers, "Las contraseñas no coinciden, por favor verifíquelas.");
+                JOptionPane.showMessageDialog(dlgAdminUsers, "Las contraseñas no coinciden, por favor verifíquelas.</font></p></html>");
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminEmployees, "Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
 
         }
     }//GEN-LAST:event_btnUsersInsertActionPerformed
@@ -3817,7 +3837,7 @@ public class frmAdministration extends javax.swing.JFrame {
         try {
             users = new clsDAOUsers();
             ResultSet result;
-            String search = JOptionPane.showInputDialog("Por favor ingrese el nombre de usuario a buscar");
+            String search = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el nombre de usuario a buscar</font></p></html>");
             users.setSearch(search);
             result = users.search();
             if (result != null) {
@@ -3835,7 +3855,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 }
 
             } else {
-                JOptionPane.showMessageDialog(dlgAdminUsers, "El usuario no existe, por favor verifique que el nombre de usuario esté bien escrito.");
+                JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"6\">El usuario no existe, por favor verifique que el nombre de usuario esté bien escrito.</font></p></html>");
             }
 
         } catch (SQLException ex) {
@@ -3864,7 +3884,11 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsersBackActionPerformed
 
     private void dlgAdminUsersWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminUsersWindowClosing
-        // TODO add your handling code here:
+        this.setVisible(true);
+        scrollPanelUsersTable.setVisible(false);
+        tblUsers.setVisible(false);
+        dlgAdminUsers.setVisible(false);
+        cleanTextboxUsers();
     }//GEN-LAST:event_dlgAdminUsersWindowClosing
 
     private void dlgAdminCustomersWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminCustomersWindowOpened
@@ -3893,16 +3917,16 @@ public class frmAdministration extends javax.swing.JFrame {
                 inventory = new clsDAOInventory();
                 String inventory_id2 = inventory.searchInventoryIdFromProductName(inventoryHistory.getNameProduct());
                 inventory.updateTotalAmount(inventory_id2);
-                JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "El producto ha sido modificado correctamente.");
+                JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"6\">El producto ha sido modificado correctamente.</font></p></html>");
                 if (tblInventoryHistory.isVisible()) {
                     tblInventoryHistory.setModel(inventoryHistory.list());
                 }
                 txtInventoryHistoryAmount.setText("");
             } else {
-                JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+                JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"6\">No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
         }
 
 
@@ -3910,16 +3934,16 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void btnInventoryHistoryDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryDeleteActionPerformed
         inventoryHistory = new clsDAOInventoryHistory();
-        String namep = JOptionPane.showInputDialog("Por favor ingrese el ID de inventario del producto a eliminar");
+        String namep = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el ID de inventario del producto a eliminar</font></p></html>");
         inventoryHistory.setSearch(namep);
         String result = inventoryHistory.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "El producto ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"6\">El producto ha sido elminado correctamente.</font></p></html>");
             if (tblInventoryHistory.isVisible()) {
                 tblInventoryHistory.setModel(inventoryHistory.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
+            JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"6\">No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
         }
 
     }//GEN-LAST:event_btnInventoryHistoryDeleteActionPerformed
@@ -3935,18 +3959,18 @@ public class frmAdministration extends javax.swing.JFrame {
                 inventory = new clsDAOInventory();
                 String inventory_id2 = inventory.searchInventoryIdFromProductName(inventoryHistory.getNameProduct());
                 inventory.updateTotalAmount(inventory_id2);
-                JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "Se hicieron los cambios en el inventario respectivos");
+                JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"6\">Se hicieron los cambios en el inventario respectivos</font></p></html>");
 
                 if (tblInventoryHistory.isVisible()) {
                     tblInventoryHistory.setModel(inventoryHistory.list());
                 }
                 txtInventoryHistoryAmount.setText("");
             } else {
-                JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "No sé hicieron cambios en el inventario");
+                JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"6\">No sé hicieron cambios en el inventario</font></p></html>");
             }
 
         } else {
-            JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
 
         }
 
@@ -3971,7 +3995,11 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInventoryHistoryBackActionPerformed
 
     private void dlgAdminInventoryHistoryWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminInventoryHistoryWindowClosing
-        // TODO add your handling code here:
+        this.setVisible(true);
+        scrollPanelInventoryHistoryTable.setVisible(false);
+        tblInventoryHistory.setVisible(false);
+        dlgAdminInventoryHistory.setVisible(false);
+        txtInventoryHistoryAmount.setText("");
     }//GEN-LAST:event_dlgAdminInventoryHistoryWindowClosing
 
     private void btnSelectInventoryHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectInventoryHistoryActionPerformed
@@ -4001,20 +4029,20 @@ public class frmAdministration extends javax.swing.JFrame {
 
                 result = inventory.edit();
                 if (result.equals("correcto")) {
-                    JOptionPane.showMessageDialog(dlgAdminInventory, "El producto ha sido modificado correctamente.");
+                    JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">El producto ha sido modificado correctamente.</font></p></html>");
                     if (tblInventory.isVisible()) {
                         tblInventory.setModel(inventory.list());
                     }
                     cleanTextboxInventory();
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminInventory, "No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.");
+                    JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminInventory, "Ya existe un producto con ese nombre por favor intente con otro nombre para ese producto.");
+                JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">Ya existe un producto con ese nombre por favor intente con otro nombre para ese producto.</font></p></html>");
 
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminInventory, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
         }
 
 
@@ -4023,16 +4051,16 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnInventoryDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryDeleteActionPerformed
 
         inventory = new clsDAOInventory();
-        String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto a eliminar");
+        String namep = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el nombre del producto a eliminar</font></p></html>");
         inventory.setSearch(namep);
         String result = inventory.delete();
         if (result.equals("correcto")) {
-            JOptionPane.showMessageDialog(dlgAdminInventory, "El producto ha sido elminado correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">El producto ha sido elminado correctamente.</font></p></html>");
             if (tblInventory.isVisible()) {
                 tblInventory.setModel(inventory.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(dlgAdminInventory, "No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.");
+            JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
         }
 
 
@@ -4047,20 +4075,20 @@ public class frmAdministration extends javax.swing.JFrame {
 
                 loadSetValuesInventory();
                 if (inventory.insert()) {
-                    JOptionPane.showMessageDialog(dlgAdminInventory, "Se insertó el producto correctamente");
+                    JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">Se insertó el producto correctamente</font></p></html>");
                     if (tblInventory.isVisible()) {
                         tblInventory.setModel(inventory.list());
                     }
                     cleanTextboxInventory();
                 } else {
-                    JOptionPane.showMessageDialog(dlgAdminInventory, "No sé insertó el producto");
+                    JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">No sé insertó el producto</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminInventory, "El producto ya existe, por favor inserte el producto para inventario con otro nombre.");
+                JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">El producto ya existe, por favor inserte el producto para inventario con otro nombre.</font></p></html>");
 
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminInventory, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
 
         }
 
@@ -4071,7 +4099,7 @@ public class frmAdministration extends javax.swing.JFrame {
         try {
             inventory = new clsDAOInventory();
             ResultSet result;
-            String search = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto a buscar");
+            String search = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el nombre del producto a buscar</font></p></html>");
             inventory.setSearch(search);
             result = inventory.search();
             if (result != null) {
@@ -4081,7 +4109,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 txtInventoryNotes.setText(result.getString(5));
 
             } else {
-                JOptionPane.showMessageDialog(dlgAdminInventory, "El producto no existe, por favor verifique que el nombre del producto esté bien escrito.");
+                JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">El producto no existe, por favor verifique que el nombre del producto esté bien escrito.</font></p></html>");
             }
 
         } catch (SQLException ex) {
@@ -4105,7 +4133,6 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInventoryListActionPerformed
 
     private void btnInventoryBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryBackActionPerformed
-
         this.setVisible(true);
         scrollPanelInventoryTable.setVisible(false);
         tblInventory.setVisible(false);
@@ -4114,14 +4141,18 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInventoryBackActionPerformed
 
     private void dlgAdminInventoryWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminInventoryWindowClosing
-        // TODO add your handling code here:
+        this.setVisible(true);
+        scrollPanelInventoryTable.setVisible(false);
+        tblInventory.setVisible(false);
+        dlgAdminInventory.setVisible(false);
+        cleanTextboxInventory();
     }//GEN-LAST:event_dlgAdminInventoryWindowClosing
 
     private void btnInventoryHistorySearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistorySearchActionPerformed
         try {
             inventoryHistory = new clsDAOInventoryHistory();
             ResultSet result;
-            String search = JOptionPane.showInputDialog("Por favor ingrese el ID de inventario del producto a buscar");
+            String search = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el ID de inventario del producto a buscar</font></p></html>");
             inventoryHistory.setSearch(search);
             result = inventoryHistory.search();
             if (result != null) {
@@ -4138,7 +4169,7 @@ public class frmAdministration extends javax.swing.JFrame {
 
                 //txtInventoryNotes.setText(result.getString(5));
             } else {
-                JOptionPane.showMessageDialog(dlgAdminInventory, "El producto no existe, por favor verifique que el nombre del producto esté bien escrito.");
+                JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"6\">El producto no existe, por favor verifique que el nombre del producto esté bien escrito.</font></p></html>");
             }
 
         } catch (SQLException ex) {
@@ -4152,19 +4183,19 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void btnOrdersGDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersGDeleteActionPerformed
         ordersGeneral = new clsOrdersGeneral();
-        String namep = JOptionPane.showInputDialog("Por favor ingrese el nombre del producto a eliminar");
+        String namep = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el nombre del producto a eliminar</font></p></html>");
         ordersGeneral.setOrder_number(namep);
         String result = ordersGeneral.deleteLocalOrder();
         String result2 = ordersGeneral.deleteLocalOrderDetails();
         String result3 = ordersGeneral.deleteOrderDelivery();
         String result4 = ordersGeneral.deleteOrderDeliveryDetails();
         if (result.equals("correcto") || result3.equals("correcto")) {
-            JOptionPane.showMessageDialog(dlgAdminOrders, "La orden ha sido elminada correctamente.");
+            JOptionPane.showMessageDialog(dlgAdminOrders, "<html><p><font size=\"6\">La orden ha sido elminada correctamente.</font></p></html>");
             if (tblOrdersGeneral.isVisible()) {
                 tblOrdersGeneral.setModel(ordersGeneral.list());
             }
         } else if (result.equals("error")) {
-            JOptionPane.showMessageDialog(dlgAdminOrders, "No ha podido ser eliminada la orden, intente nuevamente y verifique que el número de orden.");
+            JOptionPane.showMessageDialog(dlgAdminOrders, "<html><p><font size=\"6\">No ha podido ser eliminada la orden, intente nuevamente y verifique que el número de orden.</font></p></html>");
         }
     }//GEN-LAST:event_btnOrdersGDeleteActionPerformed
 
@@ -4189,7 +4220,10 @@ public class frmAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrdersGBackActionPerformed
 
     private void dlgAdminOrdersWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminOrdersWindowClosing
-        // TODO add your handling code here:
+        this.setVisible(true);
+        scrollPanelOrdersGTable.setVisible(false);
+        tblOrdersGeneral.setVisible(false);
+        dlgAdminOrders.setVisible(false);
     }//GEN-LAST:event_dlgAdminOrdersWindowClosing
 
     private void dlgAdminOrdersWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminOrdersWindowOpened
@@ -4219,14 +4253,14 @@ public class frmAdministration extends javax.swing.JFrame {
             Toolkit.getDefaultToolkit().beep();
             txtNumber.setText("");
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Por favor ingrese solamente números, sin puntuación o letras", "Validando datos", JOptionPane.ERROR_MESSAGE);
-            
+            JOptionPane.showMessageDialog(null, "<html><p><font size=\"6\">Por favor ingrese solamente números, sin puntuación o letras</font></p></html>", "Validando datos", JOptionPane.ERROR_MESSAGE);
+
         }
         int k = (int) evt.getKeyChar();
         if (txtNumber.getText().length() >= amountCharacters) {
             evt.setKeyChar((char) KeyEvent.VK_CLEAR);//Limpiar el caracter ingresado
-             txtNumber.setText("");
-            JOptionPane.showMessageDialog(null, "Ha excedido el número máximo de caracteres! (" + amountCharacters + ")", "Validando Datos", JOptionPane.ERROR_MESSAGE);
+            txtNumber.setText("");
+            JOptionPane.showMessageDialog(null, "<html><p><font size=\"6\">Ha excedido el número máximo de caracteres! (" + amountCharacters + ")</font></p></html>", "Validando Datos", JOptionPane.ERROR_MESSAGE);
             txtNumber.setText("");
         }
 
@@ -4396,8 +4430,8 @@ public class frmAdministration extends javax.swing.JFrame {
     }
 
     /**
-     * Carga los valores de la clase users con los valores que tienen las
-     * cajas de texto del JDialog users
+     * Carga los valores de la clase users con los valores que tienen las cajas
+     * de texto del JDialog users
      */
     public void loadSetValuesUsers() {
 

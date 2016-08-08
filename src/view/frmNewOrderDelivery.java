@@ -376,13 +376,13 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                                 .addComponent(btnAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                                 .addGap(26, 26, 26)
-                                .addComponent(txtCustomersPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
                                 .addComponent(scrollNotes1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                                 .addGap(37, 37, 37)
-                                .addComponent(cboCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cboCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(txtCustomersPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                         .addGap(174, 174, 174)
                         .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -390,13 +390,13 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                                 .addComponent(cbCustomersTown, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtCustomersName, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                            .addComponent(txtCustomersLastName)
-                            .addComponent(txtCustomerssAddress)
-                            .addComponent(txtCustomersDocument))))
+                            .addComponent(txtCustomersLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                            .addComponent(txtCustomerssAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                            .addComponent(txtCustomersDocument, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSearchCustomerOrderDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnContinueOrderDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnContinueOrderDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchCustomerOrderDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         pnlCustomersDatesLayout.setVerticalGroup(
@@ -613,6 +613,9 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -1084,17 +1087,17 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 loadSetValuesCustomers();
 
                 if (customers.insert()) {
-                    JOptionPane.showMessageDialog(dlgOrderDelivery, "Se insertó el cliente correctamente, ya puede hacer su pedido");
+                    JOptionPane.showMessageDialog(dlgOrderDelivery, "<html><p><font size=\"5\">Se insertó el cliente correctamente, ya puede hacer su pedido</font></p></html>");
                     //  frmMain.setVisible(false);
                     dlgOrderDelivery.dispose();
                     this.setVisible(true);
                     cleanTextboxCustomers();
 
                 } else {
-                    JOptionPane.showMessageDialog(dlgOrderDelivery, "No sé insertó el cliente, por favor verifique nuevamente");
+                    JOptionPane.showMessageDialog(dlgOrderDelivery, "<html><p><font size=\"5\">No sé insertó el cliente, por favor verifique nuevamente</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgOrderDelivery, "El número de teléfono ya existe en esa base de datos, por favor regístrelo con otro número.");
+                JOptionPane.showMessageDialog(dlgOrderDelivery, "<html><p><font size=\"5\">El número de teléfono ya existe en esa base de datos, por favor regístrelo con otro número.</font></p></html>");
             }
         } else {
             if (cboCustomersNeighborhood.getEditor().getItem() == null) {
@@ -1102,7 +1105,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             } else if (cboCustomersNeighborhood.getBorder().equals(borderEmptyField)) {
                 cboCustomersNeighborhood.setBorder(borderDefault);
             }
-            JOptionPane.showMessageDialog(dlgOrderDelivery, "Por favor rellene los campos que están subrayados en rojo.");
+            JOptionPane.showMessageDialog(dlgOrderDelivery, "<html><p><font size=\"5\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
 
         }
 
@@ -1159,7 +1162,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         try {
             customers = new clsDAOCustomers();
             ResultSet result;
-            String search = JOptionPane.showInputDialog("Por favor ingrese el número telefónico o el nombre de la persona a buscar");
+            String search = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese el número telefónico o el nombre de la persona a buscar</font></p></html>");
             customers.setSearch(search);
             result = customers.search();
             if (result != null) {
@@ -1182,7 +1185,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 btnContinueOrderDelivery.setEnabled(true);
 
             } else {
-                JOptionPane.showMessageDialog(rootPane, "El cliente no existe, por favor créelo aquí y después de clic en el botón agregar..");
+                JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">El cliente no existe, por favor créelo aquí y después de clic en el botón agregar.</font></p></html>");
             }
 
         } catch (SQLException ex) {
@@ -1245,7 +1248,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private void btnDoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneOrderActionPerformed
         if (tblOrderDelivery.getRowCount() > 0) {
             if (JOptionPane.showConfirmDialog(this,
-                    "Desea confirmar el pedido con número de orden " + txtOrderNumber.getText(), "Confirmar pedido",
+                    "<html><p><font size=\"5\">Desea confirmar el pedido con número de orden " + txtOrderNumber.getText() + "</font></p></html>", "Confirmar pedido",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                 ResultSet result = orderDelivery.searchEmployeesJobDelivery();
@@ -1264,7 +1267,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 }
                 if (listEmployees_id.size() > 0) {
 
-                    JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, jcbListEmployees, "<html><p><font size=\"5\">¿Quién llevará el domicilio?</font></p></html>", JOptionPane.QUESTION_MESSAGE);
                     employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
                 }
                 if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
@@ -1272,11 +1275,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                     txtTotalOrder.setText("0");
 
                     clearTable(tblOrderDelivery);
-                    JOptionPane.showMessageDialog(this, "La orden ha sido procesada con éxito");
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La orden ha sido procesada con éxito</font></p></html>");
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No hay todavía ningún producto para realizar la compra.");
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">No hay todavía ningún producto para realizar la compra.</font></p></html>");
         }
     }//GEN-LAST:event_btnDoneOrderActionPerformed
 
@@ -1293,7 +1296,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private void btnCorrectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrectionActionPerformed
         if (tblOrderDelivery.getRowCount() > 0) {
             deleteSelectionState = 1;
-            JOptionPane.showMessageDialog(this, "Por favor seleccione la fila del producto que desea eliminar.");
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor seleccione la fila del producto que desea eliminar.</font></p></html>");
         }
     }//GEN-LAST:event_btnCorrectionActionPerformed
 
@@ -1303,9 +1306,9 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         if (!btnSelectedProducts.isSelected()) {
 
             btnSelectedAmount.setSelected(true);
-            String inputValue = JOptionPane.showInputDialog("Por favor ingrese la cantidad que necesita");
+            String inputValue = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese la cantidad que necesita</font></p></html>");
             if (inputValue == null || inputValue.isEmpty() || inputValue == "") {
-                JOptionPane.showMessageDialog(this, "Por favor ingrese una cantidad");
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor ingrese una cantidad</font></p></html>");
             } else {
                 double amount = Double.parseDouble(inputValue);
                 if (amount > 9) {
@@ -1334,7 +1337,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                             centerElementsTable(tblOrderDelivery);
 
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                            JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
                         }
                     } else if (btnProduct6.isSelected()) {
                         stateTypeProduct = 1;
@@ -1346,12 +1349,12 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                             centerElementsTable(tblOrderDelivery);
 
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                            JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
                         }
 
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "La cantidad debe ser igual o mayor a 10");
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La cantidad debe ser igual o mayor a 10</font></p></html>");
                 }
             }
         }
@@ -1374,14 +1377,14 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                         txtNotes.setText("");
                         centerElementsTable(tblOrderDelivery);
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                        JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Por favor seleccione una cantidad");
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor seleccione una cantidad</font></p></html>");
                 }
 
             } else {
-                JOptionPane.showMessageDialog(this, "Por favor seleccione un producto");
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor seleccione un producto</font></p></html>");
 
             }
         } else if (btnProduct6.isSelected()) {
@@ -1393,10 +1396,10 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                         txtNotes.setText("");
                         centerElementsTable(tblOrderDelivery);
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                        JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Por favor seleccione una cantidad");
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor seleccione una cantidad</font></p></html>");
                 }
             }
 
@@ -1466,8 +1469,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             if (deleteSelectionState == 1) {
                 orderDelivery = new clsDAOOrderDeliveryDetails();
                 String selection = String.valueOf(tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 0));
+                String message = "<html><p><font size=\"5\">Está seguro que desea eliminar el producto:<br>"
+                        + (tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 1)) + "<br> Con valor de: " + (tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 5)) + "</font></p></html>";
+
                 if (JOptionPane.showConfirmDialog(this,
-                        "Está seguro que desea eliminar el producto:\n " + (tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 1)) + "\nCon valor de: " + (tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 5)), "Eliminar producto",
+                        message, "Eliminar producto",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                     orderDelivery.setLocalOrder_id(selection);
@@ -1488,7 +1494,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private void btnAdminBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminBackActionPerformed
         if (tblOrderDelivery.getRowCount() > 0) {
             if (JOptionPane.showConfirmDialog(this,
-                    "Está en la mitad de un pedido, si sale, el pedido será eliminado ¿Está seguro de que quiere salir? ", "Salir y cancelar pedido?",
+                    "<html><p><font size=\"5\">Está en la mitad de un pedido, si sale, el pedido será eliminado ¿Está seguro de que quiere salir? </font></p></html>", "Salir y cancelar pedido?",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                 orderDelivery.cancelOrderButtonBack(txtOrderNumber.getText());
@@ -1506,13 +1512,18 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdminBackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        double change = Double.parseDouble(JOptionPane.showInputDialog("Devuelta de cuánto?"));
-        double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
-        if (change < total) {
-            JOptionPane.showMessageDialog(this, "El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente");
-        } else {
-            txtChangeOrder.setText((change - total) + "");
 
+        double change = 0;
+        String inChange = JOptionPane.showInputDialog("Devuelta de cuánto?");
+        if (!inChange.isEmpty()) {
+            change = Double.parseDouble(inChange);
+            double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
+            if (change < total) {
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente</font></p></html>");
+            } else {
+                txtChangeOrder.setText((change - total) + "");
+
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1582,6 +1593,25 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         customers.loadCboNeighborhood(cboCustomersNeighborhood);
     }//GEN-LAST:event_dlgOrderDeliveryWindowOpened
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if (tblOrderDelivery.getRowCount() > 0) {
+            if (JOptionPane.showConfirmDialog(this,
+                    "<html><p><font size=\"5\">Está en la mitad de un pedido, si sale, el pedido será eliminado ¿Está seguro de que quiere salir? </font></p></html>", "Salir y cancelar pedido?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                orderDelivery.cancelOrderButtonBack(txtOrderNumber.getText());
+                this.setVisible(false);
+                clearTable(tblOrderDelivery);
+
+            } else {
+                this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            }
+        } else {
+            this.setVisible(false);
+            clearTable(tblOrderDelivery);
+        }
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * Método que solo admite números y una longitud máxima de 8 caracteres.
      * Entra como parámetro un evento, que es cuando se presiona una tecla y una
@@ -1595,12 +1625,12 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         if (!Character.isDigit(evt.getKeyChar()) && !Character.isISOControl(evt.getKeyChar())) {
             Toolkit.getDefaultToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Por favor ingrese solamente números, sin puntuación o letras", "Validando datos", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "<html><p><font size=\"5\">Por favor ingrese solamente números, sin puntuación o letras</font></p></html>", "Validando datos", JOptionPane.ERROR_MESSAGE);
         }
         int k = (int) evt.getKeyChar();
         if (txtNumber.getText().length() >= amountCharacters) {
             evt.setKeyChar((char) KeyEvent.VK_CLEAR);//Limpiar el caracter ingresado
-            JOptionPane.showMessageDialog(null, "Ha excedido el número máximo de caracteres! (" + amountCharacters + ")", "Validando Datos", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "<html><p><font size=\"5\">Ha excedido el número máximo de caracteres! (" + amountCharacters + ")</font></p></html>", "Validando Datos", JOptionPane.ERROR_MESSAGE);
         }
 
     }

@@ -6,6 +6,7 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.*;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
@@ -19,6 +20,7 @@ import model.clsDAOUsers;
  * @author allan
  */
 public class frmMainHotWings extends javax.swing.JFrame {
+
     model.clsDAOOrderDeliveryDetails orderDelivery;
     model.clsDAOLocalOrderDetails localOrder;
     controller.Connect connexion;
@@ -66,18 +68,18 @@ public class frmMainHotWings extends javax.swing.JFrame {
         daoLogin.setUser(txtUser.getText());
         daoLogin.setPassword(String.valueOf(txtPassword.getPassword()));
         if ("".equals(daoLogin.getUser()) || "".equals(daoLogin.getPassword())) {
-            JOptionPane.showMessageDialog(this, "El usuario o la contraseña no pueden estar en blanco.");
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">El usuario o la contraseña no pueden estar en blanco.</font></p></html>");
         } else if (daoLogin.validate() == false) {
             if (count == 1) {
-                JOptionPane.showMessageDialog(this, "Usted ha ingresado la contraseña mal 5 veces, el programa se cerrará.");
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Usted ha ingresado la contraseña mal 5 veces, el programa se cerrará.</font></p></html>");
                 System.exit(0);
             } else {
                 count = count - 1;
-                JOptionPane.showMessageDialog(this, "Datos incorrectos. Inténtelo otra vez, le quedan " + count + " intentos");
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Datos incorrectos. Inténtelo otra vez, le quedan " + count + " intentos</font></p></html>");
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Bienvenido(a) " + daoLogin.getUser());
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Bienvenido(a)</font></p></html> " + daoLogin.getUser());
             lblCurrentUser.setText(daoLogin.getUser());
             users.updateLastEntry(daoLogin.getUser());
             isAdmin(lblCurrentUser.getText());
@@ -156,9 +158,9 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblUser.setForeground(new java.awt.Color(240, 240, 240));
         lblUser.setText("Usuario");
         pnlLogin.add(lblUser);
-        lblUser.setBounds(290, 94, 67, 29);
+        lblUser.setBounds(290, 94, 120, 29);
 
-        txtUser.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtUser.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         pnlLogin.add(txtUser);
         txtUser.setBounds(429, 91, 200, 36);
@@ -167,7 +169,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         lblPassword.setForeground(new java.awt.Color(240, 240, 240));
         lblPassword.setText("Contraseña");
         pnlLogin.add(lblPassword);
-        lblPassword.setBounds(290, 146, 100, 29);
+        lblPassword.setBounds(290, 146, 120, 29);
 
         btnExit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExit.setText("Salir");
@@ -368,7 +370,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         if (JOptionPane.showConfirmDialog(this,
-                "Está seguro de que quiere salir?", "Salir?",
+                "<html><p><font size=\"6\">Está seguro de que quiere salir?</font></p></html>", "Salir?",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             System.exit(0);
@@ -389,14 +391,14 @@ public class frmMainHotWings extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAcceptActionPerformed
 
     private void btnLocalOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalOrderActionPerformed
-       localOrder = new clsDAOLocalOrderDetails();
+        localOrder = new clsDAOLocalOrderDetails();
         frmLocalO.txtOrderNumber.setText(localOrder.selectOrderNumber());
         frmLocalO.setVisible(true);
     }//GEN-LAST:event_btnLocalOrderActionPerformed
 
     private void btnOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDeliveryActionPerformed
         // frmOrderDelivery.setVisible(true);
-     orderDelivery = new clsDAOOrderDeliveryDetails();
+        orderDelivery = new clsDAOOrderDeliveryDetails();
         frmOrderDelivery.txtOrderNumber.setText(orderDelivery.selectOrderNumber());
         frmOrderDelivery.dlgOrderDelivery.setVisible(true);
 
@@ -418,7 +420,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
 
         JPanel panelPass = new JPanel();
-        JLabel labelPass = new JLabel("Por favor ingrese su contraseña de usuario");
+        JLabel labelPass = new JLabel("<html><p><font size=\"6\">Por favor ingrese su contraseña de usuario</font></p></html>");
         JPasswordField pass = new JPasswordField(20);
         panelPass.add(labelPass);
         panelPass.add(pass);
@@ -426,14 +428,14 @@ public class frmMainHotWings extends javax.swing.JFrame {
         int password = JOptionPane.showOptionDialog(null, panelPass, "Contraseña",
                 JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, options, options[1]);
-        if(password == 0){
-        if (daoLogin.getPassword().equals(String.valueOf(pass.getPassword()))) {
-            frmAdmin.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Contraseña incorrecta, por favor verifíquela.");
-        }   
+        if (password == 0) {
+            if (daoLogin.getPassword().equals(String.valueOf(pass.getPassword()))) {
+                frmAdmin.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Contraseña incorrecta, por favor verifíquela.</font></p></html>");
+            }
         }
-        
+
 
     }//GEN-LAST:event_btnAdminActionPerformed
 
@@ -443,7 +445,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
     private void btnCloseProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseProgramActionPerformed
         if (JOptionPane.showConfirmDialog(this,
-                "Está seguro de que quiere salir?", "Salir?",
+                "<html><p><font size=\"6\">Está seguro de que quiere salir?</font></p></html>", "¿Salir?",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             System.exit(0);

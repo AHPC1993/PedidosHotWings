@@ -9,13 +9,18 @@ import com.toedter.calendar.JDateChooser;
 import controller.Connect;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import model.clsDAOOrderDeliveryDetails;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -29,6 +34,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class frmReports extends javax.swing.JFrame {
 
+    model.clsDAOOrderDeliveryDetails orderDelivery;
     Map parameters_report;
     controller.Connect connexion;
 
@@ -60,10 +66,10 @@ public class frmReports extends javax.swing.JFrame {
         pnlReportsOrders = new javax.swing.JPanel();
         btnDlgReportsOrdersDelivery = new javax.swing.JButton();
         btnDlgReportsTopNeighborhood = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btnDlgReportsOrdersLocal = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        btnDlgReportsOrdersDeliveryPerEmployees = new javax.swing.JButton();
         btnDlgAdditionsCancel = new javax.swing.JButton();
         dlgReportsCustomers = new javax.swing.JDialog();
         pnlReportsOrders1 = new javax.swing.JPanel();
@@ -118,8 +124,6 @@ public class frmReports extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("jButton1");
-
         jButton4.setText("jButton1");
 
         btnDlgReportsOrdersLocal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -134,6 +138,16 @@ public class frmReports extends javax.swing.JFrame {
 
         jButton6.setText("jButton1");
 
+        btnDlgReportsOrdersDeliveryPerEmployees.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnDlgReportsOrdersDeliveryPerEmployees.setText("<html><center>Domicilios empleado <br>en un rango de días</center></html> ");
+        btnDlgReportsOrdersDeliveryPerEmployees.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDlgReportsOrdersDeliveryPerEmployees.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDlgReportsOrdersDeliveryPerEmployees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDlgReportsOrdersDeliveryPerEmployeesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlReportsOrdersLayout = new javax.swing.GroupLayout(pnlReportsOrders);
         pnlReportsOrders.setLayout(pnlReportsOrdersLayout);
         pnlReportsOrdersLayout.setHorizontalGroup(
@@ -141,8 +155,8 @@ public class frmReports extends javax.swing.JFrame {
             .addGroup(pnlReportsOrdersLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDlgReportsOrdersLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDlgReportsOrdersLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDlgReportsOrdersDeliveryPerEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlReportsOrdersLayout.createSequentialGroup()
@@ -164,10 +178,11 @@ public class frmReports extends javax.swing.JFrame {
                         .addComponent(btnDlgReportsOrdersLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnDlgReportsTopNeighborhood, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDlgReportsOrdersDeliveryPerEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -562,6 +577,8 @@ public class frmReports extends javax.swing.JFrame {
 
         dlgReportsOrders.setVisible(false);
         // this.setVisible(true);
+        parameters_report = new HashMap();
+        connexion = new Connect();
         loadDatesCalendarForReports("localOrdersPerRangeDay.jrxml", "Pedidos locales");
     }//GEN-LAST:event_btnDlgReportsOrdersLocalActionPerformed
 
@@ -569,6 +586,8 @@ public class frmReports extends javax.swing.JFrame {
     private void btnDlgReportsOrdersDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsOrdersDeliveryActionPerformed
         dlgReportsOrders.setVisible(false);
         this.setVisible(true);
+        parameters_report = new HashMap();
+        connexion = new Connect();
         loadDatesCalendarForReports("orderDeliveryPerRangeDay.jrxml", "Domicilios realizados");
         // generateReport("orderDeliveryPerRangeDay.jrxml", "Domicilios realizados", "dates");
     }//GEN-LAST:event_btnDlgReportsOrdersDeliveryActionPerformed
@@ -577,6 +596,7 @@ public class frmReports extends javax.swing.JFrame {
         dlgReportsOrders.setVisible(false);
         this.setVisible(true);
         parameters_report = new HashMap();
+        connexion = new Connect();
         loadDatesCalendarForReports("topNeighBorhoodsOrders.jrxml", "Lista de barrios donde más piden");
 
         // generateReport("topNeighBorhoodsOrders.jrxml", "Lista de barrios donde más piden", parameters_report);
@@ -587,13 +607,13 @@ public class frmReports extends javax.swing.JFrame {
         this.setVisible(true);
         parameters_report = new HashMap();
         connexion = new Connect();
-        String phone_customer = JOptionPane.showInputDialog("Por favor ingrese el número de teléfono del cliente");
+        String phone_customer = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el número de teléfono del cliente</font></p></html>");
         if (!phone_customer.isEmpty()) {
             parameters_report.put("phone_customer", phone_customer);
             generateReport("OrdersDeliveryPerCustomer.jrxml", "Lista de pedidos por un cliente determinado", parameters_report);
 
         } else {
-            JOptionPane.showMessageDialog(dlgReportsCustomers, "No ingresó ningún número, por favor vuelva a intentarlo");
+            JOptionPane.showMessageDialog(dlgReportsCustomers, "<html><p><font size=\"6\">No ingresó ningún número, por favor vuelva a intentarlo</font></p></html>");
         }
 
     }//GEN-LAST:event_btnDlgReportsCustomersFindOrdersPerCustomerActionPerformed
@@ -627,9 +647,10 @@ public class frmReports extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDlgReportsTopNeighborhood1ActionPerformed
 
     private void btnDlgReportsInventoryHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsInventoryHistoryActionPerformed
-       dlgReportsOthers.setVisible(false);
+        dlgReportsOthers.setVisible(false);
         this.setVisible(true);
         parameters_report = new HashMap();
+        connexion = new Connect();
         loadDatesCalendarForReports("inventoryHistoryTotalPerDates.jrxml", "Historial de inventario por fechas");
     }//GEN-LAST:event_btnDlgReportsInventoryHistoryActionPerformed
 
@@ -641,6 +662,39 @@ public class frmReports extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dlgReportsOthersWindowOpened
 
+    private void btnDlgReportsOrdersDeliveryPerEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsOrdersDeliveryPerEmployeesActionPerformed
+        dlgReportsOrders.setVisible(false);
+        orderDelivery = new clsDAOOrderDeliveryDetails();
+        parameters_report = new HashMap();
+        connexion = new Connect();
+        ResultSet result = orderDelivery.searchEmployeesJobDelivery();
+        JComboBox jcbListEmployees = new JComboBox();
+        ArrayList<String> listEmployees_id = new ArrayList<>();
+        String employee_id = "";
+        try {
+            jcbListEmployees.addItem(result.getString(2));
+            listEmployees_id.add(result.getString(1));
+            while (result.next()) {
+                jcbListEmployees.addItem(result.getString(2));
+                listEmployees_id.add(result.getString(1));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        if (listEmployees_id.size() > 0) {
+
+            JOptionPane.showMessageDialog(null, jcbListEmployees, "<html><p><font size=\"6\">Por favor seleccione un empleado</font></p></html>", JOptionPane.QUESTION_MESSAGE);
+            employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
+        }
+
+        if (!employee_id.isEmpty()) {
+            parameters_report.put("employee_id", employee_id);
+            loadDatesCalendarForReports("orderDeliveryPerEmployee.jrxml", "Lista de domicilios llevados por un empleado");
+            //    generateReport("OrdersDeliveryPerEmployee.jrxml", "Lista de domicilios llevados por un empleado", parameters_report);
+        }
+
+    }//GEN-LAST:event_btnDlgReportsOrdersDeliveryPerEmployeesActionPerformed
+
     /**
      * Para cargar un reporte que tiene como parámetros una fecha de inicio y
      * una fecha final, se llama a este método, el cual convierte una cadena en
@@ -651,8 +705,6 @@ public class frmReports extends javax.swing.JFrame {
      * @param title
      */
     public void loadDatesCalendarForReports(String nameReport, String title) {
-        parameters_report = new HashMap();
-        connexion = new Connect();
 
         //Creo el calendario
         JDateChooser dateChooser = new JDateChooser();
@@ -661,14 +713,14 @@ public class frmReports extends javax.swing.JFrame {
         //Creación de variables para mandar al JOption
         String message;
         SimpleDateFormat changeFormatDate = new SimpleDateFormat("yyyy-MM-dd");
-        message = "Por favor seleccione la fecha inicial\n";
+        message = "<html><p><font size=\"6\">Por favor seleccione la fecha inicial</font></p></html>\n";
         Object[] dateInitParams = {message, dateChooser};
         JOptionPane.showConfirmDialog(null, dateInitParams, "Fecha inicial", JOptionPane.PLAIN_MESSAGE);
         if (((JDateChooser) dateInitParams[1]).getDate() != null) {
             try {
                 String dateInitialStr = changeFormatDate.format(((JDateChooser) dateInitParams[1]).getDate());
                 Date dateInitial = changeFormatDate.parse(dateInitialStr);
-                message = "Por favor seleccione la fecha final\n";
+                message = "<html><p><font size=\"6\">Por favor seleccione la fecha final</font></p></html>\n";
                 Object[] dateFinalParams = {message, dateChooser};
                 JOptionPane.showConfirmDialog(null, dateFinalParams, "Fecha final", JOptionPane.PLAIN_MESSAGE);
                 if (((JDateChooser) dateFinalParams[1]).getDate() != null) {
@@ -682,13 +734,13 @@ public class frmReports extends javax.swing.JFrame {
                     parameters_report.put("date_final", dateFinalFull);
                     generateReport(nameReport, title, parameters_report);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Es necesario que ingrese una fecha final, por favor repita el proceso.");
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Es necesario que ingrese una fecha final, por favor repita el proceso.</font></p></html>");
                 }
             } catch (ParseException ex) {
                 System.out.println(ex);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Es necesario que ingrese una fecha inicial, por favor repita el proceso");
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Es necesario que ingrese una fecha inicial, por favor repita el proceso</font></p></html>");
         }
 
     }
@@ -708,7 +760,7 @@ public class frmReports extends javax.swing.JFrame {
             parameters_report.put("logo", getClass().getClassLoader().getResource("resources/images/logoHotWings.jpeg"));
             //  String dir = "src\\reports\\localOrdersPerRangeDay.jrxml.";//windows
             String dir = "src/reports/" + nameReport;
-            JOptionPane.showMessageDialog(this, "Por favor espere un momento mientras le informe carga");
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Por favor espere un momento mientras el informe carga</font></p></html>");
             JasperReport reportJasper = JasperCompileManager.compileReport(dir);
             JasperPrint showReport = JasperFillManager.fillReport(reportJasper, parameters_report, connexion.connection);
             JasperViewer jasperViewer = new JasperViewer(showReport, false);
@@ -767,6 +819,7 @@ public class frmReports extends javax.swing.JFrame {
     private javax.swing.JButton btnDlgReportsInventoryHistory;
     private javax.swing.JButton btnDlgReportsOrdersDelivery;
     private javax.swing.JButton btnDlgReportsOrdersDelivery1;
+    private javax.swing.JButton btnDlgReportsOrdersDeliveryPerEmployees;
     private javax.swing.JButton btnDlgReportsOrdersLocal;
     private javax.swing.JButton btnDlgReportsTopCustomers;
     private javax.swing.JButton btnDlgReportsTopNeighborhood;
@@ -780,7 +833,6 @@ public class frmReports extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;

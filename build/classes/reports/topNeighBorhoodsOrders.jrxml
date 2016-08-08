@@ -121,6 +121,10 @@ ORDER BY
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 			</frame>
+			<image>
+				<reportElement x="725" y="0" width="82" height="102" uuid="c3be2e58-c3c5-4a2f-be36-0d17c8c8a65b"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

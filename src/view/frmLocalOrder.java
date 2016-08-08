@@ -340,13 +340,19 @@ public class frmLocalOrder extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1382, 744));
         setSize(new java.awt.Dimension(1382, 744));
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
         getContentPane().setLayout(null);
 
-        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlAmount.setLayout(null);
 
         numbersGroup.add(btnNumber6);
@@ -530,7 +536,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         getContentPane().add(pnlAmount);
         pnlAmount.setBounds(740, 30, 380, 510);
 
-        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
 
         productsGroup.add(btnProduct1);
         btnProduct1.setText("Combo 1");
@@ -1105,6 +1111,29 @@ public class frmLocalOrder extends javax.swing.JFrame {
         this.setVisible(true);
 
     }//GEN-LAST:event_btnDlgAdditionsCancelActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if (tblLocalOrder.getRowCount() > 0) {
+            if (JOptionPane.showConfirmDialog(this,
+                    "Está en la mitad de un pedido, si sale, el pedido será eliminado ¿Está seguro de que quiere salir? ", "Salir y cancelar pedido?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                localOrder.cancelOrderButtonBack(txtOrderNumber.getText());
+                this.setVisible(false);
+                clearTable(tblLocalOrder);
+
+            } else {
+                this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            }
+        } else {
+            this.setVisible(false);
+            clearTable(tblLocalOrder);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     public void clearTable(JTable table) {
         DefaultTableModel dm = (DefaultTableModel) table.getModel();

@@ -193,5 +193,16 @@ OK reporte de historial de inventario, con total de lo que entra y sale cada dí
 OK Cuando se da ALT + F4 El pedido sigue ahí
 OK Reporte de cantidad de pedidos llevados por un domicilio en un rango de fechas
 En los valores double tira excepción (devuelta de cuánto    )
-
+Mirar que todas las tablas tengan formato de separación de unidades
+No permitir letras en cuánto devolver
 Double.valueOf($F{Precio total producto}.replace(",",""))
+
+OK Devuelta de cuánto más grande
+Devuelta de cuánto solo números
+OK Quién llevará el domicilio título
+OK Reiniciar cuánto devolver al finalizar pedido
+OK Inventario cantidad solo números
+OK Total pedido en administrar órdenes debe ser en formato ##,### y centrado
+OK Elementos jdialog modal
+OK Borrar Jbutton que sobran
+OK Organizar botones en reportes

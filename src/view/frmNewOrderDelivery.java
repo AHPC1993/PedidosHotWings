@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,9 +16,7 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -242,6 +239,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
         dlgOrderDelivery.setTitle("Buscar cliente");
         dlgOrderDelivery.setMinimumSize(new java.awt.Dimension(615, 775));
+        dlgOrderDelivery.setModal(true);
+        dlgOrderDelivery.setModalityType(java.awt.Dialog.ModalityType.DOCUMENT_MODAL);
         dlgOrderDelivery.setSize(new java.awt.Dimension(615, 775));
         dlgOrderDelivery.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -472,6 +471,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         dlgOrderDelivery.getAccessibleContext().setAccessibleDescription("");
 
         dlgAdditionsOrderDelivery.setMinimumSize(new java.awt.Dimension(711, 423));
+        dlgAdditionsOrderDelivery.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         dlgAdditionsOrderDelivery.setSize(new java.awt.Dimension(711, 523));
         dlgAdditionsOrderDelivery.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -1267,12 +1267,13 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 }
                 if (listEmployees_id.size() > 0) {
 
-                    JOptionPane.showMessageDialog(null, jcbListEmployees, "<html><p><font size=\"5\">¿Quién llevará el domicilio?</font></p></html>", JOptionPane.QUESTION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
                     employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
                 }
                 if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
                     txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
                     txtTotalOrder.setText("0");
+                    txtChangeOrder.setText("0");
 
                     clearTable(tblOrderDelivery);
                     JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La orden ha sido procesada con éxito</font></p></html>");
@@ -1499,6 +1500,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                 orderDelivery.cancelOrderButtonBack(txtOrderNumber.getText());
                 this.setVisible(false);
+                txtChangeOrder.setText("");
+                txtTotalOrder.setText("");
                 clearTable(tblOrderDelivery);
 
             } else {
@@ -1514,7 +1517,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         double change = 0;
-        String inChange = JOptionPane.showInputDialog("Devuelta de cuánto?");
+        String inChange = JOptionPane.showInputDialog("<html><p><font size=\"5\">Devuelta de cuánto?</font></p></html>");
         if (!inChange.isEmpty()) {
             change = Double.parseDouble(inChange);
             double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
@@ -1601,6 +1604,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                 orderDelivery.cancelOrderButtonBack(txtOrderNumber.getText());
                 this.setVisible(false);
+                 txtTotalOrder.setText("");
+                 txtChangeOrder.setText("");               
                 clearTable(tblOrderDelivery);
 
             } else {

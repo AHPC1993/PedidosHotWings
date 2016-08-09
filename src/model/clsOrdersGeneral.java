@@ -24,23 +24,7 @@ public class clsOrdersGeneral {
         connexion = new Connect();
     }
 
-//    public ResultSet search() {
-//        String sql = "Select * FROM public.tbl_employees WHERE UPPER(document_id)=UPPER('" + super.getDocument_id() + "');";
-//        ResultSet results = null;
-//        results = connexion.search(sql);
-//        try {
-//            if (results.next()) {
-//                return results;
-//                //return results.getString(2);//Segundo valor.
-//            } else {
-//                //  return "El empleado que usted está buscando no existe, por favor verifique nuevamente.";
-//                return null;
-//            }
-//        } catch (SQLException e) {
-//            System.out.println(e);
-//        }
-//        return null;
-//    }
+
     public String deleteLocalOrder() {
         String sql = "DELETE FROM public.tbl_localorder WHERE order_number = '" + getOrder_number() + "';";
         return connexion.delete(sql);
@@ -67,7 +51,7 @@ public class clsOrdersGeneral {
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0);
         try {
             ResultSet result = null;
-            String sql = "SELECT date_order, order_number, total_price FROM tbl_localorder UNION SELECT date_order, order_number, total_price FROM tbl_orderdelivery ORDER by date_order desc;";
+            String sql = "SELECT date_order, order_number, to_char(total_price,'FM999,999,999') FROM tbl_localorder UNION SELECT date_order, order_number, to_char(total_price,'FM999,999,999') FROM tbl_orderdelivery ORDER by date_order desc;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();

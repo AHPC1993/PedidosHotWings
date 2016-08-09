@@ -51,6 +51,9 @@ public class frmReports extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dlgReportsOrders.setLocationRelativeTo(this);
         dlgReportsCustomers.setLocationRelativeTo(this);
+        dlgReportsOthers.setLocationRelativeTo(this);
+        lblBackgroundReports.setSize(dim.width, dim.height);
+        
     }
 
     /**
@@ -66,38 +69,28 @@ public class frmReports extends javax.swing.JFrame {
         pnlReportsOrders = new javax.swing.JPanel();
         btnDlgReportsOrdersDelivery = new javax.swing.JButton();
         btnDlgReportsTopNeighborhood = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         btnDlgReportsOrdersLocal = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         btnDlgReportsOrdersDeliveryPerEmployees = new javax.swing.JButton();
-        btnDlgAdditionsCancel = new javax.swing.JButton();
+        btnDlgReportsOrdersCancel = new javax.swing.JButton();
         dlgReportsCustomers = new javax.swing.JDialog();
         pnlReportsOrders1 = new javax.swing.JPanel();
         btnDlgReportsCustomersFindOrdersPerCustomer = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         btnDlgReportsTopCustomers = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        btnDlgAdditionsCancel1 = new javax.swing.JButton();
+        btnDlgReportsCustomersCancel = new javax.swing.JButton();
         dlgReportsOthers = new javax.swing.JDialog();
         pnlReportsOrders2 = new javax.swing.JPanel();
         btnDlgReportsOrdersDelivery1 = new javax.swing.JButton();
         btnDlgReportsTopNeighborhood1 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         btnDlgReportsInventoryHistory = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        btnDlgAdditionsCancel2 = new javax.swing.JButton();
-        btnReports3 = new javax.swing.JButton();
+        btnDlgReportsOthersCancel = new javax.swing.JButton();
         btnAdminEmployees = new javax.swing.JButton();
+        btnReports3 = new javax.swing.JButton();
         btnReports2 = new javax.swing.JButton();
         btnReportsBack = new javax.swing.JButton();
         lblBackgroundReports = new javax.swing.JLabel();
 
         dlgReportsOrders.setTitle("Tipo de reporte ");
         dlgReportsOrders.setMinimumSize(new java.awt.Dimension(711, 423));
-        dlgReportsOrders.setModal(true);
         dlgReportsOrders.setSize(new java.awt.Dimension(711, 523));
         dlgReportsOrders.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -124,8 +117,6 @@ public class frmReports extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("jButton1");
-
         btnDlgReportsOrdersLocal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnDlgReportsOrdersLocal.setText("<html><center>Pedidos locales <br>en un rango de días</center></html>\n");
         btnDlgReportsOrdersLocal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -135,8 +126,6 @@ public class frmReports extends javax.swing.JFrame {
                 btnDlgReportsOrdersLocalActionPerformed(evt);
             }
         });
-
-        jButton6.setText("jButton1");
 
         btnDlgReportsOrdersDeliveryPerEmployees.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnDlgReportsOrdersDeliveryPerEmployees.setText("<html><center>Domicilios empleado <br>en un rango de días</center></html> ");
@@ -153,43 +142,36 @@ public class frmReports extends javax.swing.JFrame {
         pnlReportsOrdersLayout.setHorizontalGroup(
             pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlReportsOrdersLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDlgReportsOrdersLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDlgReportsOrdersDeliveryPerEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlReportsOrdersLayout.createSequentialGroup()
-                        .addComponent(btnDlgReportsOrdersDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDlgReportsTopNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlReportsOrdersLayout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnDlgReportsOrdersDeliveryPerEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDlgReportsOrdersLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnDlgReportsOrdersDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnDlgReportsTopNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         pnlReportsOrdersLayout.setVerticalGroup(
             pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlReportsOrdersLayout.createSequentialGroup()
-                .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnDlgReportsOrdersDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDlgReportsOrdersLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnDlgReportsTopNeighborhood, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDlgReportsOrdersLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDlgReportsOrdersDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnDlgReportsOrdersDeliveryPerEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(btnDlgReportsOrdersDeliveryPerEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(pnlReportsOrdersLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(btnDlgReportsTopNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnDlgAdditionsCancel.setText("Cancelar");
-        btnDlgAdditionsCancel.addActionListener(new java.awt.event.ActionListener() {
+        btnDlgReportsOrdersCancel.setText("Cancelar");
+        btnDlgReportsOrdersCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDlgAdditionsCancelActionPerformed(evt);
+                btnDlgReportsOrdersCancelActionPerformed(evt);
             }
         });
 
@@ -201,7 +183,7 @@ public class frmReports extends javax.swing.JFrame {
                 .addGroup(dlgReportsOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dlgReportsOrdersLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(btnDlgAdditionsCancel))
+                        .addComponent(btnDlgReportsOrdersCancel))
                     .addGroup(dlgReportsOrdersLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pnlReportsOrders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -213,14 +195,14 @@ public class frmReports extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlReportsOrders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDlgAdditionsCancel)
+                .addComponent(btnDlgReportsOrdersCancel)
                 .addGap(12, 12, 12))
         );
 
         dlgReportsCustomers.setTitle("Tipo de reporte ");
-        dlgReportsCustomers.setMinimumSize(new java.awt.Dimension(711, 423));
+        dlgReportsCustomers.setMinimumSize(new java.awt.Dimension(550, 423));
         dlgReportsCustomers.setModal(true);
-        dlgReportsCustomers.setSize(new java.awt.Dimension(711, 523));
+        dlgReportsCustomers.setSize(new java.awt.Dimension(550, 423));
         dlgReportsCustomers.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 dlgReportsCustomersWindowOpened(evt);
@@ -238,18 +220,6 @@ public class frmReports extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton5.setText("Jbutton");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton7.setText("jButton1");
-
-        jButton8.setText("jButton1");
-
         btnDlgReportsTopCustomers.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnDlgReportsTopCustomers.setText("<html><center>Top clientes que <br>más pedidos hacen</center></html>\n");
         btnDlgReportsTopCustomers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -260,48 +230,31 @@ public class frmReports extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setText("jButton1");
-
         javax.swing.GroupLayout pnlReportsOrders1Layout = new javax.swing.GroupLayout(pnlReportsOrders1);
         pnlReportsOrders1.setLayout(pnlReportsOrders1Layout);
         pnlReportsOrders1Layout.setHorizontalGroup(
             pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlReportsOrders1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDlgReportsTopCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlReportsOrders1Layout.createSequentialGroup()
-                        .addComponent(btnDlgReportsCustomersFindOrdersPerCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlReportsOrders1Layout.createSequentialGroup()
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(btnDlgReportsTopCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(btnDlgReportsCustomersFindOrdersPerCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnlReportsOrders1Layout.setVerticalGroup(
             pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlReportsOrders1Layout.createSequentialGroup()
-                .addGroup(pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnDlgReportsTopCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                    .addComponent(btnDlgReportsCustomersFindOrdersPerCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(63, 63, 63)
+                .addGroup(pnlReportsOrders1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDlgReportsCustomersFindOrdersPerCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDlgReportsTopCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
-        btnDlgAdditionsCancel1.setText("Cancelar");
-        btnDlgAdditionsCancel1.addActionListener(new java.awt.event.ActionListener() {
+        btnDlgReportsCustomersCancel.setText("Cancelar");
+        btnDlgReportsCustomersCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDlgAdditionsCancel1ActionPerformed(evt);
+                btnDlgReportsCustomersCancelActionPerformed(evt);
             }
         });
 
@@ -310,29 +263,30 @@ public class frmReports extends javax.swing.JFrame {
         dlgReportsCustomersLayout.setHorizontalGroup(
             dlgReportsCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dlgReportsCustomersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(dlgReportsCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dlgReportsCustomersLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(btnDlgAdditionsCancel1))
-                    .addGroup(dlgReportsCustomersLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlReportsOrders1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgReportsCustomersLayout.createSequentialGroup()
+                        .addComponent(btnDlgReportsCustomersCancel)
+                        .addGap(455, 455, 455))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgReportsCustomersLayout.createSequentialGroup()
+                        .addComponent(pnlReportsOrders1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         dlgReportsCustomersLayout.setVerticalGroup(
             dlgReportsCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dlgReportsCustomersLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(pnlReportsOrders1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDlgAdditionsCancel1)
-                .addGap(12, 12, 12))
+                .addGap(18, 18, 18)
+                .addComponent(btnDlgReportsCustomersCancel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         dlgReportsOthers.setTitle("Tipo de reporte ");
-        dlgReportsOthers.setMinimumSize(new java.awt.Dimension(711, 423));
+        dlgReportsOthers.setMinimumSize(new java.awt.Dimension(750, 523));
         dlgReportsOthers.setModal(true);
-        dlgReportsOthers.setSize(new java.awt.Dimension(711, 523));
+        dlgReportsOthers.setPreferredSize(new java.awt.Dimension(750, 523));
+        dlgReportsOthers.setSize(new java.awt.Dimension(750, 523));
         dlgReportsOthers.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 dlgReportsOthersWindowOpened(evt);
@@ -358,10 +312,6 @@ public class frmReports extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setText("jButton1");
-
-        jButton11.setText("jButton1");
-
         btnDlgReportsInventoryHistory.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnDlgReportsInventoryHistory.setText("<html><center>Historial de inventario <br>en un rango de días</center></html> ");
         btnDlgReportsInventoryHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -372,49 +322,34 @@ public class frmReports extends javax.swing.JFrame {
             }
         });
 
-        jButton12.setText("jButton1");
-
         javax.swing.GroupLayout pnlReportsOrders2Layout = new javax.swing.GroupLayout(pnlReportsOrders2);
         pnlReportsOrders2.setLayout(pnlReportsOrders2Layout);
         pnlReportsOrders2Layout.setHorizontalGroup(
             pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlReportsOrders2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDlgReportsInventoryHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlReportsOrders2Layout.createSequentialGroup()
-                        .addComponent(btnDlgReportsOrdersDelivery1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDlgReportsTopNeighborhood1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlReportsOrders2Layout.createSequentialGroup()
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(btnDlgReportsInventoryHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnDlgReportsOrdersDelivery1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(btnDlgReportsTopNeighborhood1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         pnlReportsOrders2Layout.setVerticalGroup(
             pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlReportsOrders2Layout.createSequentialGroup()
-                .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnDlgReportsOrdersDelivery1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDlgReportsInventoryHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnDlgReportsTopNeighborhood1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlReportsOrders2Layout.createSequentialGroup()
+                .addContainerGap(119, Short.MAX_VALUE)
+                .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnDlgReportsTopNeighborhood1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDlgReportsOrdersDelivery1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDlgReportsInventoryHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(116, 116, 116))
         );
 
-        btnDlgAdditionsCancel2.setText("Cancelar");
-        btnDlgAdditionsCancel2.addActionListener(new java.awt.event.ActionListener() {
+        btnDlgReportsOthersCancel.setText("Cancelar");
+        btnDlgReportsOthersCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDlgAdditionsCancel2ActionPerformed(evt);
+                btnDlgReportsOthersCancelActionPerformed(evt);
             }
         });
 
@@ -426,19 +361,19 @@ public class frmReports extends javax.swing.JFrame {
                 .addGroup(dlgReportsOthersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dlgReportsOthersLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(btnDlgAdditionsCancel2))
+                        .addComponent(btnDlgReportsOthersCancel))
                     .addGroup(dlgReportsOthersLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pnlReportsOrders2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         dlgReportsOthersLayout.setVerticalGroup(
             dlgReportsOthersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dlgReportsOthersLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addComponent(pnlReportsOrders2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDlgAdditionsCancel2)
+                .addComponent(btnDlgReportsOthersCancel)
                 .addGap(12, 12, 12))
         );
 
@@ -446,16 +381,7 @@ public class frmReports extends javax.swing.JFrame {
         setTitle("Generar reportes");
         setMinimumSize(new java.awt.Dimension(1382, 744));
         setSize(new java.awt.Dimension(1382, 744));
-
-        btnReports3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnReports3.setText("Otros");
-        btnReports3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnReports3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReports3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReports3ActionPerformed(evt);
-            }
-        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAdminEmployees.setBackground(javax.swing.UIManager.getDefaults().getColor("EditorPane.selectionBackground"));
         btnAdminEmployees.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -468,6 +394,18 @@ public class frmReports extends javax.swing.JFrame {
                 btnAdminEmployeesActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAdminEmployees, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 225, 290, 260));
+
+        btnReports3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnReports3.setText("Otros");
+        btnReports3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReports3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReports3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReports3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnReports3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 225, 290, 260));
 
         btnReports2.setBackground(javax.swing.UIManager.getDefaults().getColor("textHighlight"));
         btnReports2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -480,6 +418,7 @@ public class frmReports extends javax.swing.JFrame {
                 btnReports2ActionPerformed(evt);
             }
         });
+        getContentPane().add(btnReports2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 225, 290, 260));
 
         btnReportsBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnReportsBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
@@ -495,54 +434,10 @@ public class frmReports extends javax.swing.JFrame {
                 btnReportsBackActionPerformed(evt);
             }
         });
+        getContentPane().add(btnReportsBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 605, 120, 110));
 
         lblBackgroundReports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(btnAdminEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1009, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(1066, 1066, 1066)
-                            .addComponent(btnReports3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(1226, 1226, 1226)
-                            .addComponent(btnReportsBack, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(576, 576, 576)
-                            .addComponent(btnReports2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(lblBackgroundReports, javax.swing.GroupLayout.PREFERRED_SIZE, 1390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(btnAdminEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(447, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(50, 50, 50)
-                            .addComponent(btnReports3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(295, 295, 295)
-                            .addComponent(btnReportsBack, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(40, 40, 40)
-                            .addComponent(btnReports2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(lblBackgroundReports, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(lblBackgroundReports, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 750));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -564,10 +459,10 @@ public class frmReports extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnReportsBackActionPerformed
 
-    private void btnDlgAdditionsCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgAdditionsCancelActionPerformed
+    private void btnDlgReportsOrdersCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsOrdersCancelActionPerformed
         dlgReportsOrders.setVisible(false);
         this.setVisible(true);
-    }//GEN-LAST:event_btnDlgAdditionsCancelActionPerformed
+    }//GEN-LAST:event_btnDlgReportsOrdersCancelActionPerformed
 
     private void dlgReportsOrdersWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgReportsOrdersWindowOpened
 
@@ -618,10 +513,6 @@ public class frmReports extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnDlgReportsCustomersFindOrdersPerCustomerActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void btnDlgReportsTopCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsTopCustomersActionPerformed
         dlgReportsCustomers.setVisible(false);
         this.setVisible(true);
@@ -630,9 +521,10 @@ public class frmReports extends javax.swing.JFrame {
         generateReport("topCustomersOrdersAndTotalOrders.jrxml", "Top clientes que más han pedido", parameters_report);
     }//GEN-LAST:event_btnDlgReportsTopCustomersActionPerformed
 
-    private void btnDlgAdditionsCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgAdditionsCancel1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDlgAdditionsCancel1ActionPerformed
+    private void btnDlgReportsCustomersCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsCustomersCancelActionPerformed
+       dlgReportsCustomers.setVisible(false);
+        this.setVisible(true);
+    }//GEN-LAST:event_btnDlgReportsCustomersCancelActionPerformed
 
     private void dlgReportsCustomersWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgReportsCustomersWindowOpened
         // TODO add your handling code here:
@@ -654,9 +546,10 @@ public class frmReports extends javax.swing.JFrame {
         loadDatesCalendarForReports("inventoryHistoryTotalPerDates.jrxml", "Historial de inventario por fechas");
     }//GEN-LAST:event_btnDlgReportsInventoryHistoryActionPerformed
 
-    private void btnDlgAdditionsCancel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgAdditionsCancel2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDlgAdditionsCancel2ActionPerformed
+    private void btnDlgReportsOthersCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsOthersCancelActionPerformed
+       dlgReportsOthers.setVisible(false);
+        this.setVisible(true);
+    }//GEN-LAST:event_btnDlgReportsOthersCancelActionPerformed
 
     private void dlgReportsOthersWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgReportsOthersWindowOpened
         // TODO add your handling code here:
@@ -812,15 +705,15 @@ public class frmReports extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminEmployees;
-    private javax.swing.JButton btnDlgAdditionsCancel;
-    private javax.swing.JButton btnDlgAdditionsCancel1;
-    private javax.swing.JButton btnDlgAdditionsCancel2;
+    private javax.swing.JButton btnDlgReportsCustomersCancel;
     private javax.swing.JButton btnDlgReportsCustomersFindOrdersPerCustomer;
     private javax.swing.JButton btnDlgReportsInventoryHistory;
+    private javax.swing.JButton btnDlgReportsOrdersCancel;
     private javax.swing.JButton btnDlgReportsOrdersDelivery;
     private javax.swing.JButton btnDlgReportsOrdersDelivery1;
     private javax.swing.JButton btnDlgReportsOrdersDeliveryPerEmployees;
     private javax.swing.JButton btnDlgReportsOrdersLocal;
+    private javax.swing.JButton btnDlgReportsOthersCancel;
     private javax.swing.JButton btnDlgReportsTopCustomers;
     private javax.swing.JButton btnDlgReportsTopNeighborhood;
     private javax.swing.JButton btnDlgReportsTopNeighborhood1;
@@ -830,15 +723,6 @@ public class frmReports extends javax.swing.JFrame {
     private javax.swing.JDialog dlgReportsCustomers;
     private javax.swing.JDialog dlgReportsOrders;
     private javax.swing.JDialog dlgReportsOthers;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel lblBackgroundReports;
     private javax.swing.JPanel pnlReportsOrders;
     private javax.swing.JPanel pnlReportsOrders1;

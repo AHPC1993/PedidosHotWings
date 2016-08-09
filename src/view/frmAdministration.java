@@ -1890,6 +1890,7 @@ public class frmAdministration extends javax.swing.JFrame {
 
         dlgSelectProducts.setTitle("Seleccionar tipo de producto a administrar");
         dlgSelectProducts.setMinimumSize(new java.awt.Dimension(702, 449));
+        dlgSelectProducts.setModal(true);
         dlgSelectProducts.setResizable(false);
         dlgSelectProducts.setSize(new java.awt.Dimension(702, 449));
 
@@ -2375,6 +2376,12 @@ public class frmAdministration extends javax.swing.JFrame {
 
         cboInventoryHistoryProduct.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         cboInventoryHistoryProduct.setToolTipText("Productos que entran o salen");
+
+        txtInventoryHistoryAmount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtInventoryHistoryAmountKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlInventoryHistoryLayout = new javax.swing.GroupLayout(pnlInventoryHistory);
         pnlInventoryHistory.setLayout(pnlInventoryHistoryLayout);
@@ -4228,6 +4235,10 @@ public class frmAdministration extends javax.swing.JFrame {
     private void dlgAdminOrdersWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dlgAdminOrdersWindowOpened
         // TODO add your handling code here:
     }//GEN-LAST:event_dlgAdminOrdersWindowOpened
+
+    private void txtInventoryHistoryAmountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInventoryHistoryAmountKeyTyped
+        onlyNumbersInTextField(evt, txtInventoryHistoryAmount, 4);
+    }//GEN-LAST:event_txtInventoryHistoryAmountKeyTyped
 
     public void centerElementsTable(JTable table) {
         DefaultTableCellRenderer rendererCenter = new DefaultTableCellRenderer();

@@ -68,18 +68,18 @@ public class frmMainHotWings extends javax.swing.JFrame {
         daoLogin.setUser(txtUser.getText());
         daoLogin.setPassword(String.valueOf(txtPassword.getPassword()));
         if ("".equals(daoLogin.getUser()) || "".equals(daoLogin.getPassword())) {
-            JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">El usuario o la contraseña no pueden estar en blanco.</font></p></html>");
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El usuario o la contraseña no pueden estar en blanco.</font></p></html>");
         } else if (daoLogin.validate() == false) {
             if (count == 1) {
-                JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Usted ha ingresado la contraseña mal 5 veces, el programa se cerrará.</font></p></html>");
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Usted ha ingresado la contraseña mal 5 veces, el programa se cerrará.</font></p></html>");
                 System.exit(0);
             } else {
                 count = count - 1;
-                JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Datos incorrectos. Inténtelo otra vez, le quedan " + count + " intentos</font></p></html>");
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Datos incorrectos. Inténtelo otra vez, le quedan " + count + " intentos</font></p></html>");
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Bienvenido(a)</font></p></html> " + daoLogin.getUser());
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Bienvenido(a)</font></p></html> " + daoLogin.getUser());
             lblCurrentUser.setText(daoLogin.getUser());
             users.updateLastEntry(daoLogin.getUser());
             isAdmin(lblCurrentUser.getText());
@@ -370,7 +370,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         if (JOptionPane.showConfirmDialog(this,
-                "<html><p><font size=\"6\">Está seguro de que quiere salir?</font></p></html>", "Salir?",
+                "<html><p><font size=\"5\">Está seguro de que quiere salir?</font></p></html>", "Salir?",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             System.exit(0);
@@ -420,7 +420,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
 
         JPanel panelPass = new JPanel();
-        JLabel labelPass = new JLabel("<html><p><font size=\"6\">Por favor ingrese su contraseña de usuario</font></p></html>");
+        JLabel labelPass = new JLabel("<html><p><font size=\"5\">Por favor ingrese su contraseña de usuario</font></p></html>");
         JPasswordField pass = new JPasswordField(20);
         panelPass.add(labelPass);
         panelPass.add(pass);
@@ -432,7 +432,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
             if (daoLogin.getPassword().equals(String.valueOf(pass.getPassword()))) {
                 frmAdmin.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Contraseña incorrecta, por favor verifíquela.</font></p></html>");
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Contraseña incorrecta, por favor verifíquela.</font></p></html>");
             }
         }
 
@@ -445,7 +445,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
     private void btnCloseProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseProgramActionPerformed
         if (JOptionPane.showConfirmDialog(this,
-                "<html><p><font size=\"6\">Está seguro de que quiere salir?</font></p></html>", "¿Salir?",
+                "<html><p><font size=\"5\">Está seguro de que quiere salir?</font></p></html>", "¿Salir?",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             System.exit(0);

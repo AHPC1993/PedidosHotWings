@@ -842,14 +842,14 @@ public class frmLocalOrder extends javax.swing.JFrame {
                         txtNotes.setText("");
                         centerElementsTable(tblLocalOrder);
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                        JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Por favor seleccione una cantidad");
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor seleccione una cantidad</font></p></html>");
                 }
 
             } else {
-                JOptionPane.showMessageDialog(this, "Por favor seleccione un producto");
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor seleccione un producto</font></p></html>");
 
             }
         } else if (btnProduct6.isSelected()) {
@@ -861,10 +861,10 @@ public class frmLocalOrder extends javax.swing.JFrame {
                         txtNotes.setText("");
                         centerElementsTable(tblLocalOrder);
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                        JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Por favor seleccione una cantidad");
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor seleccione una cantidad</font></p></html>");
                 }
             }
 
@@ -908,7 +908,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private void btnCorrectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrectionActionPerformed
         if (tblLocalOrder.getRowCount() > 0) {
             deleteSelectionState = 1;
-            JOptionPane.showMessageDialog(this, "Por favor seleccione la fila del producto que desea eliminar.");
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor seleccione la fila del producto que desea eliminar.</font></p></html>");
         }
 
     }//GEN-LAST:event_btnCorrectionActionPerformed
@@ -919,7 +919,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
                 localOrder = new clsDAOLocalOrderDetails();
                 String selection = String.valueOf(tblLocalOrder.getValueAt(tblLocalOrder.getSelectedRow(), 0));
                 if (JOptionPane.showConfirmDialog(this,
-                        "Está seguro que desea eliminar el producto:\n " + (tblLocalOrder.getValueAt(tblLocalOrder.getSelectedRow(), 1)) + "\nCon valor de: " + (tblLocalOrder.getValueAt(tblLocalOrder.getSelectedRow(), 5)), "Eliminar producto",
+                        "<html><p><font size=\"5\">Está seguro que desea eliminar el producto:<br> " + (tblLocalOrder.getValueAt(tblLocalOrder.getSelectedRow(), 1)) + "<br>Con valor de: " + (tblLocalOrder.getValueAt(tblLocalOrder.getSelectedRow(), 5))+"</font></p></html>", "Eliminar producto",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                     localOrder.setLocalOrder_id(selection);
@@ -942,9 +942,9 @@ public class frmLocalOrder extends javax.swing.JFrame {
         if (!btnSelectedProducts.isSelected()) {
 
             btnSelectedAmount.setSelected(true);
-            String inputValue = JOptionPane.showInputDialog("Por favor ingrese la cantidad que necesita");
+            String inputValue = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese la cantidad que necesita</font></p></html>");
             if (inputValue == null || inputValue.isEmpty() || inputValue == "") {
-                JOptionPane.showMessageDialog(this, "Por favor ingrese una cantidad");
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor ingrese una cantidad</font></p></html>");
             } else {
                 double amount = Double.parseDouble(inputValue);
                 if (amount > 9) {
@@ -973,7 +973,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
                             centerElementsTable(tblLocalOrder);
 
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                            JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
                         }
                     } else if (btnProduct6.isSelected()) {
                         stateTypeProduct = 1;
@@ -985,12 +985,12 @@ public class frmLocalOrder extends javax.swing.JFrame {
                             centerElementsTable(tblLocalOrder);
 
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "No sé insertó el producto");
+                            JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
                         }
 
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "La cantidad debe ser igual o mayor a 10");
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La cantidad debe ser igual o mayor a 10</font></p></html>");
                 }
             }
 
@@ -1003,7 +1003,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private void btnDoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneOrderActionPerformed
         if (tblLocalOrder.getRowCount() > 0) {
             if (JOptionPane.showConfirmDialog(this,
-                    "Desea confirmar el pedido con número de orden " + txtOrderNumber.getText(), "Confirmar pedido",
+                    "<html><p><font size=\"5\">Desea confirmar el pedido con número de orden " + txtOrderNumber.getText()+"</font></p></html>", "Confirmar pedido",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                 if (localOrder.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""))) {
@@ -1011,13 +1011,13 @@ public class frmLocalOrder extends javax.swing.JFrame {
                     txtTotalOrder.setText("0");
 
                     clearTable(tblLocalOrder);
-                    JOptionPane.showMessageDialog(this, "La orden ha sido procesada con éxito");
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La orden ha sido procesada con éxito</font></p></html>");
                 }
             } else {
 
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No hay todavía ningún producto para realizar la compra.");
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">No hay todavía ningún producto para realizar la compra.</font></p></html>");
 
         }
     }//GEN-LAST:event_btnDoneOrderActionPerformed
@@ -1025,7 +1025,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private void btnAdminBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminBackActionPerformed
         if (tblLocalOrder.getRowCount() > 0) {
             if (JOptionPane.showConfirmDialog(this,
-                    "Está en la mitad de un pedido, si sale, el pedido será eliminado ¿Está seguro de que quiere salir? ", "Salir y cancelar pedido?",
+                    "<html><p><font size=\"5\">Está en la mitad de un pedido, si sale, el pedido será eliminado ¿Está seguro de que quiere salir?</font></p></html> ", "Salir y cancelar pedido?",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                 localOrder.cancelOrderButtonBack(txtOrderNumber.getText());
@@ -1045,7 +1045,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         double change = Double.parseDouble(JOptionPane.showInputDialog("Devuelta de cuánto?"));
         double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
         if (change < total) {
-            JOptionPane.showMessageDialog(this, "El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente");
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente</font></p></html>");
         } else {
             txtChangeOrder.setText((change - total) + "");
 
@@ -1119,7 +1119,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         if (tblLocalOrder.getRowCount() > 0) {
             if (JOptionPane.showConfirmDialog(this,
-                    "Está en la mitad de un pedido, si sale, el pedido será eliminado ¿Está seguro de que quiere salir? ", "Salir y cancelar pedido?",
+                    "<html><p><font size=\"5\">Está en la mitad de un pedido, si sale, el pedido será eliminado ¿Está seguro de que quiere salir? </font></p></html>", "Salir y cancelar pedido?",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                 localOrder.cancelOrderButtonBack(txtOrderNumber.getText());

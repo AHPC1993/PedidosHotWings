@@ -607,13 +607,13 @@ public class frmReports extends javax.swing.JFrame {
         this.setVisible(true);
         parameters_report = new HashMap();
         connexion = new Connect();
-        String phone_customer = JOptionPane.showInputDialog("<html><p><font size=\"6\">Por favor ingrese el número de teléfono del cliente</font></p></html>");
+        String phone_customer = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese el número de teléfono del cliente</font></p></html>");
         if (!phone_customer.isEmpty()) {
             parameters_report.put("phone_customer", phone_customer);
             generateReport("OrdersDeliveryPerCustomer.jrxml", "Lista de pedidos por un cliente determinado", parameters_report);
 
         } else {
-            JOptionPane.showMessageDialog(dlgReportsCustomers, "<html><p><font size=\"6\">No ingresó ningún número, por favor vuelva a intentarlo</font></p></html>");
+            JOptionPane.showMessageDialog(dlgReportsCustomers, "<html><p><font size=\"5\">No ingresó ningún número, por favor vuelva a intentarlo</font></p></html>");
         }
 
     }//GEN-LAST:event_btnDlgReportsCustomersFindOrdersPerCustomerActionPerformed
@@ -683,7 +683,7 @@ public class frmReports extends javax.swing.JFrame {
         }
         if (listEmployees_id.size() > 0) {
 
-            JOptionPane.showMessageDialog(null, jcbListEmployees, "<html><p><font size=\"6\">Por favor seleccione un empleado</font></p></html>", JOptionPane.QUESTION_MESSAGE);
+            JOptionPane.showMessageDialog(null, jcbListEmployees, "<html><p><font size=\"5\">Por favor seleccione un empleado</font></p></html>", JOptionPane.QUESTION_MESSAGE);
             employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
         }
 
@@ -713,14 +713,14 @@ public class frmReports extends javax.swing.JFrame {
         //Creación de variables para mandar al JOption
         String message;
         SimpleDateFormat changeFormatDate = new SimpleDateFormat("yyyy-MM-dd");
-        message = "<html><p><font size=\"6\">Por favor seleccione la fecha inicial</font></p></html>\n";
+        message = "<html><p><font size=\"5\">Por favor seleccione la fecha inicial</font></p></html>\n";
         Object[] dateInitParams = {message, dateChooser};
         JOptionPane.showConfirmDialog(null, dateInitParams, "Fecha inicial", JOptionPane.PLAIN_MESSAGE);
         if (((JDateChooser) dateInitParams[1]).getDate() != null) {
             try {
                 String dateInitialStr = changeFormatDate.format(((JDateChooser) dateInitParams[1]).getDate());
                 Date dateInitial = changeFormatDate.parse(dateInitialStr);
-                message = "<html><p><font size=\"6\">Por favor seleccione la fecha final</font></p></html>\n";
+                message = "<html><p><font size=\"5\">Por favor seleccione la fecha final</font></p></html>\n";
                 Object[] dateFinalParams = {message, dateChooser};
                 JOptionPane.showConfirmDialog(null, dateFinalParams, "Fecha final", JOptionPane.PLAIN_MESSAGE);
                 if (((JDateChooser) dateFinalParams[1]).getDate() != null) {
@@ -734,13 +734,13 @@ public class frmReports extends javax.swing.JFrame {
                     parameters_report.put("date_final", dateFinalFull);
                     generateReport(nameReport, title, parameters_report);
                 } else {
-                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Es necesario que ingrese una fecha final, por favor repita el proceso.</font></p></html>");
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Es necesario que ingrese una fecha final, por favor repita el proceso.</font></p></html>");
                 }
             } catch (ParseException ex) {
                 System.out.println(ex);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Es necesario que ingrese una fecha inicial, por favor repita el proceso</font></p></html>");
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Es necesario que ingrese una fecha inicial, por favor repita el proceso</font></p></html>");
         }
 
     }
@@ -760,7 +760,7 @@ public class frmReports extends javax.swing.JFrame {
             parameters_report.put("logo", getClass().getClassLoader().getResource("resources/images/logoHotWings.jpeg"));
             //  String dir = "src\\reports\\localOrdersPerRangeDay.jrxml.";//windows
             String dir = "src/reports/" + nameReport;
-            JOptionPane.showMessageDialog(this, "<html><p><font size=\"6\">Por favor espere un momento mientras el informe carga</font></p></html>");
+            JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor espere un momento mientras el informe carga</font></p></html>");
             JasperReport reportJasper = JasperCompileManager.compileReport(dir);
             JasperPrint showReport = JasperFillManager.fillReport(reportJasper, parameters_report, connexion.connection);
             JasperViewer jasperViewer = new JasperViewer(showReport, false);

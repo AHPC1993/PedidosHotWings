@@ -184,10 +184,10 @@ public class frmAdministration extends javax.swing.JFrame {
         btnEmployeesSearch = new javax.swing.JButton();
         btnEmployeesNew = new javax.swing.JButton();
         btnEmployeesList = new javax.swing.JButton();
-        scrollPanelEmployeesTable = new javax.swing.JScrollPane();
-        tblEmployees = new javax.swing.JTable();
         btnEmployeesBack = new javax.swing.JButton();
         lblEmployeesTitle = new javax.swing.JLabel();
+        scrollPanelEmployeesTable = new javax.swing.JScrollPane();
+        tblEmployees = new javax.swing.JTable();
         lblEmployeesBackgroundDialog = new javax.swing.JLabel();
         dlgAdminProducts = new javax.swing.JDialog();
         scrollPanelProductsTable = new javax.swing.JScrollPane();
@@ -373,7 +373,6 @@ public class frmAdministration extends javax.swing.JFrame {
         pnlOrdersGButtons = new javax.swing.JPanel();
         btnOrdersGDelete = new javax.swing.JButton();
         btnOrdersGList = new javax.swing.JButton();
-        btnInventoryHistorySearch1 = new javax.swing.JButton();
         btnOrdersGBack = new javax.swing.JButton();
         lblOrdersGTitle = new javax.swing.JLabel();
         lblOrdersGBackgroundDialog = new javax.swing.JLabel();
@@ -675,23 +674,6 @@ public class frmAdministration extends javax.swing.JFrame {
 
         dlgAdminEmployees.getContentPane().add(pnlEmployeesButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
-        tblEmployees.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Cédula", "Nombre", "Apellidos", "Dirección", "Puesto", "Teléfono", "Id local", "Notas"
-            }
-        ));
-        scrollPanelEmployeesTable.setViewportView(tblEmployees);
-        tblEmployees.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        dlgAdminEmployees.getContentPane().add(scrollPanelEmployeesTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 870, 410));
-
         btnEmployeesBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEmployeesBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         btnEmployeesBack.setText("Volver");
@@ -711,6 +693,23 @@ public class frmAdministration extends javax.swing.JFrame {
         lblEmployeesTitle.setFont(new java.awt.Font("Noto Sans", 1, 28)); // NOI18N
         lblEmployeesTitle.setText("Administrar Empleados");
         dlgAdminEmployees.getContentPane().add(lblEmployeesTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 350, 50));
+
+        tblEmployees.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellidos", "Dirección", "Puesto", "Teléfono", "Id local", "Notas"
+            }
+        ));
+        scrollPanelEmployeesTable.setViewportView(tblEmployees);
+        tblEmployees.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        dlgAdminEmployees.getContentPane().add(scrollPanelEmployeesTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 870, 410));
 
         lblEmployeesBackgroundDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/555.jpg"))); // NOI18N
         dlgAdminEmployees.getContentPane().add(lblEmployeesBackgroundDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 770));
@@ -2801,27 +2800,12 @@ public class frmAdministration extends javax.swing.JFrame {
             }
         });
 
-        btnInventoryHistorySearch1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnInventoryHistorySearch1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/menuCrud/iconBtnSearch.png"))); // NOI18N
-        btnInventoryHistorySearch1.setText("Consultar");
-        btnInventoryHistorySearch1.setToolTipText("Buscar un empleado por número de cédula");
-        btnInventoryHistorySearch1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInventoryHistorySearch1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnInventoryHistorySearch1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnInventoryHistorySearch1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInventoryHistorySearch1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlOrdersGButtonsLayout = new javax.swing.GroupLayout(pnlOrdersGButtons);
         pnlOrdersGButtons.setLayout(pnlOrdersGButtonsLayout);
         pnlOrdersGButtonsLayout.setHorizontalGroup(
             pnlOrdersGButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOrdersGButtonsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnInventoryHistorySearch1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(117, 117, 117)
                 .addComponent(btnOrdersGDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnOrdersGList)
@@ -2832,8 +2816,7 @@ public class frmAdministration extends javax.swing.JFrame {
             .addGroup(pnlOrdersGButtonsLayout.createSequentialGroup()
                 .addGroup(pnlOrdersGButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnOrdersGDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnOrdersGList, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInventoryHistorySearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnOrdersGList, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 22, Short.MAX_VALUE))
         );
 
@@ -4214,10 +4197,6 @@ public class frmAdministration extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnOrdersGListActionPerformed
 
-    private void btnInventoryHistorySearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistorySearch1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInventoryHistorySearch1ActionPerformed
-
     private void btnOrdersGBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersGBackActionPerformed
         this.setVisible(true);
         scrollPanelOrdersGTable.setVisible(false);
@@ -4595,7 +4574,6 @@ public class frmAdministration extends javax.swing.JFrame {
     private javax.swing.JButton btnInventoryHistoryInsert;
     private javax.swing.JButton btnInventoryHistoryList;
     private javax.swing.JButton btnInventoryHistorySearch;
-    private javax.swing.JButton btnInventoryHistorySearch1;
     private javax.swing.JButton btnInventoryInsert;
     private javax.swing.JButton btnInventoryList;
     private javax.swing.JButton btnInventoryNew;

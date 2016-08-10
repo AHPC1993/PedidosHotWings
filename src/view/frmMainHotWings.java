@@ -43,10 +43,11 @@ public class frmMainHotWings extends javax.swing.JFrame {
         JFrame.setDefaultLookAndFeelDecorated(true);
         this.setUndecorated(true); //pantalla completa
         SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.ChallengerDeepSkin");
+        initComponents();
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
         this.setSize(dim.width, dim.height);
-        initComponents();
+        
         btnAdmin.setVisible(false);
         //  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -420,14 +421,14 @@ public class frmMainHotWings extends javax.swing.JFrame {
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
 
         JPanel panelPass = new JPanel();
-        JLabel labelPass = new JLabel("<html><p><font size=\"5\">Por favor ingrese su contraseña de usuario</font></p></html>");
+        JLabel labelPass = new JLabel("<html><p><font size=\"5\">Por favor ingrese su contraseña de usuario<br></font></p></html>");
         JPasswordField pass = new JPasswordField(20);
         panelPass.add(labelPass);
         panelPass.add(pass);
         String[] options = new String[]{"Aceptar", "Cancelar"};
         int password = JOptionPane.showOptionDialog(null, panelPass, "Contraseña",
-                JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
-                null, options, options[1]);
+                JOptionPane.YES_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[0]);
         if (password == 0) {
             if (daoLogin.getPassword().equals(String.valueOf(pass.getPassword()))) {
                 frmAdmin.setVisible(true);

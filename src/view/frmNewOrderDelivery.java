@@ -458,14 +458,13 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             .addGroup(dlgOrderDeliveryLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlCustomersDates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         dlgOrderDeliveryLayout.setVerticalGroup(
             dlgOrderDeliveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dlgOrderDeliveryLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlCustomersDates, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlCustomersDates, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         dlgOrderDelivery.getAccessibleContext().setAccessibleDescription("");

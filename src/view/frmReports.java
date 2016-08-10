@@ -27,6 +27,8 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import org.pushingpixels.substance.api.SubstanceLookAndFeel;
+import org.pushingpixels.substance.api.shaper.StandardButtonShaper;
 
 /**
  *
@@ -53,6 +55,7 @@ public class frmReports extends javax.swing.JFrame {
         dlgReportsCustomers.setLocationRelativeTo(this);
         dlgReportsOthers.setLocationRelativeTo(this);
         lblBackgroundReports.setSize(dim.width, dim.height);
+     //   this.btnReportsOrders.putClientProperty( SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         
     }
 
@@ -83,9 +86,9 @@ public class frmReports extends javax.swing.JFrame {
         btnDlgReportsTopNeighborhood1 = new javax.swing.JButton();
         btnDlgReportsInventoryHistory = new javax.swing.JButton();
         btnDlgReportsOthersCancel = new javax.swing.JButton();
-        btnAdminEmployees = new javax.swing.JButton();
-        btnReports3 = new javax.swing.JButton();
-        btnReports2 = new javax.swing.JButton();
+        btnReportsOrders = new javax.swing.JButton();
+        btnReportsOthers = new javax.swing.JButton();
+        btnReportsCUstomers = new javax.swing.JButton();
         btnReportsBack = new javax.swing.JButton();
         lblBackgroundReports = new javax.swing.JLabel();
 
@@ -285,7 +288,6 @@ public class frmReports extends javax.swing.JFrame {
         dlgReportsOthers.setTitle("Tipo de reporte ");
         dlgReportsOthers.setMinimumSize(new java.awt.Dimension(750, 523));
         dlgReportsOthers.setModal(true);
-        dlgReportsOthers.setPreferredSize(new java.awt.Dimension(750, 523));
         dlgReportsOthers.setSize(new java.awt.Dimension(750, 523));
         dlgReportsOthers.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -383,42 +385,42 @@ public class frmReports extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1382, 744));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAdminEmployees.setBackground(javax.swing.UIManager.getDefaults().getColor("EditorPane.selectionBackground"));
-        btnAdminEmployees.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnAdminEmployees.setText("Reportes de pedidos");
-        btnAdminEmployees.setBorderPainted(false);
-        btnAdminEmployees.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAdminEmployees.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAdminEmployees.addActionListener(new java.awt.event.ActionListener() {
+        btnReportsOrders.setBackground(javax.swing.UIManager.getDefaults().getColor("EditorPane.selectionBackground"));
+        btnReportsOrders.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnReportsOrders.setText("Reportes de pedidos");
+        btnReportsOrders.setBorderPainted(false);
+        btnReportsOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReportsOrders.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReportsOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminEmployeesActionPerformed(evt);
+                btnReportsOrdersActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAdminEmployees, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 225, 290, 260));
+        getContentPane().add(btnReportsOrders, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 225, 290, 260));
 
-        btnReports3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnReports3.setText("Otros");
-        btnReports3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnReports3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReports3.addActionListener(new java.awt.event.ActionListener() {
+        btnReportsOthers.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnReportsOthers.setText("Otros");
+        btnReportsOthers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReportsOthers.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReportsOthers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReports3ActionPerformed(evt);
+                btnReportsOthersActionPerformed(evt);
             }
         });
-        getContentPane().add(btnReports3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 225, 290, 260));
+        getContentPane().add(btnReportsOthers, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 225, 290, 260));
 
-        btnReports2.setBackground(javax.swing.UIManager.getDefaults().getColor("textHighlight"));
-        btnReports2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnReports2.setText("Reporte Clientes");
-        btnReports2.setBorderPainted(false);
-        btnReports2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnReports2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReports2.addActionListener(new java.awt.event.ActionListener() {
+        btnReportsCUstomers.setBackground(javax.swing.UIManager.getDefaults().getColor("textHighlight"));
+        btnReportsCUstomers.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnReportsCUstomers.setText("Reporte Clientes");
+        btnReportsCUstomers.setBorderPainted(false);
+        btnReportsCUstomers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReportsCUstomers.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReportsCUstomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReports2ActionPerformed(evt);
+                btnReportsCUstomersActionPerformed(evt);
             }
         });
-        getContentPane().add(btnReports2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 225, 290, 260));
+        getContentPane().add(btnReportsCUstomers, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 225, 290, 260));
 
         btnReportsBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnReportsBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
@@ -442,18 +444,18 @@ public class frmReports extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAdminEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminEmployeesActionPerformed
+    private void btnReportsOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsOrdersActionPerformed
         dlgReportsOrders.setVisible(true);
 
-    }//GEN-LAST:event_btnAdminEmployeesActionPerformed
+    }//GEN-LAST:event_btnReportsOrdersActionPerformed
 
-    private void btnReports2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReports2ActionPerformed
+    private void btnReportsCUstomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsCUstomersActionPerformed
         dlgReportsCustomers.setVisible(true);
-    }//GEN-LAST:event_btnReports2ActionPerformed
+    }//GEN-LAST:event_btnReportsCUstomersActionPerformed
 
-    private void btnReports3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReports3ActionPerformed
+    private void btnReportsOthersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsOthersActionPerformed
         dlgReportsOthers.setVisible(true);
-    }//GEN-LAST:event_btnReports3ActionPerformed
+    }//GEN-LAST:event_btnReportsOthersActionPerformed
 
     private void btnReportsBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsBackActionPerformed
         this.setVisible(false);
@@ -576,14 +578,17 @@ public class frmReports extends javax.swing.JFrame {
         }
         if (listEmployees_id.size() > 0) {
 
-            JOptionPane.showMessageDialog(null, jcbListEmployees, "<html><p><font size=\"5\">Por favor seleccione un empleado</font></p></html>", JOptionPane.QUESTION_MESSAGE);
+            JOptionPane.showMessageDialog(null, jcbListEmployees, "Por favor seleccione un empleado", JOptionPane.QUESTION_MESSAGE);
             employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
         }
 
-        if (!employee_id.isEmpty()) {
+        if (!employee_id.isEmpty() || !employee_id.equals("")) {
             parameters_report.put("employee_id", employee_id);
             loadDatesCalendarForReports("orderDeliveryPerEmployee.jrxml", "Lista de domicilios llevados por un empleado");
             //    generateReport("OrdersDeliveryPerEmployee.jrxml", "Lista de domicilios llevados por un empleado", parameters_report);
+        }else{
+            JOptionPane.showMessageDialog(rootPane,"<html><p><font size=\"5\">Debe seleccionar un empleado, por favor repita el proceso.</font></p></html>");
+
         }
 
     }//GEN-LAST:event_btnDlgReportsOrdersDeliveryPerEmployeesActionPerformed
@@ -704,7 +709,6 @@ public class frmReports extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdminEmployees;
     private javax.swing.JButton btnDlgReportsCustomersCancel;
     private javax.swing.JButton btnDlgReportsCustomersFindOrdersPerCustomer;
     private javax.swing.JButton btnDlgReportsInventoryHistory;
@@ -717,9 +721,10 @@ public class frmReports extends javax.swing.JFrame {
     private javax.swing.JButton btnDlgReportsTopCustomers;
     private javax.swing.JButton btnDlgReportsTopNeighborhood;
     private javax.swing.JButton btnDlgReportsTopNeighborhood1;
-    private javax.swing.JButton btnReports2;
-    private javax.swing.JButton btnReports3;
     private javax.swing.JButton btnReportsBack;
+    private javax.swing.JButton btnReportsCUstomers;
+    private javax.swing.JButton btnReportsOrders;
+    private javax.swing.JButton btnReportsOthers;
     private javax.swing.JDialog dlgReportsCustomers;
     private javax.swing.JDialog dlgReportsOrders;
     private javax.swing.JDialog dlgReportsOthers;

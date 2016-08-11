@@ -1174,6 +1174,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 "Cédula", "Nombre", "Apellidos", "Dirección", "Puesto", "Teléfono", "Id local", "Notas"
             }
         ));
+        tblCustomers.setShowVerticalLines(false);
         scrollPanelCustomersTable.setViewportView(tblCustomers);
         tblCustomers.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -2457,7 +2458,7 @@ public class frmAdministration extends javax.swing.JFrame {
         dlgSelectInventory.setResizable(false);
         dlgSelectInventory.setSize(new java.awt.Dimension(702, 449));
 
-        pnlSelectAdminInventory.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Selección de tipo de productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
+        pnlSelectAdminInventory.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Selección de opciones de inventario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
 
         btnSelectInventoryHistory.setText("Administrar productos en inventario");
         btnSelectInventoryHistory.addActionListener(new java.awt.event.ActionListener() {

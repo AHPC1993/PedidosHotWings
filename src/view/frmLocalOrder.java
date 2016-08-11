@@ -696,12 +696,12 @@ public class frmLocalOrder extends javax.swing.JFrame {
         numbersGroup.add(btnSelectedAmount);
         btnSelectedAmount.setText("Cantidad");
         getContentPane().add(btnSelectedAmount);
-        btnSelectedAmount.setBounds(630, 140, 20, 10);
+        btnSelectedAmount.setBounds(630, 140, 20, 0);
 
         productsGroup.add(btnSelectedProducts);
         btnSelectedProducts.setText("Productos");
         getContentPane().add(btnSelectedProducts);
-        btnSelectedProducts.setBounds(630, 90, 20, 10);
+        btnSelectedProducts.setBounds(630, 90, 30, 0);
 
         lblTotalOrder.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTotalOrder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -753,7 +753,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         numbersGroup.add(btnSelectedAdditionalProduct);
         btnSelectedAdditionalProduct.setText("Cantidad");
         getContentPane().add(btnSelectedAdditionalProduct);
-        btnSelectedAdditionalProduct.setBounds(630, 120, 20, 10);
+        btnSelectedAdditionalProduct.setBounds(630, 120, 20, 0);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1044,14 +1044,25 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdminBackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        double change = Double.parseDouble(JOptionPane.showInputDialog("Devuelta de cuánto?"));
-        double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
-        if (change < total) {
-            JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente</font></p></html>");
-        } else {
-            txtChangeOrder.setText((change - total) + "");
+        try {
+            double change = 0;
+            String inChange = JOptionPane.showInputDialog("<html><p><font size=\"5\">Devuelta de cuánto?</font></p></html>");
+            if (!inChange.isEmpty()) {
+                change = Double.parseDouble(inChange);
+                double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
+                if (change < total) {
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente</font></p></html>");
+                } else {
+                    txtChangeOrder.setText((change - total) + "");
+
+                }
+            }
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(null, "<html><p><font size=\"5\">Error, el campo debe tener solo números</font></p></html>", "Atención", JOptionPane.INFORMATION_MESSAGE);
 
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

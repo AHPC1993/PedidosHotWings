@@ -36,7 +36,6 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
     public boolean insertProduct() {
 
         String sql = "INSERT INTO public.tbl_orderdelivery_details(order_number, product_id, customers_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), id_products,'" + super.getCustomers_id() + "',namep, description, price ,'" + super.getProduct_amount() + "','" + super.getProduct_price_total() + "','" + super.getNotes() + "',NEXTVAL('SEQ_ORDERDELIVERY_DETAILS') from tbl_products WHERE id_products ='" + super.getProduct_id() + "';";
-        System.out.println(sql);
         return connexion.insert(sql);
     }
 
@@ -49,9 +48,25 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
     public boolean insertAdditionalProduct() {
 
         String sql = "INSERT INTO public.tbl_orderdelivery_details(order_number, additional_products_id,customers_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), additional_products_id,'" + super.getCustomers_id() + "',namep, description, price ,'" + super.getProduct_amount() + "','" + super.getProduct_price_total() + "','" + super.getNotes() + "',NEXTVAL('SEQ_ORDERDELIVERY_DETAILS') from tbl_additional_products WHERE additional_products_id ='" + super.getAdditional_products_id() + "';";
+        return connexion.insert(sql);
+    }
+    
+    
+      /**
+     * Inserta en la tabla tbl_orderlocal_details, un producto adicional con su
+     * cantidad, valor y valor total.
+     *
+     * @param service
+     * @return
+     */
+    public boolean insertServiceOrderDelivery(double service) {
+
+        String sql = "INSERT INTO public.tbl_orderdelivery_details(order_number, customers_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER),'" + super.getCustomers_id() + "','Servicio a domicilio', 'Cargo por el servicio a domicilio','"+ service +"','1','" + service + "','" + super.getNotes() + "',(SELECT NEXTVAL('SEQ_ORDERDELIVERY_DETAILS')) ;";
         System.out.println(sql);
         return connexion.insert(sql);
     }
+
+    
 
     /**
      * Inserta en la tabla orderlocal, con el total del pedido y el número de
@@ -65,7 +80,6 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
     public boolean insertOrderFull(String order_number, String total_price, String employee_id) {
 
         String sql = "INSERT INTO public.tbl_orderdelivery(order_number, total_price, date_order,employee_id) VALUES('" + order_number + "','" + total_price + "', (SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')),(SELECT employee_id FROM tbl_employees Where employee_id = '" + employee_id + "'));";
-        System.out.println(sql);
         return connexion.insert(sql);
     }
 

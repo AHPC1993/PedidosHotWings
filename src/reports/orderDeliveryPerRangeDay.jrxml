@@ -16,13 +16,14 @@
 	<parameter name="date_initial" class="java.util.Date">
 		<defaultValueExpression><![CDATA[current_date]]></defaultValueExpression>
 	</parameter>
-	<parameter name="date_final" class="java.util.Date">
-		<defaultValueExpression><![CDATA[current_date]]></defaultValueExpression>
+	<parameter name="date_final" class="java.sql.Timestamp">
+		<defaultValueExpression><![CDATA[
+]]></defaultValueExpression>
 	</parameter>
 	<parameter name="logo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
-     tbl_orderdelivery."date_order" AS "Fecha pedido",
+TO_CHAR(tbl_orderdelivery."date_order",'YYYY/MM/DD')    AS "Fecha pedido",
      (tbl_customers."namec"|| ' '  || tbl_customers."lastname") AS "Cliente",
      tbl_orderdelivery."order_number" AS "N° de orden",
      tbl_orderdelivery_details."localorder_id" AS "Id Orden",
@@ -45,7 +46,7 @@ WHERE
 	tbl_orderdelivery_details.customers_id = tbl_customers.customers_id AND
 	tbl_orderdelivery.date_order>=$P{date_initial} AND tbl_orderdelivery.date_order<=$P{date_final}]]>
 	</queryString>
-	<field name="Fecha pedido" class="java.sql.Date"/>
+	<field name="Fecha pedido" class="java.lang.String"/>
 	<field name="Cliente" class="java.lang.String"/>
 	<field name="N° de orden" class="java.lang.String"/>
 	<field name="Id Orden" class="java.lang.String"/>

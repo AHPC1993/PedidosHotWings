@@ -1530,6 +1530,7 @@
                     </Column>
                   </TableColumnModel>
                 </Property>
+                <Property name="showVerticalLines" type="boolean" value="false"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
@@ -3812,7 +3813,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder justification="2" title="Selecci&#xf3;n de tipo de productos">
+                <TitledBorder justification="2" title="Selecci&#xf3;n de opciones de inventario">
                   <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
                   <Color PropertyName="color" blue="0" green="0" id="red" palette="1" red="ff" type="palette"/>
                 </TitledBorder>

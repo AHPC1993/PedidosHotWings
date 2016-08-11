@@ -34,6 +34,7 @@ import model.clsDAOOrderDeliveryDetails;
  */
 public class frmNewOrderDelivery extends javax.swing.JFrame {
 
+    int contService = 0;
     Border borderDefault;
     Border borderEmptyField;
     // frmMainHotWings frmMain;
@@ -1003,7 +1004,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             .addGap(0, 1409, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 29, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(1170, 1170, 1170)
@@ -1013,9 +1014,10 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                             .addComponent(pnlProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(15, 15, 15)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnSelectedProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnSelectedAdditionalProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnSelectedAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnSelectedAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
+                                    .addComponent(btnSelectedProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addComponent(btnSelectedAdditionalProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(90, 90, 90)
                             .addComponent(pnlAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(30, 30, 30)
@@ -1031,7 +1033,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(1230, 1230, 1230)
                             .addComponent(btnAdminBack, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 30, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1044,11 +1046,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                         .addComponent(pnlProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(60, 60, 60)
-                            .addComponent(btnSelectedProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(20, 20, 20)
-                            .addComponent(btnSelectedAdditionalProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(btnSelectedAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSelectedProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(30, 30, 30)
+                            .addComponent(btnSelectedAdditionalProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnSelectedAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(pnlAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(txtOrderNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1245,38 +1247,93 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNumber9ActionPerformed
 
     private void btnDoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneOrderActionPerformed
+
         if (tblOrderDelivery.getRowCount() > 0) {
-            if (JOptionPane.showConfirmDialog(this,
-                    "<html><p><font size=\"5\">Desea confirmar el pedido con número de orden " + txtOrderNumber.getText() + "</font></p></html>", "Confirmar pedido",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                ResultSet result = orderDelivery.searchEmployeesJobDelivery();
-                JComboBox jcbListEmployees = new JComboBox();
-                ArrayList<String> listEmployees_id = new ArrayList<>();
-                String employee_id = "";
-                try {
-                    jcbListEmployees.addItem(result.getString(2));
-                    listEmployees_id.add(result.getString(1));
-                    while (result.next()) {
-                        jcbListEmployees.addItem(result.getString(2));
-                        listEmployees_id.add(result.getString(1));
+            if (contService == 0) {
+                String input = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese el valor del servicio a domicilio: </font></p></html>");
+                if (numbersAndNoEmpty(input)) {
+                    double servideOrderDelivery = Double.parseDouble(input);
+                    if (orderDelivery.insertServiceOrderDelivery(servideOrderDelivery)) {
+                        txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
+                        tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
+                        txtNotes.setText("");
+                        centerElementsTable(tblOrderDelivery);
+                        contService = 1;
+                        change();
+                        if (JOptionPane.showConfirmDialog(this,
+                                "<html><p><font size=\"5\">Desea confirmar el pedido con número de orden " + txtOrderNumber.getText() + "</font></p></html>", "Confirmar pedido",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                            ResultSet result = orderDelivery.searchEmployeesJobDelivery();
+                            JComboBox jcbListEmployees = new JComboBox();
+                            ArrayList<String> listEmployees_id = new ArrayList<>();
+                            String employee_id = "";
+                            try {
+                                jcbListEmployees.addItem(result.getString(2));
+                                listEmployees_id.add(result.getString(1));
+                                while (result.next()) {
+                                    jcbListEmployees.addItem(result.getString(2));
+                                    listEmployees_id.add(result.getString(1));
+                                }
+                            } catch (SQLException ex) {
+                                System.out.println(ex);
+                            }
+                            if (listEmployees_id.size() > 0) {
+
+                                JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
+                                employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
+                            }
+                            if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
+                                txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
+                                txtTotalOrder.setText("0");
+                                txtChangeOrder.setText("0");
+
+                                clearTable(tblOrderDelivery);
+                                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La orden ha sido procesada con éxito</font></p></html>");
+                                contService = 0;
+                            }
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Hubo un problema con la insersión del servicio, por favor repita el proceso.</font></p></html>");
+
                     }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
                 }
-                if (listEmployees_id.size() > 0) {
+            }else if(contService==1){
+                 change();
+                        if (JOptionPane.showConfirmDialog(this,
+                                "<html><p><font size=\"5\">Desea confirmar el pedido con número de orden " + txtOrderNumber.getText() + "</font></p></html>", "Confirmar pedido",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                            ResultSet result = orderDelivery.searchEmployeesJobDelivery();
+                            JComboBox jcbListEmployees = new JComboBox();
+                            ArrayList<String> listEmployees_id = new ArrayList<>();
+                            String employee_id = "";
+                            try {
+                                jcbListEmployees.addItem(result.getString(2));
+                                listEmployees_id.add(result.getString(1));
+                                while (result.next()) {
+                                    jcbListEmployees.addItem(result.getString(2));
+                                    listEmployees_id.add(result.getString(1));
+                                }
+                            } catch (SQLException ex) {
+                                System.out.println(ex);
+                            }
+                            if (listEmployees_id.size() > 0) {
 
-                    JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
-                    employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
-                }
-                if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
-                    txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
-                    txtTotalOrder.setText("0");
-                    txtChangeOrder.setText("0");
+                                JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
+                                employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
+                            }
+                            if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
+                                txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
+                                txtTotalOrder.setText("0");
+                                txtChangeOrder.setText("0");
 
-                    clearTable(tblOrderDelivery);
-                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La orden ha sido procesada con éxito</font></p></html>");
-                }
+                                clearTable(tblOrderDelivery);
+                                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La orden ha sido procesada con éxito</font></p></html>");
+                                contService = 0;
+                            }
+                        }
+                     
             }
         } else {
             JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">No hay todavía ningún producto para realizar la compra.</font></p></html>");
@@ -1476,6 +1533,9 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                         message, "Eliminar producto",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    if(tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 1).toString().contains("Servicio a domicilio")){
+                        contService=0;
+                    }
                     orderDelivery.setLocalOrder_id(selection);
                     orderDelivery.delete(orderDelivery.getLocalOrder_id());
                     tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
@@ -1515,19 +1575,47 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        double change = 0;
-        String inChange = JOptionPane.showInputDialog("<html><p><font size=\"5\">Devuelta de cuánto?</font></p></html>");
-        if (!inChange.isEmpty()) {
-            change = Double.parseDouble(inChange);
-            double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
-            if (change < total) {
-                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente</font></p></html>");
-            } else {
-                txtChangeOrder.setText((change - total) + "");
+        change();
 
-            }
-        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    public boolean numbersAndNoEmpty(String inChange) {
+        try {
+            if (!inChange.isEmpty()) {
+                double change = Double.parseDouble(inChange);
+                return true;
+            }
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(null, "<html><p><font size=\"5\">Error, el campo debe tener solo números</font></p></html>", "Atención", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        return false;
+    }
+
+    public void change() {
+        try {
+            double change = 0;
+            String inChange = JOptionPane.showInputDialog("<html><p><font size=\"5\">Devuelta de cuánto?</font></p></html>");
+            if (numbersAndNoEmpty(inChange)) {
+                change = Double.parseDouble(inChange);
+                double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
+                if (change < total) {
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente</font></p></html>");
+                } else {
+                    txtChangeOrder.setText((change - total) + "");
+
+                }
+            }
+
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(null, "<html><p><font size=\"5\">Error, el campo debe tener solo números</font></p></html>", "Atención", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+    }
+
 
     private void btnAdditionalProduct2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct2MouseClicked
         dlgAdditionsOrderDelivery.setVisible(false);
@@ -1603,8 +1691,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                 orderDelivery.cancelOrderButtonBack(txtOrderNumber.getText());
                 this.setVisible(false);
-                 txtTotalOrder.setText("");
-                 txtChangeOrder.setText("");               
+                txtTotalOrder.setText("");
+                txtChangeOrder.setText("");
                 clearTable(tblOrderDelivery);
 
             } else {

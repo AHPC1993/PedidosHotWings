@@ -945,6 +945,8 @@ public class frmLocalOrder extends javax.swing.JFrame {
             String inputValue = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese la cantidad que necesita</font></p></html>");
             if (inputValue == null || inputValue.isEmpty() || inputValue == "") {
                 JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor ingrese una cantidad</font></p></html>");
+            } else if (inputValue.length() >= 3) {
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La cantidad ingresada es mayor a la permitida.</font></p></html>");
             } else {
                 double amount = Double.parseDouble(inputValue);
                 if (amount > 9) {
@@ -1048,13 +1050,16 @@ public class frmLocalOrder extends javax.swing.JFrame {
             double change = 0;
             String inChange = JOptionPane.showInputDialog("<html><p><font size=\"5\">Devuelta de cuánto?</font></p></html>");
             if (!inChange.isEmpty()) {
-                change = Double.parseDouble(inChange);
-                double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
-                if (change < total) {
-                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente</font></p></html>");
+                if (inChange.length() <= 7) {
+                    change = Double.parseDouble(inChange);
+                    double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
+                    if (change < total) {
+                        JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente</font></p></html>");
+                    } else {
+                        txtChangeOrder.setText((change - total) + "");
+                    }
                 } else {
-                    txtChangeOrder.setText((change - total) + "");
-
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es mayor al máximo permitido.(9.999.999)</font></p></html>");
                 }
             }
         } catch (NumberFormatException e) {

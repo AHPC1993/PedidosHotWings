@@ -1252,88 +1252,91 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             if (contService == 0) {
                 String input = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese el valor del servicio a domicilio: </font></p></html>");
                 if (numbersAndNoEmpty(input)) {
-                    double servideOrderDelivery = Double.parseDouble(input);
-                    if (orderDelivery.insertServiceOrderDelivery(servideOrderDelivery)) {
-                        txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
-                        tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
-                        txtNotes.setText("");
-                        centerElementsTable(tblOrderDelivery);
-                        contService = 1;
-                        change();
-                        if (JOptionPane.showConfirmDialog(this,
-                                "<html><p><font size=\"5\">Desea confirmar el pedido con número de orden " + txtOrderNumber.getText() + "</font></p></html>", "Confirmar pedido",
-                                JOptionPane.YES_NO_OPTION,
-                                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                            ResultSet result = orderDelivery.searchEmployeesJobDelivery();
-                            JComboBox jcbListEmployees = new JComboBox();
-                            ArrayList<String> listEmployees_id = new ArrayList<>();
-                            String employee_id = "";
-                            try {
-                                jcbListEmployees.addItem(result.getString(2));
-                                listEmployees_id.add(result.getString(1));
-                                while (result.next()) {
+                    if (input.length() <= 4) {
+                        double servideOrderDelivery = Double.parseDouble(input);
+                        if (orderDelivery.insertServiceOrderDelivery(servideOrderDelivery)) {
+                            txtTotalOrder.setText(orderDelivery.selectTotalOrder(txtOrderNumber.getText()));
+                            tblOrderDelivery.setModel(orderDelivery.list(txtOrderNumber.getText()));
+                            txtNotes.setText("");
+                            centerElementsTable(tblOrderDelivery);
+                            contService = 1;
+                            change();
+                            if (JOptionPane.showConfirmDialog(this,
+                                    "<html><p><font size=\"5\">Desea confirmar el pedido con número de orden " + txtOrderNumber.getText() + "</font></p></html>", "Confirmar pedido",
+                                    JOptionPane.YES_NO_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                                ResultSet result = orderDelivery.searchEmployeesJobDelivery();
+                                JComboBox jcbListEmployees = new JComboBox();
+                                ArrayList<String> listEmployees_id = new ArrayList<>();
+                                String employee_id = "";
+                                try {
                                     jcbListEmployees.addItem(result.getString(2));
                                     listEmployees_id.add(result.getString(1));
+                                    while (result.next()) {
+                                        jcbListEmployees.addItem(result.getString(2));
+                                        listEmployees_id.add(result.getString(1));
+                                    }
+                                } catch (SQLException ex) {
+                                    System.out.println(ex);
                                 }
-                            } catch (SQLException ex) {
-                                System.out.println(ex);
-                            }
-                            if (listEmployees_id.size() > 0) {
+                                if (listEmployees_id.size() > 0) {
 
-                                JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
-                                employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
-                            }
-                            if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
-                                txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
-                                txtTotalOrder.setText("0");
-                                txtChangeOrder.setText("0");
+                                    JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
+                                    employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
+                                }
+                                if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
+                                    txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
+                                    txtTotalOrder.setText("0");
+                                    txtChangeOrder.setText("0");
 
-                                clearTable(tblOrderDelivery);
-                                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La orden ha sido procesada con éxito</font></p></html>");
-                                contService = 0;
+                                    clearTable(tblOrderDelivery);
+                                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La orden ha sido procesada con éxito</font></p></html>");
+                                    contService = 0;
+                                }
                             }
+                        } else {
+                            JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Hubo un problema con la insersión del servicio, por favor repita el proceso.</font></p></html>");
                         }
                     } else {
-                        JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Hubo un problema con la insersión del servicio, por favor repita el proceso.</font></p></html>");
-
+                        JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es mayor al máximo permitido.(99.999)</font></p></html>");
                     }
                 }
-            }else if(contService==1){
-                 change();
-                        if (JOptionPane.showConfirmDialog(this,
-                                "<html><p><font size=\"5\">Desea confirmar el pedido con número de orden " + txtOrderNumber.getText() + "</font></p></html>", "Confirmar pedido",
-                                JOptionPane.YES_NO_OPTION,
-                                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                            ResultSet result = orderDelivery.searchEmployeesJobDelivery();
-                            JComboBox jcbListEmployees = new JComboBox();
-                            ArrayList<String> listEmployees_id = new ArrayList<>();
-                            String employee_id = "";
-                            try {
-                                jcbListEmployees.addItem(result.getString(2));
-                                listEmployees_id.add(result.getString(1));
-                                while (result.next()) {
-                                    jcbListEmployees.addItem(result.getString(2));
-                                    listEmployees_id.add(result.getString(1));
-                                }
-                            } catch (SQLException ex) {
-                                System.out.println(ex);
-                            }
-                            if (listEmployees_id.size() > 0) {
-
-                                JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
-                                employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
-                            }
-                            if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
-                                txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
-                                txtTotalOrder.setText("0");
-                                txtChangeOrder.setText("0");
-
-                                clearTable(tblOrderDelivery);
-                                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La orden ha sido procesada con éxito</font></p></html>");
-                                contService = 0;
-                            }
+            } else if (contService == 1) {
+                change();
+                if (JOptionPane.showConfirmDialog(this,
+                        "<html><p><font size=\"5\">Desea confirmar el pedido con número de orden " + txtOrderNumber.getText() + "</font></p></html>", "Confirmar pedido",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    ResultSet result = orderDelivery.searchEmployeesJobDelivery();
+                    JComboBox jcbListEmployees = new JComboBox();
+                    ArrayList<String> listEmployees_id = new ArrayList<>();
+                    String employee_id = "";
+                    try {
+                        jcbListEmployees.addItem(result.getString(2));
+                        listEmployees_id.add(result.getString(1));
+                        while (result.next()) {
+                            jcbListEmployees.addItem(result.getString(2));
+                            listEmployees_id.add(result.getString(1));
                         }
-                     
+                    } catch (SQLException ex) {
+                        System.out.println(ex);
+                    }
+                    if (listEmployees_id.size() > 0) {
+
+                        JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
+                        employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
+                    }
+                    if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
+                        txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
+                        txtTotalOrder.setText("0");
+                        txtChangeOrder.setText("0");
+
+                        clearTable(tblOrderDelivery);
+                        JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La orden ha sido procesada con éxito</font></p></html>");
+                        contService = 0;
+                    }
+                }
+
             }
         } else {
             JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">No hay todavía ningún producto para realizar la compra.</font></p></html>");
@@ -1366,6 +1369,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             String inputValue = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese la cantidad que necesita</font></p></html>");
             if (inputValue == null || inputValue.isEmpty() || inputValue == "") {
                 JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor ingrese una cantidad</font></p></html>");
+            } else if (inputValue.length() > 3) {
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es mayor al máximo permitido.(999)</font></p></html>");
             } else {
                 double amount = Double.parseDouble(inputValue);
                 if (amount > 9) {
@@ -1533,8 +1538,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                         message, "Eliminar producto",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                    if(tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 1).toString().contains("Servicio a domicilio")){
-                        contService=0;
+                    if (tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 1).toString().contains("Servicio a domicilio")) {
+                        contService = 0;
                     }
                     orderDelivery.setLocalOrder_id(selection);
                     orderDelivery.delete(orderDelivery.getLocalOrder_id());
@@ -1599,13 +1604,17 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             double change = 0;
             String inChange = JOptionPane.showInputDialog("<html><p><font size=\"5\">Devuelta de cuánto?</font></p></html>");
             if (numbersAndNoEmpty(inChange)) {
-                change = Double.parseDouble(inChange);
-                double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
-                if (change < total) {
-                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente</font></p></html>");
-                } else {
-                    txtChangeOrder.setText((change - total) + "");
+                if (inChange.length() <= 7) {
+                    change = Double.parseDouble(inChange);
+                    double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
+                    if (change < total) {
+                        JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente</font></p></html>");
+                    } else {
+                        txtChangeOrder.setText((change - total) + "");
 
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es mayor al máximo permitido.(9.999.999)</font></p></html>");
                 }
             }
 

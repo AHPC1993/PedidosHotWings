@@ -82,8 +82,6 @@ public class frmReports extends javax.swing.JFrame {
         btnDlgReportsCustomersCancel = new javax.swing.JButton();
         dlgReportsOthers = new javax.swing.JDialog();
         pnlReportsOrders2 = new javax.swing.JPanel();
-        btnDlgReportsOrdersDelivery1 = new javax.swing.JButton();
-        btnDlgReportsTopNeighborhood1 = new javax.swing.JButton();
         btnDlgReportsInventoryHistory = new javax.swing.JButton();
         btnDlgReportsOthersCancel = new javax.swing.JButton();
         btnReportsOrders = new javax.swing.JButton();
@@ -297,23 +295,6 @@ public class frmReports extends javax.swing.JFrame {
 
         pnlReportsOrders2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de reporte", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
 
-        btnDlgReportsOrdersDelivery1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnDlgReportsOrdersDelivery1.setText("<html><center>Pedidos a domicilio<br /> en un rango de días<center>\n</html>\n\n");
-        btnDlgReportsOrdersDelivery1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDlgReportsOrdersDelivery1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDlgReportsOrdersDelivery1ActionPerformed(evt);
-            }
-        });
-
-        btnDlgReportsTopNeighborhood1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnDlgReportsTopNeighborhood1.setText("<html><center>Lista de barrios <br> donde más piden</center></html>\n\n");
-        btnDlgReportsTopNeighborhood1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDlgReportsTopNeighborhood1ActionPerformed(evt);
-            }
-        });
-
         btnDlgReportsInventoryHistory.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnDlgReportsInventoryHistory.setText("<html><center>Historial de inventario <br>en un rango de días</center></html> ");
         btnDlgReportsInventoryHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -331,20 +312,13 @@ public class frmReports extends javax.swing.JFrame {
             .addGroup(pnlReportsOrders2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnDlgReportsInventoryHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btnDlgReportsOrdersDelivery1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(btnDlgReportsTopNeighborhood1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap(496, Short.MAX_VALUE))
         );
         pnlReportsOrders2Layout.setVerticalGroup(
             pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlReportsOrders2Layout.createSequentialGroup()
                 .addContainerGap(119, Short.MAX_VALUE)
-                .addGroup(pnlReportsOrders2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnDlgReportsTopNeighborhood1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDlgReportsOrdersDelivery1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDlgReportsInventoryHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnDlgReportsInventoryHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(116, 116, 116))
         );
 
@@ -532,14 +506,6 @@ public class frmReports extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dlgReportsCustomersWindowOpened
 
-    private void btnDlgReportsOrdersDelivery1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsOrdersDelivery1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDlgReportsOrdersDelivery1ActionPerformed
-
-    private void btnDlgReportsTopNeighborhood1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsTopNeighborhood1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDlgReportsTopNeighborhood1ActionPerformed
-
     private void btnDlgReportsInventoryHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgReportsInventoryHistoryActionPerformed
         dlgReportsOthers.setVisible(false);
         this.setVisible(true);
@@ -714,13 +680,11 @@ public class frmReports extends javax.swing.JFrame {
     private javax.swing.JButton btnDlgReportsInventoryHistory;
     private javax.swing.JButton btnDlgReportsOrdersCancel;
     private javax.swing.JButton btnDlgReportsOrdersDelivery;
-    private javax.swing.JButton btnDlgReportsOrdersDelivery1;
     private javax.swing.JButton btnDlgReportsOrdersDeliveryPerEmployees;
     private javax.swing.JButton btnDlgReportsOrdersLocal;
     private javax.swing.JButton btnDlgReportsOthersCancel;
     private javax.swing.JButton btnDlgReportsTopCustomers;
     private javax.swing.JButton btnDlgReportsTopNeighborhood;
-    private javax.swing.JButton btnDlgReportsTopNeighborhood1;
     private javax.swing.JButton btnReportsBack;
     private javax.swing.JButton btnReportsCUstomers;
     private javax.swing.JButton btnReportsOrders;

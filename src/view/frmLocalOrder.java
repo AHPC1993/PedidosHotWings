@@ -1009,6 +1009,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                 if (localOrder.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""))) {
+                    printFormat();
                     txtOrderNumber.setText(localOrder.incrementOrderNumber());
                     txtTotalOrder.setText("0");
                     txtChangeOrder.setText("0");
@@ -1024,6 +1025,17 @@ public class frmLocalOrder extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDoneOrderActionPerformed
 
+    
+    public void printFormat(){
+        System.out.println("Descr Cnt Valor");
+        System.out.println("---------------");
+        for (int i = 1; i < tblLocalOrder.getRowCount(); i++) {
+            System.out.println(tblLocalOrder.getValueAt(i,1) + " " + tblLocalOrder.getValueAt(i,4) + " " + tblLocalOrder.getValueAt(i,5));         
+        }
+        System.out.println();
+    }
+    
+    
     private void btnAdminBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminBackActionPerformed
         if (tblLocalOrder.getRowCount() > 0) {
             if (JOptionPane.showConfirmDialog(this,

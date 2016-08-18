@@ -15,10 +15,12 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -58,86 +60,104 @@ public class frmLocalOrder extends javax.swing.JFrame {
     public void loadAdditionalProductsValues() {
         localOrder = new model.clsDAOLocalOrderDetails();
         LinkedList<String[]> values = new LinkedList<String[]>();
+        LinkedList<JToggleButton> buttons = loadAdditionalProductsButtonsInList();
         values = localOrder.listAdditionalProducts();
         for (int i = 0; i < values.size(); i++) {
             if (values.get(i)[0] != null) {
-                switch (values.get(i)[0]) {
-                    case "Alitas":
-                        btnAdditionalProduct1.setText(values.get(i)[0]);
-                        btnAdditionalProduct1.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
-                        break;
-                    case "Papas":
-                        btnAdditionalProduct2.setText(values.get(i)[0]);
-                        btnAdditionalProduct2.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
-                        break;
-                    case "Salsas":
-                        btnAdditionalProduct3.setText(values.get(i)[0]);
-                        btnAdditionalProduct3.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
-                        break;
-                    case "Gaseosa Pequeña":
-                        btnAdditionalProduct4.setText(values.get(i)[0]);
-                        btnAdditionalProduct4.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
-
-                        break;
-                    case "Gaseosa Grande":
-                        btnAdditionalProduct5.setText(values.get(i)[0]);
-                        btnAdditionalProduct5.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
-                        break;
-                    default:
-                        break;
-                }
-
+                buttons.get(i).setText(values.get(i)[0]);
+                buttons.get(i).setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
             }
         }
+        validateNumberAdditionalProducts(values.size());
     }
 
+    /**
+     * Carga los productos principales con su valor en los botones.
+     */
     public void loadNameProductValues() {
         localOrder = new model.clsDAOLocalOrderDetails();
         LinkedList<String[]> values = new LinkedList<String[]>();
+        LinkedList<JToggleButton> buttons = loadProductsButtonsInList();
         values = localOrder.listProducts();
         for (int i = 0; i < values.size(); i++) {
             if (values.get(i)[0] != null) {
-                switch (values.get(i)[0]) {
-                    case "Combo 1":
-                        btnProduct1.setText(values.get(i)[0]);
-                        btnProduct1.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
-                        break;
-                    case "Combo 2":
-                        btnProduct2.setText(values.get(i)[0]);
-                        btnProduct2.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
-                        break;
-                    case "Combo 3":
-                        btnProduct3.setText(values.get(i)[0]);
-                        btnProduct3.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
-                        break;
-                    case "Combo 4":
-                        btnProduct4.setText(values.get(i)[0]);
-                        btnProduct4.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
-
-                        break;
-                    case "Combo 5":
-                        btnProduct5.setText(values.get(i)[0]);
-                        btnProduct5.setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
-                        break;
-                    default:
-                        break;
-                }
+                buttons.get(i).setText(values.get(i)[0]);
+                buttons.get(i).setToolTipText(values.get(i)[1] + " $ " + values.get(i)[2]);
             }
         }
-
         btnProduct6.setText("Adicionales");
         btnProduct6.setToolTipText("Productos adicionales, como gaseosa, papas, etc.");
-        btnProduct7.setEnabled(false);
-        btnProduct8.setEnabled(false);
-        btnProduct9.setEnabled(false);
-//        btnProduct6.setText(values.get(5)[0]);
-//        btnProduct7.setText(values.get(6)[0]);
-//        btnProduct8.setText(values.get(7)[0]);
-//        btnProduct9.setText(values.get(8)[0]);
-//        btnProduct6.setToolTipText(values.get(5)[1] + " $ " + values.get(5)[2]);
-//        btnProduct7.setToolTipText(values.get(6)[1] + " $ " + values.get(6)[2]);
-//        btnProduct8.setToolTipText(values.get(7)[1] + " $ " + values.get(7)[2]);
-//        btnProduct9.setToolTipText(values.get(8)[1] + " $ " + values.get(8)[2]);
+        validateNumberProducts(values.size());
+    }
+
+    /**
+     * Valida la cantidad de productos principales que existen y desactiva los
+     * botones vacíos
+     *
+     * @param numberProducts
+     */
+    public void validateNumberProducts(int numberProducts) {
+        LinkedList<JToggleButton> buttons = loadProductsButtonsInList();
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).setEnabled(true);
+        }
+        for (int i = numberProducts; i < buttons.size(); i++) {
+            buttons.get(i).setEnabled(false);
+            buttons.get(i).setText("");
+        }
+    }
+
+    /**
+     * Valida la cantidad de productos principales que existen y desactiva los
+     * botones vacíos
+     *
+     * @param numberProducts
+     */
+    public void validateNumberAdditionalProducts(int numberProducts) {
+        LinkedList<JToggleButton> buttons = loadAdditionalProductsButtonsInList();
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).setEnabled(true);
+        }
+        for (int i = numberProducts; i < buttons.size(); i++) {
+            buttons.get(i).setEnabled(false);
+            buttons.get(i).setText("");
+        }
+    }
+
+    /**
+     * Carga los botones de los productos principales en una lista para ser
+     * evaluados después
+     */
+    public LinkedList<JToggleButton> loadProductsButtonsInList() {
+        LinkedList<JToggleButton> buttons = new LinkedList<JToggleButton>();
+        buttons.add(btnProduct1);
+        buttons.add(btnProduct2);
+        buttons.add(btnProduct3);
+        buttons.add(btnProduct4);
+        buttons.add(btnProduct5);
+        buttons.add(btnProduct7);
+        buttons.add(btnProduct8);
+        buttons.add(btnProduct9);
+        return buttons;
+
+    }
+
+    /**
+     * Carga los botones de los productos adicionales en una lista para ser
+     * evaluados después
+     */
+    public LinkedList<JToggleButton> loadAdditionalProductsButtonsInList() {
+        LinkedList<JToggleButton> buttons = new LinkedList<JToggleButton>();
+        buttons.add(btnAdditionalProduct1);
+        buttons.add(btnAdditionalProduct2);
+        buttons.add(btnAdditionalProduct3);
+        buttons.add(btnAdditionalProduct4);
+        buttons.add(btnAdditionalProduct5);
+        buttons.add(btnAdditionalProduct6);
+        buttons.add(btnAdditionalProduct7);
+        buttons.add(btnAdditionalProduct8);
+        buttons.add(btnAdditionalProduct9);
+        return buttons;
 
     }
 
@@ -162,6 +182,9 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnAdditionalProduct6 = new javax.swing.JToggleButton();
         btnAdditionalProduct4 = new javax.swing.JToggleButton();
         btnAdditionalProduct5 = new javax.swing.JToggleButton();
+        btnAdditionalProduct7 = new javax.swing.JToggleButton();
+        btnAdditionalProduct8 = new javax.swing.JToggleButton();
+        btnAdditionalProduct9 = new javax.swing.JToggleButton();
         btnDlgAdditionsCancel = new javax.swing.JButton();
         pnlAmount = new javax.swing.JPanel();
         btnNumber6 = new javax.swing.JToggleButton();
@@ -181,7 +204,6 @@ public class frmLocalOrder extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtNotes = new javax.swing.JTextArea();
         pnlProducts = new javax.swing.JPanel();
-        btnProduct1 = new javax.swing.JToggleButton();
         btnProduct2 = new javax.swing.JToggleButton();
         btnProduct3 = new javax.swing.JToggleButton();
         btnProduct4 = new javax.swing.JToggleButton();
@@ -190,6 +212,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnProduct8 = new javax.swing.JToggleButton();
         btnProduct9 = new javax.swing.JToggleButton();
         btnProduct7 = new javax.swing.JToggleButton();
+        btnProduct1 = new javax.swing.JToggleButton();
         scrollPanelProductsTable = new javax.swing.JScrollPane();
         tblLocalOrder = new javax.swing.JTable();
         txtOrderNumber = new javax.swing.JTextField();
@@ -203,9 +226,9 @@ public class frmLocalOrder extends javax.swing.JFrame {
         txtChangeOrder = new javax.swing.JTextField();
         btnSelectedAdditionalProduct = new javax.swing.JToggleButton();
 
-        dlgAdditionsLocalOrder.setMinimumSize(new java.awt.Dimension(711, 423));
+        dlgAdditionsLocalOrder.setMinimumSize(new java.awt.Dimension(760, 693));
         dlgAdditionsLocalOrder.setModal(true);
-        dlgAdditionsLocalOrder.setSize(new java.awt.Dimension(711, 523));
+        dlgAdditionsLocalOrder.setSize(new java.awt.Dimension(760, 693));
         dlgAdditionsLocalOrder.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 dlgAdditionsLocalOrderWindowOpened(evt);
@@ -215,6 +238,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         pblAdditionsLocalOrder.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Adicionales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), java.awt.Color.red)); // NOI18N
 
         additionsGroup.add(btnAdditionalProduct2);
+        btnAdditionalProduct2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnAdditionalProduct2.setText("Producto adicional 2");
         btnAdditionalProduct2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -223,6 +247,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         additionsGroup.add(btnAdditionalProduct3);
+        btnAdditionalProduct3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnAdditionalProduct3.setText("Producto adicional 3");
         btnAdditionalProduct3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -231,6 +256,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         additionsGroup.add(btnAdditionalProduct1);
+        btnAdditionalProduct1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnAdditionalProduct1.setText("Producto adicional 1");
         btnAdditionalProduct1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -244,6 +270,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         additionsGroup.add(btnAdditionalProduct6);
+        btnAdditionalProduct6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnAdditionalProduct6.setText("Producto adicional 6");
         btnAdditionalProduct6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -252,6 +279,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         additionsGroup.add(btnAdditionalProduct4);
+        btnAdditionalProduct4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnAdditionalProduct4.setText("Producto adicional 4");
         btnAdditionalProduct4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -260,10 +288,38 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         additionsGroup.add(btnAdditionalProduct5);
+        btnAdditionalProduct5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnAdditionalProduct5.setText("Producto adicional 5");
         btnAdditionalProduct5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAdditionalProduct5MouseClicked(evt);
+            }
+        });
+
+        additionsGroup.add(btnAdditionalProduct7);
+        btnAdditionalProduct7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnAdditionalProduct7.setText("Producto adicional 7");
+        btnAdditionalProduct7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdditionalProduct7MouseClicked(evt);
+            }
+        });
+
+        additionsGroup.add(btnAdditionalProduct8);
+        btnAdditionalProduct8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnAdditionalProduct8.setText("Producto adicional 8");
+        btnAdditionalProduct8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdditionalProduct8MouseClicked(evt);
+            }
+        });
+
+        additionsGroup.add(btnAdditionalProduct9);
+        btnAdditionalProduct9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnAdditionalProduct9.setText("Producto adicional 9");
+        btnAdditionalProduct9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdditionalProduct9MouseClicked(evt);
             }
         });
 
@@ -274,6 +330,12 @@ public class frmLocalOrder extends javax.swing.JFrame {
             .addGroup(pblAdditionsLocalOrderLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pblAdditionsLocalOrderLayout.createSequentialGroup()
+                        .addComponent(btnAdditionalProduct7, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAdditionalProduct8, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdditionalProduct9, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pblAdditionsLocalOrderLayout.createSequentialGroup()
                         .addComponent(btnAdditionalProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -301,9 +363,15 @@ public class frmLocalOrder extends javax.swing.JFrame {
                     .addComponent(btnAdditionalProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdditionalProduct5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdditionalProduct6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(pblAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdditionalProduct7, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProduct8, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdditionalProduct9, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
 
+        btnDlgAdditionsCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnDlgAdditionsCancel.setText("Cancelar");
         btnDlgAdditionsCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -321,18 +389,18 @@ public class frmLocalOrder extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(pblAdditionsLocalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(dlgAdditionsLocalOrderLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addGap(36, 36, 36)
                         .addComponent(btnDlgAdditionsCancel)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         dlgAdditionsLocalOrderLayout.setVerticalGroup(
             dlgAdditionsLocalOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dlgAdditionsLocalOrderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pblAdditionsLocalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDlgAdditionsCancel)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -538,15 +606,8 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
 
-        productsGroup.add(btnProduct1);
-        btnProduct1.setText("Combo 1");
-        btnProduct1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProduct1ActionPerformed(evt);
-            }
-        });
-
         productsGroup.add(btnProduct2);
+        btnProduct2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnProduct2.setText("Combo 2");
         btnProduct2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -555,6 +616,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         productsGroup.add(btnProduct3);
+        btnProduct3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnProduct3.setText("Combo 3");
         btnProduct3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -563,6 +625,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         productsGroup.add(btnProduct4);
+        btnProduct4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnProduct4.setText("Combo 4");
         btnProduct4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -571,6 +634,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         productsGroup.add(btnProduct5);
+        btnProduct5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnProduct5.setText("Combo 5");
         btnProduct5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -579,6 +643,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         productsGroup.add(btnProduct6);
+        btnProduct6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnProduct6.setText("Adicionales");
         btnProduct6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -592,6 +657,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         productsGroup.add(btnProduct8);
+        btnProduct8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnProduct8.setText("Producto2");
         btnProduct8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -600,6 +666,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         productsGroup.add(btnProduct9);
+        btnProduct9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnProduct9.setText("Producto3");
         btnProduct9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -608,10 +675,20 @@ public class frmLocalOrder extends javax.swing.JFrame {
         });
 
         productsGroup.add(btnProduct7);
+        btnProduct7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnProduct7.setText("Producto1");
         btnProduct7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProduct7ActionPerformed(evt);
+            }
+        });
+
+        productsGroup.add(btnProduct1);
+        btnProduct1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnProduct1.setText("Combo 1");
+        btnProduct1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProduct1ActionPerformed(evt);
             }
         });
 
@@ -620,44 +697,43 @@ public class frmLocalOrder extends javax.swing.JFrame {
         pnlProductsLayout.setHorizontalGroup(
             pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlProductsLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlProductsLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addComponent(btnProduct6, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnProduct2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(btnProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnProduct2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlProductsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnProduct7, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(pnlProductsLayout.createSequentialGroup()
-                                .addComponent(btnProduct8, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnProduct9, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlProductsLayout.createSequentialGroup()
-                                .addComponent(btnProduct5, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnProduct6, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                                .addComponent(btnProduct7, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnProduct8, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnProduct9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnProduct5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         pnlProductsLayout.setVerticalGroup(
             pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlProductsLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnProduct2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnProduct6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProduct5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProduct6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnProduct4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProduct3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProduct8, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -815,7 +891,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProduct5ActionPerformed
 
     private void btnProduct6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduct6ActionPerformed
-
+        loadAdditionalProductsValues();
     }//GEN-LAST:event_btnProduct6ActionPerformed
 
     private void btnProduct8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduct8ActionPerformed
@@ -1021,21 +1097,23 @@ public class frmLocalOrder extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">No hay todavía ningún producto para realizar la compra.</font></p></html>");
-
+            
         }
     }//GEN-LAST:event_btnDoneOrderActionPerformed
 
-    
-    public void printFormat(){
-        System.out.println("Descr Cnt Valor");
-        System.out.println("---------------");
-        for (int i = 1; i < tblLocalOrder.getRowCount(); i++) {
-            System.out.println(tblLocalOrder.getValueAt(i,1) + " " + tblLocalOrder.getValueAt(i,4) + " " + tblLocalOrder.getValueAt(i,5));         
+    public void printFormat() {
+        System.out.println("Descripción\t\tCnt\tValor");
+        System.out.println("---------------------------");
+        for (int i = 0; i < tblLocalOrder.getRowCount(); i++) {
+            System.out.println(tblLocalOrder.getValueAt(i, 1) + "\t\t" + tblLocalOrder.getValueAt(i, 4) + "\t" + tblLocalOrder.getValueAt(i, 5));
         }
+        
+        System.out.println("\t\t"+txtOrderNumber.getText());
         System.out.println();
+        System.out.println("\t\t"+txtOrderNumber.getText());
     }
-    
-    
+
+
     private void btnAdminBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminBackActionPerformed
         if (tblLocalOrder.getRowCount() > 0) {
             if (JOptionPane.showConfirmDialog(this,
@@ -1167,6 +1245,18 @@ public class frmLocalOrder extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
+    private void btnAdditionalProduct7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProduct7MouseClicked
+
+    private void btnAdditionalProduct8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct8MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProduct8MouseClicked
+
+    private void btnAdditionalProduct9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct9MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdditionalProduct9MouseClicked
+
     public void clearTable(JTable table) {
         DefaultTableModel dm = (DefaultTableModel) table.getModel();
         int rowCount = dm.getRowCount();
@@ -1239,6 +1329,12 @@ public class frmLocalOrder extends javax.swing.JFrame {
             return btnAdditionalProduct5.getText();
         } else if (btnAdditionalProduct6.isSelected()) {
             return btnAdditionalProduct6.getText();
+        } else if (btnAdditionalProduct7.isSelected()) {
+            return btnAdditionalProduct7.getText();
+        } else if (btnAdditionalProduct8.isSelected()) {
+            return btnAdditionalProduct8.getText();
+        } else if (btnAdditionalProduct9.isSelected()) {
+            return btnAdditionalProduct9.getText();
         } else {
             return "";
         }
@@ -1473,6 +1569,9 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnAdditionalProduct4;
     private javax.swing.JToggleButton btnAdditionalProduct5;
     private javax.swing.JToggleButton btnAdditionalProduct6;
+    private javax.swing.JToggleButton btnAdditionalProduct7;
+    private javax.swing.JToggleButton btnAdditionalProduct8;
+    private javax.swing.JToggleButton btnAdditionalProduct9;
     private javax.swing.JButton btnAdminBack;
     private javax.swing.JButton btnCorrection;
     private javax.swing.JButton btnDlgAdditionsCancel;
@@ -1496,9 +1595,9 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnProduct7;
     private javax.swing.JToggleButton btnProduct8;
     private javax.swing.JToggleButton btnProduct9;
-    private javax.swing.JToggleButton btnSelectedAdditionalProduct;
-    private javax.swing.JToggleButton btnSelectedAmount;
-    private javax.swing.JToggleButton btnSelectedProducts;
+    public javax.swing.JToggleButton btnSelectedAdditionalProduct;
+    public javax.swing.JToggleButton btnSelectedAmount;
+    public javax.swing.JToggleButton btnSelectedProducts;
     private javax.swing.JDialog dlgAdditionsLocalOrder;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

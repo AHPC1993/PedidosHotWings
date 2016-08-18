@@ -47,7 +47,7 @@ public class frmMainHotWings extends javax.swing.JFrame {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
         this.setSize(dim.width, dim.height);
-        
+
         btnAdmin.setVisible(false);
         //  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -393,13 +393,18 @@ public class frmMainHotWings extends javax.swing.JFrame {
 
     private void btnLocalOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalOrderActionPerformed
         localOrder = new clsDAOLocalOrderDetails();
+        frmLocalO.loadNameProductValues();
+        frmLocalO.loadAdditionalProductsValues();
         frmLocalO.txtOrderNumber.setText(localOrder.selectOrderNumber());
+        frmLocalO.btnSelectedAmount.setSelected(true);
+        frmLocalO.btnSelectedProducts.setSelected(true);
+        frmLocalO.btnSelectedAdditionalProduct.setSelected(true);
         frmLocalO.setVisible(true);
     }//GEN-LAST:event_btnLocalOrderActionPerformed
 
     private void btnOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDeliveryActionPerformed
         // frmOrderDelivery.setVisible(true);
-        orderDelivery = new clsDAOOrderDeliveryDetails();
+        orderDelivery = new clsDAOOrderDeliveryDetails();       
         frmOrderDelivery.txtOrderNumber.setText(orderDelivery.selectOrderNumber());
         frmOrderDelivery.dlgOrderDelivery.setVisible(true);
 

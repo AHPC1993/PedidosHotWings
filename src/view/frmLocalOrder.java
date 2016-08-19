@@ -6,18 +6,10 @@
 package view;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.io.Console;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
@@ -25,10 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import model.clsDAOAdditionalProducts;
 import model.clsDAOLocalOrderDetails;
-import model.clsDAOProducts;
 
 /**
  *
@@ -245,6 +234,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
                 btnAdditionalProduct2MouseClicked(evt);
             }
         });
+        btnAdditionalProduct2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct2ActionPerformed(evt);
+            }
+        });
 
         additionsGroup.add(btnAdditionalProduct3);
         btnAdditionalProduct3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -252,6 +246,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnAdditionalProduct3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAdditionalProduct3MouseClicked(evt);
+            }
+        });
+        btnAdditionalProduct3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct3ActionPerformed(evt);
             }
         });
 
@@ -277,6 +276,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
                 btnAdditionalProduct6MouseClicked(evt);
             }
         });
+        btnAdditionalProduct6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct6ActionPerformed(evt);
+            }
+        });
 
         additionsGroup.add(btnAdditionalProduct4);
         btnAdditionalProduct4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -284,6 +288,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnAdditionalProduct4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAdditionalProduct4MouseClicked(evt);
+            }
+        });
+        btnAdditionalProduct4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct4ActionPerformed(evt);
             }
         });
 
@@ -295,6 +304,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
                 btnAdditionalProduct5MouseClicked(evt);
             }
         });
+        btnAdditionalProduct5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct5ActionPerformed(evt);
+            }
+        });
 
         additionsGroup.add(btnAdditionalProduct7);
         btnAdditionalProduct7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -302,6 +316,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnAdditionalProduct7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAdditionalProduct7MouseClicked(evt);
+            }
+        });
+        btnAdditionalProduct7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct7ActionPerformed(evt);
             }
         });
 
@@ -313,6 +332,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
                 btnAdditionalProduct8MouseClicked(evt);
             }
         });
+        btnAdditionalProduct8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct8ActionPerformed(evt);
+            }
+        });
 
         additionsGroup.add(btnAdditionalProduct9);
         btnAdditionalProduct9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -320,6 +344,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
         btnAdditionalProduct9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAdditionalProduct9MouseClicked(evt);
+            }
+        });
+        btnAdditionalProduct9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct9ActionPerformed(evt);
             }
         });
 
@@ -1014,9 +1043,8 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblLocalOrderMouseClicked
     private void btnOtherAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherAmountActionPerformed
-
+        try{
         if (!btnSelectedProducts.isSelected()) {
-
             btnSelectedAmount.setSelected(true);
             String inputValue = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese la cantidad que necesita</font></p></html>");
             if (inputValue == null || inputValue.isEmpty() || inputValue == "") {
@@ -1071,6 +1099,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La cantidad debe ser igual o mayor a 10</font></p></html>");
                 }
             }
+
+        }
+         } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(null, "<html><p><font size=\"5\">Error, el campo debe tener solo números</font></p></html>", "Atención", JOptionPane.INFORMATION_MESSAGE);
 
         }
         btnSelectedAmount.setSelected(true);
@@ -1139,7 +1172,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         try {
             double change = 0;
             String inChange = JOptionPane.showInputDialog("<html><p><font size=\"5\">Devuelta de cuánto?</font></p></html>");
-            if (!inChange.isEmpty()) {
+            if (inChange!= null || !inChange.isEmpty()) {
                 if (inChange.length() <= 7) {
                     change = Double.parseDouble(inChange);
                     double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
@@ -1171,44 +1204,34 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_dlgAdditionsLocalOrderWindowOpened
 
     private void btnAdditionalProduct1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct1MouseClicked
-        dlgAdditionsLocalOrder.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+      
 
     }//GEN-LAST:event_btnAdditionalProduct1MouseClicked
 
     private void btnAdditionalProduct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct1ActionPerformed
-
+          dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
     }//GEN-LAST:event_btnAdditionalProduct1ActionPerformed
 
     private void btnAdditionalProduct2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct2MouseClicked
-        dlgAdditionsLocalOrder.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+        
     }//GEN-LAST:event_btnAdditionalProduct2MouseClicked
 
     private void btnAdditionalProduct3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct3MouseClicked
-        dlgAdditionsLocalOrder.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+        
     }//GEN-LAST:event_btnAdditionalProduct3MouseClicked
 
     private void btnAdditionalProduct4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct4MouseClicked
-        dlgAdditionsLocalOrder.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+      
     }//GEN-LAST:event_btnAdditionalProduct4MouseClicked
 
     private void btnAdditionalProduct5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct5MouseClicked
-        dlgAdditionsLocalOrder.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+       
     }//GEN-LAST:event_btnAdditionalProduct5MouseClicked
 
     private void btnAdditionalProduct6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct6MouseClicked
-        dlgAdditionsLocalOrder.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+       
     }//GEN-LAST:event_btnAdditionalProduct6MouseClicked
 
     private void btnDlgAdditionsCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgAdditionsCancelActionPerformed
@@ -1256,6 +1279,54 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private void btnAdditionalProduct9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct9MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdditionalProduct9MouseClicked
+
+    private void btnAdditionalProduct2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct2ActionPerformed
+         dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct2ActionPerformed
+
+    private void btnAdditionalProduct3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct3ActionPerformed
+         dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct3ActionPerformed
+
+    private void btnAdditionalProduct4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct4ActionPerformed
+        dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct4ActionPerformed
+
+    private void btnAdditionalProduct5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct5ActionPerformed
+        dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct5ActionPerformed
+
+    private void btnAdditionalProduct6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct6ActionPerformed
+        dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct6ActionPerformed
+
+    private void btnAdditionalProduct7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct7ActionPerformed
+          dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct7ActionPerformed
+
+    private void btnAdditionalProduct8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct8ActionPerformed
+          dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct8ActionPerformed
+
+    private void btnAdditionalProduct9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct9ActionPerformed
+        dlgAdditionsLocalOrder.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct9ActionPerformed
 
     public void clearTable(JTable table) {
         DefaultTableModel dm = (DefaultTableModel) table.getModel();

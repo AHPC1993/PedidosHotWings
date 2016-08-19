@@ -59,6 +59,7 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
     public boolean insertOrderFull(String order_number, String total_price) {
 
         String sql = "INSERT INTO public.tbl_localorder(order_number, total_price, date_order) VALUES('" + order_number + "','" + total_price + "', (SELECT To_timestamp(To_char(current_timestamp, 'YYYY/MM/DD HH:MI:SS'),'YYYY/MM/DD HH:MI:SS')));";
+        System.out.println(sql);
         return connexion.insert(sql);
     }
 

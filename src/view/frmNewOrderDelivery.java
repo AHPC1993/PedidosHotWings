@@ -513,6 +513,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 btnAdditionalProduct2MouseClicked(evt);
             }
         });
+        btnAdditionalProduct2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct2ActionPerformed(evt);
+            }
+        });
 
         additionsGroup.add(btnAdditionalProduct3);
         btnAdditionalProduct3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -520,6 +525,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         btnAdditionalProduct3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAdditionalProduct3MouseClicked(evt);
+            }
+        });
+        btnAdditionalProduct3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct3ActionPerformed(evt);
             }
         });
 
@@ -545,6 +555,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 btnAdditionalProduct6MouseClicked(evt);
             }
         });
+        btnAdditionalProduct6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct6ActionPerformed(evt);
+            }
+        });
 
         additionsGroup.add(btnAdditionalProduct4);
         btnAdditionalProduct4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -552,6 +567,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         btnAdditionalProduct4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAdditionalProduct4MouseClicked(evt);
+            }
+        });
+        btnAdditionalProduct4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct4ActionPerformed(evt);
             }
         });
 
@@ -563,6 +583,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 btnAdditionalProduct5MouseClicked(evt);
             }
         });
+        btnAdditionalProduct5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct5ActionPerformed(evt);
+            }
+        });
 
         additionsGroup.add(btnAdditionalProduct7);
         btnAdditionalProduct7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -570,6 +595,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         btnAdditionalProduct7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAdditionalProduct7MouseClicked(evt);
+            }
+        });
+        btnAdditionalProduct7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct7ActionPerformed(evt);
             }
         });
 
@@ -581,6 +611,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                 btnAdditionalProduct8MouseClicked(evt);
             }
         });
+        btnAdditionalProduct8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct8ActionPerformed(evt);
+            }
+        });
 
         additionsGroup.add(btnAdditionalProduct9);
         btnAdditionalProduct9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -588,6 +623,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         btnAdditionalProduct9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAdditionalProduct9MouseClicked(evt);
+            }
+        });
+        btnAdditionalProduct9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdditionalProduct9ActionPerformed(evt);
             }
         });
 
@@ -665,7 +705,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             dlgAdditionsOrderDeliveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dlgAdditionsOrderDeliveryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pblAdditionsLocalOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                .addComponent(pblAdditionsLocalOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDlgAdditionsCancel)
                 .addGap(25, 25, 25))
@@ -1665,9 +1705,12 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
     public boolean numbersAndNoEmpty(String inChange) {
         try {
-            if (!inChange.isEmpty()) {
+
+            if (inChange != null) {
                 double change = Double.parseDouble(inChange);
                 return true;
+            } else if (inChange == null) {
+                return false;
             }
         } catch (NumberFormatException e) {
 
@@ -1680,6 +1723,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     public void change() {
         try {
             double change = 0;
+            
             String inChange = JOptionPane.showInputDialog("<html><p><font size=\"5\">Devuelta de cuánto?</font></p></html>");
             if (numbersAndNoEmpty(inChange)) {
                 if (inChange.length() <= 7) {
@@ -1705,43 +1749,33 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
 
     private void btnAdditionalProduct2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct2MouseClicked
-        dlgAdditionsOrderDelivery.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+
     }//GEN-LAST:event_btnAdditionalProduct2MouseClicked
 
     private void btnAdditionalProduct3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct3MouseClicked
-        dlgAdditionsOrderDelivery.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+
     }//GEN-LAST:event_btnAdditionalProduct3MouseClicked
 
     private void btnAdditionalProduct1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct1MouseClicked
-        dlgAdditionsOrderDelivery.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+
     }//GEN-LAST:event_btnAdditionalProduct1MouseClicked
 
     private void btnAdditionalProduct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct1ActionPerformed
-
+        dlgAdditionsOrderDelivery.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
     }//GEN-LAST:event_btnAdditionalProduct1ActionPerformed
 
     private void btnAdditionalProduct6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct6MouseClicked
-        dlgAdditionsOrderDelivery.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+
     }//GEN-LAST:event_btnAdditionalProduct6MouseClicked
 
     private void btnAdditionalProduct4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct4MouseClicked
-        dlgAdditionsOrderDelivery.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+
     }//GEN-LAST:event_btnAdditionalProduct4MouseClicked
 
     private void btnAdditionalProduct5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct5MouseClicked
-        dlgAdditionsOrderDelivery.setVisible(false);
-        this.setVisible(true);
-        btnProduct6.isSelected();
+
     }//GEN-LAST:event_btnAdditionalProduct5MouseClicked
 
     private void btnDlgAdditionsCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDlgAdditionsCancelActionPerformed
@@ -1792,16 +1826,64 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnAdditionalProduct7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct7MouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnAdditionalProduct7MouseClicked
 
     private void btnAdditionalProduct8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct8MouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnAdditionalProduct8MouseClicked
 
     private void btnAdditionalProduct9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdditionalProduct9MouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnAdditionalProduct9MouseClicked
+
+    private void btnAdditionalProduct9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct9ActionPerformed
+        dlgAdditionsOrderDelivery.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct9ActionPerformed
+
+    private void btnAdditionalProduct8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct8ActionPerformed
+        dlgAdditionsOrderDelivery.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct8ActionPerformed
+
+    private void btnAdditionalProduct7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct7ActionPerformed
+        dlgAdditionsOrderDelivery.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct7ActionPerformed
+
+    private void btnAdditionalProduct6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct6ActionPerformed
+        dlgAdditionsOrderDelivery.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct6ActionPerformed
+
+    private void btnAdditionalProduct5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct5ActionPerformed
+        dlgAdditionsOrderDelivery.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct5ActionPerformed
+
+    private void btnAdditionalProduct4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct4ActionPerformed
+        dlgAdditionsOrderDelivery.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct4ActionPerformed
+
+    private void btnAdditionalProduct3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct3ActionPerformed
+        dlgAdditionsOrderDelivery.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct3ActionPerformed
+
+    private void btnAdditionalProduct2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProduct2ActionPerformed
+        dlgAdditionsOrderDelivery.setVisible(false);
+        this.setVisible(true);
+        btnProduct6.isSelected();
+    }//GEN-LAST:event_btnAdditionalProduct2ActionPerformed
 
     /**
      * Método que solo admite números y una longitud máxima de 8 caracteres.

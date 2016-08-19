@@ -138,6 +138,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct2MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct2ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct3">
@@ -152,6 +153,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct3MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct3ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct1">
@@ -181,6 +183,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct6MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct6ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct4">
@@ -195,6 +198,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct4MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct4ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct5">
@@ -209,6 +213,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct5MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct5ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct7">
@@ -223,6 +228,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct7MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct7ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct8">
@@ -237,6 +243,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct8MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct8ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="btnAdditionalProduct9">
@@ -251,6 +258,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdditionalProduct9MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdditionalProduct9ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

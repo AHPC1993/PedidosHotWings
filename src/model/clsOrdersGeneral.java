@@ -48,7 +48,12 @@ public class clsOrdersGeneral {
 
     public DefaultTableModel list() {
         String[] columnName = {"Fecha", "Número de Orden", "Total Pedido"};
-        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0);
+        DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         try {
             ResultSet result = null;
             String sql = "SELECT date_order, order_number, to_char(total_price,'FM999,999,999') FROM tbl_localorder UNION SELECT date_order, order_number, to_char(total_price,'FM999,999,999') FROM tbl_orderdelivery ORDER by date_order desc;";

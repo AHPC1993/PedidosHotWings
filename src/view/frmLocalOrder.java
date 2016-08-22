@@ -1143,6 +1143,14 @@ public class frmLocalOrder extends javax.swing.JFrame {
         ArrayList<String> orderArrayKitchen = new ArrayList();
         ArrayList<String> orderArrayLocal = new ArrayList();
         model.printOrder print = new printOrder();
+        int typeOrder = JOptionPane.showConfirmDialog(this, "<html><p><font size=\"5\">¿El domicilio es para llevar(empacar)?</font></p></html>");
+        if (typeOrder == 1) {
+            orderArrayKitchen.add(String.format("%-5s", " Para el local\n\n"));
+
+        } else {
+            orderArrayKitchen.add(String.format("%-5s", "Para llevar\n\n"));
+
+        }
         orderArrayKitchen.add(String.format("%-5s %-5s", "Und", "Descripcion\n"));
         orderArrayKitchen.add("---------------------------------\n");//33
         orderArrayLocal.add(String.format("%-5s %-5s %14s", "Und", "Descripcion", "Valor\n"));
@@ -1150,7 +1158,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         for (int i = 0; i < tblLocalOrder.getRowCount(); i++) {
             //Se pone el 25 como medida exacta para que al imprimir no se salga de la línea de impresión
             int amountForFormat = 25 - tblLocalOrder.getValueAt(i, 1).toString().length();
-            String orderKitchen = String.format("%-5s %-5s", tblLocalOrder.getValueAt(i, 4),tblLocalOrder.getValueAt(i, 1) + "\n") ;
+            String orderKitchen = String.format("%-5s %-5s", tblLocalOrder.getValueAt(i, 4), tblLocalOrder.getValueAt(i, 1) + "\n");
             String orderLocal = String.format("%-5s %-5s %" + amountForFormat + "s", tblLocalOrder.getValueAt(i, 4), tblLocalOrder.getValueAt(i, 1), tblLocalOrder.getValueAt(i, 5) + "\n");
             System.out.print(orderLocal);
             orderArrayKitchen.add(orderKitchen);
@@ -1162,8 +1170,8 @@ public class frmLocalOrder extends javax.swing.JFrame {
         orderArrayLocal.add("Total: " + txtTotalOrder.getText());
         orderArrayLocal.add("\n\n---------------------------------\n"); //33
 
-        //print.printLocalOrder(orderArrayKitchen, 16);
-        //print.printLocalOrder(orderArrayLocal, 0);
+        print.printLocalOrder(orderArrayKitchen, 16);
+        print.printLocalOrder(orderArrayLocal, 0);
 
     }
 

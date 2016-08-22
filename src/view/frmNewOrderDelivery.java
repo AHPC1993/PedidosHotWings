@@ -1480,6 +1480,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         ArrayList<String> orderArrayKitchen = new ArrayList();
         ArrayList<String> orderArrayLocal = new ArrayList();
         model.printOrder print = new printOrder();
+        orderArrayKitchen.add(String.format("%-5s", " para domicilio\n\n"));
 
         orderArrayKitchen.add(String.format("%-5s %-5s", "Und", "Descripcion\n"));
         orderArrayKitchen.add("---------------------------------\n");//33
@@ -1498,26 +1499,31 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         orderArrayLocal.add("\t\t" + txtOrderNumber.getText() + "\n");
         orderArrayLocal.add("Total: " + txtTotalOrder.getText());
         orderArrayLocal.add("\n\n---------------------------------\n"); //33
-        printDatesCustomer();
+       
         for (int i = 0; i < orderArrayLocal.size(); i++) {
             System.out.print(orderArrayLocal.get(i));
         }
        
-        //print.printLocalOrder(orderArrayKitchen, 16);
-        //print.printLocalOrder(orderArrayLocal, 0);
+        print.printLocalOrder(orderArrayKitchen, 16);
+        printDatesCustomer();
+        print.printLocalOrder(orderArrayLocal, 0);
     }
 
     public void printDatesCustomer() {
+                model.printOrder print = new printOrder();
+
         ArrayList<String> datesCustomer = new ArrayList();
-        datesCustomer.add("Nombre: " + customers.getNamec() + " " + customers.getLastname());
-        datesCustomer.add("Teléfono: " + customers.getPhone());
-        datesCustomer.add("Dirección: " + customers.getAddress());
-        datesCustomer.add("Barrio: " + customers.getNeighborhood());
-        datesCustomer.add("Domicilio: " + nameEmployeeForOrder);
-        
+        datesCustomer.add("Nombre: \n" + customers.getNamec() + " " + customers.getLastname()+"\n");
+        datesCustomer.add("Telefono: " + customers.getPhone()+"\n");
+        datesCustomer.add("Direccin: " + customers.getAddress()+"\n");
+        datesCustomer.add("Barrio: " + customers.getNeighborhood()+"\n");
+        datesCustomer.add("Domicilio: " + nameEmployeeForOrder+"\n");
+        datesCustomer.add("\nOrden\n");
+
         for (int i = 0; i < datesCustomer.size(); i++) {
             System.out.println(datesCustomer.get(i));
         }
+         print.printLocalOrder(datesCustomer, 0);
         System.out.println("\n Orden\n");
 
     }

@@ -28,13 +28,14 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.clsDAOCustomers;
 import model.clsDAOOrderDeliveryDetails;
+import model.printOrder;
 
 /**
  *
  * @author GSG
  */
 public class frmNewOrderDelivery extends javax.swing.JFrame {
-
+    String nameEmployeeForOrder;
     int contService = 0;
     Border borderDefault;
     Border borderEmptyField;
@@ -1281,6 +1282,12 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             result = customers.search();
             if (result != null) {
                 customers_id = result.getString(1);
+                customers.setCustomers_id(customers_id);
+                customers.setNamec(result.getString(3));
+                customers.setLastname(result.getString(4));
+                customers.setAddress(result.getString(5));
+                customers.setNeighborhoos(result.getString(6));
+                customers.setPhone(result.getString(9));
                 txtCustomersDocument.setText(result.getString(2));
                 txtCustomersName.setText(result.getString(3));
                 txtCustomersLastName.setText(result.getString(4));
@@ -1400,9 +1407,13 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                                 if (listEmployees_id.size() > 0) {
 
                                     JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
+                                    nameEmployeeForOrder = jcbListEmployees.getSelectedItem().toString();
                                     employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">No existen empleados con cargo de domicilio.</font></p></html>");
                                 }
                                 if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
+                                    printFormat();
                                     txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
                                     txtTotalOrder.setText("0");
                                     txtChangeOrder.setText("0");
@@ -1443,12 +1454,15 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
                         JOptionPane.showMessageDialog(null, jcbListEmployees, "¿Quién llevará el domicilio?", JOptionPane.QUESTION_MESSAGE);
                         employee_id = listEmployees_id.get(jcbListEmployees.getSelectedIndex());
+                        nameEmployeeForOrder = jcbListEmployees.getSelectedItem().toString();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">No existen empleados con cargo de domicilio.</font></p></html>");
                     }
                     if (orderDelivery.insertOrderFull(txtOrderNumber.getText(), txtTotalOrder.getText().replace(",", ""), employee_id)) {
+                        printFormat();
                         txtOrderNumber.setText(orderDelivery.incrementOrderNumber());
                         txtTotalOrder.setText("0");
                         txtChangeOrder.setText("0");
-
                         clearTable(tblOrderDelivery);
                         JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La orden ha sido procesada con éxito</font></p></html>");
                         contService = 0;
@@ -1460,6 +1474,53 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">No hay todavía ningún producto para realizar la compra.</font></p></html>");
         }
     }//GEN-LAST:event_btnDoneOrderActionPerformed
+
+    public void printFormat() {
+
+        ArrayList<String> orderArrayKitchen = new ArrayList();
+        ArrayList<String> orderArrayLocal = new ArrayList();
+        model.printOrder print = new printOrder();
+
+        orderArrayKitchen.add(String.format("%-5s %-5s", "Und", "Descripcion\n"));
+        orderArrayKitchen.add("---------------------------------\n");//33
+        orderArrayLocal.add(String.format("%-5s %-5s %14s", "Und", "Descripcion", "Valor\n"));
+        orderArrayLocal.add("---------------------------------\n");//33
+        for (int i = 0; i < tblOrderDelivery.getRowCount(); i++) {
+            //Se pone el 25 como medida exacta para que al imprimir no se salga de la línea de impresión
+            int amountForFormat = 25 - tblOrderDelivery.getValueAt(i, 1).toString().length();
+            String orderKitchen = String.format("%-5s %-5s", tblOrderDelivery.getValueAt(i, 4), tblOrderDelivery.getValueAt(i, 1) + "\n");
+            String orderLocal = String.format("%-5s %-5s %" + amountForFormat + "s", tblOrderDelivery.getValueAt(i, 4), tblOrderDelivery.getValueAt(i, 1), tblOrderDelivery.getValueAt(i, 5) + "\n");
+            orderArrayKitchen.add(orderKitchen);
+            orderArrayLocal.add(orderLocal);
+        }
+        orderArrayKitchen.add("\t\t" + txtOrderNumber.getText() + "\n");
+        orderArrayKitchen.add("\n\n---------------------------------\n"); //33
+        orderArrayLocal.add("\t\t" + txtOrderNumber.getText() + "\n");
+        orderArrayLocal.add("Total: " + txtTotalOrder.getText());
+        orderArrayLocal.add("\n\n---------------------------------\n"); //33
+        printDatesCustomer();
+        for (int i = 0; i < orderArrayLocal.size(); i++) {
+            System.out.print(orderArrayLocal.get(i));
+        }
+       
+        //print.printLocalOrder(orderArrayKitchen, 16);
+        //print.printLocalOrder(orderArrayLocal, 0);
+    }
+
+    public void printDatesCustomer() {
+        ArrayList<String> datesCustomer = new ArrayList();
+        datesCustomer.add("Nombre: " + customers.getNamec() + " " + customers.getLastname());
+        datesCustomer.add("Teléfono: " + customers.getPhone());
+        datesCustomer.add("Dirección: " + customers.getAddress());
+        datesCustomer.add("Barrio: " + customers.getNeighborhood());
+        datesCustomer.add("Domicilio: " + nameEmployeeForOrder);
+        
+        for (int i = 0; i < datesCustomer.size(); i++) {
+            System.out.println(datesCustomer.get(i));
+        }
+        System.out.println("\n Orden\n");
+
+    }
 
     public void clearTable(JTable table) {
         DefaultTableModel dm = (DefaultTableModel) table.getModel();
@@ -1487,8 +1548,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             String inputValue = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese la cantidad que necesita</font></p></html>");
             if (inputValue == null || inputValue.isEmpty() || inputValue == "") {
                 JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor ingrese una cantidad</font></p></html>");
-            } else if (inputValue.length() > 3) {
-                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es mayor al máximo permitido.(999)</font></p></html>");
+            } else if (inputValue.length() >= 3) {
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es mayor al máximo permitido.(99)</font></p></html>");
             } else {
                 double amount = Double.parseDouble(inputValue);
                 if (amount > 9) {
@@ -1656,7 +1717,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                         message, "Eliminar producto",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                    if (tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 1).toString().contains("Servicio a domicilio")) {
+                    if (tblOrderDelivery.getValueAt(tblOrderDelivery.getSelectedRow(), 1).toString().contains("Domicilio")) {
                         contService = 0;
                     }
                     orderDelivery.setLocalOrder_id(selection);
@@ -1723,7 +1784,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     public void change() {
         try {
             double change = 0;
-            
+
             String inChange = JOptionPane.showInputDialog("<html><p><font size=\"5\">Devuelta de cuánto?</font></p></html>");
             if (numbersAndNoEmpty(inChange)) {
                 if (inChange.length() <= 7) {

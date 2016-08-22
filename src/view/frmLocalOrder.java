@@ -1137,18 +1137,22 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDoneOrderActionPerformed
 
     public void printFormat() {
+
+        System.out.println(String.format("%-5s %-5s %14s", "Und", "Descripción", "Valor"));
+
         ArrayList<String> orderArrayKitchen = new ArrayList();
         ArrayList<String> orderArrayLocal = new ArrayList();
         model.printOrder print = new printOrder();
-        orderArrayKitchen.add("Und\tDescripcion\n");
+        orderArrayKitchen.add(String.format("%-5s %-5s", "Und", "Descripcion\n"));
         orderArrayKitchen.add("---------------------------------\n");//33
-        orderArrayLocal.add("Und\tDescripcion\tValor\n");
+        orderArrayLocal.add(String.format("%-5s %-5s %14s", "Und", "Descripcion", "Valor\n"));
         orderArrayLocal.add("---------------------------------\n");//33
         for (int i = 0; i < tblLocalOrder.getRowCount(); i++) {
-            System.out.println(tblLocalOrder.getRowCount());
-            String orderKitchen = tblLocalOrder.getValueAt(i, 4) + "\t" + tblLocalOrder.getValueAt(i, 1) + "\n";
-            String orderLocal = tblLocalOrder.getValueAt(i, 4) + "\t" + tblLocalOrder.getValueAt(i, 1) + "\t\t" + tblLocalOrder.getValueAt(i, 5) + "\n";
-            System.out.println(orderArrayLocal.get(i));
+            //Se pone el 25 como medida exacta para que al imprimir no se salga de la línea de impresión
+            int amountForFormat = 25 - tblLocalOrder.getValueAt(i, 1).toString().length();
+            String orderKitchen = String.format("%-5s %-5s", tblLocalOrder.getValueAt(i, 4),tblLocalOrder.getValueAt(i, 1) + "\n") ;
+            String orderLocal = String.format("%-5s %-5s %" + amountForFormat + "s", tblLocalOrder.getValueAt(i, 4), tblLocalOrder.getValueAt(i, 1), tblLocalOrder.getValueAt(i, 5) + "\n");
+            System.out.print(orderLocal);
             orderArrayKitchen.add(orderKitchen);
             orderArrayLocal.add(orderLocal);
         }
@@ -1158,9 +1162,8 @@ public class frmLocalOrder extends javax.swing.JFrame {
         orderArrayLocal.add("Total: " + txtTotalOrder.getText());
         orderArrayLocal.add("\n\n---------------------------------\n"); //33
 
-        // orderArrayKitchen.add("\t\t"+txtOrderNumber.getText()+"\n");
-        print.printLocalOrder(orderArrayKitchen, 16);
-        print.printLocalOrder(orderArrayLocal, 0);
+        //print.printLocalOrder(orderArrayKitchen, 16);
+        //print.printLocalOrder(orderArrayLocal, 0);
 
     }
 

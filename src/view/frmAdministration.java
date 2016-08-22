@@ -417,6 +417,7 @@ public class frmAdministration extends javax.swing.JFrame {
         txtEmployeesAddress.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtEmployeesAddress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        txtEmployeesDocument.setColumns(5);
         txtEmployeesDocument.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtEmployeesDocument.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtEmployeesDocument.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -4270,16 +4271,20 @@ public class frmAdministration extends javax.swing.JFrame {
             txtNumber.setText("");
             evt.consume();
             JOptionPane.showMessageDialog(null, "<html><p><font size=\"5\">Por favor ingrese solamente números, sin puntuación o letras</font></p></html>", "Validando datos", JOptionPane.ERROR_MESSAGE);
-
+          
         }
+          limitNumberCharactersTxt(evt, txtNumber, amountCharacters);
+
+    }
+    
+    public void limitNumberCharactersTxt(java.awt.event.KeyEvent evt, JTextField txt, int amountCharacters){
         int k = (int) evt.getKeyChar();
-        if (txtNumber.getText().length() >= amountCharacters) {
+        if (txt.getText().length() >= amountCharacters) {
             evt.setKeyChar((char) KeyEvent.VK_CLEAR);//Limpiar el caracter ingresado
-            txtNumber.setText("");
+            txt.setText("");
             JOptionPane.showMessageDialog(null, "<html><p><font size=\"5\">Ha excedido el número máximo de caracteres! (" + amountCharacters + ")</font></p></html>", "Validando Datos", JOptionPane.ERROR_MESSAGE);
-            txtNumber.setText("");
+            txt.setText("");
         }
-
     }
 
     /**

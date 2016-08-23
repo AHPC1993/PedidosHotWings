@@ -121,7 +121,7 @@ public class clsDAOAdditionalProducts extends clsAdditionalProducts {
         };
         try {
             ResultSet result = null;
-            String sql = "Select namep, description, price, notes FROM public.tbl_additional_products;";
+            String sql = "Select namep, description, price, notes FROM public.tbl_additional_products order by 1 asc;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();

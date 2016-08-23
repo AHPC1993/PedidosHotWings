@@ -120,7 +120,7 @@ public class clsDAOProducts extends clsProducts {
         };
         try {
             ResultSet result = null;
-            String sql = "Select namep,description, price, notes FROM public.tbl_products;";
+            String sql = "Select namep,description, price, notes FROM public.tbl_products order by 1 asc;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();
@@ -130,8 +130,6 @@ public class clsDAOProducts extends clsProducts {
                 for (int i = 1; i <= columns; i++) {
                     row[i - 1] = result.getObject(i);
                 }
-
-                System.out.println("");
                 tblModel.addRow(row);
             }
             return tblModel;

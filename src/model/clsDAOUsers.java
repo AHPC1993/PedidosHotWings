@@ -150,7 +150,7 @@ public class clsDAOUsers extends clsUsers {
         };
         try {
             ResultSet result = null;
-            String sql = "Select users, passwordu, description, date_register, date_in, isadmin FROM public.tbl_login;";
+            String sql = "Select users, passwordu, description, date_register, date_in, isadmin FROM public.tbl_login order by 1;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();
@@ -161,7 +161,6 @@ public class clsDAOUsers extends clsUsers {
                     row[i - 1] = result.getObject(i);
                 }
 
-                System.out.println("");
                 tblModel.addRow(row);
 
             }

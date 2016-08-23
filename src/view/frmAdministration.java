@@ -731,6 +731,8 @@ public class frmAdministration extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -748,7 +750,7 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelProductsTable.setViewportView(tblProducts);
         tblProducts.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        dlgAdminProducts.getContentPane().add(scrollPanelProductsTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 640, 410));
+        dlgAdminProducts.getContentPane().add(scrollPanelProductsTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 870, 410));
 
         pnlProductsButtons.setOpaque(false);
 
@@ -868,6 +870,11 @@ public class frmAdministration extends javax.swing.JFrame {
 
         txtProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtProductsName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtProductsName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtProductsNameKeyTyped(evt);
+            }
+        });
 
         lblProductsName.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblProductsName.setText("Nombre");
@@ -1179,7 +1186,7 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelCustomersTable.setViewportView(tblCustomers);
         tblCustomers.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        dlgAdminCustomers.getContentPane().add(scrollPanelCustomersTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 870, 410));
+        dlgAdminCustomers.getContentPane().add(scrollPanelCustomersTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 870, 410));
 
         pnlCustomersButtons.setOpaque(false);
 
@@ -1465,13 +1472,18 @@ public class frmAdministration extends javax.swing.JFrame {
         tblAdditionalProducts.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         dlgAdminAdditionalProducts.getContentPane().add(scrollPanelAdditionalProductsTable);
-        scrollPanelAdditionalProductsTable.setBounds(640, 122, 640, 410);
+        scrollPanelAdditionalProductsTable.setBounds(460, 140, 870, 410);
 
         pnlAdditionalProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         pnlAdditionalProducts.setOpaque(false);
 
         txtAdditionalProductsName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtAdditionalProductsName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtAdditionalProductsName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAdditionalProductsNameKeyTyped(evt);
+            }
+        });
 
         lblAdditionalProductsName.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblAdditionalProductsName.setText("Nombre");
@@ -1864,7 +1876,7 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelLocalsTable.setViewportView(tblLocals);
         tblLocals.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        dlgAdminLocal.getContentPane().add(scrollPanelLocalsTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 640, 410));
+        dlgAdminLocal.getContentPane().add(scrollPanelLocalsTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 870, 410));
 
         btnLocalsBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLocalsBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
@@ -1982,7 +1994,7 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelUsersTable.setViewportView(tblUsers);
         tblUsers.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        dlgAdminUsers.getContentPane().add(scrollPanelUsersTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 640, 410));
+        dlgAdminUsers.getContentPane().add(scrollPanelUsersTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 870, 410));
 
         pnlUsersButtons.setOpaque(false);
 
@@ -2259,7 +2271,7 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelInventoryHistoryTable.setViewportView(tblInventoryHistory);
         tblInventoryHistory.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        dlgAdminInventoryHistory.getContentPane().add(scrollPanelInventoryHistoryTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 680, 410));
+        dlgAdminInventoryHistory.getContentPane().add(scrollPanelInventoryHistoryTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 870, 410));
 
         pnlInventoryHistoryButtons.setOpaque(false);
 
@@ -2546,7 +2558,7 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelInventoryTable.setViewportView(tblInventory);
         tblInventory.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        dlgAdminInventory.getContentPane().add(scrollPanelInventoryTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 640, 410));
+        dlgAdminInventory.getContentPane().add(scrollPanelInventoryTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 870, 410));
 
         pnlInventoryButtons.setOpaque(false);
 
@@ -2772,7 +2784,7 @@ public class frmAdministration extends javax.swing.JFrame {
         scrollPanelOrdersGTable.setViewportView(tblOrdersGeneral);
         tblOrdersGeneral.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        dlgAdminOrders.getContentPane().add(scrollPanelOrdersGTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 740, 410));
+        dlgAdminOrders.getContentPane().add(scrollPanelOrdersGTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 870, 410));
 
         pnlOrdersGButtons.setOpaque(false);
 
@@ -3011,6 +3023,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"5\">El empleado ha sido elminado correctamente.</font></p></html>");
                 if (tblEmployees.isVisible()) {
                     tblEmployees.setModel(employees.list());
+                    centerElementsTable(tblEmployees);
                 }
             } else {
                 JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"5\">No ha podido ser eliminado el empleado, intente nuevamente y verifique que el empleado exista.</font></p></html>");
@@ -3072,6 +3085,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     cleanTextboxEmployees();
                     if (tblEmployees.isVisible()) {
                         tblEmployees.setModel(employees.list());
+                        centerElementsTable(tblEmployees);
                     }
 
                 } else {
@@ -3109,6 +3123,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"5\">El empleado ha sido modificado correctamente.</font></p></html>");
                     if (tblEmployees.isVisible()) {
                         tblEmployees.setModel(employees.list());
+                        centerElementsTable(tblEmployees);
                     }
                     cleanTextboxEmployees();
                 } else {
@@ -3127,6 +3142,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnEmployeesListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesListActionPerformed
         employees = new clsDAOEmployees();
         tblEmployees.setModel(employees.list());
+        centerElementsTable(tblEmployees);
         scrollPanelEmployeesTable.setVisible(true);
         tblEmployees.setVisible(true);
     }//GEN-LAST:event_btnEmployeesListActionPerformed
@@ -3148,6 +3164,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"5\">El producto ha sido modificado correctamente.</font></p></html>");
                     if (tblProducts.isVisible()) {
                         tblProducts.setModel(products.list());
+                        centerElementsTable(tblProducts);
                     }
                     cleanTextboxProducts();
                 } else {
@@ -3173,6 +3190,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"5\">El producto ha sido elminado correctamente.</font></p></html>");
                 if (tblProducts.isVisible()) {
                     tblProducts.setModel(products.list());
+                    centerElementsTable(tblProducts);
                 }
             } else if (result.equals("error")) {
                 JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"5\">No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
@@ -3196,6 +3214,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"5\">Se insertó el producto correctamente</font></p></html>");
                     if (tblProducts.isVisible()) {
                         tblProducts.setModel(products.list());
+                        centerElementsTable(tblProducts);
                     }
                     cleanTextboxProducts();
                 } else {
@@ -3246,7 +3265,8 @@ public class frmAdministration extends javax.swing.JFrame {
 
     private void btnProductsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductsListActionPerformed
         products = new clsDAOProducts();
-        tblProducts.setModel(products.list());
+        tblProducts.setModel(products.list());   
+        centerElementsTable(tblProducts);
         scrollPanelProductsTable.setVisible(true);
         tblProducts.setVisible(true);
 
@@ -3285,6 +3305,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"5\">El cliente ha sido modificado correctamente.</font></p></html>");
                     if (tblCustomers.isVisible()) {
                         tblCustomers.setModel(customers.list());
+                        centerElementsTable(tblCustomers);
                     }
                     cleanTextboxCustomers();
                 } else {
@@ -3314,6 +3335,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"5\">El cliente ha sido elminado correctamente.</font></p></html>");
                 if (tblCustomers.isVisible()) {
                     tblCustomers.setModel(customers.list());
+                    centerElementsTable(tblCustomers);
                 }
             } else if (result.equals("error")) {
                 JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"5\">No ha podido ser eliminado el cliente, intente nuevamente y verifique que el cliente exista.</font></p></html>");
@@ -3337,6 +3359,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"5\">Se insertó el cliente correctamente</font></p></html>");
                     if (tblCustomers.isVisible()) {
                         tblCustomers.setModel(customers.list());
+                        centerElementsTable(tblCustomers);
                     }
                     cleanTextboxCustomers();
                 } else {
@@ -3397,6 +3420,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnCustomersListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersListActionPerformed
         customers = new clsDAOCustomers();
         tblCustomers.setModel(customers.list());
+        centerElementsTable(tblCustomers);
         scrollPanelCustomersTable.setVisible(true);
         tblCustomers.setVisible(true);
 
@@ -3451,6 +3475,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"5\">El local ha sido modificado correctamente.</font></p></html>");
                 if (tblLocals.isVisible()) {
                     tblLocals.setModel(local.list());
+                    centerElementsTable(tblLocals);
                 }
                 cleanTextboxLocals();
             } else {
@@ -3471,6 +3496,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"5\">El local ha sido elminado correctamente.</font></p></html>");
                 if (tblLocals.isVisible()) {
                     tblLocals.setModel(local.list());
+                    centerElementsTable(tblLocals);
                 }
             } else if (result.equals("error")) {
                 JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"5\">No ha podido ser eliminado el local, intente nuevamente y verifique que el local exista.</font></p></html>");
@@ -3492,6 +3518,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"5\">Se insertó el Local correctamente</font></p></html>");
                 if (tblLocals.isVisible()) {
                     tblLocals.setModel(local.list());
+                    centerElementsTable(tblLocals);
                 }
                 cleanTextboxLocals();
             } else {
@@ -3535,6 +3562,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnLocalsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalsListActionPerformed
         local = new clsDAOCompany();
         tblLocals.setModel(local.list());
+        centerElementsTable(tblLocals);
         scrollPanelLocalsTable.setVisible(true);
         tblLocals.setVisible(true);
     }//GEN-LAST:event_btnLocalsListActionPerformed
@@ -3625,6 +3653,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"5\">El producto ha sido modificado correctamente.</font></p></html>");
                     if (tblAdditionalProducts.isVisible()) {
                         tblAdditionalProducts.setModel(additionalProducts.list());
+                        centerElementsTable(tblAdditionalProducts);
                     }
                     cleanTextboxAdditionalProducts();
                 } else {
@@ -3648,6 +3677,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"5\">El producto adicional ha sido elminado correctamente.</font></p></html>");
                 if (tblAdditionalProducts.isVisible()) {
                     tblAdditionalProducts.setModel(additionalProducts.list());
+                    centerElementsTable(tblAdditionalProducts);
                 }
             } else if (result.equals("error")) {
                 JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"5\">No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
@@ -3669,6 +3699,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"5\">Se insertó el producto adicional correctamente</font></p></html>");
                     if (tblAdditionalProducts.isVisible()) {
                         tblAdditionalProducts.setModel(additionalProducts.list());
+                        centerElementsTable(tblAdditionalProducts);
                     }
                     cleanTextboxAdditionalProducts();
                 } else {
@@ -3715,6 +3746,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnAdditionalProductsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionalProductsListActionPerformed
         additionalProducts = new clsDAOAdditionalProducts();
         tblAdditionalProducts.setModel(additionalProducts.list());
+        centerElementsTable(tblAdditionalProducts);
         scrollPanelAdditionalProductsTable.setVisible(true);
         tblAdditionalProducts.setVisible(true);
     }//GEN-LAST:event_btnAdditionalProductsListActionPerformed
@@ -3772,6 +3804,7 @@ public class frmAdministration extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">El producto ha sido modificado correctamente.</font></p></html>");
                         if (tblUsers.isVisible()) {
                             tblUsers.setModel(users.list());
+                            centerElementsTable(tblUsers);
                         }
                         cleanTextboxUsers();
                     } else {
@@ -3800,6 +3833,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">El Usuario ha sido elminado correctamente.</font></p></html>");
                 if (tblUsers.isVisible()) {
                     tblUsers.setModel(users.list());
+                    centerElementsTable(tblUsers);
                 }
             } else if (result.equals("error")) {
                 JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">No ha podido ser eliminado el usuario, intente nuevamente y verifique que el usuario exista.</font></p></html>");
@@ -3821,6 +3855,7 @@ public class frmAdministration extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">Se insertó el usuario correctamente</font></p></html>");
                         if (tblUsers.isVisible()) {
                             tblUsers.setModel(users.list());
+                            centerElementsTable(tblUsers);
                         }
                         cleanTextboxUsers();
                     } else {
@@ -3876,6 +3911,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnUsersListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersListActionPerformed
         users = new clsDAOUsers();
         tblUsers.setModel(users.list());
+        centerElementsTable(tblUsers);
         scrollPanelUsersTable.setVisible(true);
         tblUsers.setVisible(true);
 
@@ -3926,6 +3962,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"5\">El producto ha sido modificado correctamente.</font></p></html>");
                 if (tblInventoryHistory.isVisible()) {
                     tblInventoryHistory.setModel(inventoryHistory.list());
+                    centerElementsTable(tblInventoryHistory);
                 }
                 txtInventoryHistoryAmount.setText("");
             } else {
@@ -3948,6 +3985,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"5\">El producto ha sido elminado correctamente.</font></p></html>");
                 if (tblInventoryHistory.isVisible()) {
                     tblInventoryHistory.setModel(inventoryHistory.list());
+                    centerElementsTable(tblInventoryHistory);
                 }
             } else if (result.equals("error")) {
                 JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"5\">No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
@@ -3970,6 +4008,7 @@ public class frmAdministration extends javax.swing.JFrame {
 
                 if (tblInventoryHistory.isVisible()) {
                     tblInventoryHistory.setModel(inventoryHistory.list());
+                    centerElementsTable(tblInventoryHistory);
                 }
                 txtInventoryHistoryAmount.setText("");
             } else {
@@ -3987,6 +4026,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnInventoryHistoryListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryHistoryListActionPerformed
         inventoryHistory = new clsDAOInventoryHistory();
         tblInventoryHistory.setModel(inventoryHistory.list());
+        centerElementsTable(tblInventoryHistory);
         scrollPanelInventoryHistoryTable.setVisible(true);
         tblInventoryHistory.setVisible(true);
 
@@ -4039,6 +4079,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"5\">El producto ha sido modificado correctamente.</font></p></html>");
                     if (tblInventory.isVisible()) {
                         tblInventory.setModel(inventory.list());
+                        centerElementsTable(tblInventory);
                     }
                     cleanTextboxInventory();
                 } else {
@@ -4066,6 +4107,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"5\">El producto ha sido elminado correctamente.</font></p></html>");
                 if (tblInventory.isVisible()) {
                     tblInventory.setModel(inventory.list());
+                    centerElementsTable(tblInventory);
                 }
             } else if (result.equals("error")) {
                 JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"5\">No ha podido ser eliminado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
@@ -4086,6 +4128,7 @@ public class frmAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"5\">Se insertó el producto correctamente</font></p></html>");
                     if (tblInventory.isVisible()) {
                         tblInventory.setModel(inventory.list());
+                        centerElementsTable(tblInventory);
                     }
                     cleanTextboxInventory();
                 } else {
@@ -4135,6 +4178,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnInventoryListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryListActionPerformed
         inventory = new clsDAOInventory();
         tblInventory.setModel(inventory.list());
+        centerElementsTable(tblInventory);
         scrollPanelInventoryTable.setVisible(true);
         tblInventory.setVisible(true);
 
@@ -4204,6 +4248,7 @@ public class frmAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(dlgAdminOrders, "<html><p><font size=\"5\">La orden ha sido elminada correctamente.</font></p></html>");
                 if (tblOrdersGeneral.isVisible()) {
                     tblOrdersGeneral.setModel(ordersGeneral.list());
+                    centerElementsTable(tblOrdersGeneral);
                 }
             } else if (result.equals("error")) {
                 JOptionPane.showMessageDialog(dlgAdminOrders, "<html><p><font size=\"5\">No ha podido ser eliminada la orden, intente nuevamente y verifique que el número de orden.</font></p></html>");
@@ -4214,6 +4259,7 @@ public class frmAdministration extends javax.swing.JFrame {
     private void btnOrdersGListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersGListActionPerformed
         ordersGeneral = new clsOrdersGeneral();
         tblOrdersGeneral.setModel(ordersGeneral.list());
+        centerElementsTable(tblOrdersGeneral);
         scrollPanelOrdersGTable.setVisible(true);
         tblOrdersGeneral.setVisible(true);
 
@@ -4242,6 +4288,14 @@ public class frmAdministration extends javax.swing.JFrame {
         onlyNumbersInTextField(evt, txtInventoryHistoryAmount, 4);
     }//GEN-LAST:event_txtInventoryHistoryAmountKeyTyped
 
+    private void txtProductsNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductsNameKeyTyped
+        limitNumberCharactersTxt(evt, txtProductsName, 13);
+    }//GEN-LAST:event_txtProductsNameKeyTyped
+
+    private void txtAdditionalProductsNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAdditionalProductsNameKeyTyped
+        limitNumberCharactersTxt(evt, txtAdditionalProductsName, 13);
+    }//GEN-LAST:event_txtAdditionalProductsNameKeyTyped
+
     public boolean validateStringNotNull(String text) {
         //return !(text.equals("") || text == null);
         return !(text == null || text.equals(""));
@@ -4251,7 +4305,7 @@ public class frmAdministration extends javax.swing.JFrame {
         DefaultTableCellRenderer rendererCenter = new DefaultTableCellRenderer();
         rendererCenter.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i = 0; i < table.getColumnCount(); i++) {
-            table.getColumnModel().getColumn(0).setCellRenderer(rendererCenter);
+            table.getColumnModel().getColumn(i).setCellRenderer(rendererCenter);
 
         }
     }
@@ -4271,13 +4325,13 @@ public class frmAdministration extends javax.swing.JFrame {
             txtNumber.setText("");
             evt.consume();
             JOptionPane.showMessageDialog(null, "<html><p><font size=\"5\">Por favor ingrese solamente números, sin puntuación o letras</font></p></html>", "Validando datos", JOptionPane.ERROR_MESSAGE);
-          
+
         }
-          limitNumberCharactersTxt(evt, txtNumber, amountCharacters);
+        limitNumberCharactersTxt(evt, txtNumber, amountCharacters);
 
     }
-    
-    public void limitNumberCharactersTxt(java.awt.event.KeyEvent evt, JTextField txt, int amountCharacters){
+
+    public void limitNumberCharactersTxt(java.awt.event.KeyEvent evt, JTextField txt, int amountCharacters) {
         int k = (int) evt.getKeyChar();
         if (txt.getText().length() >= amountCharacters) {
             evt.setKeyChar((char) KeyEvent.VK_CLEAR);//Limpiar el caracter ingresado

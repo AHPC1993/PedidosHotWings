@@ -62,7 +62,6 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
     public boolean insertServiceOrderDelivery(double service) {
 
         String sql = "INSERT INTO public.tbl_orderdelivery_details(order_number, customers_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER),'" + super.getCustomers_id() + "','Domicilio', 'Cargo por el servicio a domicilio','"+ service +"','1','" + service + "','" + super.getNotes() + "',(SELECT NEXTVAL('SEQ_ORDERDELIVERY_DETAILS')) ;";
-        System.out.println(sql);
         return connexion.insert(sql);
     }
 

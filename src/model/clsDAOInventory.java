@@ -144,7 +144,7 @@ public class clsDAOInventory extends clsInventory {
         };
         try {
             ResultSet result = null;
-            String sql = "SELECT name_product, total_amount, notes, date_creation FROM public.tbl_inventory;";
+            String sql = "SELECT name_product, total_amount, notes, date_creation FROM public.tbl_inventory order by 1 asc;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();

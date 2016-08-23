@@ -93,7 +93,7 @@ public class clsDAOCompany extends clsCompany {
         };
         try {
             ResultSet result = null;
-            String sql = "Select  nit, namel, address, neighborhood, town, city FROM public.tbl_local;";
+            String sql = "Select  nit, namel, address, neighborhood, town, city FROM public.tbl_local order by 2 asc;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();

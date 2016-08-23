@@ -119,7 +119,7 @@ public class clsDAOCustomers extends clsCustomers {
         };
         try {
             ResultSet result = null;
-            String sql = "Select document_id, namec, lastname, address, neighborhood, town, city, phone, notes FROM public.tbl_customers;";
+            String sql = "Select document_id, namec, lastname, address, neighborhood, town, city, phone, notes FROM public.tbl_customers order by 2 asc;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();
@@ -129,8 +129,6 @@ public class clsDAOCustomers extends clsCustomers {
                 for (int i = 1; i <= columns; i++) {
                     row[i - 1] = result.getObject(i);
                 }
-
-                System.out.println("");
                 tblModel.addRow(row);
             }
             return tblModel;

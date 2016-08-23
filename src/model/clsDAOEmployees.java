@@ -119,7 +119,7 @@ public class clsDAOEmployees extends clsEmployees {
         };
         try {
             ResultSet result = null;
-            String sql = "Select document_id, namee, lastname, job, phone, notes, local_id, address FROM public.tbl_employees;";
+            String sql = "Select document_id, namee, lastname, job, phone, notes, local_id, address FROM public.tbl_employees order by 2 asc;";
             result = connexion.search(sql);
             ResultSetMetaData resultMetaData = result.getMetaData();
             int columns = resultMetaData.getColumnCount();

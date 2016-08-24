@@ -17,8 +17,7 @@
 		<defaultValueExpression><![CDATA[current_date]]></defaultValueExpression>
 	</parameter>
 	<parameter name="date_final" class="java.sql.Timestamp">
-		<defaultValueExpression><![CDATA[
-]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="logo" class="java.lang.String"/>
 	<queryString>
@@ -59,7 +58,7 @@ WHERE
 	<field name="Total pedido" class="java.lang.String"/>
 	<variable name="totalOrderDay" class="java.math.BigDecimal" resetType="Group" resetGroup="Fecha pedido" calculation="Sum">
 		<variableExpression><![CDATA[Double.valueOf($F{Precio total producto}.replace(",",""))]]></variableExpression>
-		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		<initialValueExpression><![CDATA[BigDecimal.valueOf(0)]]></initialValueExpression>
 	</variable>
 	<group name="Fecha pedido">
 		<groupExpression><![CDATA[$F{Fecha pedido}]]></groupExpression>

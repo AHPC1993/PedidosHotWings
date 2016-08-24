@@ -35,6 +35,7 @@ import model.printOrder;
  * @author GSG
  */
 public class frmNewOrderDelivery extends javax.swing.JFrame {
+
     String nameEmployeeForOrder;
     int contService = 0;
     Border borderDefault;
@@ -257,7 +258,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         lblTotalOrder = new javax.swing.JLabel();
         txtTotalOrder = new javax.swing.JTextField();
         btnAdminBack = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnChange = new javax.swing.JButton();
         txtChangeOrder = new javax.swing.JTextField();
         btnSelectedAdditionalProduct = new javax.swing.JToggleButton();
 
@@ -495,7 +496,6 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
         dlgAdditionsOrderDelivery.setMinimumSize(new java.awt.Dimension(760, 693));
         dlgAdditionsOrderDelivery.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
-        dlgAdditionsOrderDelivery.setPreferredSize(new java.awt.Dimension(760, 693));
         dlgAdditionsOrderDelivery.setSize(new java.awt.Dimension(760, 693));
         dlgAdditionsOrderDelivery.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -1099,11 +1099,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Cuánto devolver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnChange.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnChange.setText("Cuánto devolver");
+        btnChange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnChangeActionPerformed(evt);
             }
         });
 
@@ -1141,7 +1141,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(60, 60, 60)
                                 .addComponent(txtOrderNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnChange, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtChangeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTotalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTotalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1169,7 +1169,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtOrderNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(200, 200, 200)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnChange, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(txtChangeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
@@ -1499,31 +1499,31 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         orderArrayLocal.add("\t\t" + txtOrderNumber.getText() + "\n");
         orderArrayLocal.add("Total: " + txtTotalOrder.getText());
         orderArrayLocal.add("\n\n---------------------------------\n"); //33
-       
+
         for (int i = 0; i < orderArrayLocal.size(); i++) {
             System.out.print(orderArrayLocal.get(i));
         }
-       
+
         print.printLocalOrder(orderArrayKitchen, 16);
         printDatesCustomer();
         print.printLocalOrder(orderArrayLocal, 0);
     }
 
     public void printDatesCustomer() {
-                model.printOrder print = new printOrder();
+        model.printOrder print = new printOrder();
 
         ArrayList<String> datesCustomer = new ArrayList();
-        datesCustomer.add("Nombre: \n" + customers.getNamec() + " " + customers.getLastname()+"\n");
-        datesCustomer.add("Telefono: " + customers.getPhone()+"\n");
-        datesCustomer.add("Direccin: " + customers.getAddress()+"\n");
-        datesCustomer.add("Barrio: " + customers.getNeighborhood()+"\n");
-        datesCustomer.add("Domicilio: " + nameEmployeeForOrder+"\n");
+        datesCustomer.add("Nombre: \n" + customers.getNamec() + " " + customers.getLastname() + "\n");
+        datesCustomer.add("Telefono: " + customers.getPhone() + "\n");
+        datesCustomer.add("Direccin: " + customers.getAddress() + "\n");
+        datesCustomer.add("Barrio: " + customers.getNeighborhood() + "\n");
+        datesCustomer.add("Domicilio: " + nameEmployeeForOrder + "\n");
         datesCustomer.add("\nOrden\n");
 
         for (int i = 0; i < datesCustomer.size(); i++) {
             System.out.println(datesCustomer.get(i));
         }
-         print.printLocalOrder(datesCustomer, 0);
+        print.printLocalOrder(datesCustomer, 0);
         System.out.println("\n Orden\n");
 
     }
@@ -1546,15 +1546,11 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCorrectionActionPerformed
 
     private void btnOtherAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherAmountActionPerformed
-        //PrintselectProductAndAmount();
-
         if (!btnSelectedProducts.isSelected()) {
-
             btnSelectedAmount.setSelected(true);
             String inputValue = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese la cantidad que necesita</font></p></html>");
-            if (inputValue == null || inputValue.isEmpty() || inputValue == "") {
-                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor ingrese una cantidad</font></p></html>");
-            } else if (inputValue.length() >= 3) {
+            if (numbersAndNoEmpty(inputValue)==false) {
+            }  else if (inputValue.length() >= 3) {
                 JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es mayor al máximo permitido.(99)</font></p></html>");
             } else {
                 double amount = Double.parseDouble(inputValue);
@@ -1763,16 +1759,14 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAdminBackActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         change();
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnChangeActionPerformed
 
     public boolean numbersAndNoEmpty(String inChange) {
         try {
-
             if (inChange != null) {
                 double change = Double.parseDouble(inChange);
                 return true;
@@ -1800,7 +1794,6 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es menor al total del pedido, por favor ingréselo nuevamente</font></p></html>");
                     } else {
                         txtChangeOrder.setText((change - total) + "");
-
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es mayor al máximo permitido.(9.999.999)</font></p></html>");
@@ -2317,6 +2310,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnAdditionalProduct9;
     private javax.swing.JButton btnAdminBack;
     private javax.swing.JButton btnCancelOrderDelivery;
+    private javax.swing.JButton btnChange;
     private javax.swing.JButton btnContinueOrderDelivery;
     private javax.swing.JButton btnCorrection;
     private javax.swing.JButton btnDlgAdditionsCancel;
@@ -2349,7 +2343,6 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboCustomersNeighborhood;
     private javax.swing.JDialog dlgAdditionsOrderDelivery;
     public javax.swing.JDialog dlgOrderDelivery;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -213,7 +213,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
         lblTotalOrder = new javax.swing.JLabel();
         txtTotalOrder = new javax.swing.JTextField();
         btnAdminBack = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnChange = new javax.swing.JButton();
         txtChangeOrder = new javax.swing.JTextField();
         btnSelectedAdditionalProduct = new javax.swing.JToggleButton();
 
@@ -840,15 +840,15 @@ public class frmLocalOrder extends javax.swing.JFrame {
         getContentPane().add(btnAdminBack);
         btnAdminBack.setBounds(1240, 640, 120, 120);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Cuánto devolver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnChange.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnChange.setText("Cuánto devolver");
+        btnChange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnChangeActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(1150, 260, 170, 40);
+        getContentPane().add(btnChange);
+        btnChange.setBounds(1150, 260, 170, 40);
 
         txtChangeOrder.setEditable(false);
         txtChangeOrder.setBackground(new java.awt.Color(255, 255, 255));
@@ -1045,12 +1045,10 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblLocalOrderMouseClicked
     private void btnOtherAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherAmountActionPerformed
-        try {
             if (!btnSelectedProducts.isSelected()) {
                 btnSelectedAmount.setSelected(true);
                 String inputValue = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese la cantidad que necesita</font></p></html>");
-                if (inputValue == null || inputValue.isEmpty() || inputValue == "") {
-                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor ingrese una cantidad</font></p></html>");
+                if (numbersAndNoEmpty(inputValue) == false) {
                 } else if (inputValue.length() >= 3) {
                     JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La cantidad ingresada es mayor a la permitida.</font></p></html>");
                 } else {
@@ -1101,13 +1099,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La cantidad debe ser igual o mayor a 10</font></p></html>");
                     }
                 }
-
-            }
-        } catch (NumberFormatException e) {
-
-            JOptionPane.showMessageDialog(null, "<html><p><font size=\"5\">Error, el campo debe tener solo números</font></p></html>", "Atención", JOptionPane.INFORMATION_MESSAGE);
-
-        }
+            }    
         btnSelectedAmount.setSelected(true);
         btnSelectedProducts.setSelected(true);
         btnSelectedAdditionalProduct.setSelected(true);
@@ -1142,11 +1134,10 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
         ArrayList<String> orderArrayKitchen = new ArrayList();
         ArrayList<String> orderArrayLocal = new ArrayList();
-        model.printOrder print = new printOrder();
-        int typeOrder = JOptionPane.showConfirmDialog(this, "<html><p><font size=\"5\">¿El domicilio es para llevar(empacar)?</font></p></html>");
+        model.printOrder print = new printOrder();  
+        int typeOrder = JOptionPane.showConfirmDialog(this, "<html><p><font size=\"5\">¿El domicilio es para llevar(empacar)?</font></p></html>","Tipo de pedido",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
         if (typeOrder == 1) {
             orderArrayKitchen.add(String.format("%-5s", " Para el local\n\n"));
-
         } else {
             orderArrayKitchen.add(String.format("%-5s", "Para llevar\n\n"));
 
@@ -1197,11 +1188,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAdminBackActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         try {
             double change = 0;
             String inChange = JOptionPane.showInputDialog("<html><p><font size=\"5\">Devuelta de cuánto?</font></p></html>");
-            if (inChange != null || !inChange.isEmpty()) {
+            if (numbersAndNoEmpty(inChange)) {
                 if (inChange.length() <= 7) {
                     change = Double.parseDouble(inChange);
                     double total = Double.parseDouble(txtTotalOrder.getText().replace(",", ""));
@@ -1221,7 +1212,24 @@ public class frmLocalOrder extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnChangeActionPerformed
+
+    public boolean numbersAndNoEmpty(String inChange) {
+        try {
+            if (inChange != null) {
+                double change = Double.parseDouble(inChange);
+                return true;
+            } else if (inChange == null) {
+                return false;
+            }
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(null, "<html><p><font size=\"5\">Error, el campo debe tener solo números</font></p></html>", "Atención", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        return false;
+    }
+
 
     private void btnProduct6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProduct6MouseClicked
         dlgAdditionsLocalOrder.setVisible(true);
@@ -1673,6 +1681,7 @@ public class frmLocalOrder extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnAdditionalProduct8;
     private javax.swing.JToggleButton btnAdditionalProduct9;
     private javax.swing.JButton btnAdminBack;
+    private javax.swing.JButton btnChange;
     private javax.swing.JButton btnCorrection;
     private javax.swing.JButton btnDlgAdditionsCancel;
     private javax.swing.JButton btnDoneOrder;
@@ -1699,7 +1708,6 @@ public class frmLocalOrder extends javax.swing.JFrame {
     public javax.swing.JToggleButton btnSelectedAmount;
     public javax.swing.JToggleButton btnSelectedProducts;
     private javax.swing.JDialog dlgAdditionsLocalOrder;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

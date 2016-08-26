@@ -1045,61 +1045,61 @@ public class frmLocalOrder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblLocalOrderMouseClicked
     private void btnOtherAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherAmountActionPerformed
-            if (!btnSelectedProducts.isSelected()) {
-                btnSelectedAmount.setSelected(true);
-                String inputValue = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese la cantidad que necesita</font></p></html>");
-                if (numbersAndNoEmpty(inputValue) == false) {
-                } else if (inputValue.length() >= 3) {
-                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La cantidad ingresada es mayor a la permitida.</font></p></html>");
-                } else {
-                    double amount = Double.parseDouble(inputValue);
-                    if (amount > 9) {
-                        if (!btnProduct6.isSelected()) {
-                            if (btnProduct1.isSelected()) {
-                                loadSetValuesOrderDetails(btnProduct1.getText(), amount);
-                            } else if (btnProduct2.isSelected()) {
-                                loadSetValuesOrderDetails(btnProduct2.getText(), amount);
-                            } else if (btnProduct3.isSelected()) {
-                                loadSetValuesOrderDetails(btnProduct3.getText(), amount);
-                            } else if (btnProduct4.isSelected()) {
-                                loadSetValuesOrderDetails(btnProduct4.getText(), amount);
-                            } else if (btnProduct5.isSelected()) {
-                                loadSetValuesOrderDetails(btnProduct5.getText(), amount);
-                            } else if (btnProduct7.isSelected()) {
-                                loadSetValuesOrderDetails(btnProduct7.getText(), amount);
-                            } else if (btnProduct8.isSelected()) {
-                                loadSetValuesOrderDetails(btnProduct8.getText(), amount);
-                            } else if (btnProduct9.isSelected()) {
-                                loadSetValuesOrderDetails(btnProduct9.getText(), amount);
-                            }
-                            if (localOrder.insertProduct()) {
-                                txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
-                                tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
-                                txtNotes.setText("");
-                                centerElementsTable(tblLocalOrder);
-
-                            } else {
-                                JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
-                            }
-                        } else if (btnProduct6.isSelected()) {
-                            stateTypeProduct = 1;
-                            loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), amount);
-                            if (localOrder.insertAdditionalProduct()) {
-                                txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
-                                tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
-                                txtNotes.setText("");
-                                centerElementsTable(tblLocalOrder);
-
-                            } else {
-                                JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
-                            }
-
+        if (!btnSelectedProducts.isSelected()) {
+            btnSelectedAmount.setSelected(true);
+            String inputValue = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese la cantidad que necesita</font></p></html>");
+            if (numbersAndNoEmpty(inputValue) == false) {
+            } else if (inputValue.length() >= 3) {
+                JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La cantidad ingresada es mayor a la permitida.</font></p></html>");
+            } else {
+                double amount = Double.parseDouble(inputValue);
+                if (amount > 9) {
+                    if (!btnProduct6.isSelected()) {
+                        if (btnProduct1.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct1.getText(), amount);
+                        } else if (btnProduct2.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct2.getText(), amount);
+                        } else if (btnProduct3.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct3.getText(), amount);
+                        } else if (btnProduct4.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct4.getText(), amount);
+                        } else if (btnProduct5.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct5.getText(), amount);
+                        } else if (btnProduct7.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct7.getText(), amount);
+                        } else if (btnProduct8.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct8.getText(), amount);
+                        } else if (btnProduct9.isSelected()) {
+                            loadSetValuesOrderDetails(btnProduct9.getText(), amount);
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La cantidad debe ser igual o mayor a 10</font></p></html>");
+                        if (localOrder.insertProduct()) {
+                            txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
+                            tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
+                            txtNotes.setText("");
+                            centerElementsTable(tblLocalOrder);
+
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
+                        }
+                    } else if (btnProduct6.isSelected()) {
+                        stateTypeProduct = 1;
+                        loadSetValuesOrderDetails(selectAdditionalProductAndAmount(), amount);
+                        if (localOrder.insertAdditionalProduct()) {
+                            txtTotalOrder.setText(localOrder.selectTotalOrder(txtOrderNumber.getText()));
+                            tblLocalOrder.setModel(localOrder.list(txtOrderNumber.getText()));
+                            txtNotes.setText("");
+                            centerElementsTable(tblLocalOrder);
+
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">No sé insertó el producto</font></p></html>");
+                        }
+
                     }
+                } else {
+                    JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">La cantidad debe ser igual o mayor a 10</font></p></html>");
                 }
-            }    
+            }
+        }
         btnSelectedAmount.setSelected(true);
         btnSelectedProducts.setSelected(true);
         btnSelectedAdditionalProduct.setSelected(true);
@@ -1129,13 +1129,13 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDoneOrderActionPerformed
 
     public void printFormat() {
-
+        int contLines = 20;
         System.out.println(String.format("%-5s %-5s %14s", "Und", "Descripción", "Valor"));
 
         ArrayList<String> orderArrayKitchen = new ArrayList();
         ArrayList<String> orderArrayLocal = new ArrayList();
-        model.printOrder print = new printOrder();  
-        int typeOrder = JOptionPane.showConfirmDialog(this, "<html><p><font size=\"5\">¿El domicilio es para llevar(empacar)?</font></p></html>","Tipo de pedido",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        model.printOrder print = new printOrder();
+        int typeOrder = JOptionPane.showConfirmDialog(this, "<html><p><font size=\"5\">¿El domicilio es para llevar(empacar)?</font></p></html>", "Tipo de pedido", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (typeOrder == 1) {
             orderArrayKitchen.add(String.format("%-5s", " Para el local\n\n"));
         } else {
@@ -1161,6 +1161,18 @@ public class frmLocalOrder extends javax.swing.JFrame {
         orderArrayLocal.add("Total: " + txtTotalOrder.getText());
         orderArrayLocal.add("\n\n---------------------------------\n"); //33
 
+        if (contLines > orderArrayLocal.size()) {
+            int remainingList= contLines - orderArrayLocal.size();
+            for (int i = 0; i < remainingList; i++) {
+                System.out.println("\n");
+                orderArrayLocal.add("\n");
+            }
+        }
+        System.out.println("------------------------------------------------------");
+        for (int i = 0; i < orderArrayLocal.size(); i++) {
+            System.out.print(orderArrayLocal.get(i));   
+        }
+        
         print.printLocalOrder(orderArrayKitchen, 16);
         print.printLocalOrder(orderArrayLocal, 0);
 

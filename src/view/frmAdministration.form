@@ -322,7 +322,7 @@
                   <StringArray count="4">
                     <StringItem index="0" value="Domicilio"/>
                     <StringItem index="1" value="Cocina"/>
-                    <StringItem index="2" value="Mesas"/>
+                    <StringItem index="2" value="Barra"/>
                     <StringItem index="3" value="Administrador"/>
                   </StringArray>
                 </Property>

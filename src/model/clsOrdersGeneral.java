@@ -24,10 +24,8 @@ public class clsOrdersGeneral {
         connexion = new Connect();
     }
 
-
     public String deleteLocalOrder() {
-        String sql = "DELETE FROM public.tbl_localorder WHERE order_number = '" + getOrder_number() + "';";
-        return connexion.delete(sql);
+        String sql = "DELETE FROM public.tbl_localorder WHERE order_number = '" + getOrder_number() + "';";        return connexion.delete(sql);
 
     }
 
@@ -37,7 +35,7 @@ public class clsOrdersGeneral {
     }
 
     public String deleteOrderDelivery() {
-        String sql = "DELETE FROM public.tbl_localorder WHERE tbl_orderdelivery = '" + getOrder_number() + "';";
+        String sql = "DELETE FROM public.tbl_orderdelivery WHERE UPPER(order_number) = UPPER('" + getOrder_number() + "');";
         return connexion.delete(sql);
     }
 

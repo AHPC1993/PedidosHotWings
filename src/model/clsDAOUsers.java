@@ -141,7 +141,7 @@ public class clsDAOUsers extends clsUsers {
      * @return
      */
     public DefaultTableModel list() {
-        String[] columnName = {"Usurio", "Contraseña", "Descripción", "Fecha de registro", "Fecha de último ingreso", "Es administrador"};
+        String[] columnName = {"Usuario", "Contraseña", "Descripción", "Fecha de registro", "Fecha de último ingreso", "Es administrador"};
         DefaultTableModel tblModel = new DefaultTableModel(columnName, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {

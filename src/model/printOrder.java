@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.awt.print.PrinterJob;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.print.PrintServiceLookup;
 
 /**
  *
@@ -20,7 +22,6 @@ public class printOrder {
     public printOrder() {
     }
 
-    
     public void printLocalOrder(ArrayList<String> orderArray, int n) {
 
         try {
@@ -39,23 +40,6 @@ public class printOrder {
             ps.write(0x1B);
             ps.write("d");
             ps.write(4);
-
-//         
-//             formatPrintKitchen(ps,112);
-//            for (String orderArray1 : orderArray) {
-//                ps.write(orderArray1);
-//            }
-//            formatPrintKitchen(ps, n);
-//            for (String orderArray1 : orderArray) {
-//                ps.write(orderArray1);
-//            }
-//            
-//            ps.write(0x1B);
-//            ps.write("d");
-//            ps.write(5);
-
-            //Recibe 40 caracteres máximo por línea.
-           // ps.write(0xA);
             ps.close();
 
         } catch (IOException e) {

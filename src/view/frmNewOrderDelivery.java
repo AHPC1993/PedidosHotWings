@@ -26,6 +26,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import model.PrinterService;
 import model.clsDAOCustomers;
 import model.clsDAOOrderDeliveryDetails;
 import model.printOrder;
@@ -197,15 +198,15 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         txtCustomersNotes = new javax.swing.JTextArea();
         lblCustomersCity = new javax.swing.JLabel();
         lblCustomersTown = new javax.swing.JLabel();
-        cbCustomersTown = new javax.swing.JComboBox<>();
-        cbCustomersCity = new javax.swing.JComboBox<>();
+        cbCustomersTown = new javax.swing.JComboBox<String>();
+        cbCustomersCity = new javax.swing.JComboBox<String>();
         lblPhone = new javax.swing.JLabel();
         txtCustomersPhone = new javax.swing.JTextField();
         btnAddCustomer = new javax.swing.JButton();
         btnSearchCustomerOrderDelivery = new javax.swing.JButton();
         btnCancelOrderDelivery = new javax.swing.JButton();
         btnContinueOrderDelivery = new javax.swing.JButton();
-        cboCustomersNeighborhood = new javax.swing.JComboBox<>();
+        cboCustomersNeighborhood = new javax.swing.JComboBox<String>();
         dlgAdditionsOrderDelivery = new javax.swing.JDialog();
         pblAdditionsLocalOrder = new javax.swing.JPanel();
         btnAdditionalProduct2 = new javax.swing.JToggleButton();
@@ -276,7 +277,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
-        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlCustomersDates.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Datos ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlCustomersDates.setOpaque(false);
 
         lbCustomersDocument.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -324,9 +325,9 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         lblCustomersTown.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblCustomersTown.setText("Municipio");
 
-        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manizales", "Villamaria" }));
+        cbCustomersTown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manizales", "Villamaria" }));
 
-        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caldas" }));
+        cbCustomersCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldas" }));
 
         lblPhone.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lblPhone.setText("Teléfono");
@@ -373,7 +374,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         });
 
         cboCustomersNeighborhood.setEditable(true);
-        cboCustomersNeighborhood.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboCustomersNeighborhood.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout pnlCustomersDatesLayout = new javax.swing.GroupLayout(pnlCustomersDates);
         pnlCustomersDates.setLayout(pnlCustomersDatesLayout);
@@ -402,22 +403,20 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
                                 .addGap(26, 26, 26)
                                 .addComponent(scrollNotes1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(cboCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
-                                .addGap(37, 37, 37)
+                                .addGap(26, 26, 26)
                                 .addComponent(txtCustomersPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlCustomersDatesLayout.createSequentialGroup()
                         .addGap(174, 174, 174)
                         .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(cbCustomersTown, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbCustomersCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboCustomersNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtCustomersName, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                             .addComponent(txtCustomersLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                             .addComponent(txtCustomerssAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                             .addComponent(txtCustomersDocument, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(pnlCustomersDatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnContinueOrderDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchCustomerOrderDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -732,7 +731,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
         });
 
-        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlAmount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cantidad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
         pnlAmount.setLayout(null);
 
         numbersGroup.add(btnNumber6);
@@ -922,7 +921,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         });
         scrollPanelProductsTable.setViewportView(tblOrderDelivery);
 
-        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
+        pnlProducts.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.red)); // NOI18N
 
         productsGroup.add(btnProduct2);
         btnProduct2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -1275,40 +1274,42 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     private void btnSearchCustomerOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerOrderDeliveryActionPerformed
 
         try {
-            customers = new clsDAOCustomers();
+
             ResultSet result;
             String search = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese el número telefónico o el nombre de la persona a buscar</font></p></html>");
-            customers.setSearch(search);
-            result = customers.search();
-            if (result != null) {
-                customers_id = result.getString(1);
-                customers.setCustomers_id(customers_id);
-                customers.setNamec(result.getString(3));
-                customers.setLastname(result.getString(4));
-                customers.setAddress(result.getString(5));
-                customers.setNeighborhoos(result.getString(6));
-                customers.setPhone(result.getString(9));
-                txtCustomersDocument.setText(result.getString(2));
-                txtCustomersName.setText(result.getString(3));
-                txtCustomersLastName.setText(result.getString(4));
-                txtCustomerssAddress.setText(result.getString(5));
-                cboCustomersNeighborhood.setSelectedItem(result.getString(6));
-                txtCustomersPhone.setText(result.getString(9));
-                txtCustomersNotes.setText(result.getString(10));
-                txtCustomersDocument.setEnabled(false);
-                txtCustomersName.setEnabled(false);
-                txtCustomersLastName.setEnabled(false);
-                txtCustomerssAddress.setEnabled(false);
-                cboCustomersNeighborhood.setEnabled(false);
-                txtCustomersPhone.setEnabled(false);
-                txtCustomersNotes.setEnabled(false);
-                btnAddCustomer.setEnabled(false);
-                btnContinueOrderDelivery.setEnabled(true);
+            if (search != null) {
+                customers.setSearch(search);
+                result = customers.search();
+                if (result != null) {
+                    customers = new clsDAOCustomers();
+                    customers_id = result.getString(1);
+                    customers.setCustomers_id(customers_id);
+                    customers.setNamec(result.getString(3));
+                    customers.setLastname(result.getString(4));
+                    customers.setAddress(result.getString(5));
+                    customers.setNeighborhoos(result.getString(6));
+                    customers.setPhone(result.getString(9));
+                    txtCustomersDocument.setText(result.getString(2));
+                    txtCustomersName.setText(result.getString(3));
+                    txtCustomersLastName.setText(result.getString(4));
+                    txtCustomerssAddress.setText(result.getString(5));
+                    cboCustomersNeighborhood.setSelectedItem(result.getString(6));
+                    txtCustomersPhone.setText(result.getString(9));
+                    txtCustomersNotes.setText(result.getString(10));
+                    txtCustomersDocument.setEnabled(false);
+                    txtCustomersName.setEnabled(false);
+                    txtCustomersLastName.setEnabled(false);
+                    txtCustomerssAddress.setEnabled(false);
+                    cboCustomersNeighborhood.setEnabled(false);
+                    txtCustomersPhone.setEnabled(false);
+                    txtCustomersNotes.setEnabled(false);
+                    btnAddCustomer.setEnabled(false);
+                    btnContinueOrderDelivery.setEnabled(true);
 
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">El cliente no existe, por favor créelo aquí y después de clic en el botón agregar.</font></p></html>");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "<html><p><font size=\"5\">El cliente no existe, por favor créelo aquí y después de clic en el botón agregar.</font></p></html>");
+                }
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(frmAdministration.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1476,11 +1477,12 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDoneOrderActionPerformed
 
     public void printFormat() {
-
+        int contLinesLocal = 20;
+        int contLinesKitchen = 20;
         ArrayList<String> orderArrayKitchen = new ArrayList();
         ArrayList<String> orderArrayLocal = new ArrayList();
-        model.printOrder print = new printOrder();
-        orderArrayKitchen.add(String.format("%-5s", " para domicilio\n\n"));
+        model.PrinterService printService = new PrinterService();
+        orderArrayKitchen.add(String.format("%-5s", " Para domicilio\n\n"));
 
         orderArrayKitchen.add(String.format("%-5s %-5s", "Und", "Descripcion\n"));
         orderArrayKitchen.add("---------------------------------\n");//33
@@ -1489,7 +1491,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         for (int i = 0; i < tblOrderDelivery.getRowCount(); i++) {
             //Se pone el 25 como medida exacta para que al imprimir no se salga de la línea de impresión
             int amountForFormat = 25 - tblOrderDelivery.getValueAt(i, 1).toString().length();
-            String orderKitchen = String.format("%-5s %-5s", tblOrderDelivery.getValueAt(i, 4), tblOrderDelivery.getValueAt(i, 1) + "\n");
+            String orderKitchen = String.format("%-5s %-5s", tblOrderDelivery.getValueAt(i, 4), tblOrderDelivery.getValueAt(i, 1) + "\n"+ tblOrderDelivery.getValueAt(i, 6) + "\n");
             String orderLocal = String.format("%-5s %-5s %" + amountForFormat + "s", tblOrderDelivery.getValueAt(i, 4), tblOrderDelivery.getValueAt(i, 1), tblOrderDelivery.getValueAt(i, 5) + "\n");
             orderArrayKitchen.add(orderKitchen);
             orderArrayLocal.add(orderLocal);
@@ -1500,17 +1502,32 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         orderArrayLocal.add("Total: " + txtTotalOrder.getText());
         orderArrayLocal.add("\n\n---------------------------------\n"); //33
 
-        for (int i = 0; i < orderArrayLocal.size(); i++) {
-            System.out.print(orderArrayLocal.get(i));
+        if (contLinesKitchen > orderArrayKitchen.size()) {
+            int remainingList = contLinesKitchen - orderArrayKitchen.size();
+            for (int i = 0; i < remainingList - 1; i++) {
+                orderArrayKitchen.add("\n");
+            }
+            orderArrayKitchen.add("---------------------------------"); //33
+
         }
 
-        print.printLocalOrder(orderArrayKitchen, 16);
+        if (contLinesLocal > orderArrayLocal.size()) {
+            int remainingList = contLinesLocal - orderArrayLocal.size();
+            for (int i = 0; i < remainingList - 1; i++) {
+                orderArrayLocal.add("\n");
+            }
+            orderArrayLocal.add("---------------------------------"); //33
+        }
+
+        printService.printLocalOrder(orderArrayKitchen, 16);
         printDatesCustomer();
-        print.printLocalOrder(orderArrayLocal, 0);
+        printService.printLocalOrder(orderArrayLocal, 0);
+        printDatesCustomer();
+        printService.printLocalOrder(orderArrayLocal, 0);
     }
 
     public void printDatesCustomer() {
-        model.printOrder print = new printOrder();
+        model.PrinterService printService = new PrinterService();
 
         ArrayList<String> datesCustomer = new ArrayList();
         datesCustomer.add("Nombre: \n" + customers.getNamec() + " " + customers.getLastname() + "\n");
@@ -1518,13 +1535,9 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         datesCustomer.add("Direccin: " + customers.getAddress() + "\n");
         datesCustomer.add("Barrio: " + customers.getNeighborhood() + "\n");
         datesCustomer.add("Domicilio: " + nameEmployeeForOrder + "\n");
-        datesCustomer.add("\nOrden\n");
+        datesCustomer.add("\nOrden");
 
-        for (int i = 0; i < datesCustomer.size(); i++) {
-            System.out.println(datesCustomer.get(i));
-        }
-        print.printLocalOrder(datesCustomer, 0);
-        System.out.println("\n Orden\n");
+        printService.printLocalOrder(datesCustomer, 0);
 
     }
 
@@ -1549,8 +1562,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         if (!btnSelectedProducts.isSelected()) {
             btnSelectedAmount.setSelected(true);
             String inputValue = JOptionPane.showInputDialog("<html><p><font size=\"5\">Por favor ingrese la cantidad que necesita</font></p></html>");
-            if (numbersAndNoEmpty(inputValue)==false) {
-            }  else if (inputValue.length() >= 3) {
+            if (numbersAndNoEmpty(inputValue) == false) {
+            } else if (inputValue.length() >= 3) {
                 JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">El valor que ingresó es mayor al máximo permitido.(99)</font></p></html>");
             } else {
                 double amount = Double.parseDouble(inputValue);

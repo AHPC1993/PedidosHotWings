@@ -455,7 +455,7 @@ public class frmAdministration extends javax.swing.JFrame {
 
         cbLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hot Wings Linares", "Hot Wings La estrella" }));
 
-        cbEmployeesJob.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Domicilio", "Cocina", "Mesas", "Administrador" }));
+        cbEmployeesJob.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Domicilio", "Cocina", "Barra", "Administrador" }));
         cbEmployeesJob.setToolTipText("Cargo que ocupa el empleado");
 
         javax.swing.GroupLayout pnlEmployeesDatesLayout = new javax.swing.GroupLayout(pnlEmployeesDates);
@@ -3020,7 +3020,7 @@ public class frmAdministration extends javax.swing.JFrame {
             String result = "";
             result = employees.delete();
             if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"5\">El empleado ha sido elminado correctamente.</font></p></html>");
+                JOptionPane.showMessageDialog(dlgAdminEmployees, "<html><p><font size=\"5\">El empleado ha sido eliminado correctamente.</font></p></html>");
                 if (tblEmployees.isVisible()) {
                     tblEmployees.setModel(employees.list());
                     centerElementsTable(tblEmployees);
@@ -3187,7 +3187,7 @@ public class frmAdministration extends javax.swing.JFrame {
             products.setNamep(namep);
             String result = products.delete();
             if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"5\">El producto ha sido elminado correctamente.</font></p></html>");
+                JOptionPane.showMessageDialog(dlgAdminProducts, "<html><p><font size=\"5\">El producto ha sido eliminado correctamente.</font></p></html>");
                 if (tblProducts.isVisible()) {
                     tblProducts.setModel(products.list());
                     centerElementsTable(tblProducts);
@@ -3332,7 +3332,7 @@ public class frmAdministration extends javax.swing.JFrame {
             customers.setSearch(search);
             String result = customers.delete();
             if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"5\">El cliente ha sido elminado correctamente.</font></p></html>");
+                JOptionPane.showMessageDialog(dlgAdminCustomers, "<html><p><font size=\"5\">El cliente ha sido eliminado correctamente.</font></p></html>");
                 if (tblCustomers.isVisible()) {
                     tblCustomers.setModel(customers.list());
                     centerElementsTable(tblCustomers);
@@ -3493,7 +3493,7 @@ public class frmAdministration extends javax.swing.JFrame {
             local.setSearch(search);
             String result = local.delete();
             if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"5\">El local ha sido elminado correctamente.</font></p></html>");
+                JOptionPane.showMessageDialog(dlgAdminLocal, "<html><p><font size=\"5\">El local ha sido eliminado correctamente.</font></p></html>");
                 if (tblLocals.isVisible()) {
                     tblLocals.setModel(local.list());
                     centerElementsTable(tblLocals);
@@ -3674,7 +3674,7 @@ public class frmAdministration extends javax.swing.JFrame {
             additionalProducts.setNamep(namep);
             String result = additionalProducts.delete();
             if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"5\">El producto adicional ha sido elminado correctamente.</font></p></html>");
+                JOptionPane.showMessageDialog(dlgAdminAdditionalProducts, "<html><p><font size=\"5\">El producto adicional ha sido eliminado correctamente.</font></p></html>");
                 if (tblAdditionalProducts.isVisible()) {
                     tblAdditionalProducts.setModel(additionalProducts.list());
                     centerElementsTable(tblAdditionalProducts);
@@ -3801,14 +3801,14 @@ public class frmAdministration extends javax.swing.JFrame {
 
                     result = users.edit();
                     if (result.equals("correcto")) {
-                        JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">El producto ha sido modificado correctamente.</font></p></html>");
+                        JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">El usuario ha sido modificado correctamente.</font></p></html>");
                         if (tblUsers.isVisible()) {
                             tblUsers.setModel(users.list());
                             centerElementsTable(tblUsers);
                         }
                         cleanTextboxUsers();
                     } else {
-                        JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">No ha podido ser modificado el producto, intente nuevamente y verifique que el producto exista.</font></p></html>");
+                        JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">No ha podido ser modificado el usuario, intente nuevamente y verifique que el usuario exista.</font></p></html>");
                     }
                 } else {
                     JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">Ya existe un usuario con ese nombre, por favor cambie el nombre de usuario.</font></p></html>");
@@ -3830,7 +3830,7 @@ public class frmAdministration extends javax.swing.JFrame {
             users.setSearch(namep);
             String result = users.delete();
             if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">El Usuario ha sido elminado correctamente.</font></p></html>");
+                JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">El Usuario ha sido eliminado correctamente.</font></p></html>");
                 if (tblUsers.isVisible()) {
                     tblUsers.setModel(users.list());
                     centerElementsTable(tblUsers);
@@ -3865,10 +3865,10 @@ public class frmAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">Ya existe un usuario con ese nombre, por favor cambie el nombre de usuario.</font></p></html>");
                 }
             } else {
-                JOptionPane.showMessageDialog(dlgAdminUsers, "Las contraseñas no coinciden, por favor verifíquelas.</font></p></html>");
+                JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">Las contraseñas no coinciden, por favor verifíquelas.</font></p></html>");
             }
         } else {
-            JOptionPane.showMessageDialog(dlgAdminUsers, "Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
+            JOptionPane.showMessageDialog(dlgAdminUsers, "<html><p><font size=\"5\">Por favor rellene los campos que están subrayados en rojo.</font></p></html>");
 
         }
     }//GEN-LAST:event_btnUsersInsertActionPerformed
@@ -3982,7 +3982,7 @@ public class frmAdministration extends javax.swing.JFrame {
             inventoryHistory.setSearch(namep);
             String result = inventoryHistory.delete();
             if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"5\">El producto ha sido elminado correctamente.</font></p></html>");
+                JOptionPane.showMessageDialog(dlgAdminInventoryHistory, "<html><p><font size=\"5\">El producto ha sido eliminado correctamente.</font></p></html>");
                 if (tblInventoryHistory.isVisible()) {
                     tblInventoryHistory.setModel(inventoryHistory.list());
                     centerElementsTable(tblInventoryHistory);
@@ -4104,7 +4104,7 @@ public class frmAdministration extends javax.swing.JFrame {
             inventory.setSearch(namep);
             String result = inventory.delete();
             if (result.equals("correcto")) {
-                JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"5\">El producto ha sido elminado correctamente.</font></p></html>");
+                JOptionPane.showMessageDialog(dlgAdminInventory, "<html><p><font size=\"5\">El producto ha sido eliminado correctamente.</font></p></html>");
                 if (tblInventory.isVisible()) {
                     tblInventory.setModel(inventory.list());
                     centerElementsTable(tblInventory);

@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import model.PrinterService;
 import model.clsDAOLocalOrderDetails;
 import model.printOrder;
 
@@ -1129,12 +1130,11 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDoneOrderActionPerformed
 
     public void printFormat() {
-        int contLines = 20;
-        System.out.println(String.format("%-5s %-5s %14s", "Und", "Descripción", "Valor"));
-
+        int contLinesLocal = 20;
+        int contLinesKitchen = 20;
         ArrayList<String> orderArrayKitchen = new ArrayList();
         ArrayList<String> orderArrayLocal = new ArrayList();
-        model.printOrder print = new printOrder();
+        model.PrinterService printService = new PrinterService();
         int typeOrder = JOptionPane.showConfirmDialog(this, "<html><p><font size=\"5\">¿El domicilio es para llevar(empacar)?</font></p></html>", "Tipo de pedido", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (typeOrder == 1) {
             orderArrayKitchen.add(String.format("%-5s", " Para el local\n\n"));
@@ -1149,9 +1149,8 @@ public class frmLocalOrder extends javax.swing.JFrame {
         for (int i = 0; i < tblLocalOrder.getRowCount(); i++) {
             //Se pone el 25 como medida exacta para que al imprimir no se salga de la línea de impresión
             int amountForFormat = 25 - tblLocalOrder.getValueAt(i, 1).toString().length();
-            String orderKitchen = String.format("%-5s %-5s", tblLocalOrder.getValueAt(i, 4), tblLocalOrder.getValueAt(i, 1) + "\n");
+            String orderKitchen = String.format("%-5s %-5s", tblLocalOrder.getValueAt(i, 4), tblLocalOrder.getValueAt(i, 1) + "\n" + tblLocalOrder.getValueAt(i, 6) + "\n");            
             String orderLocal = String.format("%-5s %-5s %" + amountForFormat + "s", tblLocalOrder.getValueAt(i, 4), tblLocalOrder.getValueAt(i, 1), tblLocalOrder.getValueAt(i, 5) + "\n");
-            System.out.print(orderLocal);
             orderArrayKitchen.add(orderKitchen);
             orderArrayLocal.add(orderLocal);
         }
@@ -1161,20 +1160,24 @@ public class frmLocalOrder extends javax.swing.JFrame {
         orderArrayLocal.add("Total: " + txtTotalOrder.getText());
         orderArrayLocal.add("\n\n---------------------------------\n"); //33
 
-        if (contLines > orderArrayLocal.size()) {
-            int remainingList= contLines - orderArrayLocal.size();
+        if (contLinesKitchen > orderArrayKitchen.size()) {
+            int remainingList = contLinesKitchen - orderArrayKitchen.size();
+            for (int i = 0; i < remainingList - 1; i++) {
+                orderArrayKitchen.add("\n");
+            }
+            orderArrayKitchen.add("---------------------------------"); //33
+
+        }
+
+        if (contLinesLocal > orderArrayLocal.size()) {
+            int remainingList = contLinesLocal - orderArrayLocal.size();
             for (int i = 0; i < remainingList; i++) {
-                System.out.println("\n");
                 orderArrayLocal.add("\n");
             }
         }
-        System.out.println("------------------------------------------------------");
-        for (int i = 0; i < orderArrayLocal.size(); i++) {
-            System.out.print(orderArrayLocal.get(i));   
-        }
-        
-        print.printLocalOrder(orderArrayKitchen, 16);
-        print.printLocalOrder(orderArrayLocal, 0);
+
+        printService.printLocalOrder(orderArrayKitchen, 16);
+        printService.printLocalOrder(orderArrayLocal, 0);
 
     }
 

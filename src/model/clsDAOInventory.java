@@ -85,7 +85,8 @@ public class clsDAOInventory extends clsInventory {
 
     /**
      * Método encargado de eliminar un item del inventario.
-     * @return 
+     *
+     * @return
      */
     public String delete() {
         String sql = "DELETE FROM public.tbl_inventory WHERE UPPER(name_product)=UPPER('" + super.getSearch() + "');";
@@ -102,17 +103,20 @@ public class clsDAOInventory extends clsInventory {
     }
 
     /**
-     *Método encargado de actualizar la cantidad existente de un producto de inventario.
+     * Método encargado de actualizar la cantidad existente de un producto de
+     * inventario.
      */
     public String updateTotalAmount(String inventory_id) {
         String sql = "UPDATE public.tbl_inventory inv  SET total_amount=    (SELECT SUM(amount_in)-SUM(amount_out) FROM tbl_inventory_history his Where his.Inventory_id = '" + inventory_id + "')  WHERE inv.Inventory_id = '" + inventory_id + "';";
         return connexion.edit(sql);
     }
 
-     /**
-     *Método encargado de buscar el id de un producto recibiendo como parámetro el nombre del producto.
+    /**
+     * Método encargado de buscar el id de un producto recibiendo como parámetro
+     * el nombre del producto.
+     *
      * @param productName
-     * @return 
+     * @return
      */
     public String searchInventoryIdFromProductName(String productName) {
         String sql = "Select DISTINCT inv.inventory_id FROM public.tbl_inventory inv WHERE UPPER(inv.name_product)=UPPER('" + productName + "');";
@@ -130,9 +134,10 @@ public class clsDAOInventory extends clsInventory {
         return "";
     }
 
-     /**
-     *Método encargado listar los productos de inventario en una tabla.
-     * @return 
+    /**
+     * Método encargado listar los productos de inventario en una tabla.
+     *
+     * @return
      */
     public DefaultTableModel list() {
         String[] columnName = {"Producto", "Cantidad existente", "Notas", "Fecha de creación"};
@@ -151,7 +156,9 @@ public class clsDAOInventory extends clsInventory {
             while (result.next()) {
                 Object[] row = new Object[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i - 1] = result.getObject(i);
+                    if (result.getObject(i) != null) {
+                        row[i - 1] = result.getObject(i);
+                    }
                 }
                 tblModel.addRow(row);
             }

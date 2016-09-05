@@ -9,7 +9,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -1130,12 +1133,16 @@ public class frmLocalOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDoneOrderActionPerformed
 
     public void printFormat() {
+        Date date = new Date();
+        DateFormat hourdateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
         int contLinesLocal = 20;
         int contLinesKitchen = 20;
         ArrayList<String> orderArrayKitchen = new ArrayList();
         ArrayList<String> orderArrayLocal = new ArrayList();
         model.PrinterService printService = new PrinterService();
         int typeOrder = JOptionPane.showConfirmDialog(this, "<html><p><font size=\"5\">¿El domicilio es para llevar(empacar)?</font></p></html>", "Tipo de pedido", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        orderArrayKitchen.add(hourdateFormat.format(date) + "\n");
+        orderArrayLocal.add(hourdateFormat.format(date) + "\n");
         if (typeOrder == 1) {
             orderArrayKitchen.add(String.format("%-5s", " Para el local\n\n"));
         } else {
@@ -1149,8 +1156,8 @@ public class frmLocalOrder extends javax.swing.JFrame {
         for (int i = 0; i < tblLocalOrder.getRowCount(); i++) {
             //Se pone el 25 como medida exacta para que al imprimir no se salga de la línea de impresión
             int amountForFormat = 25 - tblLocalOrder.getValueAt(i, 1).toString().length();
-            String orderKitchen = String.format("%-5s %-5s", tblLocalOrder.getValueAt(i, 4), tblLocalOrder.getValueAt(i, 1) + "\n" + tblLocalOrder.getValueAt(i, 6) + "\n");            
-            String orderLocal = String.format("%-5s %-5s %" + amountForFormat + "s", tblLocalOrder.getValueAt(i, 4), tblLocalOrder.getValueAt(i, 1), tblLocalOrder.getValueAt(i, 5) + "\n");
+            String orderKitchen = String.format("%-5s %-5s", tblLocalOrder.getValueAt(i, 4), tblLocalOrder.getValueAt(i, 1) + "\n" + tblLocalOrder.getValueAt(i, 6) + "\n");
+            String orderLocal = String.format("%-5s %-5s %" + amountForFormat + "s", tblLocalOrder.getValueAt(i, 4), tblLocalOrder.getValueAt(i, 1), tblLocalOrder.getValueAt(i, 5) + "\n" + tblLocalOrder.getValueAt(i, 6) + "\n");
             orderArrayKitchen.add(orderKitchen);
             orderArrayLocal.add(orderLocal);
         }

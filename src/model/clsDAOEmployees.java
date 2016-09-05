@@ -86,7 +86,8 @@ public class clsDAOEmployees extends clsEmployees {
 
     /**
      * Método encargado de eliminar un empleado.
-     * @return 
+     *
+     * @return
      */
     public String delete() {
         String sql = "DELETE FROM public.tbl_employees WHERE document_id = '" + super.getDocument_id() + "';";
@@ -95,7 +96,8 @@ public class clsDAOEmployees extends clsEmployees {
 
     /**
      * Método encargado de editar un empleado.
-     * @return 
+     *
+     * @return
      */
     public String edit() {
 
@@ -126,7 +128,9 @@ public class clsDAOEmployees extends clsEmployees {
             while (result.next()) {
                 Object[] row = new Object[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i - 1] = result.getObject(i);
+                    if (result.getObject(i) != null) {
+                        row[i - 1] = result.getObject(i);
+                    }
                 }
                 tblModel.addRow(row);
             }

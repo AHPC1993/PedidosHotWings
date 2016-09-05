@@ -61,16 +61,18 @@ public class clsDAOCompany extends clsCompany {
 
     /**
      * Método encargado de eliminar un local de la empresa.
-     * @return 
+     *
+     * @return
      */
     public String delete() {
         String sql = "DELETE FROM public.tbl_local WHERE UPPER(namel) = UPPER('" + super.getSearch() + "') OR UPPER(neighborhood) = UPPER('" + super.getSearch() + "');";
         return connexion.delete(sql);
     }
 
-     /**
+    /**
      * Método encargado de editar un local de la empresa.
-     * @return 
+     *
+     * @return
      */
     public String edit() {
         String sql = "UPDATE public.tbl_local SET nit='" + super.getNit() + "',namel='" + super.getName() + "', address='" + super.getAddress() + "', neighborhood='" + super.getNeighborhood() + "',town='" + super.getTown() + "', city='" + super.getCity() + "' WHERE UPPER(local_id) = UPPER('" + super.getLocal_id() + "');";
@@ -78,8 +80,7 @@ public class clsDAOCompany extends clsCompany {
     }
 
     /**
-     * Método encargado de listar todos los locales que hay en la base de
-     * datos.
+     * Método encargado de listar todos los locales que hay en la base de datos.
      *
      * @return
      */
@@ -101,7 +102,9 @@ public class clsDAOCompany extends clsCompany {
             while (result.next()) {
                 Object[] row = new Object[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i - 1] = result.getObject(i);
+                    if (result.getObject(i) != null) {
+                        row[i - 1] = result.getObject(i);
+                    }
                 }
 
                 tblModel.addRow(row);

@@ -127,7 +127,9 @@ public class clsDAOCustomers extends clsCustomers {
             while (result.next()) {
                 Object[] row = new Object[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i - 1] = result.getObject(i);
+                    if (result.getObject(i) != null) {
+                        row[i - 1] = result.getObject(i);
+                    }
                 }
                 tblModel.addRow(row);
             }

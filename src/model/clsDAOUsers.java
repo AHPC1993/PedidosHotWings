@@ -158,7 +158,9 @@ public class clsDAOUsers extends clsUsers {
             while (result.next()) {
                 Object[] row = new Object[columns];
                 for (int i = 1; i <= columns; i++) {
+                     if (result.getObject(i) != null) {
                     row[i - 1] = result.getObject(i);
+                     }
                 }
 
                 tblModel.addRow(row);

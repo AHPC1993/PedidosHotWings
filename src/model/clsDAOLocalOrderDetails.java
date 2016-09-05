@@ -276,9 +276,13 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
             int columns = resultMetaData.getColumnCount();
 
             while (result.next()) {
+
                 String[] row = new String[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i - 1] = result.getObject(i).toString();
+                    if (result.getObject(i) != null) {
+                        row[i - 1] = result.getObject(i).toString();
+                        System.out.println(result.getObject(i).toString());
+                    }
                 }
                 dates.add(row);
             }
@@ -308,7 +312,9 @@ public class clsDAOLocalOrderDetails extends clsLocalOrderDetails {
             while (result.next()) {
                 String[] row = new String[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i - 1] = result.getObject(i).toString();
+                    if (result.getObject(i) != null) {
+                        row[i - 1] = result.getObject(i).toString();
+                    }
                 }
                 dates.add(row);
             }

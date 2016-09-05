@@ -50,9 +50,8 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
         String sql = "INSERT INTO public.tbl_orderdelivery_details(order_number, additional_products_id,customers_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER), additional_products_id,'" + super.getCustomers_id() + "',namep, description, price ,'" + super.getProduct_amount() + "','" + super.getProduct_price_total() + "','" + super.getNotes() + "',NEXTVAL('SEQ_ORDERDELIVERY_DETAILS') from tbl_additional_products WHERE additional_products_id ='" + super.getAdditional_products_id() + "';";
         return connexion.insert(sql);
     }
-    
-    
-      /**
+
+    /**
      * Inserta en la tabla tbl_orderlocal_details, un producto adicional con su
      * cantidad, valor y valor total.
      *
@@ -61,11 +60,9 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
      */
     public boolean insertServiceOrderDelivery(double service) {
 
-        String sql = "INSERT INTO public.tbl_orderdelivery_details(order_number, customers_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER),'" + super.getCustomers_id() + "','Domicilio', 'Cargo por el servicio a domicilio','"+ service +"','1','" + service + "','" + super.getNotes() + "',(SELECT NEXTVAL('SEQ_ORDERDELIVERY_DETAILS')) ;";
+        String sql = "INSERT INTO public.tbl_orderdelivery_details(order_number, customers_id, product_name, product_description, product_price, product_amount, product_price_total, notes, localorder_id) SELECT (SELECT LAST_VALUE FROM SEQ_ORDER_NUMBER),'" + super.getCustomers_id() + "','Domicilio', 'Cargo por el servicio a domicilio','" + service + "','1','" + service + "','" + super.getNotes() + "',(SELECT NEXTVAL('SEQ_ORDERDELIVERY_DETAILS')) ;";
         return connexion.insert(sql);
     }
-
-    
 
     /**
      * Inserta en la tabla orderlocal, con el total del pedido y el número de
@@ -296,7 +293,9 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
             while (result.next()) {
                 Object[] row = new Object[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i - 1] = result.getObject(i);
+                    if (result.getObject(i) != null) {
+                        row[i - 1] = result.getObject(i);
+                    }
                 }
                 tblModel.addRow(row);
             }
@@ -324,7 +323,9 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
             while (result.next()) {
                 String[] row = new String[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i - 1] = result.getObject(i).toString();
+                    if (result.getObject(i) != null) {
+                        row[i - 1] = result.getObject(i).toString();
+                    }
                 }
                 dates.add(row);
             }
@@ -353,7 +354,9 @@ public class clsDAOOrderDeliveryDetails extends clsOrderDeliveryDetails {
             while (result.next()) {
                 String[] row = new String[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i - 1] = result.getObject(i).toString();
+                    if (result.getObject(i) != null) {
+                        row[i - 1] = result.getObject(i).toString();
+                    }
                 }
                 dates.add(row);
             }

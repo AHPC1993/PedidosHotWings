@@ -1,3 +1,14 @@
+Para la instalación del programa se necesita lo siguiente.
+Java Jdk 7
+iReport(Una vez instalado se debe modificar el archivo ireport.conf que se encuentra en la carpeta etc de la instalación del iReport, ahí se debe modificar la línea jdkhome="C:\Program Files\Java\jdk1.7.0_79" y se debe poner la ruta de instalación del java jdk 7)
+Java normal
+Es obligatoreo que quede instalado el programa en C:\HotWings\ esta carpeta debe tener una subcarpeta llamada reports con el fin de mostrar los reportes bien.
+
+
+
+
+
+
 Secuencias.
 Para ordenes locales_ SEQ_ORDER_NUMBER
 Locales: 100X    SEQ_LOCALS

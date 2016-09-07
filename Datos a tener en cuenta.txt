@@ -4,6 +4,9 @@ iReport(Una vez instalado se debe modificar el archivo ireport.conf que se encue
 Java normal
 Es obligatoreo que quede instalado el programa en C:\HotWings\ esta carpeta debe tener una subcarpeta llamada reports con el fin de mostrar los reportes bien.
 
+la base de datos se llama dbHotWings
+se debe crear un usuario llamado hotwings
+
 
 
 

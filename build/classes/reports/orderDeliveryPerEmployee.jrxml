@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c3317414-7f3b-4101-a52a-20e691a54a30">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="84"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -63,6 +63,10 @@ WHERE
 		<variableExpression><![CDATA[$F{N° de orden}]]></variableExpression>
 		<initialValueExpression><![CDATA[0]]></initialValueExpression>
 	</variable>
+	<variable name="totalOrderDay" class="java.math.BigDecimal" resetType="Group" resetGroup="Fecha pedido" calculation="Sum">
+		<variableExpression><![CDATA[Double.valueOf($F{Precio total producto}.replace(",",""))]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.valueOf(0)]]></initialValueExpression>
+	</variable>
 	<group name="Fecha pedido">
 		<groupExpression><![CDATA[$F{Fecha pedido}]]></groupExpression>
 		<groupHeader>
@@ -86,7 +90,22 @@ WHERE
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="6"/>
+			<band height="31">
+				<textField>
+					<reportElement x="614" y="3" width="183" height="28" uuid="ef10cc8b-ea71-461f-9197-4c0027b85cca"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Total día: " + $V{totalOrderDay}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5" y="3" width="427" height="28" uuid="4ddfc29b-9d56-4f1a-b806-df7a61f19493"/>
+					<textElement>
+						<font size="18" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Cantidad de domicilios llevados: " + $V{countOrders}]]></textFieldExpression>
+				</textField>
+			</band>
 		</groupFooter>
 	</group>
 	<group name="Datos Cliente">
@@ -279,14 +298,6 @@ WHERE
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="28" splitType="Stretch">
-			<textField>
-				<reportElement x="5" y="0" width="427" height="28" uuid="4ddfc29b-9d56-4f1a-b806-df7a61f19493"/>
-				<textElement>
-					<font size="18" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Cantidad de domicilios llevados: " + $V{countOrders}]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="17" splitType="Stretch"/>
 	</summary>
 </jasperReport>

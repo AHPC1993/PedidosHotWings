@@ -1202,14 +1202,12 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             cboCustomersNeighborhood.setBorder(borderDefault);
             if (customers.findDuplicateCustomers(txtCustomersPhone.getText()).equals("no_existe")) {
                 loadSetValuesCustomers();
-
                 if (customers.insert()) {
                     JOptionPane.showMessageDialog(dlgOrderDelivery, "<html><p><font size=\"5\">Se insertó el cliente correctamente, ya puede hacer su pedido</font></p></html>");
-                    //  frmMain.setVisible(false);
                     dlgOrderDelivery.dispose();
                     this.setVisible(true);
+                    searchClientAfterAdding(txtCustomersPhone.getText());
                     cleanTextboxCustomers();
-
                 } else {
                     JOptionPane.showMessageDialog(dlgOrderDelivery, "<html><p><font size=\"5\">No sé insertó el cliente, por favor verifique nuevamente</font></p></html>");
                 }
@@ -1229,6 +1227,36 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
+    /*
+     *Una vez se agrega el nuevo cliente, se busca y se obtiene el id del cliente, para agregarlo junto al pedido.
+     */
+    public void searchClientAfterAdding(String phone) {
+        ResultSet result;
+        if (phone != null) {
+            customers.setSearch(phone);
+            result = customers.search();
+            if (result != null) {
+                try {
+                    customers = new clsDAOCustomers();
+                    customers_id = result.getString(1);
+                    customers.setCustomers_id(customers_id);
+                    customers.setNamec(result.getString(3));
+                    customers.setLastname(result.getString(4));
+                    customers.setAddress(result.getString(5));
+                    customers.setNeighborhoos(result.getString(6));
+                    customers.setPhone(result.getString(9));
+                    cboCustomersNeighborhood.setEnabled(false);
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+    }
+
+    /*
+     *Valida que las cajas de texto no estén vacías, si están vacías las pone en color rojo y devuelve un false
+    *para que el usuario no pueda continuar
+     */
     public boolean validateFields() {
         boolean state = true;
 
@@ -1319,6 +1347,7 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnSearchCustomerOrderDeliveryActionPerformed
+
 
     private void btnCancelOrderDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelOrderDeliveryActionPerformed
         dlgOrderDelivery.dispose();
@@ -1498,8 +1527,8 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
         for (int i = 0; i < tblOrderDelivery.getRowCount(); i++) {
             //Se pone el 25 como medida exacta para que al imprimir no se salga de la línea de impresión
             int amountForFormat = 25 - tblOrderDelivery.getValueAt(i, 1).toString().length();
-            String orderKitchen = String.format("%-5s %-5s", tblOrderDelivery.getValueAt(i, 4), tblOrderDelivery.getValueAt(i, 1) + "\n"+ tblOrderDelivery.getValueAt(i, 6) + "\n");
-            String orderLocal = String.format("%-5s %-5s %" + amountForFormat + "s", tblOrderDelivery.getValueAt(i, 4), tblOrderDelivery.getValueAt(i, 1), tblOrderDelivery.getValueAt(i, 5) + "\n"+ tblOrderDelivery.getValueAt(i, 6) + "\n");
+            String orderKitchen = String.format("%-5s %-5s", tblOrderDelivery.getValueAt(i, 4), tblOrderDelivery.getValueAt(i, 1) + "\n" + tblOrderDelivery.getValueAt(i, 6) + "\n");
+            String orderLocal = String.format("%-5s %-5s %" + amountForFormat + "s", tblOrderDelivery.getValueAt(i, 4), tblOrderDelivery.getValueAt(i, 1), tblOrderDelivery.getValueAt(i, 5) + "\n" + tblOrderDelivery.getValueAt(i, 6) + "\n");
             orderArrayKitchen.add(orderKitchen);
             orderArrayLocal.add(orderLocal);
         }

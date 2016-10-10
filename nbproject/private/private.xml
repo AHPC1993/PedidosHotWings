@@ -3,15 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/home/allan/NetBeansProjects/PedidosHotWings/src/view/frmAdministration.java</file>
-=======
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmLocalOrder.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/reports/orderDeliveryPerEmployee.jrxml</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/reports/orderDeliveryPerRangeDay.jrxml</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmReports.java</file>
-            <file>file:/C:/Users/GSG/Documents/NetBeansProjects/PedidosHotWings/src/view/frmNewOrderDelivery.java</file>
->>>>>>> cbf52f60191cf322fd1b582cd50683d8ae695e21
+            <file>file:/home/allan/NetBeansProjects/PedidosHotWings/src/view/frmReports.java</file>
         </group>
     </open-files>
 </project-private>

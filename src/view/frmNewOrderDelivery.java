@@ -1554,12 +1554,13 @@ public class frmNewOrderDelivery extends javax.swing.JFrame {
             }
             orderArrayLocal.add("---------------------------------"); //33
         }
-
+ //Se imprime la orden para la cocina 
         printService.printLocalOrder(orderArrayKitchen, 16);
+        //Imprime los datos del cliente
         printDatesCustomer();
+        //Imprime la orden.
         printService.printLocalOrder(orderArrayLocal, 0);
-        printDatesCustomer();
-        printService.printLocalOrder(orderArrayLocal, 0);
+
     }
 
     public void printDatesCustomer() {

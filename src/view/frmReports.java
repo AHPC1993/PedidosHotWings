@@ -622,14 +622,9 @@ public class frmReports extends javax.swing.JFrame {
         try {
 
             parameters_report.put("logo", getClass().getClassLoader().getResource("resources/images/logoHotWings.jpeg"));
-<<<<<<< HEAD
-            //  String dir = "src\\reports\\localOrdersPerRangeDay.jrxml.";//windows
-            //IString dir = "src/reports/" + nameReport;
-            String dir = "C:\\HotWings\\reports/" + nameReport;
-=======
-            //String dir = "src/reports/" + nameReport;
+  
+           // String dir = "src/reports/" + nameReport; //Linux
             String dir = "C:\\HotWings\\reports/" + nameReport; //Para windows
->>>>>>> cbf52f60191cf322fd1b582cd50683d8ae695e21
             JOptionPane.showMessageDialog(this, "<html><p><font size=\"5\">Por favor espere un momento mientras el informe carga</font></p></html>");
             JasperReport reportJasper = JasperCompileManager.compileReport(dir);
             JasperPrint showReport = JasperFillManager.fillReport(reportJasper, parameters_report, connexion.connection);
